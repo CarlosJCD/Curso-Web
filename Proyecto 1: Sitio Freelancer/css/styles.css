@@ -19,5 +19,16 @@ body {
 }
 .titulo span {
   font-size: 2rem;
-  color: var(--cyan_oscuro);
+}
+
+.contenedor {
+  width: 120rem;
+  margin: 0 auto 0 auto;
+}
+
+.nav-bg {
+  background-color: var(--esmeralda);
+}
+
+.navegacion-principal {
 }
