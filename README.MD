@@ -18,4 +18,6 @@ Son secciones introductorias al curso, no generan evidencia del codigo.
 #### Contenido Tematico
 
 - Introduccion a HTML5
-- Agrupacion del contenido del cuerpo por medio de etiquetas (header, nav, main, section, article, aside, footer y div)
+- Estructura del contenido por medio de etiquetas (header, nav, main, section, article, aside, footer y div)
+- Enlaces con href y navbar
+- Imagenes en HTML
