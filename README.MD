@@ -10,11 +10,12 @@ Son secciones introductorias al curso, no generan evidencia del codigo.
 
 ### Sesion de estudio #1
 
-#### Hora de inicio: 19:24
-
-#### Hora final: 21:24
-
 #### Evidencias de Codigo
 
     - Creacion Carpeta "Proyecto 1: Sitio Freelancer"
-    - 
+    - Creacion Archivo "Index.html"
+
+#### Contenido Tematico
+
+- Introduccion a HTML5
+- Agrupacion del contenido del cuerpo por medio de etiquetas (header, nav, main, section, article, aside, footer y div)
