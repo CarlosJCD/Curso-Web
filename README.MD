@@ -25,6 +25,7 @@ Son secciones introductorias al curso, no generan evidencia del codigo.
 ### Contenido Tematico
 
     - Etiqueta style en HTML
+    - Pixeles, em y rem para tamaño de fuente
 
 ### Evidencias en Codigo
 
