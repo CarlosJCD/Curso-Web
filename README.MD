@@ -28,4 +28,5 @@ Son secciones introductorias al curso, no generan evidencia del codigo.
 
 ### Evidencias en Codigo
 
-    -
+    - Creacion Carpeta "css"
+    - Creacion Archivo "styles.css"
