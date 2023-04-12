@@ -1,3 +1,11 @@
+:root {
+  --azul: #a3e7fc;
+  --esmeralda: #26c485;
+  --cyan_oscuro: #32908f;
+  --berenjena: #553a41;
+  --black_bean: #2f0601;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -10,4 +18,5 @@ body {
 }
 .titulo span {
   font-size: 2rem;
+  color: var(--cyan_oscuro);
 }
