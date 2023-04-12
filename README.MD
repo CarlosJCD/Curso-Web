@@ -30,6 +30,8 @@ Son secciones introductorias al curso, no generan evidencia del codigo.
     - Colores en CSS
     - Variables en CSS
     - Especificidad en CSS
+    - Importar fuentes externas
+    - Normalize CSS
 
 ### Evidencias en Codigo
 
