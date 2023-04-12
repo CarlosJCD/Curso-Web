@@ -27,6 +27,9 @@ Son secciones introductorias al curso, no generan evidencia del codigo.
     - Etiqueta style en HTML
     - Pixeles, em y rem para tamaño de fuente
     - Selectores en CSS
+    - Colores en CSS
+    - Variables en CSS
+    - Especificidad en CSS
 
 ### Evidencias en Codigo
 
