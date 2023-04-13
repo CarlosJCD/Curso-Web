@@ -25,6 +25,41 @@ body {
     var(--saffron) 100%
   );
 }
+
+.contenedor {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+/*Boton de contacto*/
+.boton {
+  text-decoration: none;
+  color: white;
+  background-color: var(--persian-green);
+  padding: 1rem 3rem;
+  margin-top: 3rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  width: 90%;
+  text-align: center;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .boton {
+    width: auto;
+  }
+}
+
+.sombra {
+  -webkit-box-shadow: 0px 2px 6px 1px rgba(231, 111, 81, 1);
+  -moz-box-shadow: 0px 2px 6px 1px rgba(231, 111, 81, 1);
+  box-shadow: 0px 2px 6px 1px rgba(231, 111, 81, 1);
+  background-color: var(--saffron);
+  padding: 2rem;
+  border-radius: 1rem;
+}
 /* Tipografia */
 h1 {
   font-size: 3.8rem;
@@ -48,39 +83,6 @@ h3 {
   font-size: 2rem;
 }
 
-.contenedor {
-  max-width: 120rem;
-  margin: 0 auto;
-}
-/*Boton de contacto*/
-.boton {
-  text-decoration: none;
-  color: white;
-  background-color: var(--persian-green);
-  padding: 1rem 3rem;
-  margin-top: 1rem;
-  font-size: 2rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  border-radius: 0.5rem;
-  width: 90%;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  .boton {
-    width: auto;
-  }
-}
-
-.sombra {
-  -webkit-box-shadow: 0px 2px 6px 1px rgba(231, 111, 81, 1);
-  -moz-box-shadow: 0px 2px 6px 1px rgba(231, 111, 81, 1);
-  box-shadow: 0px 2px 6px 1px rgba(231, 111, 81, 1);
-  background-color: var(--saffron);
-  padding: 2rem;
-  border-radius: 1rem;
-}
 /* Barra de navegacion*/
 .nav-bg {
   background-color: var(--charcoal);
@@ -147,4 +149,29 @@ h3 {
 .servicios {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  column-gap: 10px;
+}
+
+.servicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.servicio h3 {
+  color: var(--persian-green);
+}
+
+.servicio p {
+  line-height: 2;
+}
+
+.servicio .iconos {
+  display: flex;
+  height: 15rem;
+  width: 15rem;
+  background-color: var(--charcoal);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: space-evenly;
 }
