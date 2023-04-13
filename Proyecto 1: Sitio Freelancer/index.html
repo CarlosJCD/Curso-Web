@@ -5,18 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Diseñador Freelance</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" href="css/styles.css" as="style" />
+    <link href="css/styles.css" rel="stylesheet" />
   </head>
   <body>
     <header>
-      <h1>Carlos Calderon - Ingeniero de Software</h1>
+      <h1 class="titulo">
+        Carlos Calderon <span> Ingeniero de Software</span>
+      </h1>
     </header>
 
-    <nav>
-      <a href="#">Inicio</a>
-      <a href="#">Sobre Mi</a>
-      <a href="#">Clientes</a>
-      <a href="#">Contacto</a>
-    </nav>
+    <div class="nav-bg">
+      <nav class="navegacion-principal contenedor">
+        <a href="#">Inicio</a>
+        <a href="#">Sobre Mi</a>
+        <a href="#">Clientes</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </div>
 
     <section>
       <h2>Diseño y desarrollo web</h2>
@@ -170,7 +183,7 @@
 
           <div>
             <label>Correo</label>
-            <input type="emai" placeholder="Tu email" />
+            <input type="email" placeholder="Tu email" />
           </div>
 
           <div>
@@ -178,7 +191,7 @@
             <textarea></textarea>
           </div>
           <div>
-            <button type="submit" value="Enviar"></button>
+            <button type="submit" value="Enviar">Enviar</button>
           </div>
         </fieldset>
       </form>
