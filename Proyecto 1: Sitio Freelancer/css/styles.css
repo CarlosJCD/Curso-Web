@@ -22,7 +22,7 @@ body {
 }
 
 .contenedor {
-  width: 120rem;
+  max-width: 120rem;
   margin: 0 auto 0 auto;
 }
 
@@ -32,15 +32,24 @@ body {
 
 .navegacion-principal {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .navegacion-principal {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .navegacion-principal a {
+  display: block;
+  text-align: center;
   color: white;
-  padding: 1rem;
   text-decoration: none;
   font-size: 2rem;
   font-weight: bold;
+  padding: 1rem;
 }
 
 .navegacion-principal a:hover {
