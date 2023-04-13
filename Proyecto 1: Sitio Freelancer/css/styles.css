@@ -5,7 +5,7 @@
   --sandy-brown: #f4a261ff;
   --burnt-sienna: #e76f51ff;
 }
-
+/*Globales**/
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -20,7 +20,7 @@ body {
   font-size: 16px;
   font-family: "Anuphan", sans-serif;
 }
-
+/* Tipografia */
 h1 {
   font-size: 3.8rem;
 }
@@ -38,6 +38,7 @@ h3 {
   text-align: center;
 }
 
+/* Titulos */
 .titulo span {
   font-size: 2rem;
 }
@@ -46,7 +47,7 @@ h3 {
   max-width: 120rem;
   margin: 0 auto;
 }
-
+/*Boton de contacto*/
 .boton {
   text-decoration: none;
   color: white;
@@ -66,7 +67,7 @@ h3 {
     width: auto;
   }
 }
-
+/* Barra de navegacion*/
 .nav-bg {
   background-color: var(--charcoal);
 }
@@ -97,7 +98,7 @@ h3 {
   color: black;
   background-color: var(--sandy-brown);
 }
-
+/*Imagen*/
 .hero {
   background-image: url("../img/hero.jpg");
   background-repeat: no-repeat;
@@ -122,7 +123,7 @@ h3 {
   color: white;
 }
 
-.ubicacion {
+.contenido-hero .ubicacion {
   display: flex;
   align-items: flex-end;
 }
