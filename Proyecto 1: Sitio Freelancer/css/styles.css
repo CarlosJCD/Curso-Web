@@ -72,6 +72,15 @@ h3 {
     width: auto;
   }
 }
+
+.sombra {
+  -webkit-box-shadow: 0px 2px 6px 1px rgba(231, 111, 81, 1);
+  -moz-box-shadow: 0px 2px 6px 1px rgba(231, 111, 81, 1);
+  box-shadow: 0px 2px 6px 1px rgba(231, 111, 81, 1);
+  background-color: var(--saffron);
+  padding: 2rem;
+  border-radius: 1rem;
+}
 /* Barra de navegacion*/
 .nav-bg {
   background-color: var(--charcoal);
@@ -101,7 +110,7 @@ h3 {
 
 .navegacion-principal a:hover {
   color: black;
-  background-color: var(--saffron);
+  background-color: var(--sandy-brown);
 }
 /*Imagen*/
 .hero {
@@ -110,6 +119,7 @@ h3 {
   background-size: cover;
   height: 450px;
   position: relative;
+  margin-bottom: 2rem;
 }
 
 .contenido-hero {
