@@ -185,9 +185,14 @@ h3 {
 }
 .seccionNosotros__imagen {
   grid-row: 1/2;
+  width: 100%;
 }
 @media (min-width: 768px) {
   .seccionNosotros__imagen {
     grid-column: 2/3;
   }
+}
+
+.seccionNosotros__texto {
+  text-align: justify;
 }
