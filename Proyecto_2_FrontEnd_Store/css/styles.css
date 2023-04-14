@@ -90,3 +90,15 @@ h3 {
   color: var(--pale-dogwood);
 }
 /*Fin navbar*/
+
+/*Footer*/
+.footer {
+  background-color: var(--atomic-tangerine);
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+.footer__texto {
+  text-align: center;
+  text-transform: uppercase;
+}
