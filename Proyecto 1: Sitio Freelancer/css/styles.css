@@ -46,6 +46,10 @@ body {
   border: none;
 }
 
+.boton:hover {
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .boton {
     width: auto;
@@ -203,4 +207,38 @@ h3 {
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 2rem;
+}
+
+.contenedor-campos {
+}
+
+.campo {
+  margin-bottom: 1rem;
+}
+
+.campo label {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.input-text {
+  width: 100%;
+  border: none;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.formulario .boton {
+  background-color: var(--charcoal);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .formulario .boton {
+    width: auto;
+    display: flex;
+    align-items: flex-end;
+  }
 }
