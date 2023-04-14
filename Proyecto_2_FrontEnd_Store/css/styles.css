@@ -58,3 +58,35 @@ h3 {
   font-size: 2.4rem;
 }
 /*FIN GLOBALES*/
+
+/*header*/
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.header__logo {
+  margin: 3rem 0;
+}
+/*Fin header*/
+
+/*navbar*/
+.navbar {
+  background-color: var(--atomic-tangerine);
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.navbar__enlace {
+  font-size: 2rem;
+  color: var(--caribbean-current);
+  text-transform: uppercase;
+}
+
+.navbar__enlace--actual,
+.navbar__enlace:hover {
+  color: var(--pale-dogwood);
+}
+/*Fin navbar*/
