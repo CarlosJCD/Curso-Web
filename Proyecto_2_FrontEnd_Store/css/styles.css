@@ -196,3 +196,31 @@ h3 {
 .seccionNosotros__texto {
   text-align: justify;
 }
+
+/*iconos*/
+
+.bloques {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .bloques {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.bloque {
+  text-align: center;
+}
+
+.bloque__imagen {
+  width: 100%;
+}
+
+.bloque__titulo {
+  margin: 0;
+}
+/*Fin Iconos*/
+
+/*Fin Seccion 'Sobre Nosotros'*/
