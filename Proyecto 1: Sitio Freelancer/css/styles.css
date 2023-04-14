@@ -9,6 +9,7 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  scroll-snap-type: y mandatory;
 }
 *,
 *:before,
@@ -142,6 +143,13 @@ h3 {
 .contenido-hero .ubicacion {
   display: flex;
   align-items: flex-end;
+}
+
+.servicios,
+.navegacion-principal,
+.formulario {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
 /**Zona de Servicios**/
