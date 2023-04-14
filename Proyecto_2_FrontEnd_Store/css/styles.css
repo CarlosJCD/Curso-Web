@@ -34,7 +34,7 @@ a {
   text-decoration: none;
 }
 img {
-  width: 100%;
+  max-width: 100%;
 }
 
 .contenedor {
