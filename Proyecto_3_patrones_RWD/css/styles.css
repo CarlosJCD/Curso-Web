@@ -98,9 +98,6 @@ p {
   flex-direction: row;
   column-gap: 2rem;
 }
-.patron a {
-  color: white;
-}
 
 .patron__titulo {
   text-align: center;
