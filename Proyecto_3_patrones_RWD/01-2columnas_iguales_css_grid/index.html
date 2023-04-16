@@ -11,11 +11,16 @@
       href="https://fonts.googleapis.com/css?family=Raleway:400,700,900"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
 
   <body>
+    <header class="header">
+      <h1 class="header__contenido">Patron de Diseño: 2 Columnas</h1>
+      <h2 class="header__contenido">CSS Grid</h2>
+    </header>
     <div class="contenedor dos-columnas">
       <article class="entrada-blog">
         <h1>Titulo Entrada Blog</h1>
@@ -38,5 +43,29 @@
         <a href="#">Leer más</a>
       </article>
     </div>
+    <footer class="footer">
+      <a class="footer__contenido" href="../index.html"
+        >Volver a la pagina principal</a
+      >
+      <a href="../index.html">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-home"
+          width="60"
+          height="60"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#ffffff"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <polyline points="5 12 3 12 12 3 21 12 19 12" />
+          <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+          <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+        </svg>
+      </a>
+    </footer>
   </body>
 </html>
