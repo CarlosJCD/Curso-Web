@@ -92,6 +92,9 @@ p {
   color: white;
   padding: 1rem;
 }
+.patron a {
+  color: white;
+}
 
 .patron__contenido {
   display: flex;
