@@ -67,3 +67,20 @@ img {
 .centrar-texto {
   text-align: center;
 }
+
+/*Fin globales*/
+
+/* Header */
+.header {
+  background-image: url(../img/banner.jpg);
+  height: 60rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.header__texto {
+  color: white;
+  text-align: center;
+  margin-top: 5rem;
+}
