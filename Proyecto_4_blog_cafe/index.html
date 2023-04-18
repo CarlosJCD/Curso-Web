@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/normalize.css" />
+    <meta name="descriptio" content="Pagina web de blog de café" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap"
+      crossorigin="crossorigin"
+      as="font"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" href="img/blog1.jpg" as="image" />
+
+    <!--Prefetch-->
+    <link rel="prefetch" href="nosotros.html" as="document" />
+
+    <!--Preload-->
+    <link rel="preload" href="css/normalize.css" as="style" />
+    <link rel="stylesheet" href="css/normalize.css" />
+
+    <link rel="preload" href="css/styles.css" as="style" />
     <link rel="stylesheet" href="css/styles.css" />
+
     <title>Blog de Café</title>
   </head>
   <body>
@@ -132,7 +148,7 @@
             </p>
 
             <a href="entrada.html" class="boton boton--secundario"
-              >Más información</a
+              >Más información sobre nuestros cursos</a
             >
           </li>
           <li class="widget-curso">
@@ -145,7 +161,7 @@
             </p>
 
             <a href="entrada.html" class="boton boton--secundario"
-              >Más información</a
+              >Más información sobre nuestros cursos</a
             >
           </li>
         </ul>
