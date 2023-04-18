@@ -1,6 +1,7 @@
 :root {
   --fuenteHeading: "PT Sans", sans-serif;
   --fuenteParrafos: "Open Sans", sans-serif;
+
   --primario: #784d3c;
   --blanco: #ffffff;
   --gris_claro: #e1e1e1;
@@ -9,6 +10,7 @@
 
 html {
   box-sizing: border-box;
+  font-size: 62.5%;
 }
 *,
 *:before,
@@ -214,3 +216,32 @@ img {
 }
 
 /*Fin Sobre Nosotros*/
+
+/* Seccion cursos*/
+.curso {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--gris_claro);
+}
+@media (min-width: 768px) {
+  .curso {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 2rem;
+  }
+}
+.curso:last-of-type {
+  border-bottom: none;
+}
+
+.curso__label {
+  font-family: var(--fuenteHeading);
+  font-weight: bold;
+}
+.curso__info {
+  font-weight: 400;
+}
+.curso__label,
+.curso__info {
+  font-size: 2rem;
+}
+/*Fin Seccion Cursos*/
