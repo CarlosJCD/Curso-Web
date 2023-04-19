@@ -31,3 +31,28 @@ let numElementosDelArreglo = multiplesDatos.length
 estudiantesMentoria.forEach(function (estudiante) {
     console.log(`Estudiante: ${estudiante}`)
 })
+
+//METODOS ARREGLOS
+
+//Insertar al final del arreglo:
+multiplesDatos[multiplesDatos.length] = "Insertar con corchetes";
+multiplesDatos.push("Insertar como si fuera una pila");
+
+//Insertar al principio del arreglo:
+multiplesDatos.unshift("Estoy al principio!!");
+
+//Eliminar elementos del arreglo:
+multiplesDatos.pop(); // elimina el ultimo del arreglo
+multiplesDatos.shift(); // elimina el primero del arreglo
+multiplesDatos.splice(2, 1); // .splice(m, n) : elimina los siguientes n elementos partiendo del elemento en la posicion m
+
+/*Otro enfoque para interactuar con arreglos es no modificar el original, sino obtener copias del original con las 
+modificaciones necesarias (sigue la misma idea que en el paradigma funcional, donde solo hay constantes y las funciones
+    para modificar una constante retornan la copia de esa constante con el cambio correspondiente)
+*/
+
+//Añadir elementosl: operador spread o rest
+const multiplesDatosMasUnoAlFinal = [...multiplesDatos, 19];
+const multiplesDatosMasUnoAlPrincipio = [23, ...multiplesDatos];
+
+
