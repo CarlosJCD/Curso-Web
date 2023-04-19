@@ -55,4 +55,56 @@ modificaciones necesarias (sigue la misma idea que en el paradigma funcional, do
 const multiplesDatosMasUnoAlFinal = [...multiplesDatos, 19];
 const multiplesDatosMasUnoAlPrincipio = [23, ...multiplesDatos];
 
+// Mas metodos de arrays:
 
+//Includes - Valida si un elemento esta en el array (no funciona bien para objetos)
+
+const algunosMeses = ["Enero", "Febrero", "Agosto", "Julio"];
+console.log(algunosMeses.includes("Diciembre"));
+
+// Some - Valida si un objeto se encuentra en el arreglo por medio de la validacion de una propiedad
+
+const comestibles = [
+    { nombre: "Queso", Tipo: "Lacteo" },
+    { nombre: "Yoghurt", Tipo: "Lacteo" },
+    { nombre: "Jamon", Tipo: "De origen animal" },
+    { nombre: "Huevo", Tipo: "De origen animal" },
+    { nombre: "Leche", Tipo: "Lacteo" },
+];
+
+comestibles.some(producto => producto.nombre === "Leche")
+
+
+
+const carrito = [
+    { nombre: 'Monitor 20 Pulgadas', precio: 500 },
+    { nombre: 'Televisión 50 Pulgadas', precio: 700 },
+    { nombre: 'Tablet', precio: 300 },
+    { nombre: 'Audifonos', precio: 200 },
+    { nombre: 'Teclado', precio: 50 },
+    { nombre: 'Celular', precio: 500 },
+    { nombre: 'Bocinas', precio: 300 },
+    { nombre: 'Laptop', precio: 800 }
+];
+
+
+// Reduce - El método reduce JavaScript nos permite, como su nombre indica, reducir el array insertado a un solo valor
+
+
+let resultado = carrito.reduce(function (total, producto) {
+    return total + producto.precio
+}, 0);
+
+console.log(resultado)
+
+// Filter - crea un nuevo array con todos los elementos que cumplan la condición implementada por la función dada.
+resultado = carrito.filter(function (producto) {
+    return producto.precio > 400
+});
+
+console.log(resultado)
+resultado = carrito.filter(function (producto) {
+    return producto.nombre !== 'Celular'
+});
+
+console.log(resultado)
