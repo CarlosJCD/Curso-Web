@@ -22,3 +22,15 @@ class Computadora {
 const laptop = new Computadora(tipo = "laptop", "apple", "8 GB", "512 GB")
 
 console.log(laptop.toString())
+
+// Herencia
+
+class Laptop extends Computadora {
+    constructor(marca, memoriaRAM, capacidadDiscoDuro) {
+        super("Laptop", marca, memoriaRAM, capacidadDiscoDuro)
+    }
+}
+
+const laptop2 = new Laptop(marca = "Dell", "32 GB", "256 GB");
+
+console.log(laptop2.toString())
