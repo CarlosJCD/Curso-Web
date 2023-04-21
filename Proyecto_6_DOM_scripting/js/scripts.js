@@ -30,3 +30,15 @@ nuevoEnlace.classList.add("navegacion__enlace");
 const barraDeNavegacion = document.querySelector('.navegacion');
 
 barraDeNavegacion.appendChild(nuevoEnlace);
+
+// Eventos
+
+window.addEventListener('load', function () {
+    console.log(2);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    console.log(4);
+});
+
+window.onscroll = () => console.log('scrolling...'); 
