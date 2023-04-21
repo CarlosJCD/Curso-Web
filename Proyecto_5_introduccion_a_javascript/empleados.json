@@ -1,0 +1,24 @@
+{
+  "empleados": [
+    {
+      "id": 1,
+      "nombre": "Carlos",
+      "profesion": "ingeniero de Software"
+    },
+    {
+      "id": 2,
+      "nombre": "Pedro",
+      "profesion": "Desarrollo Web"
+    },
+    {
+      "id": 3,
+      "nombre": "Julian",
+      "profesion": "UI y UX"
+    },
+    {
+      "id": 4,
+      "nombre": "Marco",
+      "profesion": "Backend"
+    }
+  ]
+}
