@@ -33,12 +33,21 @@ barraDeNavegacion.appendChild(nuevoEnlace);
 
 // Eventos
 
-window.addEventListener('load', function () {
-    console.log(2);
+window.addEventListener('load', function (evento) {
+    console.log(evento);
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    console.log(4);
+document.addEventListener('DOMContentLoaded', function (evento) {
+    console.log(evento);
 });
 
-window.onscroll = () => console.log('scrolling...'); 
+window.onscroll = () => console.log('scrolling...');
+
+// asociar eventos a elementos de html
+
+const botonEventoEnviar = document.querySelector('.boton--primario');
+
+botonEventoEnviar.addEventListener('click', function (evento) {
+    evento.preventDefault()
+    console.log(evento);
+});
