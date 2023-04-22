@@ -74,16 +74,47 @@ inputEmail.addEventListener("input", actualizarAtributoDatos);
 // Escribiendo en el elemento seleccionado por inputMensaje
 inputMensaje.addEventListener("input", actualizarAtributoDatos);
 
-// Click al elemento  seleccionado por botonEventoEnviar
-botonEventoEnviar.addEventListener('click', function (evento) {
-    evento.preventDefault()
-    console.log(datos);
-});
+// // Click al elemento  seleccionado por botonEventoEnviar
+// botonEventoEnviar.addEventListener('click', function (evento) {
+//     evento.preventDefault()
+//     console.log(datos);
+// });
 
 formulario.addEventListener("submit", function (evento) {
     evento.preventDefault();
-    console.log("enviando formulario...");
+    //validar formulario
+
+    const { nombre, email, mensaje } = datos;
+    if (nombre === "" || email === "" || mensaje === "") {
+        mostrarMensajeError("Todos los campos son obligatorios");
+        return;
+    }
+    //enviar formulario
+    mostrarMensajeConfirmacion("Formulario enviado con éxito");
+    console.log(datos);
+
 });
+
+function mostrarMensajeError(mensajeError) {
+    const elementoError = document.createElement('P');
+    elementoError.textContent = mensajeError;
+    elementoError.classList.add("error");
+    formulario.appendChild(elementoError);
+    setTimeout(() => {
+        elementoError.remove();
+    }, 5000);
+}
+
+function mostrarMensajeConfirmacion(mensajeConfirmacion) {
+    const elementoConfirmacion = document.createElement('P');
+    elementoConfirmacion.textContent = mensajeConfirmacion;
+    elementoConfirmacion.classList.add("correcto");
+    formulario.appendChild(elementoConfirmacion);
+    setTimeout(() => {
+        elementoConfirmacion.remove();
+    }, 5000);
+}
+
 
 function actualizarAtributoDatos(evento) {
     const idCampo = evento.target.id;
