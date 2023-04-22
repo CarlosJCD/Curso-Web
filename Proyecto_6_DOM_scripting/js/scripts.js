@@ -45,9 +45,38 @@ window.onscroll = () => console.log('scrolling...');
 
 // asociar eventos a elementos de html
 
+
+
+
+// Eventos con el teclado
+
+
+// Campo de formularo: Nombre
+
+const datos = {
+    nombre: "",
+    email: "",
+    mensaje: "",
+}
+
+const inputNombre = document.querySelector("#nombre");
+const inputEmail = document.querySelector("#email");
+const inputMensaje = document.querySelector("#mensaje");
 const botonEventoEnviar = document.querySelector('.boton--primario');
+
+function actualizarAtributoDatos(evento) {
+    const idCampo = evento.target.id;
+    const valorCampo = evento.target.value;
+    datos[idCampo] = valorCampo;
+}
+inputNombre.addEventListener("input", actualizarAtributoDatos);
+
+inputEmail.addEventListener("input", actualizarAtributoDatos);
+
+inputMensaje.addEventListener("input", actualizarAtributoDatos);
+
 
 botonEventoEnviar.addEventListener('click', function (evento) {
     evento.preventDefault()
-    console.log(evento);
+    console.log(datos);
 });
