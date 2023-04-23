@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/CarlosJCD/Curso-Web/issues"
   },
-  "homepage": "https://github.com/CarlosJCD/Curso-Web#readme"
+  "homepage": "https://github.com/CarlosJCD/Curso-Web#readme",
+  "dependencies": {
+    "sass": "^1.62.0"
+  }
 }
