@@ -4,7 +4,7 @@
   "description": "Proyecto Seccion #15 del curso",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch scss/:build/css/"
+    "sass": "sass --watch src/scss:build/css/"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
     "url": "https://github.com/CarlosJCD/Curso-Web/issues"
   },
   "homepage": "https://github.com/CarlosJCD/Curso-Web#readme",
-  "dependencies": {
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
     "sass": "^1.62.0"
   }
 }
