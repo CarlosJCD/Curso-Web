@@ -1,5 +1,2 @@
-$negro: light_green;
-
-body {
-  background-color: $negro;
-}
+@use "base";
+@use "contenido";
