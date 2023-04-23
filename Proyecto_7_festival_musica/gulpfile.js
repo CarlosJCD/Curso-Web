@@ -3,7 +3,7 @@ const sass = require("gulp-sass")(require("sass"));
 
 function compileCSS(callback) {
 
-    src('src/scss/app.scss')
+    src('src/scss/**/*.scss')
         .pipe(sass())
         .pipe(dest("build/css"));
 
@@ -11,7 +11,7 @@ function compileCSS(callback) {
 }
 
 function dev(callback) {
-    watch("src/scss/app.scss", compileCSS);
+    watch("src/scss/**/*.scss", compileCSS);
 
     callback();
 }
