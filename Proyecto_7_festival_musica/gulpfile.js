@@ -1,4 +1,4 @@
-const { src, dest } = require("gulp");
+const { src, dest, watch } = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 
 function compileCSS(callback) {
@@ -10,4 +10,12 @@ function compileCSS(callback) {
     callback();
 }
 
+function dev(callback) {
+    watch("src/scss/app.scss", compileCSS);
+
+    callback();
+}
+
 exports.compileCSS = compileCSS;
+
+exports.dev = dev;
