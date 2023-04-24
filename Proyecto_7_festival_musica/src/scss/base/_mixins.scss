@@ -1,0 +1,7 @@
+@use "variables" as v;
+
+@mixin tablet {
+  @media (min-width: v.$tablet) {
+    @content;
+  }
+}
