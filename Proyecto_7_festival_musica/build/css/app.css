@@ -390,7 +390,6 @@ h3 {
   text-align: center;
   color: white;
   font-size: 2.4rem;
-  margin-bottom: 1rem;
   padding-bottom: 2rem;
 }
 @media (min-width: 768px) {
@@ -405,15 +404,47 @@ h3 {
 
 .video {
   position: relative;
+  min-height: 50rem;
+  max-height: 70rem;
+  overflow: hidden;
 }
 .video .overlay {
   position: absolute;
-  background: rgb(146, 0, 244);
-  background: linear-gradient(255deg, rgba(146, 0, 244, 0.4850533964) 0%, rgba(98, 64, 218, 0) 53%, rgba(0, 1, 255, 0.4850533964) 100%);
   height: 100%;
   width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgb(146, 0, 244);
+  background: linear-gradient(255deg, rgba(146, 0, 244, 0.4850533964) 0%, rgba(98, 64, 218, 0) 53%, rgba(0, 1, 255, 0.4850533964) 100%);
 }
 .video video {
-  width: 100%;
   display: block;
+  width: auto;
+  object-fit: fill;
+}
+@media (min-width: 768px) {
+  .video video {
+    width: 100%;
+  }
+}
+
+.contenido-video {
+  text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+  z-index: 1;
+}
+.contenido-video h2 {
+  color: white;
+  font-size: 7rem;
+  margin: 0;
+}
+.contenido-video p {
+  color: white;
+  background-color: #f53756;
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0;
 }
