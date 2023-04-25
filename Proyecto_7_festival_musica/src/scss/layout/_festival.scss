@@ -1,0 +1,22 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.sobre-festival {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 2rem;
+  padding: 5rem 0;
+}
+
+.contenido-festival {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h2 {
+    margin-bottom: 2rem;
+  }
+  .fecha {
+    color: v.$rosa;
+    font-weight: 700;
+  }
+}

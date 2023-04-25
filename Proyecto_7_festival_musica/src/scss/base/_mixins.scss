@@ -11,3 +11,9 @@
     @content;
   }
 }
+
+@mixin monitor {
+  @media (min-width: v.$monitor) {
+    @content;
+  }
+}
