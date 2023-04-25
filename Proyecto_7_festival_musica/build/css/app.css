@@ -640,3 +640,72 @@ img {
   place-items: center;
   font-weight: 90%;
 }
+
+.boletos {
+  padding: 5rem 0;
+}
+.boletos h3 {
+  text-align: center;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .contenedor-boletos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+  }
+}
+
+.pase .nombre-pase {
+  text-align: center;
+  font-size: 2.4rem;
+  color: white;
+}
+.pase-header, .pase-footer {
+  padding: 0.5rem;
+}
+.pase-header p, .pase-footer p {
+  text-align: center;
+  color: white;
+}
+.pase-header {
+  background-color: #f53756;
+}
+.pase-header p {
+  text-transform: uppercase;
+  font-size: 1.6rem;
+}
+.pase-body {
+  background-color: white;
+}
+.pase-body ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.pase-body ul li,
+.pase-body ul :nth-child(odd) {
+  background-color: white;
+  padding: 0.5rem;
+  border-bottom: 1px solid lightgrey;
+}
+.pase-footer {
+  background-color: #752f97;
+}
+.pase-footer p {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.footer {
+  background-color: #f53756;
+  padding: 1rem;
+}
+.footer p {
+  color: white;
+  text-align: center;
+  margin: 0;
+}
