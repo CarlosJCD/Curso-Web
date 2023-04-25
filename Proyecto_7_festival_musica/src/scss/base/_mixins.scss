@@ -29,3 +29,9 @@
   grid-template-columns: repeat($columnas, 1fr);
   column-gap: $gap;
 }
+
+@mixin vaciar-lista {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}

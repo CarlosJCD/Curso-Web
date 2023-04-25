@@ -13,7 +13,7 @@
 
   .dia {
     text-transform: uppercase;
-    margin-bottom: 5rem;
+    margin: 5rem 0;
   }
 }
 
@@ -40,6 +40,9 @@
       margin: 2rem auto 0 auto;
     }
   }
+  @media (max-width: v.$tablet) {
+    margin-bottom: 2rem;
+  }
 }
 
 .edm .nombre-escenario:after {
@@ -50,10 +53,28 @@
   background-image: url(../img/icono_rock.png);
 }
 
+.horario-artistas {
+  @include m.vaciar-lista;
+  li {
+    padding: 2.5rem;
+    font-weight: 700;
+    span {
+      font-weight: 400;
+    }
+  }
+}
+
 .bg-amarillo {
   background-color: v.$amarillo;
+
+  li:nth-child(odd) {
+    background-color: darken($color: v.$amarillo, $amount: 15);
+  }
 }
 
 .bg-verde {
   background-color: v.$verde;
+  li:nth-child(odd) {
+    background-color: darken($color: v.$verde, $amount: 5);
+  }
 }

@@ -496,7 +496,7 @@ img {
 }
 .lineup .dia {
   text-transform: uppercase;
-  margin-bottom: 5rem;
+  margin: 5rem 0;
 }
 
 @media (min-width: 768px) {
@@ -523,6 +523,11 @@ img {
   background-position: center center;
   margin: 2rem auto 0 auto;
 }
+@media (max-width: 768px) {
+  .escenario {
+    margin-bottom: 2rem;
+  }
+}
 
 .edm .nombre-escenario:after {
   background-image: url(../img/icono_edm.png);
@@ -532,10 +537,29 @@ img {
   background-image: url(../img/icono_rock.png);
 }
 
+.horario-artistas {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.horario-artistas li {
+  padding: 2.5rem;
+  font-weight: 700;
+}
+.horario-artistas li span {
+  font-weight: 400;
+}
+
 .bg-amarillo {
   background-color: #fef46d;
+}
+.bg-amarillo li:nth-child(odd) {
+  background-color: #fdee21;
 }
 
 .bg-verde {
   background-color: #4cb8b3;
+}
+.bg-verde li:nth-child(odd) {
+  background-color: #43a8a3;
 }
