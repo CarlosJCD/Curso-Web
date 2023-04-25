@@ -1,10 +1,14 @@
+//JavaScript
 const { src, dest, watch, parallel } = require("gulp");
+const terser = require('gulp-terser');
+
 //CSS
 const sass = require("gulp-sass")(require("sass"));
 const plumber = require("gulp-plumber");
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const postcss = require('gulp-postcss');
+const sourcemaps = require('gulp-sourcemaps');
 
 //Imagenes
 const webp = require("gulp-webp");
@@ -12,12 +16,15 @@ const imagemin = require("gulp-imagemin");
 const cache = require("gulp-cache");
 const avif = require('gulp-avif');
 
+
 function compilarSCSS(callback) {
 
     src('src/scss/**/*.scss')
+        .pipe(sourcemaps.init())
         .pipe(plumber())
         .pipe(sass())
         .pipe(postcss([autoprefixer(), cssnano()]))
+        .pipe(sourcemaps.write('.'))
         .pipe(dest("build/css"));
 
     callback();
@@ -54,19 +61,26 @@ function reducirTamañoImagenes(callback) {
     callback();
 }
 
-function exportarJavaScript(callback) {
-    src('src/js/**/*.js').pipe(dest("build/js"));
+function comprimirJavaScript(callback) {
+    src('src/js/**/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(terser())
+        .pipe(sourcemaps.write('.'))
+        .pipe(dest("build/js"));
 
     callback();
 }
 
 function dev(callback) {
     watch("src/scss/**/*.scss", compilarSCSS);
-    watch("src/js/**/*.js", exportarJavaScript);
+    watch("src/js/**/*.js", comprimirJavaScript);
 
     callback();
 }
+exports.compilarSCSS = compilarSCSS;
 
-exports.compilarProyecto = parallel(convertirAAvif, reducirTamañoImagenes, convertirAWebp, exportarJavaScript, compilarSCSS);
+exports.comprimirJavaScript = comprimirJavaScript;
+
+exports.compilarProyecto = parallel(convertirAAvif, reducirTamañoImagenes, convertirAWebp, comprimirJavaScript, compilarSCSS);
 
 exports.dev = parallel(dev);
