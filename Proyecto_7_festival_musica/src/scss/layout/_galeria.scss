@@ -32,7 +32,9 @@
   width: 100%;
   height: 100%;
 
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   place-items: center;
 
   background-color: rgba($color: #000000, $alpha: 0.5);
@@ -41,4 +43,23 @@
     display: block;
     max-width: 80rem;
   }
+
+  .overlay-botones {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.boton-foto {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 90%;
 }

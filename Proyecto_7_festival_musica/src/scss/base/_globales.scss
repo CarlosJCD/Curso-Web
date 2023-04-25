@@ -13,6 +13,9 @@ html {
 body {
   font-family: v.$fuente_principal;
   font-size: 1.6rem;
+  &.fijar-body {
+    overflow: hidden;
+  }
 }
 p {
   font-size: 2rem;
