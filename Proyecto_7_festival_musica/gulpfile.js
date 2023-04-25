@@ -1,6 +1,12 @@
 const { src, dest, watch, parallel } = require("gulp");
+//CSS
 const sass = require("gulp-sass")(require("sass"));
 const plumber = require("gulp-plumber");
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const postcss = require('gulp-postcss');
+
+//Imagenes
 const webp = require("gulp-webp");
 const imagemin = require("gulp-imagemin");
 const cache = require("gulp-cache");
@@ -11,6 +17,7 @@ function compilarSCSS(callback) {
     src('src/scss/**/*.scss')
         .pipe(plumber())
         .pipe(sass())
+        .pipe(postcss([autoprefixer(), cssnano()]))
         .pipe(dest("build/css"));
 
     callback();
@@ -60,6 +67,6 @@ function dev(callback) {
     callback();
 }
 
-exports.compilarProyecto = parallel(convertirAAvif, reducirTamañoImagenes, convertirAWebp, exportarJavaScript);
+exports.compilarProyecto = parallel(convertirAAvif, reducirTamañoImagenes, convertirAWebp, exportarJavaScript, compilarSCSS);
 
 exports.dev = parallel(dev);
