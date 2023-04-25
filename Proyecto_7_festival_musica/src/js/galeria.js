@@ -105,7 +105,7 @@ function navbarFija() {
             header.classList.add('fijo');
             body.classList.add('body-scroll');
         } else {
-            header.classList.add('fijo');
+            header.classList.remove('fijo');
             body.classList.remove('body-scroll');
         }
     });
