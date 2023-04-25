@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function main() {
     crearGaleria();
+    smoothScroll();
 }
 
 function crearGaleria() {
@@ -78,4 +79,17 @@ function mostrarImagen(id) {
     const body = document.querySelector("body");
     body.appendChild(overlay);
     body.classList.add('fijar-body');
+}
+
+function smoothScroll() {
+    const enlacesNavegacion = document.querySelectorAll('.navegacion-principal a');
+    enlacesNavegacion.forEach(enlace => {
+        enlace.addEventListener('click', function (e) {
+            e.preventDefault();
+            const idSeccion = e.target.attributes.href.value;
+            const seccion = document.querySelector(idSeccion);
+            seccion.scrollIntoView({ behavior: 'smooth' });
+
+        });
+    });
 }
