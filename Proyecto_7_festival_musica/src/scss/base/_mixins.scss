@@ -1,7 +1,31 @@
 @use "variables" as v;
 
+@mixin telefono {
+  @media (max-width: v.$smartphone) {
+    @content;
+  }
+}
+
 @mixin tablet {
   @media (min-width: v.$tablet) {
     @content;
   }
+}
+
+@mixin monitor {
+  @media (min-width: v.$monitor) {
+    @content;
+  }
+}
+
+@mixin monitorXL {
+  @media (min-width: v.$monitorXL) {
+    @content;
+  }
+}
+
+@mixin grid($columnas, $gap) {
+  display: grid;
+  grid-template-columns: repeat($columnas, 1fr);
+  column-gap: $gap;
 }
