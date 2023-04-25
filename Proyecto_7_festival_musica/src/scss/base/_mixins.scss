@@ -17,3 +17,15 @@
     @content;
   }
 }
+
+@mixin monitorXL {
+  @media (min-width: v.$monitorXL) {
+    @content;
+  }
+}
+
+@mixin grid($columnas, $gap) {
+  display: grid;
+  grid-template-columns: repeat($columnas, 1fr);
+  column-gap: $gap;
+}
