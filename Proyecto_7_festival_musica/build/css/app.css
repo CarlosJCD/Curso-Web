@@ -402,3 +402,18 @@ h3 {
 .navegacion-principal a:hover {
   color: #fef46d;
 }
+
+.video {
+  position: relative;
+}
+.video .overlay {
+  position: absolute;
+  background: rgb(146, 0, 244);
+  background: linear-gradient(255deg, rgba(146, 0, 244, 0.4850533964) 0%, rgba(98, 64, 218, 0) 53%, rgba(0, 1, 255, 0.4850533964) 100%);
+  height: 100%;
+  width: 100%;
+}
+.video video {
+  width: 100%;
+  display: block;
+}
