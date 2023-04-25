@@ -324,6 +324,9 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 1.6rem;
 }
+body.body-scroll {
+  padding-top: 8.6rem;
+}
 body.fijar-body {
   overflow: hidden;
 }
@@ -371,6 +374,15 @@ img {
 
 .header {
   background-color: #4cb8b3;
+}
+@media (min-width: 768px) {
+  .header.fijo {
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    box-shadow: 0.1rem 0.2rem 0.3rem #333;
+  }
 }
 .header h1 {
   color: white;
@@ -669,13 +681,14 @@ img {
 .pase-header p, .pase-footer p {
   text-align: center;
   color: white;
+  margin: 0;
 }
 .pase-header {
   background-color: #f53756;
 }
 .pase-header p {
   text-transform: uppercase;
-  font-size: 1.6rem;
+  font-size: 2rem;
 }
 .pase-body {
   background-color: white;

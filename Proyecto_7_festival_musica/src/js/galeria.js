@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 function main() {
+    navbarFija();
     crearGaleria();
     smoothScroll();
 }
@@ -91,5 +92,21 @@ function smoothScroll() {
             seccion.scrollIntoView({ behavior: 'smooth' });
 
         });
+    });
+}
+
+function navbarFija() {
+    const header = document.querySelector('.header');
+    const seccionSobreFestival = document.querySelector('.sobre-festival');
+    const body = document.querySelector('body');
+
+    window.addEventListener('scroll', function () {
+        if (seccionSobreFestival.getBoundingClientRect().bottom < 0) {
+            header.classList.add('fijo');
+            body.classList.add('body-scroll');
+        } else {
+            header.classList.add('fijo');
+            body.classList.remove('body-scroll');
+        }
     });
 }

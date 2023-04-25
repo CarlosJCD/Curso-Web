@@ -29,13 +29,14 @@
     p {
       text-align: center;
       color: v.$blanco;
+      margin: 0;
     }
   }
   &-header {
     background-color: v.$rosa;
     p {
       text-transform: uppercase;
-      font-size: 1.6rem;
+      font-size: 2rem;
     }
   }
   &-body {
