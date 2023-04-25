@@ -6,7 +6,7 @@ const imagemin = require("gulp-imagemin");
 const cache = require("gulp-cache");
 const avif = require('gulp-avif');
 
-function compileCSS(callback) {
+function compilarSCSS(callback) {
 
     src('src/scss/**/*.scss')
         .pipe(plumber())
@@ -47,18 +47,19 @@ function reducirTamañoImagenes(callback) {
     callback();
 }
 
-function dev(callback) {
-    watch("src/scss/**/*.scss", compileCSS);
+function exportarJavaScript(callback) {
+    src('src/js/**/*.js').pipe(dest("build/js"));
 
     callback();
 }
 
-exports.compileCSS = compileCSS;
+function dev(callback) {
+    watch("src/scss/**/*.scss", compilarSCSS);
+    watch("src/js/**/*.js", exportarJavaScript);
 
-exports.reducirTamañoImagenes = reducirTamañoImagenes;
+    callback();
+}
 
-exports.convertirAWebp = convertirAWebp;
+exports.compilarProyecto = parallel(convertirAAvif, reducirTamañoImagenes, convertirAWebp, exportarJavaScript);
 
-exports.convertirAAvif = convertirAAvif;
-
-exports.dev = parallel(convertirAAvif, reducirTamañoImagenes, convertirAWebp, dev);
+exports.dev = parallel(dev);
