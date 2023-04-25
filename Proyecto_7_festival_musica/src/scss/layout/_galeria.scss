@@ -21,3 +21,24 @@
     @include m.grid(6, 2rem);
   }
 }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  place-items: center;
+
+  background-color: rgba($color: #000000, $alpha: 0.5);
+
+  picture {
+    display: block;
+    max-width: 80rem;
+  }
+}
