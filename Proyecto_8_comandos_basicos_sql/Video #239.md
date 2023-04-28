@@ -2,7 +2,7 @@
 
 ## Funciones Agregadoras
 
-### Contabilizar.
+### Contabilizar
 
 Contabiliar cuantos `n` registros tienen `x` valor en una determinada tabla.
 
