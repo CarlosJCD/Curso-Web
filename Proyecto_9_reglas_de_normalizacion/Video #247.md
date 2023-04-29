@@ -1,6 +1,6 @@
 # Video #247 - Seccion #22
 
-## Cardinalidad y Diagramas Entidad Relacion (ER:
+## Cardinalidad y Diagramas Entidad Relacion (ER
 
 ![Simbologia Cardinalidad](img/ER_y_Cardinalidad/simbologiaCardinalidad.png)
 ![Diragrama Entidad Relacion](img/ER_y_Cardinalidad/DiagramaERTablas.png)
