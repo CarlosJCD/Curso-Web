@@ -2,9 +2,10 @@
 @use "base/mixins" as m;
 
 .footer {
+  padding: v.$separacion;
   background-color: v.$grisOscuro;
   .contenedor-footer {
-    padding-top: v$separacion / 2;
+    padding-top: calc(v.$separacion / 2);
   }
   .copyright {
     color: v.$blanco;
