@@ -1,7 +1,8 @@
+@use "base/variables" as v;
 .seccion {
-    margin-top: calc($separacion / 2);
-    margin-bottom: calc($separacion / 2);
+  margin-top: calc(v.$separacion / 2);
+  margin-bottom: calc(v.$separacion / 2);
 }
 .contenido-centrado {
-    max-width: 800px;
+  max-width: 800px;
 }

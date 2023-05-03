@@ -1,0 +1,7 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.header {
+  background-color: v.$grisOscuro;
+  padding: 1rem 0 3rem 0;
+}
