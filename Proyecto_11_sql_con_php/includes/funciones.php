@@ -8,19 +8,12 @@ function obtener_servicios()
 
         $query = mysqli_query($db_connection, $query_statement);
 
-        echo '<pre>';
-        var_dump(mysqli_fetch_all($query));
-        echo '</pre>';
+        return $query;
     } catch (mysqli_sql_exception $e) {
         echo '<pre>';
         var_dump($e);
         echo '</pre>';
     } finally {
-        $db_closed = mysqli_close($db_connection);
-        echo '<pre>';
-        var_dump($db_closed);
-        echo '</pre>';
+        mysqli_close($db_connection);
     }
 }
-
-obtener_servicios();
