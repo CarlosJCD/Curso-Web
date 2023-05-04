@@ -21,6 +21,9 @@
     font-size: 2.2rem;
     display: block;
     text-align: center;
+    &:hover {
+      color: v.$verde;
+    }
 
     @include m.tablet {
       margin-right: 2rem;
