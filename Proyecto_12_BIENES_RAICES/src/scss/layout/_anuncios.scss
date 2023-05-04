@@ -18,16 +18,18 @@
   p {
     margin: 0;
   }
-  .precio {
-    color: v.$verde;
-    font-weight: v.$bold;
-    font-size: 2.4rem;
-  }
 }
+.precio {
+  color: v.$verde;
+  font-weight: v.$bold;
+  font-size: 2.4rem;
+}
+
 .iconos-caracteristicas {
   display: flex;
   list-style: none;
   padding: 0;
+  max-width: 40rem;
   li {
     flex: 1;
     display: flex;
