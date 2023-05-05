@@ -12,8 +12,13 @@
 }
 
 .navegacion {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s ease-in-out, opacity 0.5s linear;
+
   @include m.tablet {
+    visibility: visible;
+    opacity: 1;
     display: flex;
     align-items: center;
   }
@@ -48,5 +53,6 @@
 }
 
 .mostrar {
-  display: block;
+  visibility: visible;
+  opacity: 1;
 }
