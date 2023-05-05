@@ -1,0 +1,30 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.dark-mode {
+  background-color: darken(v.$grisOscuro, 10);
+
+  p {
+    color: v.$blanco;
+  }
+
+  a,
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: v.$gris;
+  }
+
+  .anuncio {
+    background-color: v.$grisOscuro;
+    border: 1px solid v.$grisOscuro;
+
+    .precio {
+      color: v.$verde;
+    }
+    .icono {
+      filter: invert(100%);
+    }
+  }
+}
