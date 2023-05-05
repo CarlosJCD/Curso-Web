@@ -16,6 +16,20 @@ function mostrarNavBar() {
 }
 
 function darkMode() {
+    const prefiereModoOscuro = window.matchMedia('(prefers-color-scheme: dark)');
+
+    if (prefiereModoOscuro.matches)
+        document.body.classList.add('dark-mode');
+    else
+        document.body.classList.remove('dark-mode');
+
+    prefiereModoOscuro.addEventListener('change', function () {
+
+        if (prefiereModoOscuro.matches)
+            document.body.classList.add('dark-mode');
+        else
+            document.body.classList.remove('dark-mode');
+    });
     const botonModoOscuro = document.querySelector('.dark-mode-boton');
     botonModoOscuro.addEventListener('click', function () {
         document.body.classList.toggle('dark-mode');
