@@ -36,7 +36,9 @@
 .navegacion {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.3s ease-in-out, opacity 0.5s linear;
+  height: 0;
+  transition: visibility 0.3s ease-in-out, opacity 0.5s linear,
+    height 0.5 linear;
 
   @include m.tablet {
     visibility: visible;
@@ -77,4 +79,5 @@
 .mostrar {
   visibility: visible;
   opacity: 1;
+  height: auto;
 }

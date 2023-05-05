@@ -16,7 +16,8 @@
     color: v.$gris;
   }
 
-  .anuncio {
+  .anuncio,
+  .resumen-propiedas {
     background-color: v.$grisOscuro;
     border: 1px solid v.$grisOscuro;
 
@@ -25,6 +26,25 @@
     }
     .icono {
       filter: invert(100%);
+    }
+  }
+  .texto-nosotros blockquote {
+    color: v.$blanco;
+  }
+
+  .formulario {
+    label,
+    legend,
+    p {
+      color: v.$gris;
+    }
+
+    input:not([type="submit"]),
+    textarea,
+    select {
+      background-color: v.$grisOscuro;
+      border: 1px solid v.$grisOscuro;
+      color: v.$blanco;
     }
   }
 }
