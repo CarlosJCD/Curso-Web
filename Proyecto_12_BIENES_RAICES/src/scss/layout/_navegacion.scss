@@ -1,17 +1,48 @@
 @use "base/variables" as v;
 @use "base/mixins" as m;
+.derecha {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include m.tablet {
+    align-items: flex-end;
+  }
+  .dark-mode-boton {
+    width: 3rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    filter: invert(100%);
+    @include m.tablet {
+      margin-top: 0;
+    }
+    &::hover {
+      cursor: pointer;
+    }
+  }
+}
+
 .barra {
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding-top: 3rem;
   @include m.tablet {
     flex-direction: row;
+    align-items: flex-end;
     justify-content: space-between;
   }
 }
 
 .navegacion {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  transition: visibility 0.3s ease-in-out, opacity 0.5s linear,
+    height 0.5 linear;
+
   @include m.tablet {
+    visibility: visible;
+    opacity: 1;
     display: flex;
     align-items: center;
   }
@@ -34,4 +65,19 @@
       }
     }
   }
+}
+
+.mobile-menu {
+  @include m.tablet {
+    display: none;
+  }
+  img {
+    width: 5rem;
+  }
+}
+
+.mostrar {
+  visibility: visible;
+  opacity: 1;
+  height: auto;
 }
