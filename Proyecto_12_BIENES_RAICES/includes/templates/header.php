@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <header class="header <?php echo isset($inicio) ? 'inicio' : ''; ?>">
+    <header class="header <?php echo $inicio ? 'inicio' : ''; ?>">
         <div class="contenedor contenido-header">
             <div class="barra">
                 <a href="index.php">
@@ -28,6 +28,6 @@
                     </nav>
                 </div>
             </div>
-            <?php echo isset($inicio) ? '<h1>Venta de Casas y Departamentos de Lujo </h1>' : ''; ?>
+            <?php echo $inicio ? '<h1>Venta de Casas y Departamentos de Lujo </h1>' : ''; ?>
         </div>
     </header>
