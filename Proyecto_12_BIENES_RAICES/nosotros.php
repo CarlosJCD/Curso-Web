@@ -8,9 +8,9 @@ añadirPlantilla('header');
   <h1>Conoce Sobre Nosotros</h1>
   <div class="contenido-nosotros">
     <div class="image">
-      <source srcset="build/img/nosotros.webp" type="image/webp" />
-      <source srcset="build/img/nosotros.jpg" type="image/jpeg" />
-      <img loading="lazy" src="build/img/nosotros.jpg" alt="imagen nostors" />
+      <source srcset="/build/img/nosotros.webp" type="image/webp" />
+      <source srcset="/build/img/nosotros.jpg" type="image/jpeg" />
+      <img loading="lazy" src="/build/img/nosotros.jpg" alt="imagen nostors" />
     </div>
     <div class="texto-nosotros">
       <blockquote>25 años de experienccia</blockquote>

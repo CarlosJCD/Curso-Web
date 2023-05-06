@@ -8,7 +8,7 @@ añadirPlantilla('header', $inicio = true);
   <h1>Mas sobre nosotros</h1>
   <div class="iconos-nosotros">
     <div class="icono">
-      <img src="build/img/icono1.svg" alt="Icono seguridad" loading="lazy" />
+      <img src="/build/img/icono1.svg" alt="Icono seguridad" loading="lazy" />
       <h3>seguridad</h3>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
@@ -19,7 +19,7 @@ añadirPlantilla('header', $inicio = true);
     </div>
 
     <div class="icono">
-      <img src="build/img/icono2.svg" alt="Icono precio" loading="lazy" />
+      <img src="/build/img/icono2.svg" alt="Icono precio" loading="lazy" />
       <h3>Precio</h3>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
@@ -30,7 +30,7 @@ añadirPlantilla('header', $inicio = true);
     </div>
 
     <div class="icono">
-      <img src="build/img/icono3.svg" alt="Icono tiempo" loading="lazy" />
+      <img src="/build/img/icono3.svg" alt="Icono tiempo" loading="lazy" />
       <h3>Tiempo</h3>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
@@ -47,9 +47,9 @@ añadirPlantilla('header', $inicio = true);
   <div class="contenedor-anuncios">
     <div class="anuncio">
       <picture>
-        <source srcset="build/img/anuncio1.webp" type="image/webp" />
-        <source srcset="build/img/anuncio1.jpg" type="image/jpeg" />
-        <img loading="lazy" src="build/img/anuncio1.jpg" alt="Anuncio 1" />
+        <source srcset="/build/img/anuncio1.webp" type="image/webp" />
+        <source srcset="/build/img/anuncio1.jpg" type="image/jpeg" />
+        <img loading="lazy" src="/build/img/anuncio1.jpg" alt="Anuncio 1" />
       </picture>
       <div class="contenido-anuncio">
         <h3>Casa de lujo en el lago</h3>
@@ -60,15 +60,15 @@ añadirPlantilla('header', $inicio = true);
         <p class="precio">$3,000,000</p>
         <ul class="iconos-caracteristicas">
           <li>
-            <img loading="lazy" src="build/img/icono_wc.svg" alt="icono wc anuncio1" />
+            <img loading="lazy" src="/build/img/icono_wc.svg" alt="icono wc anuncio1" />
             <p>3</p>
           </li>
           <li>
-            <img loading="lazy" src="build/img/icono_estacionamiento.svg" alt="icono estacionamiento anuncio1" />
+            <img loading="lazy" src="/build/img/icono_estacionamiento.svg" alt="icono estacionamiento anuncio1" />
             <p>3</p>
           </li>
           <li>
-            <img loading="lazy" src="build/img/icono_dormitorio.svg" alt="icono dormitorios anuncio1" />
+            <img loading="lazy" src="/build/img/icono_dormitorio.svg" alt="icono dormitorios anuncio1" />
             <p>4</p>
           </li>
         </ul>
@@ -79,9 +79,9 @@ añadirPlantilla('header', $inicio = true);
     </div>
     <div class="anuncio">
       <picture>
-        <source srcset="build/img/anuncio2.webp" type="image/webp" />
-        <source srcset="build/img/anuncio2.jpg" type="image/jpeg" />
-        <img loading="lazy" src="build/img/anuncio2.jpg" alt="Anuncio 1" />
+        <source srcset="/build/img/anuncio2.webp" type="image/webp" />
+        <source srcset="/build/img/anuncio2.jpg" type="image/jpeg" />
+        <img loading="lazy" src="/build/img/anuncio2.jpg" alt="Anuncio 1" />
       </picture>
       <div class="contenido-anuncio">
         <h3>Casa de lujo</h3>
@@ -89,15 +89,15 @@ añadirPlantilla('header', $inicio = true);
         <p class="precio">$3,000,000</p>
         <ul class="iconos-caracteristicas">
           <li>
-            <img loading="lazy" src="build/img/icono_wc.svg" alt="icono wc anuncio1" />
+            <img loading="lazy" src="/build/img/icono_wc.svg" alt="icono wc anuncio1" />
             <p>3</p>
           </li>
           <li>
-            <img loading="lazy" src="build/img/icono_estacionamiento.svg" alt="icono estacionamiento anuncio1" />
+            <img loading="lazy" src="/build/img/icono_estacionamiento.svg" alt="icono estacionamiento anuncio1" />
             <p>3</p>
           </li>
           <li>
-            <img loading="lazy" src="build/img/icono_dormitorio.svg" alt="icono dormitorios anuncio1" />
+            <img loading="lazy" src="/build/img/icono_dormitorio.svg" alt="icono dormitorios anuncio1" />
             <p>4</p>
           </li>
         </ul>
@@ -108,9 +108,9 @@ añadirPlantilla('header', $inicio = true);
     </div>
     <div class="anuncio">
       <picture>
-        <source srcset="build/img/anuncio3.webp" type="image/webp" />
-        <source srcset="build/img/anuncio3.jpg" type="image/jpeg" />
-        <img loading="lazy" src="build/img/anuncio3.jpg" alt="Anuncio 2" />
+        <source srcset="/build/img/anuncio3.webp" type="image/webp" />
+        <source srcset="/build/img/anuncio3.jpg" type="image/jpeg" />
+        <img loading="lazy" src="/build/img/anuncio3.jpg" alt="Anuncio 2" />
       </picture>
       <div class="contenido-anuncio">
         <h3>Casa con alberc</h3>
@@ -119,15 +119,15 @@ añadirPlantilla('header', $inicio = true);
         <p class="precio">$3,000,000</p>
         <ul class="iconos-caracteristicas">
           <li>
-            <img loading="lazy" src="build/img/icono_wc.svg" alt="icono wc anuncio1" />
+            <img loading="lazy" src="/build/img/icono_wc.svg" alt="icono wc anuncio1" />
             <p>3</p>
           </li>
           <li>
-            <img loading="lazy" src="build/img/icono_estacionamiento.svg" alt="icono estacionamiento anuncio1" />
+            <img loading="lazy" src="/build/img/icono_estacionamiento.svg" alt="icono estacionamiento anuncio1" />
             <p>3</p>
           </li>
           <li>
-            <img loading="lazy" src="build/img/icono_dormitorio.svg" alt="icono dormitorios anuncio1" />
+            <img loading="lazy" src="/build/img/icono_dormitorio.svg" alt="icono dormitorios anuncio1" />
             <p>4</p>
           </li>
         </ul>
@@ -157,9 +157,9 @@ añadirPlantilla('header', $inicio = true);
     <article class="entrada-blog">
       <div class="imagen">
         <picture>
-          <source srcset="build/img/blog1.webp" type="image/webp" />
-          <source srcset="build/img/blog1.jpg" type="image/jpeg" />
-          <img src="build/img/blog1.jpg" alt="Entrada blog" />
+          <source srcset="/build/img/blog1.webp" type="image/webp" />
+          <source srcset="/build/img/blog1.jpg" type="image/jpeg" />
+          <img src="/build/img/blog1.jpg" alt="Entrada blog" />
         </picture>
       </div>
 
@@ -174,9 +174,9 @@ añadirPlantilla('header', $inicio = true);
     <article class="entrada-blog">
       <div class="imagen">
         <picture>
-          <source srcset="build/img/blog2.webp" type="image/webp" />
-          <source srcset="build/img/blog2.jpg" type="image/jpeg" />
-          <img src="build/img/blog2.jpg" alt="Entrada blog" />
+          <source srcset="/build/img/blog2.webp" type="image/webp" />
+          <source srcset="/build/img/blog2.jpg" type="image/jpeg" />
+          <img src="/build/img/blog2.jpg" alt="Entrada blog" />
         </picture>
       </div>
 
