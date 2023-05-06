@@ -17,7 +17,7 @@
   }
 
   .anuncio,
-  .resumen-propiedas {
+  .resumen-propiedad {
     background-color: v.$grisOscuro;
     border: 1px solid v.$grisOscuro;
 
@@ -28,6 +28,16 @@
       filter: invert(100%);
     }
   }
+
+  .iconos-caracteristicas {
+    li {
+      filter: invert(100%);
+    }
+    p {
+      filter: invert(100%);
+    }
+  }
+
   .texto-nosotros blockquote {
     color: v.$blanco;
   }

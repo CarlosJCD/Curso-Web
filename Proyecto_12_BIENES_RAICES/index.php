@@ -73,7 +73,7 @@ include 'includes/templates/header.php'
             <p>4</p>
           </li>
         </ul>
-        <a href="anuncios.html" class="boton-amarillo-block">
+        <a href="anuncios.php" class="boton-amarillo-block">
           Ver propiedad
         </a>
       </div>
@@ -102,7 +102,7 @@ include 'includes/templates/header.php'
             <p>4</p>
           </li>
         </ul>
-        <a href="anuncios.html" class="boton-amarillo-block">
+        <a href="anuncios.php" class="boton-amarillo-block">
           Ver propiedad
         </a>
       </div>
@@ -132,14 +132,14 @@ include 'includes/templates/header.php'
             <p>4</p>
           </li>
         </ul>
-        <a href="anuncios.html" class="boton-amarillo-block">
+        <a href="anuncios.php" class="boton-amarillo-block">
           Ver propiedad
         </a>
       </div>
     </div>
   </div>
   <div class="alinear-derecha">
-    <a href="anuncios.html" class="boton boton-verde">Ver todas</a>
+    <a href="anuncios.php" class="boton boton-verde">Ver todas</a>
   </div>
 </section>
 
@@ -149,7 +149,7 @@ include 'includes/templates/header.php'
     Llena el formulario de contacto y un asesor se pondra en contacto
     contigo.
   </p>
-  <a href="contacto.html" class="boton-amarillo">Contactanos</a>
+  <a href="contacto.php" class="boton-amarillo">Contactanos</a>
 </section>
 
 <div class="contenedor secccion seccion-inferior">
@@ -165,7 +165,7 @@ include 'includes/templates/header.php'
       </div>
 
       <div class="texto-entrada informacion-meta">
-        <a href="entrada.html">
+        <a href="entrada.php">
           <h4>Terraza en el techo de tu casa</h4>
           <p>Escrito el: <span>20/10/2023</span> por <span>admin</span></p>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit</p>
@@ -182,7 +182,7 @@ include 'includes/templates/header.php'
       </div>
 
       <div class="texto-entrada informacion-meta">
-        <a href="entrada.html">
+        <a href="entrada.php">
           <h4>Guia para la decoracion</h4>
           <p>Escrito el: <span>08/05/2023</span> por <span>admin</span></p>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit</p>
@@ -204,16 +204,4 @@ include 'includes/templates/header.php'
   </section>
 </div>
 
-<footer class="footer seccion">
-  <nav class="navegacion">
-    <a href="nosotros.html">Nosotros</a>
-    <a href="anuncios.html">Anuncios</a>
-    <a href="blog.html">Blog</a>
-    <a href="contacto.html">Contacto</a>
-  </nav>
-  <p class="copyright">Todos los derechos reservados 2023 &copy;</p>
-</footer>
-<script src="build/js/bundle.min.js"></script>
-</body>
-
-</html>
+<?php include 'includes/templates/footer.php' ?>

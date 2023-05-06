@@ -13,7 +13,7 @@
     </div>
 
     <div class="texto-entrada">
-      <a href="entrada.html">
+      <a href="entrada.php">
         <h4>Terraza en el techo de tu casa</h4>
         <p>Escrito el: <span>10/05/2023</span> por: <span>Admin</span></p>
 
@@ -35,7 +35,7 @@
     </div>
 
     <div class="texto-entrada">
-      <a href="entrada.html">
+      <a href="entrada.php">
         <h4>Guía para la decoración de tu hogar</h4>
         <p>Escrito el: <span>17/05/2023</span> por: <span>Admin</span></p>
 
@@ -57,7 +57,7 @@
     </div>
 
     <div class="texto-entrada">
-      <a href="entrada.html">
+      <a href="entrada.php">
         <h4>Terraza en el techo de tu casa</h4>
         <p>Escrito el: <span>05/02/2023</span> por: <span>Admin</span></p>
 
@@ -79,7 +79,7 @@
     </div>
 
     <div class="texto-entrada">
-      <a href="entrada.html">
+      <a href="entrada.php">
         <h4>Guía para la decoración de tu hogar</h4>
         <p>Escrito el: <span>24/04/2023</span> por: <span>Admin</span></p>
 
@@ -92,16 +92,4 @@
   </article>
 </main>
 
-<footer class="footer seccion">
-  <nav class="navegacion">
-    <a href="nosotros.html">Nosotros</a>
-    <a href="anuncios.html">Anuncios</a>
-    <a href="blog.html">Blog</a>
-    <a href="contacto.html">Contacto</a>
-  </nav>
-  <p class="copyright">Todos los derechos reservados 2023 &copy;</p>
-</footer>
-<script src="build/js/bundle.min.js"></script>
-</body>
-
-</html>
+<?php include 'includes/templates/footer.php' ?>
