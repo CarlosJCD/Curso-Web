@@ -8,6 +8,7 @@ function main() {
 function eventListeners() {
     const menuEnMovil = document.querySelector('.mobile-menu');
     menuEnMovil.addEventListener('click', mostrarNavBar)
+
 }
 
 function mostrarNavBar() {
@@ -34,6 +35,15 @@ function darkMode() {
     botonModoOscuro.addEventListener('click', function () {
         document.body.classList.toggle('dark-mode');
     });
+}
+
+function registrarNuevo(check) {
+    const camposNuevoVendedor = document.querySelectorAll(".datosVendedor");
+    camposNuevoVendedor.forEach(element => {
+        element.disabled = !check;
+    })
+    const selectActuales = document.querySelector('select');
+    selectActuales.disabled = check;
 }
 
 

@@ -30,6 +30,19 @@
     margin-bottom: 2rem;
   }
 
+  input[type="submit"] {
+    border: none;
+    border-radius: 2rem;
+  }
+
+  input:disabled {
+    filter: contrast(60%);
+  }
+
+  select:disabled {
+    filter: contrast(50%);
+  }
+
   textarea {
     height: 20rem;
   }

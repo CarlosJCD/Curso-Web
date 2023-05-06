@@ -19,7 +19,7 @@
                     <img src="/build/img/barras.svg" alt="barras menu" />
                 </div>
                 <div class="derecha">
-                    <img src="build/img/dark-mode.svg" alt="boton modo oscuro" class="dark-mode-boton" />
+                    <img src="/build/img/dark-mode.svg" alt="boton modo oscuro" class="dark-mode-boton" />
                     <nav class="navegacion">
                         <a href="nosotros.php">Nosotros</a>
                         <a href="anuncios.php">Anuncios</a>
