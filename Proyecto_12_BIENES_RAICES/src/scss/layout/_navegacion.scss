@@ -38,7 +38,7 @@
   opacity: 0;
   height: 0;
   transition: visibility 0.3s ease-in-out, opacity 0.5s linear,
-    height 0.5 linear;
+    height 0.5s linear;
 
   @include m.tablet {
     visibility: visible;
@@ -72,7 +72,7 @@
     display: none;
   }
   img {
-    width: 5rem;
+    width: 2.5rem;
   }
 }
 
