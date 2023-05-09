@@ -23,7 +23,7 @@ USE `bienesraices` ;
 DROP TABLE IF EXISTS `bienesraices`.`vendedores` ;
 
 CREATE TABLE IF NOT EXISTS `bienesraices`.`vendedores` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(45) NULL,
   `Apellido` VARCHAR(45) NULL,
   `numTelefono` VARCHAR(10) NULL,
