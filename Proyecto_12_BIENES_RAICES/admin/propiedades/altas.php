@@ -20,6 +20,7 @@ function validarFormulario(): array
             $errores[] = "La descripcion debe tener una extension de minimo 50 caracteres";
         }
     }
+
     $noVendedorExistente = !isset($_POST['vendedorExistente']) || $_POST['vendedorExistente'] === "";
     $noVendedorNuevo = !isset($_POST['vendedorNuevo']);
     if ($noVendedorExistente && $noVendedorNuevo) {
@@ -35,6 +36,13 @@ function validarFormulario(): array
             $errores[] = "Campo Obligatorio vacío: Telefono de Vendedor";
         }
     }
+
+    if (!$_FILES['imagen']) {
+        $errores[] = "Campo Obligatorio vacío: Imagen";
+    } elseif ($_FILES['imagen']['size'] > (1000 * 100)) {
+        $errores[] = "La imagen es muy grande (MAX: 100MB)";
+    }
+
     return $errores;
 }
 
@@ -47,6 +55,7 @@ function crearPropiedad($conexionDB): void
         $habitaciones = mysqli_real_escape_string($conexionDB, obtenerCantidadDeHabitaciones());
         $wc = mysqli_real_escape_string($conexionDB, obtenerCantidadDeWC());
         $estacionamiento = mysqli_real_escape_string($conexionDB, obtenerCantidadDeEstacionamientos());
+        $imagen = $_FILES['imagen'];
         $fechaCreacion = date('Y/m/d');
         $idVendedor = mysqli_real_escape_string($conexionDB, obtenerVendedor($conexionDB));
         $insertar_propiedad_enunciado = "INSERT INTO propiedades (Titulo, precio, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id)";
