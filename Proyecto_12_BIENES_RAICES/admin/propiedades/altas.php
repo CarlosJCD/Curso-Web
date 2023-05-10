@@ -55,53 +55,73 @@ function crearPropiedad(mysqli $conexionDB): void
 
 function obtenerTitulo(): string
 {
-    return $_POST['Titulo'];
+    if (isset($_POST['Titulo'])) {
+        return $_POST['Titulo'];
+    }
+    return "";
 }
-function obtenerPrecio(): int
+function obtenerPrecio()
 {
-    return $_POST['precio'];
+    if (isset($_POST['precio'])) {
+        return $_POST['precio'];
+    }
+    return "";
 }
-function obtenerDescripcion(): int
+function obtenerDescripcion()
 {
-    return $_POST['descripcion'];
-}
-
-function obtenerCantidadDeHabitaciones(): int
-{
-    return $_POST['habitaciones'];
-}
-function obtenerCantidadDeWC(): int
-{
-    return $_POST['wc'];
-}
-
-function obtenerCantidadDeEstacionamientos(): int
-{
-    return $_POST['estacionamiento'];
+    if (isset($_POST['descripcion'])) {
+        return $_POST['descripcion'];
+    }
+    return "";
 }
 
-function obtenerVendedor($conexionDB): int
+function obtenerCantidadDeHabitaciones()
 {
-    if ($_POST['nombreNuevo'] !== null) {
+    if (isset($_POST['habitaciones'])) {
+        return $_POST['habitaciones'];
+    }
+    return "";
+}
+function obtenerCantidadDeWC()
+{
+    if (isset($_POST['wc'])) {
+        return $_POST['wc'];
+    }
+    return "";
+}
+
+function obtenerCantidadDeEstacionamientos()
+{
+    if (isset($_POST['estacionamiento'])) {
+        return $_POST['estacionamiento'];
+    }
+    return "";
+}
+
+function obtenerVendedor($conexionDB)
+{
+    if (isset($_POST['nombreNuevo'])) {
         $vendedor = obtenerVendedorNuevo($conexionDB);
-    } else {
+    } elseif (isset($_POST['vendedorExistente'])) {
         $vendedor = $_POST['vendedorExistente'];
+    } else {
+        $vendedor = '';
     }
     return $vendedor;
 }
 
-function obtenerVendedorNuevo($conexionDB): int
+function obtenerVendedorNuevo($conexionDB)
 {
     try {
-        $id_vendedor_nuevo = insertarVendedor($conexionDB);
-        return $id_vendedor_nuevo;
+        $idVendedorNuevo = insertarVendedor($conexionDB);
+        return $idVendedorNuevo;
     } catch (mysqli_sql_exception $sql_exception) {
         echo "Error al crear nuevo vendedor";
         exit;
     }
 }
 
-function insertarVendedor($conexionDB): int
+function insertarVendedor($conexionDB)
 {
     try {
         $nombreVendedor = $_POST['nombreNuevo'];
@@ -120,6 +140,30 @@ function insertarVendedor($conexionDB): int
     }
 }
 
+function obtenerNombreVendedorNuevo()
+{
+    if (isset($_POST['nombreNuevo'])) {
+        return $_POST['nombreNuevo'];
+    }
+    return "";
+}
+
+function obtenerApellidoVendedorNuevo()
+{
+    if (isset($_POST['apellidoNuevo'])) {
+        return $_POST['apellidoNuevo'];
+    }
+    return "";
+}
+
+function obtenerTelefonoNuevo()
+{
+    if (isset($_POST['telefonoNuevo'])) {
+        return $_POST['telefonoNuevo'];
+    }
+    return "";
+}
+
 require '../../includes/funciones.php';
 añadirPlantilla('header');
 ?>
@@ -130,6 +174,9 @@ añadirPlantilla('header');
     <a href="../index.php" class="boton boton-verde">volver</a>
 
     <?php
+    echo '<pre>';
+    var_dump($_POST);
+    echo '</pre>';
     $errores = validarFormulario();
     if (!empty($errores)) {
         foreach ($errores as $error) { ?>
@@ -147,27 +194,27 @@ añadirPlantilla('header');
             <legend>Informacion General</legend>
 
             <label for="titulo">Titulo</label>
-            <input type="text" id="titulo" name="Titulo" placeholder="Titulo Propiedad">
+            <input type="text" id="titulo" name="Titulo" placeholder="Titulo Propiedad" value="<?php echo obtenerTitulo() ?>">
 
             <label for="precio">precio</label>
-            <input type="number" id="precio" name="precio" placeholder="Precio">
+            <input type="number" id="precio" name="precio" placeholder="Precio" value="<?php echo obtenerPrecio() ?>">
 
             <label for="imagen">precio</label>
             <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
 
             <label for="descripcion">Descripcion</label>
-            <input type="textarea" id="descripcion" name="descripcion" placeholder="Descripcion de la propiedad">
+            <input type="textarea" id="descripcion" name="descripcion" placeholder="Descripcion de la propiedad" value="<?php echo obtenerDescripcion() ?>">
         </fieldset>
         <fieldset>
             <legend>Informacion propiedad</legend>
             <label for="habitaciones">Numero de habitaciones</label>
-            <input type="number" id="habitaciones" name="habitaciones" placeholder="Num. habitaciones" min='1'>
+            <input type="number" id="habitaciones" name="habitaciones" placeholder="Num. habitaciones" min='1' value="<?php echo obtenerCantidadDeHabitaciones() ?>">
 
             <label for="wc">Numero de baños</label>
-            <input type="number" id="wc" name="wc" placeholder="Num. baños" min='1'>
+            <input type="number" id="wc" name="wc" placeholder="Num. baños" min='1' value="<?php echo obtenerCantidadDeWC() ?>">
 
             <label for="estacionamiento">Numero de estacionamientos</label>
-            <input type="number" id="estacionamiento" name="estacionamiento" placeholder="Casillas de estacionamiento" min='1'>
+            <input type="number" id="estacionamiento" name="estacionamiento" placeholder="Casillas de estacionamiento" min='1' value="<?php echo obtenerCantidadDeEstacionamientos() ?>">
         </fieldset>
 
         <fieldset>
@@ -184,13 +231,13 @@ añadirPlantilla('header');
                 <input type="checkbox" name="vendedorNuevo" id="nuevo" onclick="registrarNuevo(this.checked)">
             </label>
             <label for="nombre">Nombre</label>
-            <input disabled name="nombreNuevo" class="datosVendedor" type="text" id="nombre" placeholder="Nombre vendedor">
+            <input disabled name="nombreNuevo" class="datosVendedor" type="text" id="nombre" placeholder="Nombre vendedor" value="<?php echo obtenerNombreVendedorNuevo() ?>">
 
             <label for="apellido">Apellido</label>
-            <input disabled name='apellidoNuevo' class="datosVendedor" type="text" id="apellido" placeholder="Apellido paterno">
+            <input disabled name='apellidoNuevo' class="datosVendedor" type="text" id="apellido" placeholder="Apellido paterno" value="<?php echo obtenerApellidoVendedorNuevo() ?>">
 
             <label for="telefono">Numero Telefonico</label>
-            <input disabled name="telefonoNuevo" class="datosVendedor" type="tel" id="telefono" placeholder="Telefono del vendedor">
+            <input disabled name="telefonoNuevo" class="datosVendedor" type="tel" id="telefono" placeholder="Telefono del vendedor" value="<?php echo obtenerTelefonoNuevo() ?>">
         </fieldset>
 
         <input type="submit" value="Crear propiedad" class="boton boton-verde">
