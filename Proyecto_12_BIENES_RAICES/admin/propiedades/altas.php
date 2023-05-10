@@ -2,6 +2,12 @@
 require '../../includes/config/database.php';
 
 $conexionDB = conectarDB();
+$errores = validarFormulario();
+
+if (empty($errores)) {
+    crearPropiedad($conexionDB);
+}
+
 
 function validarFormulario(): array
 {
@@ -35,14 +41,14 @@ function validarFormulario(): array
 function crearPropiedad($conexionDB): void
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $titulo = obtenerTitulo();
-        $precio = obtenerPrecio();
-        $descripcion = obtenerDescripcion();
-        $habitaciones = obtenerCantidadDeHabitaciones();
-        $wc = obtenerCantidadDeWC();
-        $estacionamiento = obtenerCantidadDeEstacionamientos();
+        $titulo = mysqli_real_escape_string($conexionDB, obtenerTitulo());
+        $precio = mysqli_real_escape_string($conexionDB, obtenerPrecio());
+        $descripcion = mysqli_real_escape_string($conexionDB, obtenerDescripcion());
+        $habitaciones = mysqli_real_escape_string($conexionDB, obtenerCantidadDeHabitaciones());
+        $wc = mysqli_real_escape_string($conexionDB, obtenerCantidadDeWC());
+        $estacionamiento = mysqli_real_escape_string($conexionDB, obtenerCantidadDeEstacionamientos());
         $fechaCreacion = date('Y/m/d');
-        $idVendedor = obtenerVendedor($conexionDB);
+        $idVendedor = mysqli_real_escape_string($conexionDB, obtenerVendedor($conexionDB));
         $insertar_propiedad_enunciado = "INSERT INTO propiedades (Titulo, precio, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id)";
         $insertar_propiedad_enunciado = $insertar_propiedad_enunciado . " VALUES  ('$titulo', $precio, '$descripcion', $habitaciones, $wc, $estacionamiento, '$fechaCreacion', $idVendedor);";
         $query = mysqli_query($conexionDB, $insertar_propiedad_enunciado);
@@ -59,6 +65,7 @@ function obtenerTitulo(): string
     }
     return "";
 }
+
 function obtenerPrecio()
 {
     if (isset($_POST['precio'])) {
@@ -66,6 +73,7 @@ function obtenerPrecio()
     }
     return "";
 }
+
 function obtenerDescripcion()
 {
     if (isset($_POST['descripcion'])) {
@@ -81,6 +89,7 @@ function obtenerCantidadDeHabitaciones()
     }
     return "";
 }
+
 function obtenerCantidadDeWC()
 {
     if (isset($_POST['wc'])) {
@@ -182,10 +191,9 @@ añadirPlantilla('header');
 
 <main class="contenedor seccion">
     <h1>Crear</h1>
-    <a href="../index.php" class="boton boton-verde">volver</a>
+    <a href="/admin" class="boton boton-verde">volver</a>
 
     <?php
-    $errores = validarFormulario();
     if (!empty($errores)) {
         foreach ($errores as $error) { ?>
             <div class="alerta error">
@@ -193,8 +201,6 @@ añadirPlantilla('header');
             </div>
     <?php
         }
-    } else {
-        crearPropiedad($conexionDB);
     }
     ?>
     <form class="formulario" method="POST">
@@ -259,7 +265,7 @@ añadirPlantilla('header');
             <input disabled name="telefonoNuevo" class="datosVendedor" type="tel" id="telefono" placeholder="Telefono del vendedor" value="<?php echo obtenerTelefonoNuevo() ?>">
         </fieldset>
 
-        <input type="submit" value="Crear propiedad" class="boton boton-verde">
+        <input type="submit" name="submit" value="Crear propiedad" class="boton boton-verde">
 
     </form>
 </main>
