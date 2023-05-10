@@ -1,7 +1,7 @@
 <?php
 require '../../includes/config/database.php';
 
-$conexion_db = conectarDB();
+$conexionDB = conectarDB();
 
 function validarFormulario(): array
 {
@@ -14,12 +14,11 @@ function validarFormulario(): array
             $errores[] = "La descripcion debe tener una extension de minimo 50 caracteres";
         }
     }
-
     $noVendedorExistente = !isset($_POST['vendedorExistente']) || $_POST['vendedorExistente'] === "";
     $noVendedorNuevo = !isset($_POST['vendedorNuevo']);
     if ($noVendedorExistente && $noVendedorNuevo) {
         $errores[] = "Campo obligatorio vacio: vendedor";
-    } else {
+    } elseif (!$noVendedorNuevo && $_POST['vendedorNuevo'] === 'on') {
         if ($_POST['nombreNuevo'] === "") {
             $errores[] = "Campo Obligatorio vacío: Nombre de Vendedor";
         }
@@ -33,7 +32,7 @@ function validarFormulario(): array
     return $errores;
 }
 
-function crearPropiedad(mysqli $conexionDB): void
+function crearPropiedad($conexionDB): void
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $titulo = obtenerTitulo();
@@ -42,15 +41,15 @@ function crearPropiedad(mysqli $conexionDB): void
         $habitaciones = obtenerCantidadDeHabitaciones();
         $wc = obtenerCantidadDeWC();
         $estacionamiento = obtenerCantidadDeEstacionamientos();
+        $fechaCreacion = date('Y/m/d');
         $idVendedor = obtenerVendedor($conexionDB);
-        $insertar_propiedad_enunciado = "INSERT INTO propiedades (Titulo, precio, descripcion, habitaciones, wc, estacionamientos, vendedores_id)";
-        $insertar_propiedad_enunciado = $insertar_propiedad_enunciado . " VALUES  ('$titulo', $precio, '$descripcion', $habitaciones, $wc, $estacionamiento, $idVendedor);";
+        $insertar_propiedad_enunciado = "INSERT INTO propiedades (Titulo, precio, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id)";
+        $insertar_propiedad_enunciado = $insertar_propiedad_enunciado . " VALUES  ('$titulo', $precio, '$descripcion', $habitaciones, $wc, $estacionamiento, '$fechaCreacion', $idVendedor);";
         $query = mysqli_query($conexionDB, $insertar_propiedad_enunciado);
         if ($query) {
-            echo "Insertado Correctamente";
+            header('Location: /admin');
         }
     }
-    mysqli_close($conexionDB);
 }
 
 function obtenerTitulo(): string
@@ -164,6 +163,18 @@ function obtenerTelefonoNuevo()
     return "";
 }
 
+function seleccionarTodosLosVendedores($conexionDB)
+{
+    $enunciadoConsulta = "SELECT * FROM vendedores";
+    $consulta = mysqli_query($conexionDB, query: $enunciadoConsulta);
+    if ($consulta) {
+        return $consulta;
+    } else {
+        echo "Error consulta";
+    }
+}
+
+
 require '../../includes/funciones.php';
 añadirPlantilla('header');
 ?>
@@ -174,9 +185,6 @@ añadirPlantilla('header');
     <a href="../index.php" class="boton boton-verde">volver</a>
 
     <?php
-    echo '<pre>';
-    var_dump($_POST);
-    echo '</pre>';
     $errores = validarFormulario();
     if (!empty($errores)) {
         foreach ($errores as $error) { ?>
@@ -223,9 +231,20 @@ añadirPlantilla('header');
             <label for="existentes">Seleccionar Vendedor:</label>
             <select id="existentes" name="vendedorExistente">
                 <option disabled selected value="">-- Seleccione un vendedor --</option>
-                <option value="1">Carlos</option>
+                <?php
+                $query = seleccionarTodosLosVendedores($conexionDB);
+                while ($vendedor = mysqli_fetch_assoc($query)) { ?>
+                    <option <?php
+                            if (isset($_POST['vendedorExistente'])) {
+                                echo $_POST['vendedorExistente'] === $vendedor['id'] ? 'selected' : '';
+                            }
+                            ?> value="<?php echo $vendedor['id']; ?>">
+                        <?php echo $vendedor['Nombre'] . " " . $vendedor['Apellido']; ?>
+                    </option>
+                <?php
+                }
+                ?>
             </select>
-
             <label for="nuevo">
                 Registrar vendedor nuevo:
                 <input type="checkbox" name="vendedorNuevo" id="nuevo" onclick="registrarNuevo(this.checked)">
