@@ -77,6 +77,15 @@ function validarImagen()
 function crearPropiedad($conexionDB): void
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $imagenesDir = "../../imagenesPropiedades";
+        if (!is_dir($imagenesDir)) {
+            mkdir($imagenesDir);
+        }
+
+        $imagen = obtenerImagen();
+        move_uploaded_file($imagen['tmp_name'], $imagenesDir . "/archivo.jpg");
+
         $titulo = mysqli_real_escape_string($conexionDB, obtenerTitulo());
         $precio = mysqli_real_escape_string($conexionDB, obtenerPrecio());
         $descripcion = mysqli_real_escape_string($conexionDB, obtenerDescripcion());
