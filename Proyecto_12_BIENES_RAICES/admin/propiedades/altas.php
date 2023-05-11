@@ -98,7 +98,7 @@ function crearPropiedad($conexionDB): void
         $insertarPropiedad = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) VALUES  ('$titulo' , $precio, '$rutaImagen','$descripcion', $habitaciones, $wc, $estacionamiento, '$fechaCreacion', $idVendedor);";
         $query = mysqli_query($conexionDB, $insertarPropiedad);
         if ($query) {
-            header('Location: /admin');
+            header('Location: /admin?resultado=1');
         }
     }
 }
