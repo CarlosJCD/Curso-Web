@@ -78,13 +78,14 @@ function crearPropiedad($conexionDB): void
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $imagenesDir = "../../imagenesPropiedades";
+        $imagenesDir = "../../imagenesPropiedades/";
         if (!is_dir($imagenesDir)) {
             mkdir($imagenesDir);
         }
 
         $imagen = obtenerImagen();
-        move_uploaded_file($imagen['tmp_name'], $imagenesDir . "/archivo.jpg");
+        $rutaImagen = md5(uniqid(rand(), true)) . ".jpg";
+        move_uploaded_file($imagen['tmp_name'], $imagenesDir . $rutaImagen);
 
         $titulo = mysqli_real_escape_string($conexionDB, obtenerTitulo());
         $precio = mysqli_real_escape_string($conexionDB, obtenerPrecio());
@@ -93,10 +94,9 @@ function crearPropiedad($conexionDB): void
         $wc = mysqli_real_escape_string($conexionDB, obtenerCantidadDeWC());
         $estacionamiento = mysqli_real_escape_string($conexionDB, obtenerCantidadDeEstacionamientos());
         $fechaCreacion = date('Y/m/d');
-        $idVendedor = mysqli_real_escape_string($conexionDB, obtenerVendedor($conexionDB));
-        $insertar_propiedad_enunciado = "INSERT INTO propiedades (Titulo, precio, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id)";
-        $insertar_propiedad_enunciado = $insertar_propiedad_enunciado . " VALUES  ('$titulo', $precio, '$descripcion', $habitaciones, $wc, $estacionamiento, '$fechaCreacion', $idVendedor);";
-        $query = mysqli_query($conexionDB, $insertar_propiedad_enunciado);
+        $idVendedor = obtenerVendedor($conexionDB);
+        $insertarPropiedad = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) VALUES  ('$titulo' , $precio, '$rutaImagen','$descripcion', $habitaciones, $wc, $estacionamiento, '$fechaCreacion', $idVendedor);";
+        $query = mysqli_query($conexionDB, $insertarPropiedad);
         if ($query) {
             header('Location: /admin');
         }
@@ -105,8 +105,8 @@ function crearPropiedad($conexionDB): void
 
 function obtenerTitulo(): string
 {
-    if (isset($_POST['Titulo'])) {
-        return $_POST['Titulo'];
+    if (isset($_POST['titulo'])) {
+        return $_POST['titulo'];
     }
     return "";
 }
@@ -155,8 +155,8 @@ function obtenerVendedor($conexionDB)
 {
     if (isset($_POST['nombreNuevo'])) {
         $vendedor = obtenerVendedorNuevo($conexionDB);
-    } elseif (isset($_POST['vendedorExistente'])) {
-        $vendedor = $_POST['vendedorExistente'];
+    } elseif (isset($_POST['vendedor'])) {
+        $vendedor = $_POST['vendedor'];
     } else {
         $vendedor = '';
     }
