@@ -12,38 +12,66 @@ if (empty($errores)) {
 function validarFormulario(): array
 {
     $errores = [];
-    $parametrosObligatorios = ["Titulo", 'precio', "descripcion", 'habitaciones', 'wc', 'estacionamiento'];
     foreach ($_POST as $key => $value) {
-        if (in_array($key, $parametrosObligatorios) && $value === "") {
-            $errores[] = "Campo obligatorio vacio: " . $key;
+        if ($value === '') {
+            switch ($key) {
+                case "titulo":
+                case "precio":
+                    $errores[] = "Porfavor, añada el " . $key . " de la propiedad";
+                    break;
+                case "descripcion":
+                    $errores[] = "Porfavor, añada la " . $key . " de la propiedad";
+                    break;
+                case "habitaciones":
+                    $errores[] = "Porfavor, añada el numero de habitaciones de la propiedad";
+                    break;
+                case "wc":
+                    $errores[] = "Porfavor, añada el numero de baños de la propiedad";
+                    break;
+                case "estacionamiento":
+                    $errores[] = "Porfavor, añada el numero de cajones de estacionamiento de la propiedad";
+                    break;
+                case "vendedor":
+                    $errores[] = "Porfavor, escoja un vendedor existente o registre uno nuevo";
+                    break;
+                case "nombreNuevo":
+                    $errores[] = "Porfavor, Ingrese el nombre del vendedor a registrar";
+                    break;
+                case "apellidoNuevo":
+                    $errores[] = "Porfavor, Ingrese el apellido paterno del vendedor a registrar";
+                    break;
+                case "telefonoNuevo":
+                    $errores[] = "Porfavor, Ingrese el telefono celular del vendedor a registrar";
+                    break;
+                default:
+                    break;
+            }
         } elseif ($key === 'descripcion' && strlen($value) < 50) {
-            $errores[] = "La descripcion debe tener una extension de minimo 50 caracteres";
+            $errores[] = 'La descripcion debe tener al menos 50 caracteres de longitud';
         }
     }
 
-    $noVendedorExistente = !isset($_POST['vendedorExistente']) || $_POST['vendedorExistente'] === "";
-    $noVendedorNuevo = !isset($_POST['vendedorNuevo']);
-    if ($noVendedorExistente && $noVendedorNuevo) {
-        $errores[] = "Campo obligatorio vacio: vendedor";
-    } elseif (!$noVendedorNuevo && $_POST['vendedorNuevo'] === 'on') {
-        if ($_POST['nombreNuevo'] === "") {
-            $errores[] = "Campo Obligatorio vacío: Nombre de Vendedor";
-        }
-        if ($_POST['apellidoNuevo'] === "") {
-            $errores[] = "Campo Obligatorio vacío: Apellido de Vendedor";
-        }
-        if ($_POST['telefonoNuevo'] === "") {
-            $errores[] = "Campo Obligatorio vacío: Telefono de Vendedor";
-        }
-    }
-
-    if (!$_FILES['imagen']) {
-        $errores[] = "Campo Obligatorio vacío: Imagen";
-    } elseif ($_FILES['imagen']['size'] > (1000 * 100)) {
-        $errores[] = "La imagen es muy grande (MAX: 100MB)";
+    $errorImagen = validarImagen();
+    if (!empty($_FILES) && $errorImagen != '') {
+        $errores[] = $errorImagen;
     }
 
     return $errores;
+}
+
+function validarImagen()
+{
+    $tamanoMaximo = 100000;
+    $imagen = obtenerImagen();
+    if ($imagen !== '' && ($imagen['size'] < $tamanoMaximo)) {
+        return '';
+    }
+    if ($imagen === '') {
+        return "Porfavor, añada la imagen de la propiedad";
+    }
+    if ($imagen['size'] > $tamanoMaximo) {
+        return "La imagen excede el tamaño máximo (10 kb)";
+    }
 }
 
 function crearPropiedad($conexionDB): void
@@ -55,7 +83,6 @@ function crearPropiedad($conexionDB): void
         $habitaciones = mysqli_real_escape_string($conexionDB, obtenerCantidadDeHabitaciones());
         $wc = mysqli_real_escape_string($conexionDB, obtenerCantidadDeWC());
         $estacionamiento = mysqli_real_escape_string($conexionDB, obtenerCantidadDeEstacionamientos());
-        $imagen = $_FILES['imagen'];
         $fechaCreacion = date('Y/m/d');
         $idVendedor = mysqli_real_escape_string($conexionDB, obtenerVendedor($conexionDB));
         $insertar_propiedad_enunciado = "INSERT INTO propiedades (Titulo, precio, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id)";
@@ -181,6 +208,14 @@ function obtenerTelefonoNuevo()
     return "";
 }
 
+function obtenerImagen()
+{
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
+        return $_FILES['imagen'];
+    }
+    return "";
+}
+
 function seleccionarTodosLosVendedores($conexionDB)
 {
     $enunciadoConsulta = "SELECT * FROM vendedores";
@@ -191,7 +226,6 @@ function seleccionarTodosLosVendedores($conexionDB)
         echo "Error consulta";
     }
 }
-
 
 require '../../includes/funciones.php';
 añadirPlantilla('header');
@@ -212,21 +246,21 @@ añadirPlantilla('header');
         }
     }
     ?>
-    <form class="formulario" method="POST">
+    <form class="formulario" method="POST" enctype="multipart/form-data">
         <fieldset>
             <legend>Informacion General</legend>
 
             <label for="titulo">Titulo</label>
-            <input type="text" id="titulo" name="Titulo" placeholder="Titulo Propiedad" value="<?php echo obtenerTitulo() ?>">
+            <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad" value="<?php echo obtenerTitulo() ?>">
 
             <label for="precio">precio</label>
             <input type="number" id="precio" name="precio" placeholder="Precio" value="<?php echo obtenerPrecio() ?>">
 
-            <label for="imagen">precio</label>
+            <label for="imagen">Imagen</label>
             <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
 
             <label for="descripcion">Descripcion</label>
-            <input type="textarea" id="descripcion" name="descripcion" placeholder="Descripcion de la propiedad" value="<?php echo obtenerDescripcion() ?>">
+            <textarea id="descripcion" name="descripcion" placeholder="Descripcion de la propiedad"><?php echo obtenerDescripcion() ?></textarea>
         </fieldset>
         <fieldset>
             <legend>Informacion propiedad</legend>
@@ -244,8 +278,8 @@ añadirPlantilla('header');
             <legend>Informacion vendedor</legend>
 
             <label for="existentes">Seleccionar Vendedor:</label>
-            <select id="existentes" name="vendedorExistente">
-                <option disabled selected value="">-- Seleccione un vendedor --</option>
+            <select id="existentes" name="vendedor">
+                <option selected value="">-- Seleccione un vendedor --</option>
                 <?php
                 $query = seleccionarTodosLosVendedores($conexionDB);
                 while ($vendedor = mysqli_fetch_assoc($query)) { ?>
@@ -274,7 +308,7 @@ añadirPlantilla('header');
             <input disabled name="telefonoNuevo" class="datosVendedor" type="tel" id="telefono" placeholder="Telefono del vendedor" value="<?php echo obtenerTelefonoNuevo() ?>">
         </fieldset>
 
-        <input type="submit" name="submit" value="Crear propiedad" class="boton boton-verde">
+        <input type="submit" name="submit" class="boton boton-verde">
 
     </form>
 </main>
