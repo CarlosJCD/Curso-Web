@@ -241,7 +241,7 @@ añadirPlantilla('header');
     <h1>Crear</h1>
     <a href="/admin" class="boton boton-verde">volver</a>
     <?php
-    if (isset($_POST['submit'])) { ?>
+    if (isset($_POST['submit']) && empty($errores)) { ?>
         <p class="alerta exito"> Anuncio creado correctamente</p>
     <?php unset($_POST);
     }

@@ -36,12 +36,13 @@ añadirPlantilla('header');
                     <td><img src="/imagenesPropiedades/<?php echo $propiedad['imagen'] ?>" class="imagen-tabla" alt="imagen propiedad"></td>
                     <td>
                         <a href="admin/propiedades/bajas.php" class="boton boton-rojo-block">Eliminar propiedad</a>
-                        <a href="admin/propiedades/cambios.php" class="boton boton-amarillo-block">Actualizar propiedad</a>
+                        <a href="admin/propiedades/cambios.php?id=<?php echo $propiedad['id']; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
                     </td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
     </table>
 </main>
+<?php mysqli_close($db); ?>
 
 <?php añadirPlantilla('footer'); ?>
