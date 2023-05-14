@@ -1,9 +1,11 @@
 <?php
 
+require "../includes/config/database.php";
+$db = conectarDB();
 
-$mensaje = $_GET['resultado'] ?? 0;
+$query = "SELECT * FROM propiedades";
 
-
+$resultado = mysqli_query($db, $query);
 
 require '../includes/funciones.php';
 añadirPlantilla('header');
@@ -12,11 +14,6 @@ añadirPlantilla('header');
 
 <main class="contenedor seccion">
     <h1>Administrador de bienes raices</h1>
-    <?php
-    if ($mensaje == 1) { ?>
-        <p class="alerta exito"> Anuncio creado correctamente</p>
-    <?php }
-    ?>
     <a href="/admin/propiedades/altas.php" class="boton boton-verde">Nueva propiedad</a>
 
 
@@ -31,16 +28,18 @@ añadirPlantilla('header');
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Casa en la playa</td>
-                <td>$910290132</td>
-                <td><img src="../imagenesPropiedades/037a7f9f05dc5f3897f82e0d30ec8d9d.jpg" class="imagen-tabla"></td>
-                <td>
-                    <a href="admin/propiedades/bajas.php" class="boton boton-verde">Eliminar propiedad</a>
-                    <a href="admin/propiedades/cambios.php" class="boton boton-verde">Actualizar propiedad</a>
-                </td>
-            </tr>
+            <?php while ($propiedad = mysqli_fetch_assoc($resultado)) : ?>
+                <tr>
+                    <td><?php echo $propiedad['id']; ?></td>
+                    <td><?php echo $propiedad['Titulo']; ?></td>
+                    <td>$<?php echo $propiedad['precio']; ?></td>
+                    <td><img src="/imagenesPropiedades/<?php echo $propiedad['imagen'] ?>" class="imagen-tabla" alt="imagen propiedad"></td>
+                    <td>
+                        <a href="admin/propiedades/bajas.php" class="boton boton-rojo-block">Eliminar propiedad</a>
+                        <a href="admin/propiedades/cambios.php" class="boton boton-amarillo-block">Actualizar propiedad</a>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
         </tbody>
     </table>
 </main>

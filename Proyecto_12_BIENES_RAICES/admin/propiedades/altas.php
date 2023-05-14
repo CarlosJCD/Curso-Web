@@ -3,7 +3,6 @@ require '../../includes/config/database.php';
 
 $conexionDB = conectarDB();
 $errores = validarFormulario();
-
 if (empty($errores)) {
     crearPropiedad($conexionDB);
 }
@@ -61,7 +60,7 @@ function validarFormulario(): array
 
 function validarImagen()
 {
-    $tamanoMaximo = 100000;
+    $tamanoMaximo = 100000000;
     $imagen = obtenerImagen();
     if ($imagen !== '' && ($imagen['size'] < $tamanoMaximo)) {
         return '';
@@ -70,7 +69,7 @@ function validarImagen()
         return "Porfavor, añada la imagen de la propiedad";
     }
     if ($imagen['size'] > $tamanoMaximo) {
-        return "La imagen excede el tamaño máximo (10 kb)";
+        return "La imagen excede el tamaño máximo (10 mb)";
     }
 }
 
@@ -97,9 +96,6 @@ function crearPropiedad($conexionDB): void
         $idVendedor = obtenerVendedor($conexionDB);
         $insertarPropiedad = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) VALUES  ('$titulo' , $precio, '$rutaImagen','$descripcion', $habitaciones, $wc, $estacionamiento, '$fechaCreacion', $idVendedor);";
         $query = mysqli_query($conexionDB, $insertarPropiedad);
-        if ($query) {
-            header('Location: /admin?resultado=1');
-        }
     }
 }
 
@@ -244,7 +240,12 @@ añadirPlantilla('header');
 <main class="contenedor seccion">
     <h1>Crear</h1>
     <a href="/admin" class="boton boton-verde">volver</a>
-
+    <?php
+    if (isset($_POST['submit'])) { ?>
+        <p class="alerta exito"> Anuncio creado correctamente</p>
+    <?php unset($_POST);
+    }
+    ?>
     <?php
     if (!empty($errores)) {
         foreach ($errores as $error) { ?>
