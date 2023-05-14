@@ -8,12 +8,31 @@ $id = filter_var($id, FILTER_VALIDATE_INT);
 if (!$id) {
     header('Location: /admin');
 }
-
 $conexionDB = conectarDB();
+cargarPropiedad($id, $conexionDB);
+echo '<pre>';
+var_dump($_POST);
+echo '</pre>';
 $errores = validarFormulario();
 if (empty($errores)) {
     actualizarPropiedad($conexionDB);
 }
+
+function cargarPropiedad($id, $conexionDB)
+{
+    $query = "SELECT * FROM propiedades WHERE id = $id;";
+    $resultado = mysqli_query($conexionDB, $query);
+    $datosPropiedad = mysqli_fetch_assoc($resultado);
+    $_POST['titulo'] = $datosPropiedad['Titulo'];
+    $_POST['precio'] = $datosPropiedad['precio'];
+    $_POST['descripcion'] = $datosPropiedad['descripcion'];
+    $_POST['wc'] = $datosPropiedad['wc'];
+    $_POST['habitaciones'] = $datosPropiedad['habitaciones'];
+    $_POST['estacionamiento'] = $datosPropiedad['estacionamientos'];
+    $_POST['vendedor'] = $datosPropiedad['vendedores_id'];
+    $_POST['rutaImagen'] = $datosPropiedad["imagen"];
+}
+
 
 function validarFormulario(): array
 {
@@ -275,7 +294,7 @@ añadirPlantilla('header');
 
             <label for="imagen">Imagen</label>
             <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
-
+            <img src="/imagenesPropiedades/<?php echo $propiedad['imagen'] ?>" class="imagen-preview" alt="imagen propiedad">
             <label for="descripcion">Descripcion</label>
             <textarea id="descripcion" name="descripcion" placeholder="Descripcion de la propiedad"><?php echo obtenerDescripcion() ?></textarea>
         </fieldset>
@@ -301,8 +320,8 @@ añadirPlantilla('header');
                 $query = seleccionarTodosLosVendedores($conexionDB);
                 while ($vendedor = mysqli_fetch_assoc($query)) { ?>
                     <option <?php
-                            if (isset($_POST['vendedorExistente'])) {
-                                echo $_POST['vendedorExistente'] === $vendedor['id'] ? 'selected' : '';
+                            if (isset($_POST['vendedor'])) {
+                                echo $_POST['vendedor'] === $vendedor['id'] ? 'selected' : '';
                             }
                             ?> value="<?php echo $vendedor['id']; ?>">
                         <?php echo $vendedor['Nombre'] . " " . $vendedor['Apellido']; ?>
