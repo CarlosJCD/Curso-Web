@@ -36,3 +36,8 @@ table.propiedades {
 .imagen-preview {
   width: 20rem;
 }
+input {
+  &.boton {
+    border: none;
+  }
+}
