@@ -104,6 +104,10 @@ function actualizarPropiedad($conexionDB, $id): void
 
         $imagenesDir = "../../imagenesPropiedades/";
 
+        if (isset($_POST['imagen'])) {
+            unlink($imagenesDir . $_POST['imagen']);
+        }
+
         $imagen = obtenerImagen();
         $rutaImagen = md5(uniqid(rand(), true)) . ".jpg";
         move_uploaded_file($imagen['tmp_name'], $imagenesDir . $rutaImagen);
