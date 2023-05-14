@@ -202,7 +202,6 @@ añadirPlantilla('header');
             <label for="imagen">Imagen</label>
             <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
 
-            <img src="../../imagenesPropiedades/<?php echo $_POST['imagen'] ?>" class="imagen-preview" alt="imagen propiedad">
             <label for="descripcion">Descripcion</label>
             <textarea id="descripcion" name="descripcion" placeholder="Descripcion de la propiedad"><?php echo obtenerParametro("descripcion") ?></textarea>
         </fieldset>
