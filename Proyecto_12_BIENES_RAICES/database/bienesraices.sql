@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.23, for macos10.15 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.22, for macos10.15 (x86_64)
 --
--- Host: localhost    Database: bienesraices
+-- Host: 127.0.0.1    Database: bienesraices
 -- ------------------------------------------------------
 -- Server version	8.0.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -45,7 +45,7 @@ CREATE TABLE `propiedades` (
 
 LOCK TABLES `propiedades` WRITE;
 /*!40000 ALTER TABLE `propiedades` DISABLE KEYS */;
-INSERT INTO `propiedades` VALUES (9,'Casa en la playa',1000000.00,'0073e213dd7eb674fc51ad2ad6d6ddd5.jpg','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet mauris efficitur, vulputate elit vel, maximus quam. Quisque aliquam, elit quis rhoncus pulvinar, nunc turpis commodo turpis, ac egestas mi justo et ipsum. Sed eu tellus ex. Suspendisse dapibus at nunc eget ornare. In pharetra lorem id tortor bibendum finibus. ',10,12,5,'2023-05-14',1);
+INSERT INTO `propiedades` VALUES (9,'Casa en la playa (Actualizado)',1000000.00,'f97608d2acea5a8baf302dbae715f955.jpg','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet mauris efficitur, vulputate elit vel, maximus quam. Quisque aliquam, elit quis rhoncus pulvinar, nunc turpis commodo turpis, ac egestas mi justo et ipsum. Sed eu tellus ex. Suspendisse dapibus at nunc eget ornare. In pharetra lorem id tortor bibendum finibus. ',10,12,5,'2023-05-16',1);
 /*!40000 ALTER TABLE `propiedades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,10 +74,6 @@ LOCK TABLES `vendedores` WRITE;
 INSERT INTO `vendedores` VALUES (1,'Carlos','Calderon','9999038088');
 /*!40000 ALTER TABLE `vendedores` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'bienesraices'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -88,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-14 14:59:06
+-- Dump completed on 2023-05-15 19:51:29
