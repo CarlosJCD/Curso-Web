@@ -32,6 +32,13 @@ function cargarPropiedad($id, $conexionDB)
     $_POST['imagen'] = $datosPropiedad["imagen"];
 }
 
+function obtenerImagenAnterior($id, $conexionDB)
+{
+    $query = "SELECT * FROM propiedades WHERE id = $id;";
+    $resultado = mysqli_query($conexionDB, $query);
+    $datosPropiedad = mysqli_fetch_assoc($resultado);
+    return $datosPropiedad['imagen'];
+}
 
 function validarFormulario(): array
 {
@@ -103,9 +110,9 @@ function actualizarPropiedad($conexionDB, $id): void
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $imagenesDir = "../../imagenesPropiedades/";
-
-        if (isset($_POST['imagen'])) {
-            unlink($imagenesDir . $_POST['imagen']);
+        if (isset($_FILES['imagen'])) {
+            $rutaImagenAnterior = obtenerImagenAnterior($id, $conexionDB);
+            unlink($imagenesDir . $rutaImagenAnterior);
         }
 
         $imagen = obtenerImagen();
@@ -120,7 +127,7 @@ function actualizarPropiedad($conexionDB, $id): void
         $estacionamiento = mysqli_real_escape_string($conexionDB, obtenerParametro("estacionamiento"));
         $fechaCreacion = date('Y/m/d');
         $idVendedor = obtenerVendedor($conexionDB);
-        $actualizarPropiedad = "UPDATE propiedades SET Titulo = '$titulo', precio = $precio, imagen = '$imagen', descripcion = '$descripcion', habitaciones = $habitaciones, wc = $wc, estacionamientos=$estacionamiento, creado = '$fechaCreacion', vendedores_id = '$idVendedor' WHERE id = $id;";
+        $actualizarPropiedad = "UPDATE propiedades SET Titulo = '$titulo', precio = $precio, imagen = '$rutaImagen', descripcion = '$descripcion', habitaciones = $habitaciones, wc = $wc, estacionamientos=$estacionamiento, creado = '$fechaCreacion', vendedores_id = '$idVendedor' WHERE id = $id;";
         mysqli_query($conexionDB, $actualizarPropiedad);
     }
 }
@@ -283,4 +290,6 @@ añadirPlantilla('header');
 
     </form>
 </main>
-<?php añadirPlantilla('footer'); ?>
+<?php añadirPlantilla('footer');
+mysqli_close($conexionDB);
+?>

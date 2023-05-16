@@ -22,11 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query = "DELETE FROM propiedades WHERE id = $id";
         $resultadoEliminar = mysqli_query($db, $query);
         if ($resultadoEliminar) {
-            header('Location: /admin');
+            header('Location: /');
         }
     }
 }
-
 
 require '../includes/funciones.php';
 añadirPlantilla('header');
