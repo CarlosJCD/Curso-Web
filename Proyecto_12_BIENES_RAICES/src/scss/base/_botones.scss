@@ -10,3 +10,10 @@
 .boton-verde {
   @include m.boton(v.$verde, inline-block);
 }
+.boton-verde-block {
+  @include m.boton(v.$verde, block);
+}
+
+.boton-rojo-block {
+  @include m.boton(v.$rojo, block);
+}

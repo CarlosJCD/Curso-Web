@@ -33,3 +33,11 @@ table.propiedades {
     width: 10rem;
   }
 }
+.imagen-preview {
+  width: 20rem;
+}
+input {
+  &.boton {
+    border: none;
+  }
+}

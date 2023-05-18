@@ -3,7 +3,6 @@ require '../../includes/config/database.php';
 
 $conexionDB = conectarDB();
 $errores = validarFormulario();
-
 if (empty($errores)) {
     crearPropiedad($conexionDB);
 }
@@ -61,7 +60,7 @@ function validarFormulario(): array
 
 function validarImagen()
 {
-    $tamanoMaximo = 100000;
+    $tamanoMaximo = 100000000;
     $imagen = obtenerImagen();
     if ($imagen !== '' && ($imagen['size'] < $tamanoMaximo)) {
         return '';
@@ -70,7 +69,7 @@ function validarImagen()
         return "Porfavor, añada la imagen de la propiedad";
     }
     if ($imagen['size'] > $tamanoMaximo) {
-        return "La imagen excede el tamaño máximo (10 kb)";
+        return "La imagen excede el tamaño máximo (10 mb)";
     }
 }
 
@@ -87,68 +86,22 @@ function crearPropiedad($conexionDB): void
         $rutaImagen = md5(uniqid(rand(), true)) . ".jpg";
         move_uploaded_file($imagen['tmp_name'], $imagenesDir . $rutaImagen);
 
-        $titulo = mysqli_real_escape_string($conexionDB, obtenerTitulo());
-        $precio = mysqli_real_escape_string($conexionDB, obtenerPrecio());
-        $descripcion = mysqli_real_escape_string($conexionDB, obtenerDescripcion());
-        $habitaciones = mysqli_real_escape_string($conexionDB, obtenerCantidadDeHabitaciones());
-        $wc = mysqli_real_escape_string($conexionDB, obtenerCantidadDeWC());
-        $estacionamiento = mysqli_real_escape_string($conexionDB, obtenerCantidadDeEstacionamientos());
+        $titulo = mysqli_real_escape_string($conexionDB, obtenerParametro("titulo"));
+        $precio = mysqli_real_escape_string($conexionDB, obtenerParametro("precio"));
+        $descripcion = mysqli_real_escape_string($conexionDB, obtenerParametro("descripcion"));
+        $habitaciones = mysqli_real_escape_string($conexionDB, obtenerParametro("habitaciones"));
+        $wc = mysqli_real_escape_string($conexionDB, obtenerParametro("wc"));
+        $estacionamiento = mysqli_real_escape_string($conexionDB, obtenerParametro("estacionamiento"));
         $fechaCreacion = date('Y/m/d');
         $idVendedor = obtenerVendedor($conexionDB);
         $insertarPropiedad = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) VALUES  ('$titulo' , $precio, '$rutaImagen','$descripcion', $habitaciones, $wc, $estacionamiento, '$fechaCreacion', $idVendedor);";
         $query = mysqli_query($conexionDB, $insertarPropiedad);
-        if ($query) {
-            header('Location: /admin?resultado=1');
-        }
     }
 }
 
-function obtenerTitulo(): string
+function obtenerParametro($parametro)
 {
-    if (isset($_POST['titulo'])) {
-        return $_POST['titulo'];
-    }
-    return "";
-}
-
-function obtenerPrecio()
-{
-    if (isset($_POST['precio'])) {
-        return $_POST['precio'];
-    }
-    return "";
-}
-
-function obtenerDescripcion()
-{
-    if (isset($_POST['descripcion'])) {
-        return $_POST['descripcion'];
-    }
-    return "";
-}
-
-function obtenerCantidadDeHabitaciones()
-{
-    if (isset($_POST['habitaciones'])) {
-        return $_POST['habitaciones'];
-    }
-    return "";
-}
-
-function obtenerCantidadDeWC()
-{
-    if (isset($_POST['wc'])) {
-        return $_POST['wc'];
-    }
-    return "";
-}
-
-function obtenerCantidadDeEstacionamientos()
-{
-    if (isset($_POST['estacionamiento'])) {
-        return $_POST['estacionamiento'];
-    }
-    return "";
+    return $_POST[$parametro] ?? '';
 }
 
 function obtenerVendedor($conexionDB)
@@ -193,30 +146,6 @@ function insertarVendedor($conexionDB)
     }
 }
 
-function obtenerNombreVendedorNuevo()
-{
-    if (isset($_POST['nombreNuevo'])) {
-        return $_POST['nombreNuevo'];
-    }
-    return "";
-}
-
-function obtenerApellidoVendedorNuevo()
-{
-    if (isset($_POST['apellidoNuevo'])) {
-        return $_POST['apellidoNuevo'];
-    }
-    return "";
-}
-
-function obtenerTelefonoNuevo()
-{
-    if (isset($_POST['telefonoNuevo'])) {
-        return $_POST['telefonoNuevo'];
-    }
-    return "";
-}
-
 function obtenerImagen()
 {
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
@@ -244,7 +173,12 @@ añadirPlantilla('header');
 <main class="contenedor seccion">
     <h1>Crear</h1>
     <a href="/admin" class="boton boton-verde">volver</a>
-
+    <?php
+    if (isset($_POST['submit']) && empty($errores)) { ?>
+        <p class="alerta exito"> Anuncio creado correctamente</p>
+    <?php unset($_POST);
+    }
+    ?>
     <?php
     if (!empty($errores)) {
         foreach ($errores as $error) { ?>
@@ -260,27 +194,27 @@ añadirPlantilla('header');
             <legend>Informacion General</legend>
 
             <label for="titulo">Titulo</label>
-            <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad" value="<?php echo obtenerTitulo() ?>">
+            <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad" value="<?php echo obtenerParametro("titulo") ?>">
 
             <label for="precio">precio</label>
-            <input type="number" id="precio" name="precio" placeholder="Precio" value="<?php echo obtenerPrecio() ?>">
+            <input type="number" id="precio" name="precio" placeholder="Precio" value="<?php echo obtenerParametro("precio") ?>">
 
             <label for="imagen">Imagen</label>
             <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
 
             <label for="descripcion">Descripcion</label>
-            <textarea id="descripcion" name="descripcion" placeholder="Descripcion de la propiedad"><?php echo obtenerDescripcion() ?></textarea>
+            <textarea id="descripcion" name="descripcion" placeholder="Descripcion de la propiedad"><?php echo obtenerParametro("descripcion") ?></textarea>
         </fieldset>
         <fieldset>
             <legend>Informacion propiedad</legend>
             <label for="habitaciones">Numero de habitaciones</label>
-            <input type="number" id="habitaciones" name="habitaciones" placeholder="Num. habitaciones" min='1' value="<?php echo obtenerCantidadDeHabitaciones() ?>">
+            <input type="number" id="habitaciones" name="habitaciones" placeholder="Num. habitaciones" min='1' value="<?php echo obtenerParametro("habitaciones") ?>">
 
             <label for="wc">Numero de baños</label>
-            <input type="number" id="wc" name="wc" placeholder="Num. baños" min='1' value="<?php echo obtenerCantidadDeWC() ?>">
+            <input type="number" id="wc" name="wc" placeholder="Num. baños" min='1' value="<?php echo obtenerParametro("wc") ?>">
 
             <label for="estacionamiento">Numero de estacionamientos</label>
-            <input type="number" id="estacionamiento" name="estacionamiento" placeholder="Casillas de estacionamiento" min='1' value="<?php echo obtenerCantidadDeEstacionamientos() ?>">
+            <input type="number" id="estacionamiento" name="estacionamiento" placeholder="Casillas de estacionamiento" min='1' value="<?php echo obtenerParametro("estacionamiento") ?>">
         </fieldset>
 
         <fieldset>
@@ -308,13 +242,13 @@ añadirPlantilla('header');
                 <input type="checkbox" name="vendedorNuevo" id="nuevo" onclick="registrarNuevo(this.checked)">
             </label>
             <label for="nombre">Nombre</label>
-            <input disabled name="nombreNuevo" class="datosVendedor" type="text" id="nombre" placeholder="Nombre vendedor" value="<?php echo obtenerNombreVendedorNuevo() ?>">
+            <input disabled name="nombreNuevo" class="datosVendedor" type="text" id="nombre" placeholder="Nombre vendedor" value="<?php echo obtenerParametro("nombreNuevo") ?>">
 
             <label for="apellido">Apellido</label>
-            <input disabled name='apellidoNuevo' class="datosVendedor" type="text" id="apellido" placeholder="Apellido paterno" value="<?php echo obtenerApellidoVendedorNuevo() ?>">
+            <input disabled name='apellidoNuevo' class="datosVendedor" type="text" id="apellido" placeholder="Apellido paterno" value="<?php echo obtenerParametro("apellidoNuevo") ?>">
 
             <label for="telefono">Numero Telefonico</label>
-            <input disabled name="telefonoNuevo" class="datosVendedor" type="tel" id="telefono" placeholder="Telefono del vendedor" value="<?php echo obtenerTelefonoNuevo() ?>">
+            <input disabled name="telefonoNuevo" class="datosVendedor" type="tel" id="telefono" placeholder="Telefono del vendedor" value="<?php echo obtenerParametro("telefonoNuevo") ?>">
         </fieldset>
 
         <input type="submit" name="submit" class="boton boton-verde">
