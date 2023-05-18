@@ -109,7 +109,7 @@ function actualizarPropiedad($conexionDB, $id): void
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $imagenesDir = "../../imagenesPropiedades/";
+        $imagenesDir = "/imagenesPropiedades/";
         if (isset($_FILES['imagen'])) {
             $rutaImagenAnterior = obtenerImagenAnterior($id, $conexionDB);
             unlink($imagenesDir . $rutaImagenAnterior);

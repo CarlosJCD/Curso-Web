@@ -59,7 +59,7 @@ añadirPlantilla('header');
                             <input type="hidden" name="id" value=" <?php echo $propiedad['id']; ?>">
                             <input type="submit" class="boton boton-rojo-block w-100" value="Eliminar">
                         </form>
-                        <a href="admin/propiedades/cambios.php?id=<?php echo $propiedad['id']; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
+                        <a href="/admin/propiedades/cambios.php?id=<?php echo $propiedad['id']; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
                     </td>
                 </tr>
             <?php endwhile; ?>
