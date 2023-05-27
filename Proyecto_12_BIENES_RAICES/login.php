@@ -16,6 +16,16 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     if (!$password) {
         $errores[] = "La contraseña es obligatoria";
     }
+
+    if (empty($errores)) {
+        $query = "SELECT * FROM usuarios WHERE email = '$email'";
+        $resultado = mysqli_query($db, $query);
+
+        if ($resultado->num_rows) {
+        } else {
+            $errores[] = "Credenciales no registradas";
+        }
+    }
 }
 
 
