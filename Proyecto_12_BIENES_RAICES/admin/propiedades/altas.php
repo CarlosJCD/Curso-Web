@@ -1,6 +1,12 @@
 <?php
 require '../../includes/config/database.php';
 
+require "../../includes/funciones.php";
+
+if (!estadoAutenticado()) {
+    header('Location: /');
+}
+
 $conexionDB = conectarDB();
 $errores = validarFormulario();
 if (empty($errores)) {
@@ -165,7 +171,6 @@ function seleccionarTodosLosVendedores($conexionDB)
     }
 }
 
-require '../../includes/funciones.php';
 añadirPlantilla('header');
 ?>
 

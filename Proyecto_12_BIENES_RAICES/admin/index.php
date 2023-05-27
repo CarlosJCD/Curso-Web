@@ -1,10 +1,9 @@
 <?php
 
-session_start();
-$auth = $_SESSION['login'];
+require "../includes/funciones.php";
 
-if (!$auth) {
-    header("Location: /");
+if (!estadoAutenticado()) {
+    header('Location: /');
 }
 
 require "../includes/config/database.php";
@@ -34,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require '../includes/funciones.php';
 añadirPlantilla('header');
 ?>
 
