@@ -22,8 +22,15 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         $resultado = mysqli_query($db, $query);
 
         if ($resultado->num_rows) {
+            $usuario = mysqli_fetch_assoc($resultado);
+
+            $auth = password_verify($password, $usuario['password']);
+            if ($auth) {
+            } else {
+                $errores[] = "Email o password incorrecto";
+            }
         } else {
-            $errores[] = "Credenciales no registradas";
+            $errores[] = "Email o password incorrecto";
         }
     }
 }
