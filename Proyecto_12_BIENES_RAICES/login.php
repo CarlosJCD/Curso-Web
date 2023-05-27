@@ -26,6 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
             $auth = password_verify($password, $usuario['password']);
             if ($auth) {
+                session_start();
+                $_SESSION["usuario"] = $usuario['email'];
+                $_SESSION["login"] = true;
             } else {
                 $errores[] = "Email o password incorrecto";
             }
