@@ -61,7 +61,7 @@ CREATE TABLE `usuarios` (
   `email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` char(60) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'correo@ejemplo.com','contraseña');
+INSERT INTO `usuarios` VALUES (2,'correo@ejemplo.com','$2y$10$Ouq4V2ghK3AJ.H76Pfk8pecI.4iRJeEw8UnL6T2usdRp58zT4lB2q');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-27 14:02:22
+-- Dump completed on 2023-05-27 14:08:41
