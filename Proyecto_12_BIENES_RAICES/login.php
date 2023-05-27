@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
                 session_start();
                 $_SESSION["usuario"] = $usuario['email'];
                 $_SESSION["login"] = true;
+                header("Location: /admin/");
             } else {
                 $errores[] = "Email o password incorrecto";
             }
