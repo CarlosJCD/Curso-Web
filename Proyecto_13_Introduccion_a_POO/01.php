@@ -5,13 +5,17 @@ class Producto
     public $nombre;
     public $precio;
     public $disponible;
+
+    public function __construct(string $nombreP, float $precioP, bool $disponibleP)
+    {
+        $this->nombre = $nombreP;
+        $this->precio = $precioP;
+        $this->disponible = $disponibleP;
+    }
 }
 
 
-$producto = new Producto();
-$producto->nombre = "Computadora";
-$producto->precio = 100.00;
-$producto->disponible = true;
+$producto = new Producto("Laptop", 150.00, false);
 
 
 echo '<pre>';
