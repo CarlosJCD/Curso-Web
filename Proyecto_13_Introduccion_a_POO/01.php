@@ -2,15 +2,9 @@
 
 class Producto
 {
-    public $nombre;
-    public $precio;
-    public $disponible;
 
-    public function __construct(string $nombreP, float $precioP, bool $disponibleP)
+    public function __construct(public string $nombreP, public float $precioP, public bool $disponibleP)
     {
-        $this->nombre = $nombreP;
-        $this->precio = $precioP;
-        $this->disponible = $disponibleP;
     }
 }
 
