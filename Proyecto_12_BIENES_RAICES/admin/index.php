@@ -1,5 +1,11 @@
 <?php
 
+require "../includes/funciones.php";
+
+if (!estadoAutenticado()) {
+    header('Location: /');
+}
+
 require "../includes/config/database.php";
 $db = conectarDB();
 
@@ -27,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require '../includes/funciones.php';
 añadirPlantilla('header');
 ?>
 
