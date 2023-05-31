@@ -12,7 +12,9 @@
             "email": "carlos.calderon.d@icloud.com"
         }
     ],
-    "require": {},
+    "require": {
+        "intervention/image": "^2.7"
+    },
     "autoload":{
         "psr-4": {
             "App\\":"./clases"

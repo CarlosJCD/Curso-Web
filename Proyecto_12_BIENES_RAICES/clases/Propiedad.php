@@ -39,7 +39,6 @@ class Propiedad
     {
         $query = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) ";
         $query = $query . "VALUES  ('$this->titulo' , $this->precio, '$this->imagen','$this->descripcion', $this->habitaciones, $this->wc, $this->estacionamiento, '$this->fechaCreacion', $this->idVendedor);";
-
-        $resultado = self::$db->query($query);
+        return self::$db->query($query);
     }
 }

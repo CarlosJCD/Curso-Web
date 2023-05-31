@@ -3,6 +3,7 @@
 require "../../includes/app.php";
 
 use App\Propiedad;
+use Intervention\Image\ImageManagerStatic as Image;
 
 validarAcceso();
 
@@ -83,6 +84,8 @@ function crearPropiedad($conexionDB): void
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $propiedad = cargarPropiedad($conexionDB);
+
+        $propiedad->registrar();
     }
 }
 
@@ -95,9 +98,9 @@ function cargarPropiedad($conexionDB): Propiedad
         mkdir($imagenesDir);
     }
 
-    $imagenNueva = obtenerImagen();
+    $image = Image::make($_FILES['imagen']["tmp_name"])->fit(800, 600);
     $propiedad->imagen = md5(uniqid(rand(), true)) . ".jpg";
-    move_uploaded_file($imagenNueva['tmp_name'], $imagenesDir . $propiedad->imagen);
+    $image->save($imagenesDir . $propiedad->imagen);
 
     $propiedad->titulo = mysqli_real_escape_string($conexionDB, obtenerParametro("titulo"));
     $propiedad->precio = mysqli_real_escape_string($conexionDB, obtenerParametro("precio"));
