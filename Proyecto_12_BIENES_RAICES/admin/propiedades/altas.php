@@ -2,6 +2,8 @@
 
 require "../../includes/app.php";
 
+use App\Propiedad;
+
 if (!estadoAutenticado()) {
     header('Location: /');
 }
