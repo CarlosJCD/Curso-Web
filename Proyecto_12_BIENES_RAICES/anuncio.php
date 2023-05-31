@@ -1,8 +1,7 @@
 <?php
 
-require "includes/config/database.php";
 
-$db = conectarDB();
+
 
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -11,6 +10,9 @@ if (!$id) {
   header('Location: /index.php');
 }
 
+require "includes/app.php";
+
+$db = conectarDB();
 $query = "SELECT * FROM propiedades WHERE id=$id;";
 
 $resultado = mysqli_query($db, $query);
@@ -21,7 +23,7 @@ if (!$resultado->num_rows) {
 
 $propiedad = mysqli_fetch_assoc($resultado);
 
-require 'includes/funciones.php';
+
 añadirPlantilla('header');
 ?>
 <main class="contenedor seccion contenido-centrado">

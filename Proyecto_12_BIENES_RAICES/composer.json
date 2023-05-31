@@ -1,0 +1,21 @@
+{
+    "name": "carloscalderondelgado/proyecto_12_bienes_raices",
+    "description": "POO con el proyecto \"Bienes Raices\" del curso \"Desarrollo Web Completo con HTML5, CSS3, JS AJAX PHP y MySQL",
+    "autoload": {
+        "psr-4": {
+            "Carloscalderondelgado\\Proyecto12BienesRaices\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "CarlosJCD",
+            "email": "carlos.calderon.d@icloud.com"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-4": {
+            "App\\":"./clases"
+        }
+    }
+}
