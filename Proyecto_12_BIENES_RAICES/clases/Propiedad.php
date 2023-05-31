@@ -81,4 +81,13 @@ class Propiedad
         $query .= "$this->habitaciones, $this->wc, $this->estacionamiento, '$this->fechaCreacion', $this->idVendedor);";
         self::$db->query($query);
     }
+
+    public function sincronizar($arreglo = [])
+    {
+        foreach ($arreglo as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
+    }
 }

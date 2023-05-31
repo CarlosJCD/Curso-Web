@@ -114,26 +114,27 @@ function actualizarPropiedad($conexionDB, $id): void
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+
         $imagenesDir = "../../imagenesPropiedades/";
         if (isset($_FILES['imagen'])) {
             $rutaImagenAnterior = obtenerImagenAnterior($id, $conexionDB);
             unlink($imagenesDir . $rutaImagenAnterior);
         }
 
-        $imagen = obtenerImagen();
-        $rutaImagen = md5(uniqid(rand(), true)) . ".jpg";
-        move_uploaded_file($imagen['tmp_name'], $imagenesDir . $rutaImagen);
+        $propiedad = Propiedad::findById($id);
 
-        $titulo = mysqli_real_escape_string($conexionDB, obtenerParametro("titulo"));
-        $precio = mysqli_real_escape_string($conexionDB, obtenerParametro("precio"));
-        $descripcion = mysqli_real_escape_string($conexionDB, obtenerParametro("descripcion"));
-        $habitaciones = mysqli_real_escape_string($conexionDB, obtenerParametro("habitaciones"));
-        $wc = mysqli_real_escape_string($conexionDB, obtenerParametro("wc"));
-        $estacionamiento = mysqli_real_escape_string($conexionDB, obtenerParametro("estacionamiento"));
-        $fechaCreacion = date('Y/m/d');
-        $idVendedor = obtenerVendedor($conexionDB);
-        $actualizarPropiedad = "UPDATE propiedades SET Titulo = '$titulo', precio = $precio, imagen = '$rutaImagen', descripcion = '$descripcion', habitaciones = $habitaciones, wc = $wc, estacionamientos=$estacionamiento, creado = '$fechaCreacion', vendedores_id = '$idVendedor' WHERE id = $id;";
-        mysqli_query($conexionDB, $actualizarPropiedad);
+        $args = [];
+        $args["titulo"] = mysqli_real_escape_string($conexionDB, obtenerParametro("titulo"));
+        $args["precio"] = mysqli_real_escape_string($conexionDB, obtenerParametro("precio"));
+        $args["descripcion"] = mysqli_real_escape_string($conexionDB, obtenerParametro("descripcion"));
+        $args["habitaciones"] = mysqli_real_escape_string($conexionDB, obtenerParametro("habitaciones"));
+        $args["wc"] = mysqli_real_escape_string($conexionDB, obtenerParametro("wc"));
+        $args["imagen"] = md5(uniqid(rand(), true)) . ".jpg";
+        $args["estacionamiento"] = mysqli_real_escape_string($conexionDB, obtenerParametro("estacionamiento"));
+        $args["fechaCreacion"] = date('Y/m/d');
+        $args["idVendedor"] = obtenerVendedor($conexionDB);
+
+        $propiedad->sincronizar($args);
     }
 }
 
