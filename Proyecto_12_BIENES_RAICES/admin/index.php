@@ -4,6 +4,10 @@ require "../includes/app.php";
 
 validarAcceso();
 
+use App\Propiedad;
+
+$propiedades = Propiedad::all();
+
 $db = conectarDB();
 
 $query = "SELECT * FROM propiedades";

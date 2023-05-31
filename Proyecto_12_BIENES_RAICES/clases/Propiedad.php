@@ -35,6 +35,36 @@ class Propiedad
         self::$db = $db;
     }
 
+    public static function all()
+    {
+        $query = "SELECT * FROM propiedades";
+        return self::$db->query($query);
+    }
+
+    public static function ejecutarQuery($query)
+    {
+        $resultado = self::$db->query($query);
+
+        while ($registro = $resultado->fetch_assoc()) {
+            $array[] = self::cargarObjeto($registro);
+        }
+
+        $resultado->free();
+
+        return $array;
+    }
+
+    private static function cargarObjeto($registro)
+    {
+        $objeto = new self;
+        foreach ($registro as $key => $value) {
+            if (property_exists($objeto, $key)) {
+                $objeto->$key = $value;
+            }
+        }
+        return $objeto;
+    }
+
     public function registrar()
     {
         $query = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) ";
