@@ -82,6 +82,24 @@ class Propiedad
         self::$db->query($query);
     }
 
+
+
+    public function actualizar()
+    {
+        $valores = [];
+        foreach (get_object_vars($this) as $key => $value) {
+            $valores[] = "{$key}='{$value}'";
+        }
+
+        $query = "UPDATE propiedades SET ";
+        $query .=  join(', ', $valores);
+        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " LIMIT 1 ";
+
+        self::$db->query($query);
+    }
+
+
     public function sincronizar($arreglo = [])
     {
         foreach ($arreglo as $key => $value) {

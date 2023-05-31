@@ -1,6 +1,7 @@
 <?php
 
 use App\Propiedad;
+use Intervention\Image\ImageManagerStatic as Image;
 
 require "../../includes/app.php";
 
@@ -99,14 +100,12 @@ function validarImagen()
 {
     $tamanoMaximo = 100000000;
     $imagen = obtenerImagen();
-    if ($imagen !== '' && ($imagen['size'] < $tamanoMaximo)) {
-        return '';
-    }
-    if ($imagen === '') {
-        return "Porfavor, añada la imagen de la propiedad";
-    }
-    if ($imagen['size'] > $tamanoMaximo) {
-        return "La imagen excede el tamaño máximo (10 mb)";
+    if ($imagen !== '') {
+        if ($imagen['size'] < $tamanoMaximo)
+            return '';
+        if ($imagen['size'] > $tamanoMaximo) {
+            return "La imagen excede el tamaño máximo (10 mb)";
+        }
     }
 }
 
@@ -114,27 +113,43 @@ function actualizarPropiedad($conexionDB, $id): void
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
-        $imagenesDir = "../../imagenesPropiedades/";
-        if (isset($_FILES['imagen'])) {
-            $rutaImagenAnterior = obtenerImagenAnterior($id, $conexionDB);
-            unlink($imagenesDir . $rutaImagenAnterior);
-        }
-
         $propiedad = Propiedad::findById($id);
 
         $args = [];
         $args["titulo"] = mysqli_real_escape_string($conexionDB, obtenerParametro("titulo"));
+
         $args["precio"] = mysqli_real_escape_string($conexionDB, obtenerParametro("precio"));
+
         $args["descripcion"] = mysqli_real_escape_string($conexionDB, obtenerParametro("descripcion"));
+
         $args["habitaciones"] = mysqli_real_escape_string($conexionDB, obtenerParametro("habitaciones"));
+
         $args["wc"] = mysqli_real_escape_string($conexionDB, obtenerParametro("wc"));
-        $args["imagen"] = md5(uniqid(rand(), true)) . ".jpg";
+
+
+        $imagenesDir = "../../imagenesPropiedades/";
+
+        if ($_FILES["imagen"]["tmp_name"] != "") {
+            $args["imagen"] = md5(uniqid(rand(), true)) . ".jpg";
+            $rutaImagenAnterior = obtenerImagenAnterior($id, $conexionDB);
+
+            $image = Image::make($_FILES['imagen']["tmp_name"])->fit(800, 600);
+            $image->save($imagenesDir .  $args["imagen"]);
+
+            unlink($imagenesDir . $rutaImagenAnterior);
+        } else {
+            $args["imagen"] = obtenerImagenAnterior($id, $conexionDB);
+        }
+
         $args["estacionamiento"] = mysqli_real_escape_string($conexionDB, obtenerParametro("estacionamiento"));
+
         $args["fechaCreacion"] = date('Y/m/d');
+
         $args["idVendedor"] = obtenerVendedor($conexionDB);
 
         $propiedad->sincronizar($args);
+
+        $propiedad->actualizar();
     }
 }
 
@@ -142,7 +157,6 @@ function obtenerParametro($parametro)
 {
     return $_POST[$parametro] ?? '';
 }
-
 
 function obtenerVendedor($conexionDB)
 {
@@ -230,7 +244,7 @@ añadirPlantilla('header');
     ?>
     <form class="formulario" method="POST" enctype="multipart/form-data">
         <?php include "../../includes/templates/formulario_propiedades.php" ?>
-
+        <input type="submit" name="submit" class="boton boton-verde">
     </form>
 </main>
 <?php añadirPlantilla('footer');
