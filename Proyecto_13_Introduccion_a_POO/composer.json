@@ -1,0 +1,19 @@
+{
+    "name": "carloscalderondelgado/proyecto_13_introduccion_a_poo",
+    "description": "Introduccion a POO en PHP",
+    "autoload": {
+        "psr-4": {
+            "Carloscalderondelgado\\Proyecto13IntroduccionAPoo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "CarlosJCD",
+            "email": "carlos.calderon.d@icloud.com"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-4":{"App\\": "clases"}
+    }
+}
