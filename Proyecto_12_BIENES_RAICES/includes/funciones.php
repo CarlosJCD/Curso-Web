@@ -18,3 +18,8 @@ function validarAcceso(): void
         header('Location: /');
     }
 }
+
+function filtrarHtml($string)
+{
+    return htmlspecialchars($string);
+}
