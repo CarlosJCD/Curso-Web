@@ -18,21 +18,10 @@ $resultado = mysqli_query($db, $query);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
-    if ($id) {
 
-        $queryImagen = "SELECT imagen FROM propiedades WHERE id = $id";
-        $resultadoImagen = mysqli_query($db, $queryImagen);
-        $rutaImagen = mysqli_fetch_assoc($resultadoImagen);
-        if ($rutaImagen) {
-            unlink("../imagenesPropiedades/" . $rutaImagen['imagen']);
-        }
+    $propiedad = Propiedad::findById($id);
 
-        $query = "DELETE FROM propiedades WHERE id = $id";
-        $resultadoEliminar = mysqli_query($db, $query);
-        if ($resultadoEliminar) {
-            header('Location: /');
-        }
-    }
+    $propiedad->eliminar();
 }
 
 añadirPlantilla('header');

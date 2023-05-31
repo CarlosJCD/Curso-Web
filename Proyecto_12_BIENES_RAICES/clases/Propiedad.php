@@ -100,6 +100,14 @@ class Propiedad
     }
 
 
+    public function eliminar()
+    {
+        $query = "DELETE FROM propiedades WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+        $resultado = self::$db->query($query);
+        unlink("../imagenesPropiedades/" . $this->imagen);
+    }
+
+
     public function sincronizar($arreglo = [])
     {
         foreach ($arreglo as $key => $value) {
