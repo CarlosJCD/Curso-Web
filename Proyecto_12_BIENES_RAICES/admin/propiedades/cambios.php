@@ -2,9 +2,7 @@
 
 require "../../includes/app.php";
 
-if (!estadoAutenticado()) {
-    header('Location: /');
-}
+validarAcceso();
 
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);

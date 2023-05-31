@@ -2,9 +2,7 @@
 
 require "../includes/app.php";
 
-if (!estadoAutenticado()) {
-    header('Location: /');
-}
+validarAcceso();
 
 $db = conectarDB();
 
