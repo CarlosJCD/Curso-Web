@@ -8,6 +8,7 @@ use App\Propiedad;
 
 $propiedades = Propiedad::all();
 
+
 $db = conectarDB();
 
 $query = "SELECT * FROM propiedades";
@@ -54,21 +55,21 @@ añadirPlantilla('header');
             </tr>
         </thead>
         <tbody>
-            <?php while ($propiedad = mysqli_fetch_assoc($resultado)) : ?>
+            <?php foreach ($propiedades as $propiedad) : ?>
                 <tr>
-                    <td><?php echo $propiedad['id']; ?></td>
-                    <td><?php echo $propiedad['Titulo']; ?></td>
-                    <td>$<?php echo $propiedad['precio']; ?></td>
-                    <td><img src="/imagenesPropiedades/<?php echo $propiedad['imagen'] ?>" class="imagen-tabla" alt="imagen propiedad"></td>
+                    <td><?php echo $propiedad->id; ?></td>
+                    <td><?php echo $propiedad->titulo; ?></td>
+                    <td>$<?php echo $propiedad->precio; ?></td>
+                    <td><img src="/imagenesPropiedades/<?php echo $propiedad->imagen; ?>" class="imagen-tabla" alt="imagen propiedad"></td>
                     <td>
                         <form method="POST">
-                            <input type="hidden" name="id" value=" <?php echo $propiedad['id']; ?>">
+                            <input type="hidden" name="id" value=" <?php echo $propiedad->id; ?>">
                             <input type="submit" class="boton boton-rojo-block w-100" value="Eliminar">
                         </form>
-                        <a href="/admin/propiedades/cambios.php?id=<?php echo $propiedad['id']; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
+                        <a href="/admin/propiedades/cambios.php?id=<?php echo $propiedad->id; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
                     </td>
                 </tr>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </main>

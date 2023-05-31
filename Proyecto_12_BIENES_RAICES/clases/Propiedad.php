@@ -38,13 +38,14 @@ class Propiedad
     public static function all()
     {
         $query = "SELECT * FROM propiedades";
-        return self::$db->query($query);
+        return self::ejecutarQuery($query);
     }
 
     public static function ejecutarQuery($query)
     {
         $resultado = self::$db->query($query);
 
+        $array = [];
         while ($registro = $resultado->fetch_assoc()) {
             $array[] = self::cargarObjeto($registro);
         }
