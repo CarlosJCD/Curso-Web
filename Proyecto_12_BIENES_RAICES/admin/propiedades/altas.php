@@ -83,10 +83,6 @@ function crearPropiedad($conexionDB): void
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $propiedad = cargarPropiedad($conexionDB);
-
-        $insertarPropiedad = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) ";
-        $insertarPropiedad = $insertarPropiedad . "VALUES  ('$propiedad->titulo' , $propiedad->precio, '$propiedad->imagen','$propiedad->descripcion', $propiedad->habitaciones, $propiedad->wc, $propiedad->estacionamiento, '$propiedad->fechaCreacion', $propiedad->idVendedor);";
-        $query = mysqli_query($conexionDB, $insertarPropiedad);
     }
 }
 

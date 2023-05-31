@@ -4,6 +4,7 @@ namespace App;
 
 class Propiedad
 {
+    private static $db;
 
     public $id;
     public $titulo;
@@ -29,7 +30,16 @@ class Propiedad
         $this->idVendedor = $args["idVendedor"] ?? "";
     }
 
+    public static function setDB($db)
+    {
+        self::$db = $db;
+    }
+
     public function registrar()
     {
+        $query = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) ";
+        $query = $query . "VALUES  ('$this->titulo' , $this->precio, '$this->imagen','$this->descripcion', $this->habitaciones, $this->wc, $this->estacionamiento, '$this->fechaCreacion', $this->idVendedor);";
+
+        $resultado = self::$db->query($query);
     }
 }

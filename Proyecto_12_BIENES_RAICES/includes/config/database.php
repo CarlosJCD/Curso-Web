@@ -2,7 +2,7 @@
 
 function conectarDB(): mysqli
 {
-    $conexion_db = mysqli_connect(hostname: 'localhost', username: 'root', password: "", database: "bienesraices");
+    $conexion_db = new mysqli(hostname: 'localhost', username: 'root', password: "", database: "bienesraices");
     mysqli_set_charset($conexion_db, "utf8");
     if (!$conexion_db) {
         exit;
