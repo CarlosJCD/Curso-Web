@@ -10,6 +10,11 @@
     <label for="imagen">Imagen</label>
     <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
 
+    <?php
+    if (isset($_POST['imagen'])) { ?>
+        <img src="/imagenesPropiedades/<?php echo $_POST['imagen'] ?>" class="imagen-preview">
+    <?php } ?>
+
     <label for="descripcion">Descripcion</label>
     <textarea id="descripcion" name="descripcion" placeholder="Descripcion de la propiedad"><?php echo filtrarHtml(obtenerParametro("descripcion")) ?></textarea>
 </fieldset>

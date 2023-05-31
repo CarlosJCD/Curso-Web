@@ -66,10 +66,19 @@ class Propiedad
         return $objeto;
     }
 
+    public static function findById($id)
+    {
+        $query = "SELECT * FROM propiedades WHERE id = $id;";
+        return self::ejecutarQuery($query)[0];
+    }
+
+
     public function registrar()
     {
-        $query = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) ";
-        $query = $query . "VALUES  ('$this->titulo' , $this->precio, '$this->imagen','$this->descripcion', $this->habitaciones, $this->wc, $this->estacionamiento, '$this->fechaCreacion', $this->idVendedor);";
-        return self::$db->query($query);
+        $query = "INSERT INTO propiedades ";
+        $query .= "(titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, fechaCreacion, idVendedor)";
+        $query .= " VALUES  ('$this->titulo' , $this->precio, '$this->imagen','$this->descripcion',";
+        $query .= "$this->habitaciones, $this->wc, $this->estacionamiento, '$this->fechaCreacion', $this->idVendedor);";
+        self::$db->query($query);
     }
 }

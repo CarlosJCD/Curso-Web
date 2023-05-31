@@ -1,5 +1,7 @@
 <?php
 
+use App\Propiedad;
+
 require "../../includes/app.php";
 
 validarAcceso();
@@ -12,7 +14,8 @@ if (!$id) {
 }
 $conexionDB = conectarDB();
 
-$_POST['submit'] ?? cargarPropiedad($id, $conexionDB);
+$_POST['submit'] ?? cargarPropiedad($id);
+
 
 $errores = validarFormulario();
 if (empty($errores)) {
@@ -20,19 +23,18 @@ if (empty($errores)) {
     cargarPropiedad($id, $conexionDB);
 }
 
-function cargarPropiedad($id, $conexionDB)
+function cargarPropiedad($id)
 {
-    $query = "SELECT * FROM propiedades WHERE id = $id;";
-    $resultado = mysqli_query($conexionDB, $query);
-    $datosPropiedad = mysqli_fetch_assoc($resultado);
-    $_POST['titulo'] = $datosPropiedad['Titulo'];
-    $_POST['precio'] = $datosPropiedad['precio'];
-    $_POST['descripcion'] = $datosPropiedad['descripcion'];
-    $_POST['wc'] = $datosPropiedad['wc'];
-    $_POST['habitaciones'] = $datosPropiedad['habitaciones'];
-    $_POST['estacionamiento'] = $datosPropiedad['estacionamientos'];
-    $_POST['vendedor'] = $datosPropiedad['vendedores_id'];
-    $_POST['imagen'] = $datosPropiedad["imagen"];
+    $propiedad = Propiedad::findById($id);
+
+    $_POST['titulo'] = $propiedad->titulo;
+    $_POST['precio'] = $propiedad->precio;
+    $_POST['descripcion'] = $propiedad->descripcion;
+    $_POST['wc'] = $propiedad->wc;
+    $_POST['habitaciones'] = $propiedad->habitaciones;
+    $_POST['estacionamiento'] = $propiedad->estacionamiento;
+    $_POST['vendedor'] = $propiedad->idVendedor;
+    $_POST['imagen'] = $propiedad->imagen;
 }
 
 function obtenerImagenAnterior($id, $conexionDB)
@@ -226,69 +228,7 @@ añadirPlantilla('header');
     }
     ?>
     <form class="formulario" method="POST" enctype="multipart/form-data">
-        <fieldset>
-            <legend>Informacion General</legend>
-
-            <label for="titulo">Titulo</label>
-            <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad" value="<?php echo obtenerParametro("titulo") ?>">
-
-            <label for="precio">precio</label>
-            <input type="number" id="precio" name="precio" placeholder="Precio" value="<?php echo obtenerParametro("precio") ?>">
-
-            <label for="imagen">Imagen</label>
-            <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
-
-            <img src="/imagenesPropiedades/<?php echo $_POST["imagen"] ?>" class="imagen-preview" alt="imagen propiedad">
-            <label for="descripcion">Descripcion</label>
-            <textarea id="descripcion" name="descripcion" placeholder="Descripcion de la propiedad"><?php echo obtenerParametro("descripcion") ?></textarea>
-        </fieldset>
-        <fieldset>
-            <legend>Informacion propiedad</legend>
-            <label for="habitaciones">Numero de habitaciones</label>
-            <input type="number" id="habitaciones" name="habitaciones" placeholder="Num. habitaciones" min='1' value="<?php echo obtenerParametro("habitaciones") ?>">
-
-            <label for="wc">Numero de baños</label>
-            <input type="number" id="wc" name="wc" placeholder="Num. baños" min='1' value="<?php echo obtenerParametro("wc") ?>">
-
-            <label for="estacionamiento">Numero de estacionamientos</label>
-            <input type="number" id="estacionamiento" name="estacionamiento" placeholder="Casillas de estacionamiento" min='1' value="<?php echo obtenerParametro("estacionamiento") ?>">
-        </fieldset>
-
-        <fieldset>
-            <legend>Informacion vendedor</legend>
-
-            <label for="existentes">Seleccionar Vendedor:</label>
-            <select id="existentes" name="vendedor">
-                <option selected value="">-- Seleccione un vendedor --</option>
-                <?php
-                $query = seleccionarTodosLosVendedores($conexionDB);
-                while ($vendedor = mysqli_fetch_assoc($query)) { ?>
-                    <option <?php
-                            if (isset($_POST['vendedor'])) {
-                                echo $_POST['vendedor'] === $vendedor['id'] ? 'selected' : '';
-                            }
-                            ?> value="<?php echo $vendedor['id']; ?>">
-                        <?php echo $vendedor['Nombre'] . " " . $vendedor['Apellido']; ?>
-                    </option>
-                <?php
-                }
-                ?>
-            </select>
-            <label for="nuevo">
-                Registrar vendedor nuevo:
-                <input type="checkbox" name="vendedorNuevo" id="nuevo" onclick="registrarNuevo(this.checked)">
-            </label>
-            <label for="nombre">Nombre</label>
-            <input disabled name="nombreNuevo" class="datosVendedor" type="text" id="nombre" placeholder="Nombre vendedor" value="<?php echo obtenerParametro("nombreNuevo") ?>">
-
-            <label for="apellido">Apellido</label>
-            <input disabled name='apellidoNuevo' class="datosVendedor" type="text" id="apellido" placeholder="Apellido paterno" value="<?php echo obtenerParametro("apellidoNuevo") ?>">
-
-            <label for="telefono">Numero Telefonico</label>
-            <input disabled name="telefonoNuevo" class="datosVendedor" type="tel" id="telefono" placeholder="Telefono del vendedor" value="<?php echo obtenerParametro("telefonoNuevo") ?>">
-        </fieldset>
-
-        <input type="submit" value="Update" name="submit" class="boton boton-verde">
+        <?php include "../../includes/templates/formulario_propiedades.php" ?>
 
     </form>
 </main>
