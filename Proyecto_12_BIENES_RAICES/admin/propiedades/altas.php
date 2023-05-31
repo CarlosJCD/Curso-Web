@@ -82,27 +82,39 @@ function crearPropiedad($conexionDB): void
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $imagenesDir = "../../imagenesPropiedades/";
-        if (!is_dir($imagenesDir)) {
-            mkdir($imagenesDir);
-        }
+        $propiedad = cargarPropiedad($conexionDB);
 
-        $imagen = obtenerImagen();
-        $rutaImagen = md5(uniqid(rand(), true)) . ".jpg";
-        move_uploaded_file($imagen['tmp_name'], $imagenesDir . $rutaImagen);
-
-        $titulo = mysqli_real_escape_string($conexionDB, obtenerParametro("titulo"));
-        $precio = mysqli_real_escape_string($conexionDB, obtenerParametro("precio"));
-        $descripcion = mysqli_real_escape_string($conexionDB, obtenerParametro("descripcion"));
-        $habitaciones = mysqli_real_escape_string($conexionDB, obtenerParametro("habitaciones"));
-        $wc = mysqli_real_escape_string($conexionDB, obtenerParametro("wc"));
-        $estacionamiento = mysqli_real_escape_string($conexionDB, obtenerParametro("estacionamiento"));
-        $fechaCreacion = date('Y/m/d');
-        $idVendedor = obtenerVendedor($conexionDB);
-        $insertarPropiedad = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) VALUES  ('$titulo' , $precio, '$rutaImagen','$descripcion', $habitaciones, $wc, $estacionamiento, '$fechaCreacion', $idVendedor);";
+        $insertarPropiedad = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) ";
+        $insertarPropiedad = $insertarPropiedad . "VALUES  ('$propiedad->titulo' , $propiedad->precio, '$propiedad->imagen','$propiedad->descripcion', $propiedad->habitaciones, $propiedad->wc, $propiedad->estacionamiento, '$propiedad->fechaCreacion', $propiedad->idVendedor);";
         $query = mysqli_query($conexionDB, $insertarPropiedad);
     }
 }
+
+function cargarPropiedad($conexionDB): Propiedad
+{
+    $propiedad = new Propiedad();
+
+    $imagenesDir = "../../imagenesPropiedades/";
+    if (!is_dir($imagenesDir)) {
+        mkdir($imagenesDir);
+    }
+
+    $imagenNueva = obtenerImagen();
+    $propiedad->imagen = md5(uniqid(rand(), true)) . ".jpg";
+    move_uploaded_file($imagenNueva['tmp_name'], $imagenesDir . $propiedad->imagen);
+
+    $propiedad->titulo = mysqli_real_escape_string($conexionDB, obtenerParametro("titulo"));
+    $propiedad->precio = mysqli_real_escape_string($conexionDB, obtenerParametro("precio"));
+    $propiedad->descripcion = mysqli_real_escape_string($conexionDB, obtenerParametro("descripcion"));
+    $propiedad->habitaciones = mysqli_real_escape_string($conexionDB, obtenerParametro("habitaciones"));
+    $propiedad->wc = mysqli_real_escape_string($conexionDB, obtenerParametro("wc"));
+    $propiedad->estacionamiento = mysqli_real_escape_string($conexionDB, obtenerParametro("estacionamiento"));
+    $propiedad->fechaCreacion = date('Y/m/d');
+    $propiedad->idVendedor = obtenerVendedor($conexionDB);
+
+    return $propiedad;
+}
+
 
 function obtenerParametro($parametro)
 {
@@ -124,8 +136,7 @@ function obtenerVendedor($conexionDB)
 function obtenerVendedorNuevo($conexionDB)
 {
     try {
-        $idVendedorNuevo = insertarVendedor($conexionDB);
-        return $idVendedorNuevo;
+        return insertarVendedor($conexionDB);
     } catch (mysqli_sql_exception $sql_exception) {
         echo "Error al crear nuevo vendedor";
         exit;
@@ -171,6 +182,7 @@ function seleccionarTodosLosVendedores($conexionDB)
 }
 
 añadirPlantilla('header');
+
 ?>
 
 

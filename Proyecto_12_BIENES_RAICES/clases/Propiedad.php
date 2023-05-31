@@ -11,6 +11,7 @@ class Propiedad
     public $imagen;
     public $descripcion;
     public $habitaciones;
+    public $estacionamiento;
     public $wc;
     public $fechaCreacion;
     public $idVendedor;
@@ -22,8 +23,13 @@ class Propiedad
         $this->imagen = $args["imagen"] ?? "";
         $this->descripcion = $args["descripcion"] ?? "";
         $this->habitaciones = $args["habitaciones"] ?? "";
+        $this->habitaciones = $args["estacionamiento"] ?? "";
         $this->wc = $args["wc"] ?? "";
         $this->fechaCreacion = $args["fechaCreacion"] ?? "";
         $this->idVendedor = $args["idVendedor"] ?? "";
+    }
+
+    public function registrar()
+    {
     }
 }
