@@ -24,19 +24,19 @@ DROP TABLE IF EXISTS `propiedades`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `propiedades` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `Titulo` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `titulo` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `precio` decimal(10,2) DEFAULT NULL,
   `imagen` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `descripcion` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `habitaciones` int DEFAULT NULL,
   `wc` int DEFAULT NULL,
-  `estacionamientos` int DEFAULT NULL,
-  `creado` date DEFAULT NULL,
-  `vendedores_id` int NOT NULL,
+  `estacionamiento` int DEFAULT NULL,
+  `fechaCreacion` date DEFAULT NULL,
+  `idVendedor` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_propiedades_vendedores_idx` (`vendedores_id`),
-  CONSTRAINT `fk_propiedades_vendedores` FOREIGN KEY (`vendedores_id`) REFERENCES `vendedores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `fk_propiedades_vendedores_idx` (`idVendedor`),
+  CONSTRAINT `fk_propiedades_vendedores` FOREIGN KEY (`idVendedor`) REFERENCES `vendedores` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `propiedades` (
 
 LOCK TABLES `propiedades` WRITE;
 /*!40000 ALTER TABLE `propiedades` DISABLE KEYS */;
-INSERT INTO `propiedades` VALUES (9,'Casa en la playa (Actualizado)',1000000.00,'f97608d2acea5a8baf302dbae715f955.jpg','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet mauris efficitur, vulputate elit vel, maximus quam. Quisque aliquam, elit quis rhoncus pulvinar, nunc turpis commodo turpis, ac egestas mi justo et ipsum. Sed eu tellus ex. Suspendisse dapibus at nunc eget ornare. In pharetra lorem id tortor bibendum finibus. ',10,12,5,'2023-05-16',1);
+INSERT INTO `propiedades` VALUES (9,'Casa en la playa (Actualizado)',1000000.00,'9cde623e299693d1d4b99ead8d7aaa39.jpg','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet mauris efficitur, vulputate elit vel, maximus quam. Quisque aliquam, elit quis rhoncus pulvinar, nunc turpis commodo turpis, ac egestas mi justo et ipsum. Sed eu tellus ex. Suspendisse dapibus at nunc eget ornare. In pharetra lorem id tortor bibendum finibus. ',10,12,5,'2023-05-30',1),(10,'Casa en motul',600000.00,'0adf294e4e1aeda0d3888b559b5936a6.jpg','Casa con buena ubicación en Motul y con precio asequible. Ubicada en buen vecindario',3,2,2,'2023-05-31',17);
 /*!40000 ALTER TABLE `propiedades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `usuarios` (
   `email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` char(60) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (2,'correo@ejemplo.com','$2y$10$Ouq4V2ghK3AJ.H76Pfk8pecI.4iRJeEw8UnL6T2usdRp58zT4lB2q');
+INSERT INTO `usuarios` VALUES (2,'correo@ejemplo.com','$2y$10$Ouq4V2ghK3AJ.H76Pfk8pecI.4iRJeEw8UnL6T2usdRp58zT4lB2q'),(3,'correo@ejemplo.com','$2y$10$lgyFr.RG4iDHu0nkVOMseeTruCc5rfH7PsTb5llidR9j3Meoy3PUG');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `vendedores` (
   `Apellido` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `numTelefono` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `vendedores` (
 
 LOCK TABLES `vendedores` WRITE;
 /*!40000 ALTER TABLE `vendedores` DISABLE KEYS */;
-INSERT INTO `vendedores` VALUES (1,'Carlos','Calderon','9999038088');
+INSERT INTO `vendedores` VALUES (1,'Carlos','Calderon','9999038088'),(17,'Jariel','Tamayo','9999035143'),(18,'Alan ','Perez','9991927521'),(19,'Alan ','Perez','9991927521'),(20,'Alan ','Perez','9991927521'),(21,'Alan ','Perez','9991927521'),(22,'Alan ','Perez','9991927521');
 /*!40000 ALTER TABLE `vendedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-27 14:08:41
+-- Dump completed on 2023-05-31 19:16:26

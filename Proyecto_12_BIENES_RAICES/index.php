@@ -1,5 +1,5 @@
 <?php
-require 'includes/funciones.php';
+require 'includes/app.php';
 añadirPlantilla('header', $inicio = true);
 ?>
 

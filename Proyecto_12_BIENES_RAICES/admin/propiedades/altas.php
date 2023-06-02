@@ -1,18 +1,17 @@
 <?php
-require '../../includes/config/database.php';
 
-require "../../includes/funciones.php";
+require "../../includes/app.php";
 
-if (!estadoAutenticado()) {
-    header('Location: /');
-}
+use App\Propiedad;
+use Intervention\Image\ImageManagerStatic as Image;
+
+validarAcceso();
 
 $conexionDB = conectarDB();
 $errores = validarFormulario();
 if (empty($errores)) {
     crearPropiedad($conexionDB);
 }
-
 
 function validarFormulario(): array
 {
@@ -22,31 +21,31 @@ function validarFormulario(): array
             switch ($key) {
                 case "titulo":
                 case "precio":
-                    $errores[] = "Porfavor, añada el " . $key . " de la propiedad";
+                    $errores[] = " añada el " . $key . " de la propiedad";
                     break;
                 case "descripcion":
-                    $errores[] = "Porfavor, añada la " . $key . " de la propiedad";
+                    $errores[] = " añada la " . $key . " de la propiedad";
                     break;
                 case "habitaciones":
-                    $errores[] = "Porfavor, añada el numero de habitaciones de la propiedad";
+                    $errores[] = " añada el numero de habitaciones de la propiedad";
                     break;
                 case "wc":
-                    $errores[] = "Porfavor, añada el numero de baños de la propiedad";
+                    $errores[] = " añada el numero de baños de la propiedad";
                     break;
                 case "estacionamiento":
-                    $errores[] = "Porfavor, añada el numero de cajones de estacionamiento de la propiedad";
+                    $errores[] = " añada el numero de cajones de estacionamiento de la propiedad";
                     break;
                 case "vendedor":
-                    $errores[] = "Porfavor, escoja un vendedor existente o registre uno nuevo";
+                    $errores[] = " escoja un vendedor existente o registre uno nuevo";
                     break;
                 case "nombreNuevo":
-                    $errores[] = "Porfavor, Ingrese el nombre del vendedor a registrar";
+                    $errores[] = " Ingrese el nombre del vendedor a registrar";
                     break;
                 case "apellidoNuevo":
-                    $errores[] = "Porfavor, Ingrese el apellido paterno del vendedor a registrar";
+                    $errores[] = " Ingrese el apellido paterno del vendedor a registrar";
                     break;
                 case "telefonoNuevo":
-                    $errores[] = "Porfavor, Ingrese el telefono celular del vendedor a registrar";
+                    $errores[] = " Ingrese el telefono celular del vendedor a registrar";
                     break;
                 default:
                     break;
@@ -83,26 +82,35 @@ function crearPropiedad($conexionDB): void
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $imagenesDir = "../../imagenesPropiedades/";
-        if (!is_dir($imagenesDir)) {
-            mkdir($imagenesDir);
-        }
+        $propiedad = cargarPropiedad($conexionDB);
 
-        $imagen = obtenerImagen();
-        $rutaImagen = md5(uniqid(rand(), true)) . ".jpg";
-        move_uploaded_file($imagen['tmp_name'], $imagenesDir . $rutaImagen);
-
-        $titulo = mysqli_real_escape_string($conexionDB, obtenerParametro("titulo"));
-        $precio = mysqli_real_escape_string($conexionDB, obtenerParametro("precio"));
-        $descripcion = mysqli_real_escape_string($conexionDB, obtenerParametro("descripcion"));
-        $habitaciones = mysqli_real_escape_string($conexionDB, obtenerParametro("habitaciones"));
-        $wc = mysqli_real_escape_string($conexionDB, obtenerParametro("wc"));
-        $estacionamiento = mysqli_real_escape_string($conexionDB, obtenerParametro("estacionamiento"));
-        $fechaCreacion = date('Y/m/d');
-        $idVendedor = obtenerVendedor($conexionDB);
-        $insertarPropiedad = "INSERT INTO propiedades (Titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedores_id) VALUES  ('$titulo' , $precio, '$rutaImagen','$descripcion', $habitaciones, $wc, $estacionamiento, '$fechaCreacion', $idVendedor);";
-        $query = mysqli_query($conexionDB, $insertarPropiedad);
+        $propiedad->registrar();
     }
+}
+
+function cargarPropiedad($conexionDB): Propiedad
+{
+    $propiedad = new Propiedad();
+
+    $imagenesDir = "../../imagenesPropiedades/";
+    if (!is_dir($imagenesDir)) {
+        mkdir($imagenesDir);
+    }
+
+    $image = Image::make($_FILES['imagen']["tmp_name"])->fit(800, 600);
+    $propiedad->imagen = md5(uniqid(rand(), true)) . ".jpg";
+    $image->save($imagenesDir . $propiedad->imagen);
+
+    $propiedad->titulo = mysqli_real_escape_string($conexionDB, obtenerParametro("titulo"));
+    $propiedad->precio = mysqli_real_escape_string($conexionDB, obtenerParametro("precio"));
+    $propiedad->descripcion = mysqli_real_escape_string($conexionDB, obtenerParametro("descripcion"));
+    $propiedad->habitaciones = mysqli_real_escape_string($conexionDB, obtenerParametro("habitaciones"));
+    $propiedad->wc = mysqli_real_escape_string($conexionDB, obtenerParametro("wc"));
+    $propiedad->estacionamiento = mysqli_real_escape_string($conexionDB, obtenerParametro("estacionamiento"));
+    $propiedad->fechaCreacion = date('Y/m/d');
+    $propiedad->idVendedor = obtenerVendedor($conexionDB);
+
+    return $propiedad;
 }
 
 function obtenerParametro($parametro)
@@ -125,8 +133,7 @@ function obtenerVendedor($conexionDB)
 function obtenerVendedorNuevo($conexionDB)
 {
     try {
-        $idVendedorNuevo = insertarVendedor($conexionDB);
-        return $idVendedorNuevo;
+        return insertarVendedor($conexionDB);
     } catch (mysqli_sql_exception $sql_exception) {
         echo "Error al crear nuevo vendedor";
         exit;
@@ -172,6 +179,7 @@ function seleccionarTodosLosVendedores($conexionDB)
 }
 
 añadirPlantilla('header');
+
 ?>
 
 
@@ -195,69 +203,9 @@ añadirPlantilla('header');
     }
     ?>
     <form class="formulario" method="POST" enctype="multipart/form-data">
-        <fieldset>
-            <legend>Informacion General</legend>
-
-            <label for="titulo">Titulo</label>
-            <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad" value="<?php echo obtenerParametro("titulo") ?>">
-
-            <label for="precio">precio</label>
-            <input type="number" id="precio" name="precio" placeholder="Precio" value="<?php echo obtenerParametro("precio") ?>">
-
-            <label for="imagen">Imagen</label>
-            <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
-
-            <label for="descripcion">Descripcion</label>
-            <textarea id="descripcion" name="descripcion" placeholder="Descripcion de la propiedad"><?php echo obtenerParametro("descripcion") ?></textarea>
-        </fieldset>
-        <fieldset>
-            <legend>Informacion propiedad</legend>
-            <label for="habitaciones">Numero de habitaciones</label>
-            <input type="number" id="habitaciones" name="habitaciones" placeholder="Num. habitaciones" min='1' value="<?php echo obtenerParametro("habitaciones") ?>">
-
-            <label for="wc">Numero de baños</label>
-            <input type="number" id="wc" name="wc" placeholder="Num. baños" min='1' value="<?php echo obtenerParametro("wc") ?>">
-
-            <label for="estacionamiento">Numero de estacionamientos</label>
-            <input type="number" id="estacionamiento" name="estacionamiento" placeholder="Casillas de estacionamiento" min='1' value="<?php echo obtenerParametro("estacionamiento") ?>">
-        </fieldset>
-
-        <fieldset>
-            <legend>Informacion vendedor</legend>
-
-            <label for="existentes">Seleccionar Vendedor:</label>
-            <select id="existentes" name="vendedor">
-                <option selected value="">-- Seleccione un vendedor --</option>
-                <?php
-                $query = seleccionarTodosLosVendedores($conexionDB);
-                while ($vendedor = mysqli_fetch_assoc($query)) { ?>
-                    <option <?php
-                            if (isset($_POST['vendedorExistente'])) {
-                                echo $_POST['vendedorExistente'] === $vendedor['id'] ? 'selected' : '';
-                            }
-                            ?> value="<?php echo $vendedor['id']; ?>">
-                        <?php echo $vendedor['Nombre'] . " " . $vendedor['Apellido']; ?>
-                    </option>
-                <?php
-                }
-                ?>
-            </select>
-            <label for="nuevo">
-                Registrar vendedor nuevo:
-                <input type="checkbox" name="vendedorNuevo" id="nuevo" onclick="registrarNuevo(this.checked)">
-            </label>
-            <label for="nombre">Nombre</label>
-            <input disabled name="nombreNuevo" class="datosVendedor" type="text" id="nombre" placeholder="Nombre vendedor" value="<?php echo obtenerParametro("nombreNuevo") ?>">
-
-            <label for="apellido">Apellido</label>
-            <input disabled name='apellidoNuevo' class="datosVendedor" type="text" id="apellido" placeholder="Apellido paterno" value="<?php echo obtenerParametro("apellidoNuevo") ?>">
-
-            <label for="telefono">Numero Telefonico</label>
-            <input disabled name="telefonoNuevo" class="datosVendedor" type="tel" id="telefono" placeholder="Telefono del vendedor" value="<?php echo obtenerParametro("telefonoNuevo") ?>">
-        </fieldset>
+        <?php include "../../includes/templates/formulario_propiedades.php" ?>
 
         <input type="submit" name="submit" class="boton boton-verde">
-
     </form>
 </main>
 <?php añadirPlantilla('footer'); ?>
