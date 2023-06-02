@@ -104,7 +104,10 @@ class ActiveRecord
     {
         $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
         self::$db->query($query);
-        $this->borrarImagen();
+
+        if (isset($this->imagen)) {
+            $this->borrarImagen();
+        }
     }
 
     public function borrarImagen()

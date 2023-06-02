@@ -10,19 +10,19 @@ use App\Vendedor;
 $propiedades = Propiedad::all();
 $vendedores = Vendedor::all();
 
-$db = conectarDB();
-
-$query = "SELECT * FROM propiedades";
-
-$resultado = mysqli_query($db, $query);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
 
-    $propiedad = Propiedad::findById($id);
-
-    $propiedad->eliminar();
+    if ($_POST["tipo"] === "propiedad") {
+        $propiedad = Propiedad::findById($id);
+        $propiedad->eliminar();
+    } else {
+        $vendedor = Vendedor::findById($id);
+        $vendedor->eliminar();
+    }
+    header("Location: /admin");
 }
 
 añadirPlantilla('header');
@@ -55,6 +55,7 @@ añadirPlantilla('header');
                     <td>
                         <form method="POST">
                             <input type="hidden" name="id" value=" <?php echo $propiedad->id; ?>">
+                            <input type="hidden" name="tipo" value="propiedad">
                             <input type="submit" class="boton boton-rojo-block w-100" value="Eliminar">
                         </form>
                         <a href="/admin/propiedades/cambios.php?id=<?php echo $propiedad->id; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
@@ -84,6 +85,7 @@ añadirPlantilla('header');
                     <td>
                         <form method="POST">
                             <input type="hidden" name="id" value=" <?php echo $vendedor->id; ?>">
+                            <input type="hidden" name="tipo" value="vendedor">
                             <input type="submit" class="boton boton-rojo-block w-100" value="Eliminar">
                         </form>
                         <a href="/admin/propiedades/cambios.php?id=<?php echo $vendedor->id; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
