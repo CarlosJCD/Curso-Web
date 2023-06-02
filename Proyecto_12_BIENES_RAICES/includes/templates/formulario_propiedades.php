@@ -35,20 +35,17 @@
 
     <label for="existentes">Seleccionar Vendedor:</label>
     <select id="existentes" name="vendedor">
-        <option selected value="">-- Seleccione un vendedor --</option>
+        <option selected disabled value="">-- Seleccione un vendedor --</option>
         <?php
-        $query = seleccionarTodosLosVendedores($conexionDB);
-        while ($vendedor = mysqli_fetch_assoc($query)) { ?>
+        foreach ($vendedores as $vendedor) { ?>
             <option <?php
-                    if (isset($_POST['vendedorExistente'])) {
-                        echo $_POST['vendedorExistente'] === $vendedor['id'] ? 'selected' : '';
+                    if (isset($_POST['vendedor']) && $_POST['vendedor'] != "") {
+                        echo $_POST['vendedor'] === $vendedor->id ? 'selected' : '';
                     }
-                    ?> value="<?php echo $vendedor['id']; ?>">
-                <?php echo $vendedor['Nombre'] . " " . $vendedor['Apellido']; ?>
+                    ?> value="<?php echo $vendedor->id; ?>">
+                <?php echo $vendedor->Nombre . " " . $vendedor->Apellido; ?>
             </option>
-        <?php
-        }
-        ?>
+        <?php } ?>
     </select>
     <label for="nuevo">
         Registrar vendedor nuevo:

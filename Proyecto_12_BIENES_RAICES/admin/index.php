@@ -5,10 +5,8 @@ require "../includes/app.php";
 validarAcceso();
 
 use App\Propiedad;
-use App\Vendedor;
 
 $propiedades = Propiedad::all();
-$vendedores = Vendedor::all();
 
 
 $db = conectarDB();
@@ -64,6 +62,5 @@ añadirPlantilla('header');
         </tbody>
     </table>
 </main>
-<?php mysqli_close($db); ?>
 
 <?php añadirPlantilla('footer'); ?>

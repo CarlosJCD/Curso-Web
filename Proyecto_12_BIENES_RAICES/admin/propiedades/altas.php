@@ -2,10 +2,14 @@
 
 require "../../includes/app.php";
 
+validarAcceso();
+
 use App\Propiedad;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Vendedor;
 
-validarAcceso();
+$vendedores = Vendedor::all();
+
 
 $conexionDB = conectarDB();
 $errores = validarFormulario();

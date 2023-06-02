@@ -1,11 +1,15 @@
 <?php
 
-use App\Propiedad;
-use Intervention\Image\ImageManagerStatic as Image;
-
 require "../../includes/app.php";
 
 validarAcceso();
+
+use App\Propiedad;
+use Intervention\Image\ImageManagerStatic as Image;
+use App\Vendedor;
+
+$vendedores = Vendedor::all();
+
 
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -248,5 +252,4 @@ añadirPlantilla('header');
     </form>
 </main>
 <?php añadirPlantilla('footer');
-mysqli_close($conexionDB);
 ?>

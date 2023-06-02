@@ -6,6 +6,7 @@ class ActiveRecord
 {
     protected static $db;
     protected static $tabla = '';
+    protected static $columnasDB = [];
 
 
     public static function setDB($db)
@@ -42,8 +43,9 @@ class ActiveRecord
     {
         $atributos = [];
         foreach (static::$columnasDB as $columna) {
-            if ($columna === 'id') continue;
-            $atributos[$columna] = $this->$columna;
+            if ($columna !== 'id') {
+                $atributos[$columna] = $this->$columna;
+            }
         }
         return $atributos;
     }
@@ -62,7 +64,8 @@ class ActiveRecord
     public static function findById($id)
     {
         $query = "SELECT * FROM " . static::$tabla . " WHERE id = $id;";
-        return array_shift(self::ejecutarQuery($query));
+        $resultado = self::ejecutarQuery($query);
+        return array_shift($resultado);
     }
 
     public static function all()
