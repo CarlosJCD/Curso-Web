@@ -23,7 +23,6 @@ class ActiveRecord
     public static function ejecutarQuery($query)
     {
         $resultado = self::$db->query($query);
-
         $array = [];
         while ($registro = $resultado->fetch_assoc()) {
             $array[] = self::cargarObjeto($registro);
@@ -111,7 +110,6 @@ class ActiveRecord
         $query .=  join(', ', $valores);
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 ";
-
         self::$db->query($query);
     }
 
