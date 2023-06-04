@@ -88,6 +88,13 @@ class ActiveRecord
         return self::ejecutarQuery($query);
     }
 
+    public static function get($cantidad)
+    {
+        $query = "SELECT * FROM " . static::$tabla . " LIMIT " . $cantidad;
+        return self::ejecutarQuery($query);
+    }
+
+
     public function sincronizar($arreglo = [])
     {
         foreach ($arreglo as $key => $value) {
