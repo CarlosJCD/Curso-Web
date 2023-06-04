@@ -11,9 +11,9 @@ use App\Vendedor;
 $vendedores = Vendedor::all();
 
 
-$conexionDB = conectarDB();
 $errores = validarFormulario();
 if (empty($errores)) {
+    $conexionDB = conectarDB();
     crearPropiedad($conexionDB);
 }
 

@@ -47,16 +47,4 @@
             </option>
         <?php } ?>
     </select>
-    <label for="nuevo">
-        Registrar vendedor nuevo:
-        <input type="checkbox" name="vendedorNuevo" id="nuevo" onclick="registrarNuevo(this.checked)">
-    </label>
-    <label for="nombre">Nombre</label>
-    <input disabled name="nombreNuevo" class="datosVendedor" type="text" id="nombre" placeholder="Nombre vendedor" value="<?php echo filtrarHtml(obtenerParametro("nombreNuevo")) ?>">
-
-    <label for="apellido">Apellido</label>
-    <input disabled name='apellidoNuevo' class="datosVendedor" type="text" id="apellido" placeholder="Apellido paterno" value="<?php echo filtrarHtml(obtenerParametro("apellidoNuevo")) ?>">
-
-    <label for="telefono">Numero Telefonico</label>
-    <input disabled name="telefonoNuevo" class="datosVendedor" type="tel" id="telefono" placeholder="Telefono del vendedor" value="<?php echo filtrarHtml(obtenerParametro("telefonoNuevo")) ?>">
 </fieldset>

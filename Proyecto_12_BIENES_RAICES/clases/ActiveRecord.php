@@ -7,11 +7,17 @@ class ActiveRecord
     protected static $db;
     protected static $tabla = '';
     protected static $columnasDB = [];
+    protected static $errores = [];
 
 
     public static function setDB($db)
     {
         self::$db = $db;
+    }
+
+    public static function getErrores()
+    {
+        return static::$errores;
     }
 
     public static function ejecutarQuery($query)
@@ -47,7 +53,16 @@ class ActiveRecord
                 $atributos[$columna] = $this->$columna;
             }
         }
-        return $atributos;
+        return $this->sanitizarAtributos($atributos);
+    }
+
+    public function sanitizarAtributos($atributos)
+    {
+        $sanitizado = [];
+        foreach ($atributos as $key => $value) {
+            $sanitizado[$key] = self::$db->escape_string($value);
+        }
+        return $sanitizado;
     }
 
     public function registrar()
