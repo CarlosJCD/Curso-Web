@@ -6,11 +6,18 @@ validarAcceso();
 
 use App\Vendedor;
 
-$vendedor = new Vendedor();
 
 $errores = Vendedor::getErrores();
+$vendedor = new Vendedor($_POST);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $vendedor = new Vendedor($_POST["vendedor"]);
+    $errores = $vendedor->validar();
+
+
+    if (empty($errores)) {
+        $vendedor->registrar();
+    }
 }
 
 añadirPlantilla('header');
@@ -21,7 +28,13 @@ añadirPlantilla('header');
 <main class="contenedor seccion">
     <h1>Registrar Vendedor (a)</h1>
 
-
+    <?php
+    if (isset($_POST['submit']) && empty($errores)) { ?>
+        <p class="alerta exito"> Vendedor registrado correctamente</p>
+    <?php
+        $vendedor = new Vendedor;
+    }
+    ?>
 
     <a href="/admin" class="boton boton-verde">Volver</a>
 
@@ -31,10 +44,10 @@ añadirPlantilla('header');
         </div>
     <?php endforeach; ?>
 
-    <form class="formulario" method="POST" action="/admin/vendedores/crear.php" enctype="multipart/form-data">
+    <form class="formulario" method="POST" action="/admin/vendedores/altas.php" enctype="multipart/form-data">
         <?php include '../../includes/templates/formulario_vendedores.php'; ?>
 
-        <input type="submit" value="Registrar Vendedor" class="boton boton-verde">
+        <input type="submit" value="Registrar Vendedor" name="submit" class="boton boton-verde">
     </form>
 
 </main>

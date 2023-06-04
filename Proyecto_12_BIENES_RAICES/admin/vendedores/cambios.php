@@ -34,7 +34,7 @@ añadirPlantilla('header');
         </div>
     <?php endforeach; ?>
 
-    <form class="formulario" method="POST" action="/admin/vendedores/crear.php" enctype="multipart/form-data">
+    <form class="formulario" method="POST" action="/admin/vendedores/cambios.php" enctype="multipart/form-data">
         <?php include '../../includes/templates/formulario_vendedores.php'; ?>
 
         <input type="submit" value="Registrar Vendedor" class="boton boton-verde">
