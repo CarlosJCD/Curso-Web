@@ -1,7 +1,7 @@
 <main class="contenedor seccion">
     <h1>Administrador de bienes raices</h1>
-    <a href="propiedades/crear.php" class="boton boton-verde">Nueva propiedad</a>
-    <a href="vendedores/crear.php" class="boton boton-amarillo">Nuevo vendedor</a>
+    <a href="propiedades/crear" class="boton boton-verde">Nueva propiedad</a>
+    <a href="vendedores/crear" class="boton boton-amarillo">Nuevo vendedor</a>
 
     <h2>Propiedades</h2>
 
@@ -28,7 +28,7 @@
                             <input type="hidden" name="tipo" value="propiedad">
                             <input type="submit" class="boton boton-rojo-block w-100" value="Eliminar">
                         </form>
-                        <a href="/admin/propiedades/cambios.php?id=<?php echo $propiedad->id; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
+                        <a href="/admin/propiedades/actualizar?id=<?php echo $propiedad->id; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

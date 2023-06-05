@@ -94,7 +94,6 @@ class ActiveRecord
         return self::ejecutarQuery($query);
     }
 
-
     public function sincronizar($arreglo = [])
     {
         foreach ($arreglo as $key => $value) {
