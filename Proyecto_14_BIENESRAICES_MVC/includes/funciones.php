@@ -25,3 +25,15 @@ function filtrarHtml($string)
 {
     return htmlspecialchars($string);
 }
+
+function validarORedireccionar($url)
+{
+    $id = $_GET['id'];
+
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+
+    if (!$id) {
+        header("Location: $url");
+    }
+    return $id;
+}

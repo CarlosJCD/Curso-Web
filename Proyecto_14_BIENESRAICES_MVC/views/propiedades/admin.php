@@ -28,7 +28,7 @@
                             <input type="hidden" name="tipo" value="propiedad">
                             <input type="submit" class="boton boton-rojo-block w-100" value="Eliminar">
                         </form>
-                        <a href="/admin/propiedades/actualizar?id=<?php echo $propiedad->id; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
+                        <a href="/propiedades/actualizar?id=<?php echo $propiedad->id; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
