@@ -8,7 +8,9 @@ class PropiedadController
 {
     public static function index(Router $router)
     {
-        $router->display("propiedades/admin");
+        $router->display("propiedades/admin", [
+            'mensaje' => 'Desde la vista'
+        ]);
     }
     public static function crear()
     {

@@ -42,8 +42,19 @@ class Router
         }
     }
 
-    public function display(String $rutaVista)
+    public function display(String $rutaVista, $datos = [])
     {
+
+        foreach ($datos as $key => $value) {
+            $$key = $value;
+        }
+
+        ob_start();
+
         include __DIR__ . "/views/$rutaVista.php";
+
+        $contenidoADesplegar = ob_get_clean();
+
+        include __DIR__ . "/views/layout.php";
     }
 }
