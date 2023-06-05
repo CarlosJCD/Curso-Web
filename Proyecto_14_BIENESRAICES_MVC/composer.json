@@ -4,7 +4,9 @@
     "autoload": {
         "psr-4": {
             "Carloscalderondelgado\\Proyecto12BienesRaices\\": "src/",
-            "Model\\" : "./models"
+            "Model\\" : "./models",
+            "Controllers\\" : "./controllers",
+            "MVC\\" : "./"
         }
     },
     "authors": [
