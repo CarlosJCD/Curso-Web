@@ -2,14 +2,18 @@
 
 require "../../includes/app.php";
 
-use App\Propiedad;
-use Intervention\Image\ImageManagerStatic as Image;
-
 validarAcceso();
 
-$conexionDB = conectarDB();
+use App\Propiedad;
+use Intervention\Image\ImageManagerStatic as Image;
+use App\Vendedor;
+
+$vendedores = Vendedor::all();
+
+
 $errores = validarFormulario();
 if (empty($errores)) {
+    $conexionDB = conectarDB();
     crearPropiedad($conexionDB);
 }
 

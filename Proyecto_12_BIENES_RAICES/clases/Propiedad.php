@@ -2,10 +2,11 @@
 
 namespace App;
 
-class Propiedad
+class Propiedad extends ActiveRecord
 {
-    private static $db;
+    protected static $columnasDB = ['id', 'titulo', 'precio', 'imagen', 'descripcion', 'habitaciones', 'wc', 'estacionamiento', 'fechaCreacion', 'idVendedor'];
 
+    protected static $tabla = 'propiedades';
     public $id;
     public $titulo;
     public $precio;
@@ -19,6 +20,7 @@ class Propiedad
 
     public function __construct($args = [])
     {
+        $this->id = $args['id'] ?? null;
         $this->titulo = $args['titulo'] ?? "";
         $this->precio =  $args['precio'] ?? "";
         $this->imagen = $args["imagen"] ?? "";
@@ -28,92 +30,5 @@ class Propiedad
         $this->wc = $args["wc"] ?? "";
         $this->fechaCreacion = $args["fechaCreacion"] ?? "";
         $this->idVendedor = $args["idVendedor"] ?? "";
-    }
-
-    public static function setDB($db)
-    {
-        self::$db = $db;
-    }
-
-    public static function all()
-    {
-        $query = "SELECT * FROM propiedades";
-        return self::ejecutarQuery($query);
-    }
-
-    public static function ejecutarQuery($query)
-    {
-        $resultado = self::$db->query($query);
-
-        $array = [];
-        while ($registro = $resultado->fetch_assoc()) {
-            $array[] = self::cargarObjeto($registro);
-        }
-
-        $resultado->free();
-
-        return $array;
-    }
-
-    private static function cargarObjeto($registro)
-    {
-        $objeto = new self;
-        foreach ($registro as $key => $value) {
-            if (property_exists($objeto, $key)) {
-                $objeto->$key = $value;
-            }
-        }
-        return $objeto;
-    }
-
-    public static function findById($id)
-    {
-        $query = "SELECT * FROM propiedades WHERE id = $id;";
-        return self::ejecutarQuery($query)[0];
-    }
-
-
-    public function registrar()
-    {
-        $query = "INSERT INTO propiedades ";
-        $query .= "(titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, fechaCreacion, idVendedor)";
-        $query .= " VALUES  ('$this->titulo' , $this->precio, '$this->imagen','$this->descripcion',";
-        $query .= "$this->habitaciones, $this->wc, $this->estacionamiento, '$this->fechaCreacion', $this->idVendedor);";
-        self::$db->query($query);
-    }
-
-
-
-    public function actualizar()
-    {
-        $valores = [];
-        foreach (get_object_vars($this) as $key => $value) {
-            $valores[] = "{$key}='{$value}'";
-        }
-
-        $query = "UPDATE propiedades SET ";
-        $query .=  join(', ', $valores);
-        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
-        $query .= " LIMIT 1 ";
-
-        self::$db->query($query);
-    }
-
-
-    public function eliminar()
-    {
-        $query = "DELETE FROM propiedades WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
-        $resultado = self::$db->query($query);
-        unlink("../imagenesPropiedades/" . $this->imagen);
-    }
-
-
-    public function sincronizar($arreglo = [])
-    {
-        foreach ($arreglo as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->$key = $value;
-            }
-        }
     }
 }
