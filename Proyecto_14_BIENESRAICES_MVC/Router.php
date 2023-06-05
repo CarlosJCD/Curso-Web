@@ -10,9 +10,13 @@ class Router
     public $rutasPOST = [];
 
 
-    public function asociarFuncionGET($ruta, $nombreFuncionAsociada)
+    public function asociarFuncionGET($ruta, $funcionAsociada)
     {
-        $this->rutasGET[$ruta] = $nombreFuncionAsociada;
+        $this->rutasGET[$ruta] = $funcionAsociada;
+    }
+    public function asociarFuncionPOST($ruta, $funcionAsociada)
+    {
+        $this->rutasPOST[$ruta] = $funcionAsociada;
     }
 
     private function obtenerFuncionAsociadaARuta(String $rutaActual, String $metodo)
