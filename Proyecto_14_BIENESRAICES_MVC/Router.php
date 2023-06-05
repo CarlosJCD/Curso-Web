@@ -41,4 +41,9 @@ class Router
             echo "Pagina no encontrada";
         }
     }
+
+    public function display(String $rutaVista)
+    {
+        include __DIR__ . "/views/$rutaVista.php";
+    }
 }
