@@ -29,14 +29,14 @@ class Router
 
     public function comprobarRutas()
     {
-        $rutaActual = $_SERVER["SCRIPT_NAME"] ?? "/";
+        $rutaActual = $_SERVER["PATH_INFO"] ?? "/";
         $metodo = $_SERVER["REQUEST_METHOD"];
 
-        $nombreFuncionAsociada = $this->obtenerFuncionAsociadaARuta($rutaActual, $metodo);
+        $funcionAsociada = $this->obtenerFuncionAsociadaARuta($rutaActual, $metodo);
 
 
-        if ($nombreFuncionAsociada) {
-            call_user_func($nombreFuncionAsociada, $this);
+        if ($funcionAsociada) {
+            call_user_func($funcionAsociada, $this);
         } else {
             echo "Pagina no encontrada";
         }
