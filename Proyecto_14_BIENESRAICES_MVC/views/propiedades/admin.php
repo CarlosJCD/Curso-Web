@@ -4,7 +4,7 @@
     <a href="vendedores/crear" class="boton boton-amarillo">Nuevo vendedor</a>
 
     <?php
-    if (isset($_POST["submit"]) && validarTipoContenido($_POST["tipo"])) {
+    if (isset($_POST["submit"])) {
         if ($_POST['tipo'] == "vendedor") { ?>
             <p class="alerta exito"> Vendedor eliminado! </p>
         <?php
