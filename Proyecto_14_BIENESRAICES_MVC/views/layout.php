@@ -4,8 +4,8 @@ if (!isset($_SESSION)) {
     session_start();
 }
 $auth = $_SESSION["login"] ?? false;
+$inicio = $inicio ?? false;
 
-$inicio = false;
 ?>
 
 <!DOCTYPE html>
@@ -31,10 +31,10 @@ $inicio = false;
                 <div class="derecha">
                     <img src="/build/img/dark-mode.svg" alt="boton modo oscuro" class="dark-mode-boton" />
                     <nav class="navegacion">
-                        <a href="/nosotros.php">Nosotros</a>
-                        <a href="/anuncios.php">Anuncios</a>
-                        <a href="/blog.php">Blog</a>
-                        <a href="/contacto.php">Contacto</a>
+                        <a href="/nosotros">Nosotros</a>
+                        <a href="/anuncios">Anuncios</a>
+                        <a href="/blog">Blog</a>
+                        <a href="/contacto">Contacto</a>
                         <?php
                         if ($auth) { ?>
                             <a href="/cerrar-sesion.php">Cerrar Sesión</a>
@@ -54,10 +54,10 @@ $inicio = false;
 
     <footer class="footer seccion">
         <nav class="navegacion">
-            <a href="/nosotros.php">Nosotros</a>
-            <a href="/anuncios.php">Anuncios</a>
-            <a href="/blog.php">Blog</a>
-            <a href="/contacto.php">Contacto</a>
+            <a href="/nosotros">Nosotros</a>
+            <a href="/anuncios">Anuncios</a>
+            <a href="/blog">Blog</a>
+            <a href="/contacto">Contacto</a>
         </nav>
         <p class="copyright">Todos los derechos reservados 2023 &copy;</p>
     </footer>
