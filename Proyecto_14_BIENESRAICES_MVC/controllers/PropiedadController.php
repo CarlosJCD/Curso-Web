@@ -12,8 +12,12 @@ class PropiedadController
     public static function index(Router $router)
     {
         $propiedades = Propiedad::all();
+        $vendedores = Vendedor::all();
+
+
         $router->display("propiedades/admin", [
-            'propiedades' => $propiedades
+            'propiedades' => $propiedades,
+            'vendedores' => $vendedores
         ]);
     }
 
