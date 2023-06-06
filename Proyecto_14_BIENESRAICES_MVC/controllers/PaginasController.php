@@ -26,12 +26,18 @@ class PaginasController
     }
     public static function propiedad(Router $router)
     {
+        $id = validarORedireccionar("/");
+        $router->display('paginas/propiedad', [
+            'propiedad' => Propiedad::findById($id)
+        ]);
     }
     public static function blog(Router $router)
     {
+        $router->display('paginas/blog');
     }
     public static function entrada(Router $router)
     {
+        $router->display('paginas/entrada');
     }
     public static function contacto(Router $router)
     {

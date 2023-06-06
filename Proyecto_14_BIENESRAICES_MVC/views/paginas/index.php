@@ -42,7 +42,7 @@
     $limite = 3;
     include 'listado.php' ?>
     <div class="alinear-derecha">
-        <a href="anuncios.php" class="boton boton-verde">Ver todas</a>
+        <a href="propiedades" class="boton boton-verde">Ver todas</a>
     </div>
 </section>
 
