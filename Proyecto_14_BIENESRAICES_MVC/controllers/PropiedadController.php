@@ -39,10 +39,6 @@ class PropiedadController
             if (empty($errores)) {
 
                 if (!is_dir(CARPETA_IMAGENES)) {
-                    echo '<pre>';
-                    var_dump(CARPETA_IMAGENES);
-                    echo '</pre>';
-                    exit;
                     mkdir(CARPETA_IMAGENES);
                 }
 
@@ -67,6 +63,14 @@ class PropiedadController
         $vendedores = Vendedor::all();
         $errores = Propiedad::getErrores();
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $propiedad->sincronizar($_POST['propiedad']);
+            $errores = $propiedad->validar();
+
+            if (empty($errores)) {
+                $propiedad->actualizar();
+            }
+        }
 
 
         $router->display('propiedades/actualizar', [

@@ -106,7 +106,6 @@ class ActiveRecord
     public function actualizar()
     {
         $atributos = $this->obtenerAtributos();
-
         $valores = [];
         foreach ($atributos as $key => $value) {
             $valores[] = "{$key}='{$value}'";
