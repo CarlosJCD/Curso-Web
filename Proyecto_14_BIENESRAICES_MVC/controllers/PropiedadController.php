@@ -73,7 +73,14 @@ class PropiedadController
             $propiedad->sincronizar($_POST['propiedad']);
             $errores = $propiedad->validar();
 
+            $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+
             if (empty($errores)) {
+                if ($_FILES['propiedad']['tmp_name']['imagen']) {
+                    $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800, 600);
+                    $image->save(CARPETA_IMAGENES . $nombreImagen);
+                    $propiedad->setImagen($nombreImagen);
+                }
                 $propiedad->actualizar();
             }
         }

@@ -1,4 +1,5 @@
 <fieldset>
+
     <legend>Informacion General</legend>
 
     <label for="titulo">Titulo</label>
@@ -11,8 +12,8 @@
     <input type="file" id="imagen" name="propiedad[imagen]" accept="image/jpeg, image/png">
 
     <?php
-    if (isset($_POST['imagen'])) { ?>
-        <img src="/imagenesPropiedades/<?php echo $_POST['imagen'] ?>" class="imagen-preview">
+    if (isset($propiedad->imagen)) { ?>
+        <img src="/imagenesPropiedades/<?php echo $propiedad->imagen ?>" class="imagen-preview"><br>
     <?php } ?>
 
     <label for="descripcion">Descripcion</label>
