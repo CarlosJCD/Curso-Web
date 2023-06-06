@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/../includes/app.php";
 
+use Controllers\PaginasController;
 use MVC\Router;
 use Controllers\PropiedadController;
 use Controllers\VendedorController;
@@ -20,5 +21,14 @@ $router->asociarFuncionPOST('/vendedores/crear', [VendedorController::class, 'cr
 $router->asociarFuncionGET('/vendedores/actualizar', [VendedorController::class, 'actualizar']);
 $router->asociarFuncionPOST('/vendedores/actualizar', [VendedorController::class, 'actualizar']);
 $router->asociarFuncionPOST('/vendedores/eliminar', [VendedorController::class, 'eliminar']);
+
+$router->asociarFuncionGET("/", [PaginasController::class, 'index']);
+$router->asociarFuncionGET("/nosotros", [PaginasController::class, 'nosotros']);
+$router->asociarFuncionGET("/propiedades", [PaginasController::class, 'propiedades']);
+$router->asociarFuncionGET("/propiedad", [PaginasController::class, 'propiedad']);
+$router->asociarFuncionGET("/blog", [PaginasController::class, 'blog']);
+$router->asociarFuncionGET("/entrada", [PaginasController::class, 'entrada']);
+$router->asociarFuncionGET("/contacto", [PaginasController::class, 'contacto']);
+
 
 $router->comprobarRutas();
