@@ -16,6 +16,7 @@ class PropiedadController
             'propiedades' => $propiedades
         ]);
     }
+
     public static function crear(Router $router)
     {
         $propiedad = new Propiedad();
@@ -55,6 +56,7 @@ class PropiedadController
             "errores" => $errores
         ]);
     }
+
     public static function actualizar(Router $router)
     {
         $id = validarORedireccionar("/admin");
@@ -72,11 +74,24 @@ class PropiedadController
             }
         }
 
-
         $router->display('propiedades/actualizar', [
             'propiedad' => $propiedad,
             "vendedores" => $vendedores,
             "errores" => $errores
         ]);
+    }
+
+    public static function eliminar(Router $router)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $tipo = $_POST['tipo'];
+            if (validarTipoContenido($tipo)) {
+                $id = $_POST['id'];
+                $id = filter_var($id, FILTER_VALIDATE_INT);
+
+                $propiedad = Propiedad::findById($id);
+                $propiedad->eliminar();
+            }
+        }
     }
 }

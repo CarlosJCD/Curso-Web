@@ -3,6 +3,11 @@
     <a href="propiedades/crear" class="boton boton-verde">Nueva propiedad</a>
     <a href="vendedores/crear" class="boton boton-amarillo">Nuevo vendedor</a>
 
+    <?php
+    if (isset($_POST["submit"]) && validarTipoContenido($_POST["tipo"])) { ?>
+        <p class="alerta exito"> <?php echo $_POST['tipo'] ?> eliminado </p>
+    <?php }
+    ?>
     <h2>Propiedades</h2>
 
     <table class="propiedades">
@@ -23,10 +28,10 @@
                     <td>$<?php echo $propiedad->precio; ?></td>
                     <td><img src="/imagenesPropiedades/<?php echo $propiedad->imagen; ?>" class="imagen-tabla" alt="imagen propiedad"></td>
                     <td>
-                        <form method="POST">
+                        <form method="POST" class="w-100" action="propiedades/eliminar">
                             <input type="hidden" name="id" value=" <?php echo $propiedad->id; ?>">
                             <input type="hidden" name="tipo" value="propiedad">
-                            <input type="submit" class="boton boton-rojo-block w-100" value="Eliminar">
+                            <input type="submit" name="submit" class="boton boton-rojo-block w-100" value="Eliminar">
                         </form>
                         <a href="/propiedades/actualizar?id=<?php echo $propiedad->id; ?>" class="boton boton-amarillo-block">Actualizar propiedad</a>
                     </td>

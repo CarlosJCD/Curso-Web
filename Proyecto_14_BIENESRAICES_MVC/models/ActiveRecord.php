@@ -126,11 +126,11 @@ class ActiveRecord
         if (isset($this->imagen)) {
             $this->borrarImagen();
         }
+        header("Location: /admin");
     }
 
     public function borrarImagen()
     {
-        // Comprobar si existe el archivo
         $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
         if ($existeArchivo) {
             unlink(CARPETA_IMAGENES . $this->imagen);

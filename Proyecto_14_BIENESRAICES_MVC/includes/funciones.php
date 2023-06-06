@@ -26,6 +26,12 @@ function filtrarHtml($string)
     return htmlspecialchars($string);
 }
 
+function validarTipoContenido($tipo)
+{
+    $tipos = ['vendedor', 'propiedad'];
+    return in_array($tipo, $tipos);
+}
+
 function validarORedireccionar($url)
 {
     $id = $_GET['id'];
