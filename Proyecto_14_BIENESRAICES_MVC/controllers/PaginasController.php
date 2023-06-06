@@ -16,6 +16,7 @@ class PaginasController
     }
     public static function nosotros(Router $router)
     {
+        $router->display('paginas/nosotros');
     }
     public static function propiedades(Router $router)
     {
