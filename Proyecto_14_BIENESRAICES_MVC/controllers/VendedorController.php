@@ -27,6 +27,24 @@ class VendedorController
     }
     public static function actualizar(Router $router)
     {
+        $id = validarORedireccionar("/admin");
+
+        $vendedor = vendedor::findById($id);
+        $errores = vendedor::getErrores();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $vendedor->sincronizar($_POST['vendedor']);
+            $errores = $vendedor->validar();
+
+            if (empty($errores)) {
+                $vendedor->actualizar();
+            }
+        }
+
+        $router->display('vendedores/actualizar', [
+            'vendedor' => $vendedor,
+            "errores" => $errores
+        ]);
     }
     public static function eliminar(Router $router)
     {

@@ -20,7 +20,7 @@
         </div>
     <?php endforeach; ?>
 
-    <form class="formulario" method="POST" action="/vendedores/crear" enctype="multipart/form-data">
+    <form class="formulario" method="POST" action="/vendedores/crear">
         <?php include "formulario.php" ?>
 
         <input type="submit" value="Registrar Vendedor" name="submit" class="boton boton-verde">
