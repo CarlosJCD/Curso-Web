@@ -22,7 +22,7 @@
                         <p><?php echo $propiedad->habitaciones; ?></p>
                     </li>
                 </ul>
-                <a href="anuncio?id=<?php echo $propiedad->id; ?>" class="boton-amarillo-block">
+                <a href="propiedad?id=<?php echo $propiedad->id; ?>" class="boton-amarillo-block">
                     Ver propiedad
                 </a>
             </div>

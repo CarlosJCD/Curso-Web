@@ -32,7 +32,7 @@ $inicio = $inicio ?? false;
                     <img src="/build/img/dark-mode.svg" alt="boton modo oscuro" class="dark-mode-boton" />
                     <nav class="navegacion">
                         <a href="/nosotros">Nosotros</a>
-                        <a href="/anuncios">Anuncios</a>
+                        <a href="/propiedades">Anuncios</a>
                         <a href="/blog">Blog</a>
                         <a href="/contacto">Contacto</a>
                         <?php
@@ -55,7 +55,7 @@ $inicio = $inicio ?? false;
     <footer class="footer seccion">
         <nav class="navegacion">
             <a href="/nosotros">Nosotros</a>
-            <a href="/anuncios">Anuncios</a>
+            <a href="/propiedades">Anuncios</a>
             <a href="/blog">Blog</a>
             <a href="/contacto">Contacto</a>
         </nav>

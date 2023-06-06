@@ -20,6 +20,9 @@ class PaginasController
     }
     public static function propiedades(Router $router)
     {
+        $router->display('paginas/propiedades', [
+            'propiedades' => Propiedad::all()
+        ]);
     }
     public static function propiedad(Router $router)
     {
