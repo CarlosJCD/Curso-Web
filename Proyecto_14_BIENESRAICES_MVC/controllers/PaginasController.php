@@ -2,8 +2,9 @@
 
 namespace Controllers;
 
-use Model\Propiedad;
 use MVC\Router;
+use Model\Propiedad;
+use Model\EntradaBlog;
 
 class PaginasController
 {
@@ -33,11 +34,18 @@ class PaginasController
     }
     public static function blog(Router $router)
     {
-        $router->display('paginas/blog');
+        $entradasBlog = EntradaBlog::all();
+        $router->display('paginas/blog', [
+            "entradasBlog" => $entradasBlog
+        ]);
     }
     public static function entrada(Router $router)
     {
-        $router->display('paginas/entrada');
+        $id = validarORedireccionar("/blog");
+        $entradaBlog = EntradaBlog::findById($id);
+        $router->display('paginas/entrada', [
+            'entradaBlog' => $entradaBlog
+        ]);
     }
     public static function contacto(Router $router)
     {

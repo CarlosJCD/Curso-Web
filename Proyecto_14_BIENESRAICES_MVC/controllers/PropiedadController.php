@@ -6,6 +6,7 @@ use MVC\Router;
 use Model\Propiedad;
 use Model\Vendedor;
 use Intervention\Image\ImageManagerStatic as Image;
+use Model\EntradaBlog;
 
 class PropiedadController
 {
@@ -13,11 +14,13 @@ class PropiedadController
     {
         $propiedades = Propiedad::all();
         $vendedores = Vendedor::all();
+        $entradasBlog = EntradaBlog::all();
 
 
         $router->display("propiedades/admin", [
             'propiedades' => $propiedades,
-            'vendedores' => $vendedores
+            'vendedores' => $vendedores,
+            "entradasBlog" => $entradasBlog
         ]);
     }
 

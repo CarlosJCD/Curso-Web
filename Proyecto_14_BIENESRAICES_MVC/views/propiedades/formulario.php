@@ -12,7 +12,7 @@
     <input type="file" id="imagen" name="propiedad[imagen]" accept="image/jpeg, image/png">
 
     <?php
-    if (isset($propiedad->imagen)) { ?>
+    if (isset($propiedad->imagen) && $propiedad->imagen != "") { ?>
         <img src="/imagenesPropiedades/<?php echo $propiedad->imagen ?>" class="imagen-preview"><br>
     <?php } ?>
 

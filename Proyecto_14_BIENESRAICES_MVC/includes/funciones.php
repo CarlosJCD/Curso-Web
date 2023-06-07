@@ -5,6 +5,7 @@
 define('TEMPLATES_URL', __DIR__ . '/templates');
 define('FUNCIONES_URL',  __DIR__ . 'funciones.php');
 define('CARPETA_IMAGENES', $_SERVER['DOCUMENT_ROOT'] . '/imagenesPropiedades/');
+define('CARPETA_IMAGENES_ENTRADAS', $_SERVER['DOCUMENT_ROOT'] . '/imagenesEntradas/');
 
 
 
@@ -28,7 +29,7 @@ function filtrarHtml($string)
 
 function validarTipoContenido($tipo)
 {
-    $tipos = ['vendedor', 'propiedad'];
+    $tipos = ['vendedor', 'propiedad', "entrada"];
     return in_array($tipo, $tipos);
 }
 

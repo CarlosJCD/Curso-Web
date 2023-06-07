@@ -130,12 +130,4 @@ class ActiveRecord
             header("Location: /admin");
         }
     }
-
-    public function borrarImagen()
-    {
-        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
-        if ($existeArchivo) {
-            unlink(CARPETA_IMAGENES . $this->imagen);
-        }
-    }
 }
