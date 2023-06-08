@@ -36,6 +36,7 @@ $router->asociarFuncionGET("/propiedad", [PaginasController::class, 'propiedad']
 $router->asociarFuncionGET("/blog", [PaginasController::class, 'blog']);
 $router->asociarFuncionGET("/entrada", [PaginasController::class, 'entrada']);
 $router->asociarFuncionGET("/contacto", [PaginasController::class, 'contacto']);
+$router->asociarFuncionPOST("/contacto", [PaginasController::class, 'contacto']);
 
 
 $router->comprobarRutas();

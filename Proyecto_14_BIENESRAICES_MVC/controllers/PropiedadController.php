@@ -16,11 +16,11 @@ class PropiedadController
         $vendedores = Vendedor::all();
         $entradasBlog = EntradaBlog::all();
 
-
         $router->display("propiedades/admin", [
             'propiedades' => $propiedades,
             'vendedores' => $vendedores,
-            "entradasBlog" => $entradasBlog
+            "entradasBlog" => $entradasBlog,
+
         ]);
     }
 
