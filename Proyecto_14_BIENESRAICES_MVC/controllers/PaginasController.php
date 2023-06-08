@@ -50,15 +50,12 @@ class PaginasController
     }
     public static function contacto(Router $router)
     {
+        $mensaje = null;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $contacto = $_POST['contacto'];
 
             $contenido = self::construirEmail($contacto);
-            echo '<pre>';
-            var_dump($contenido);
-            echo '</pre>';
-            exit;
             $phpmailer = new PHPMailer();
             $phpmailer->isSMTP();
             $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
@@ -76,9 +73,17 @@ class PaginasController
 
             $phpmailer->Body = $contenido;
             $phpmailer->AltBody = "Texto alternativo del cuerpo del mail";
+
+            if ($phpmailer->send()) {
+                $mensaje = "Mensaje enviado correctamente";
+            } else {
+                $mensaje = "El mensaje no se pudo enviar, porfavor intentelo de nuevo.";
+            }
         }
 
-        $router->display('paginas/contacto');
+        $router->display('paginas/contacto', [
+            "mensaje" => $mensaje
+        ]);
     }
 
     private static function construirEmail($contacto)
@@ -89,9 +94,21 @@ class PaginasController
         $contenido .= "<p>Mensaje: " . $contacto['mensaje'] . "</p>";
         $contenido .= "<p>Vende o Compra: " . $contacto['tipo'] . "</p>";
         $contenido .= "<p>Presupuesto o Precio: $" . $contacto['presupuesto'] . "</p>";
-        $contenido .= "<p>Prefiere ser contactado por:" . $contacto['contacto'] . "</p>";
-        $contenido .= "<p>Fecha:" . $contacto['fecha'] . "</p>";
-        $contenido .= "<p>Hora :" . $contacto['hora'] . "</p>";
+
+        switch ($contacto['contacto']) {
+            case "telefono":
+                $contenido .= "<p>Eligió ser Contactado por Teléfono</p>";
+                $contenido .= "<p>Su teléfono es: " .  $contacto['telefono'] . " </p>";
+                $contenido .= "<p>En la Fecha y hora: " . $contacto['fecha'] . " - " . $contacto['hora']  . " Horas</p>";
+                break;
+            case "email":
+                $contenido .= "<p>Eligio ser Contactado por Email:</p>";
+                $contenido .= "<p>Su Email  es: " .  $contacto['email'] . " </p>";
+                break;
+            default:
+                break;
+        }
+        $contenido .= '</html>';
 
         return $contenido;
     }
