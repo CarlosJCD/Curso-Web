@@ -9,6 +9,9 @@ function eventListeners() {
     const menuEnMovil = document.querySelector('.mobile-menu');
     menuEnMovil.addEventListener('click', mostrarNavBar)
 
+    const metodoContacto = document.querySelectorAll('input[name="contacto[contacto]"]');
+    metodoContacto.forEach(input => input.addEventListener('click', mostrarMetodoDeContacto));
+
 }
 
 function mostrarNavBar() {
@@ -37,14 +40,10 @@ function darkMode() {
     });
 }
 
-function registrarNuevo(check) {
-    const camposNuevoVendedor = document.querySelectorAll(".datosVendedor");
-    camposNuevoVendedor.forEach(element => {
-        element.disabled = !check;
-    })
-    const selectActuales = document.querySelector('select');
-    selectActuales.disabled = check;
+function mostrarMetodoDeContacto() {
+
 }
+
 
 
 main();
