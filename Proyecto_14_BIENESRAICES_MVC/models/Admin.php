@@ -21,13 +21,30 @@ class Admin extends ActiveRecord
 
     public function validar()
     {
-        if (!$this->email) {
-            self::$errores[] = "Porfavor ingrese un correo electronico";
-        }
-        if (!$this->password) {
-            self::$errores[] = "Porfavor ingrese una contraseña";
-        }
+        $algunCampoVacio = !$this->email || !$this->password;
+        if ($algunCampoVacio) {
+            if (!$this->email) {
+                self::$errores[] = "Porfavor ingrese un correo electronico";
+            }
 
+            if (!$this->password) {
+                echo $this->password;
+                self::$errores[] = "Porfavor ingrese una contraseña";
+            }
+        } else {
+            $this->existeUsuario();
+        }
         return self::$errores;
+    }
+
+    public function existeUsuario()
+    {
+        $query = "SELECT * FROM " . self::$tabla . " WHERE email='$this->email' LIMIT 1";
+
+        $resultado = self::$db->query($query);
+
+        if (!$resultado["num_rows"]) {
+            self::$errores[] = "Credenciales invalidas";
+        }
     }
 }

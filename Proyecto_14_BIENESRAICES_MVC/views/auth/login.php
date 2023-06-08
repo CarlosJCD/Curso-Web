@@ -10,7 +10,7 @@
             <input type="email" name="usuario[email]" id="email" placeholder="Tu email">
 
             <label for="password">Password</label>
-            <input type="password" name="usuarip[password]" id="password" placeholder="Tu contraseña">
+            <input type="password" name="usuario[password]" id="password" placeholder="Tu contraseña">
 
             <input type="submit" value="Iniciar Sesion" class="boton boton-verde">
         </fieldset>
