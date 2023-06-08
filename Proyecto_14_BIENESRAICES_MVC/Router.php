@@ -10,9 +10,14 @@ class Router
     public $rutasPOST = [];
 
 
-    public function asociarFuncionGET($ruta, $nombreFuncionAsociada)
+    public function asociarFuncionGET($ruta, $funcionAsociada)
     {
-        $this->rutasGET[$ruta] = $nombreFuncionAsociada;
+        $this->rutasGET[$ruta] = $funcionAsociada;
+    }
+
+    public function asociarFuncionPOST($ruta, $funcionAsociada)
+    {
+        $this->rutasPOST[$ruta] = $funcionAsociada;
     }
 
     private function obtenerFuncionAsociadaARuta(String $rutaActual, String $metodo)
@@ -21,7 +26,7 @@ class Router
             case "GET":
                 return $this->rutasGET[$rutaActual] ?? null;
             case "POST":
-                return $this->rutasGET[$rutaActual] ?? null;
+                return $this->rutasPOST[$rutaActual] ?? null;
             default:
                 return null;
         }
@@ -31,9 +36,7 @@ class Router
     {
         $rutaActual = $_SERVER["PATH_INFO"] ?? "/";
         $metodo = $_SERVER["REQUEST_METHOD"];
-
         $funcionAsociada = $this->obtenerFuncionAsociadaARuta($rutaActual, $metodo);
-
 
         if ($funcionAsociada) {
             call_user_func($funcionAsociada, $this);

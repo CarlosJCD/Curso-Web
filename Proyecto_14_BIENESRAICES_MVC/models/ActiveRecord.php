@@ -94,7 +94,6 @@ class ActiveRecord
         return self::ejecutarQuery($query);
     }
 
-
     public function sincronizar($arreglo = [])
     {
         foreach ($arreglo as $key => $value) {
@@ -107,7 +106,6 @@ class ActiveRecord
     public function actualizar()
     {
         $atributos = $this->obtenerAtributos();
-
         $valores = [];
         foreach ($atributos as $key => $value) {
             $valores[] = "{$key}='{$value}'";
@@ -123,19 +121,13 @@ class ActiveRecord
     public function eliminar()
     {
         $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
-        self::$db->query($query);
+        $resultado = self::$db->query($query);
 
         if (isset($this->imagen)) {
             $this->borrarImagen();
         }
-    }
-
-    public function borrarImagen()
-    {
-        // Comprobar si existe el archivo
-        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
-        if ($existeArchivo) {
-            unlink(CARPETA_IMAGENES . $this->imagen);
+        if ($resultado) {
+            header("Location: /admin");
         }
     }
 }
