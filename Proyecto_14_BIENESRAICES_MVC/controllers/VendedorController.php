@@ -56,7 +56,10 @@ class VendedorController
                 $id = filter_var($id, FILTER_VALIDATE_INT);
 
                 $vendedor = Vendedor::findById($id);
-                $vendedor->eliminar();
+                $resultado = $vendedor->eliminar();
+                if ($resultado) {
+                    header("Location: /admin?tipo=vendedor");
+                }
             }
         }
     }
