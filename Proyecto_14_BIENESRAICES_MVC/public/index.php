@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../includes/app.php";
 
 use Controllers\EntradaBlogController;
+use Controllers\LoginController;
 use Controllers\PaginasController;
 use MVC\Router;
 use Controllers\PropiedadController;
@@ -37,6 +38,11 @@ $router->asociarFuncionGET("/blog", [PaginasController::class, 'blog']);
 $router->asociarFuncionGET("/entrada", [PaginasController::class, 'entrada']);
 $router->asociarFuncionGET("/contacto", [PaginasController::class, 'contacto']);
 $router->asociarFuncionPOST("/contacto", [PaginasController::class, 'contacto']);
+
+$router->asociarFuncionGET('/login', [LoginController::class, "login"]);
+$router->asociarFuncionPOST('/login', [LoginController::class, "login"]);
+$router->asociarFuncionGET('/logout', [LoginController::class, "logout"]);
+
 
 
 $router->comprobarRutas();
