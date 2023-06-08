@@ -14,6 +14,9 @@ class LoginController
             $usuario = new Admin($_POST['usuario']);
 
             $errores = $usuario->validar();
+            if (empty($errores)) {
+                $usuario->autenticar();
+            }
         }
 
         $router->display("auth/login", [

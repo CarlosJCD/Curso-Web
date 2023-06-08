@@ -61,4 +61,14 @@ class Admin extends ActiveRecord
             self::$errores[] = "Credenciales invalidas";
         }
     }
+
+    public function autenticar()
+    {
+        session_start();
+
+        $_SESSION['usuario'] = $this->email;
+        $_SESSION['login'] = true;
+
+        header("Location: /admin");
+    }
 }
