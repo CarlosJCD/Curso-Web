@@ -32,7 +32,10 @@ class Admin extends ActiveRecord
                 self::$errores[] = "Porfavor ingrese una contraseña";
             }
         } else {
-            $this->existeUsuario();
+            $resultado = $this->existeUsuario();
+            if ($resultado) {
+                $this->validarContraseña($resultado->fetch_assoc());
+            }
         }
         return self::$errores;
     }
@@ -43,7 +46,18 @@ class Admin extends ActiveRecord
 
         $resultado = self::$db->query($query);
 
-        if (!$resultado["num_rows"]) {
+        if (!$resultado->num_rows) {
+            self::$errores[] = "Credenciales invalidas";
+            return;
+        }
+        return $resultado;
+    }
+
+    public function validarContraseña($usuario)
+    {
+        $autenticacion = password_verify($this->password, $usuario["password"]);
+
+        if (!$autenticacion) {
             self::$errores[] = "Credenciales invalidas";
         }
     }
