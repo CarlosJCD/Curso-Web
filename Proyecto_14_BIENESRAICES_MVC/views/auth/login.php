@@ -7,10 +7,10 @@
         <fieldset>
             <legend>Email y Password</legend>
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Tu email">
+            <input type="email" name="usuario[email]" id="email" placeholder="Tu email">
 
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Tu contraseña">
+            <input type="password" name="usuarip[password]" id="password" placeholder="Tu contraseña">
 
             <input type="submit" value="Iniciar Sesion" class="boton boton-verde">
         </fieldset>

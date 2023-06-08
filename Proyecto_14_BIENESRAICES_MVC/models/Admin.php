@@ -21,5 +21,13 @@ class Admin extends ActiveRecord
 
     public function validar()
     {
+        if (!$this->email) {
+            self::$errores[] = "Porfavor ingrese un correo electronico";
+        }
+        if (!$this->password) {
+            self::$errores[] = "Porfavor ingrese una contraseña";
+        }
+
+        return self::$errores;
     }
 }
