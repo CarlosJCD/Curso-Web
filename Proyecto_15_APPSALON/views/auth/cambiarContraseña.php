@@ -4,11 +4,6 @@
 
 <form method="POST" class="formulario">
     <div class="campo">
-        <label for="email">Email:</label>
-        <input disabled type="email" id="email" value="<?php echo $usuario->email ?? "" ?>">
-    </div>
-
-    <div class="campo">
         <label for="password">Contraseña:</label>
         <input type="password" id="password" name="password" <?php if (!$usuario) { ?> disabled <?php  } else { ?> placeholder="Tu nueva contraseña" <?php } ?>>
     </div>

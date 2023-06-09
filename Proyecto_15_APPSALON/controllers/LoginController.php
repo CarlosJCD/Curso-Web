@@ -137,9 +137,25 @@ class LoginController
                 Usuario::setAlerta("error", "Token No Valido");
             }
         }
-
-
         $alertas = Usuario::getAlertas();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $password = new Usuario($_POST);
+            $alertas = $password->validarPassword();
+            if (empty($alertas['error'])) {
+
+                $usuario->password = $password->password;
+                $usuario->hashContraseña();
+                $usuario->token = "";
+
+                $resultado = $usuario->guardar();
+                if ($resultado) {
+                    header("Location: /");
+                }
+            }
+        }
+
+
         $router->render("auth/cambiarContraseña", [
             'alertas' => $alertas,
             'usuario' => $usuario ?? null
