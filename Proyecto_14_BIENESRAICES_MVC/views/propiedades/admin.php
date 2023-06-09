@@ -1,5 +1,18 @@
 <main class="contenedor seccion">
     <h1>Administrador de bienes raices</h1>
+    <?php
+    if ($tipo) {
+        if ($tipo === "vendedor") { ?>
+            <p class="alerta exito"> Vendedor eliminado exitosamente! </p>
+        <?php
+        } elseif ($tipo === "propiedad") { ?>
+            <p class="alerta exito"> Propiedad eliminada exitosamente! </p>
+        <?php
+        } elseif ($tipo === "entrada") { ?>
+            <p class="alerta exito"> Entrada del blog eliminada exitosamente! </p>
+    <?php
+        }
+    } ?>
     <a href="propiedades/crear" class="boton boton-verde">Registrar una nueva propiedad</a>
     <a href="vendedores/crear" class="boton boton-amarillo">Registrar un vendedor</a>
     <a href="entradasBlog/crear" class="boton boton-azul">Crear una nueva entrada del blog</a>

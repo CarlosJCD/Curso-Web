@@ -15,12 +15,12 @@ class PropiedadController
         $propiedades = Propiedad::all();
         $vendedores = Vendedor::all();
         $entradasBlog = EntradaBlog::all();
-
-
+        $tipo = $_GET['tipo'] ?? false;
         $router->display("propiedades/admin", [
             'propiedades' => $propiedades,
             'vendedores' => $vendedores,
-            "entradasBlog" => $entradasBlog
+            "entradasBlog" => $entradasBlog,
+            "tipo" => $tipo
         ]);
     }
 
@@ -104,7 +104,10 @@ class PropiedadController
                 $id = filter_var($id, FILTER_VALIDATE_INT);
 
                 $propiedad = Propiedad::findById($id);
-                $propiedad->eliminar();
+                $resultado = $propiedad->eliminar();
+                if ($resultado) {
+                    header("Location: /admin?tipo=propiedad");
+                }
             }
         }
     }

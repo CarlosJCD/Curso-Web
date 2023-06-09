@@ -78,7 +78,10 @@ class EntradaBlogController
                 $id = filter_var($id, FILTER_VALIDATE_INT);
 
                 $propiedad = EntradaBlog::findById($id);
-                $propiedad->eliminar();
+                $resultado = $propiedad->eliminar();
+                if ($resultado) {
+                    header("Location: /admin?tipo=entrada");
+                }
             }
         }
     }

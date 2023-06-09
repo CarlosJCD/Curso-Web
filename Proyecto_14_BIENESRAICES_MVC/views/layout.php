@@ -37,9 +37,10 @@ $inicio = $inicio ?? false;
                         <a href="/contacto">Contacto</a>
                         <?php
                         if ($auth) { ?>
-                            <a href="/cerrar-sesion.php">Cerrar Sesión</a>
+                            <a href="/admin">Administrador</a>
+                            <a href="/logout">Cerrar Sesión</a>
                         <?php } else { ?>
-                            <a href="/login.php">Iniciar Sesión</a>
+                            <a href="/login">Iniciar Sesión</a>
                         <?php }
 
                         ?>

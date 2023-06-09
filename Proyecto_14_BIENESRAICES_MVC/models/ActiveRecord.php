@@ -126,8 +126,6 @@ class ActiveRecord
         if (isset($this->imagen)) {
             $this->borrarImagen();
         }
-        if ($resultado) {
-            header("Location: /admin");
-        }
+        return $resultado;
     }
 }
