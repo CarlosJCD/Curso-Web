@@ -104,13 +104,35 @@ class LoginController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $auth = new Usuario($_POST);
             $alertas = $auth->validarRecuperarContraseña();
+            if (empty($alertas['error'])) {
+                $usuario = Usuario::where('email', $auth->email);
+                $usuario->crearToken();
+                $usuario->guardar();
+
+                self::emailCambiarContraseña($usuario);
+            }
         }
         $router->render("auth/olvidaContraseña", [
             'alertas' => $alertas
         ]);
     }
 
+    private static function emailCambiarContraseña(Usuario $usuario)
+    {
+        $email = new Email(nombre: $usuario->nombre, email: $usuario->email, token: $usuario->token);
+        $email->enviarInstruccionesCambiarContraseña();
+    }
+
     public static function cambiarContraseña(Router $router)
     {
+        $alertas = [];
+        $token = s($_GET['token']);
+        $usuario = Usuario::where("token", $token);
+
+
+        $router->render("auth/cambiarContraseña", [
+            'alertas' => $alertas,
+            'usuario' => $usuario
+        ]);
     }
 }
