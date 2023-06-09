@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\Usuario;
 use MVC\Router;
 
 class LoginController
@@ -17,7 +18,13 @@ class LoginController
 
     public static function crearCuenta(Router $router)
     {
-        $router->render("auth/crearCuenta");
+        $usuario = new Usuario;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario->sincronizar($_POST);
+        }
+        $router->render("auth/crearCuenta", [
+            'usuario' => $usuario
+        ]);
     }
 
     public static function olvidaContraseña(Router $router)

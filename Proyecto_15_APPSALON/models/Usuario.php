@@ -21,7 +21,7 @@ class Usuario extends ActiveRecord
 
     public function __construct($args = [])
     {
-        foreach ($this->columnasDB as $columna) {
+        foreach (self::$columnasDB as $columna) {
             if (in_array($columna, ['id', 'admin', 'confirmado'])) {
                 $this->$columna = $args[$columna] ?? null;
             } else {
