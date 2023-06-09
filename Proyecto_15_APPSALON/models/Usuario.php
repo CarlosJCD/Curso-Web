@@ -58,6 +58,7 @@ class Usuario extends ActiveRecord
     public function validarLogin()
     {
         if (!$this->camposVaciosLogin()) {
+            $this->validarCredencialesLogin();
         }
         return self::$alertas;
     }
@@ -94,6 +95,23 @@ class Usuario extends ActiveRecord
         }
         return $flag;
     }
+
+    private function validarCredencialesLogin()
+    {
+        $auth = Usuario::where('email', $this->email);
+
+        if (empty($auth)) {
+            self::$alertas['error'][] = "Credenciales Incorrectas";
+            return;
+        }
+        $contraseñaCorrecta = password_verify($this->password, $auth->password);
+
+        if (!$contraseñaCorrecta) {
+            self::$alertas['error'][] = "Credenciales Incorrectas";
+            return;
+        }
+    }
+
 
     private function contraseñaValida()
     {
