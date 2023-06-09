@@ -29,6 +29,7 @@ class Usuario extends ActiveRecord
             }
         }
     }
+
     public function validarNuevaCuenta()
     {
         if (!$this->camposVacios() && $this->contraseñaValida()) {
@@ -37,6 +38,10 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    public function hashContraseña()
+    {
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+    }
 
     private function camposVacios()
     {
