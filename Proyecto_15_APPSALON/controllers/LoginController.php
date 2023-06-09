@@ -24,12 +24,16 @@ class LoginController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usuario->sincronizar($_POST);
             $alertas = $usuario->validarNuevaCuenta();
-            if (!isset($alertas['errores']) || empty($alertas['errores'])) {
+            if (!isset($alertas['error']) || empty($alertas['error'])) {
                 $usuario->hashContraseña();
                 $usuario->crearToken();
                 self::emailConfirmacionCrearCuenta($usuario);
 
-                debuguear($usuario);
+                $resultado = $usuario->guardar();
+
+                if ($resultado) {
+                    header("Location: /mensaje");
+                }
             }
         }
 
@@ -45,9 +49,15 @@ class LoginController
         $email->enviarConfirmacion();
     }
 
+    public static function mensaje(Router $router)
+    {
+        $router->render("auth/mensaje");
+    }
+
     public static function confirmarCuenta(Router $router)
     {
     }
+
 
     public static function olvidaContraseña(Router $router)
     {

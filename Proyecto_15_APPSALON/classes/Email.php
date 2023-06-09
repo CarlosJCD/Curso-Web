@@ -20,6 +20,7 @@ class Email
     {
         $mail = $this->obtenerPHPMailerConfigurado();
         $this->construirEmail($mail);
+        $mail->send();
     }
 
     private function obtenerPHPMailerConfigurado()

@@ -24,6 +24,8 @@ $router->post('/olvidaContraseña', [LoginController::class, 'olvidaContraseña'
 $router->get('/cambiarContraseña', [LoginController::class, 'cambiarContraseña'], false);
 $router->post('/cambiarContraseña', [LoginController::class, 'cambiarContraseña'], false);
 
+$router->get('/mensaje', [LoginController::class, 'mensaje'], false);
+
 
 
 
