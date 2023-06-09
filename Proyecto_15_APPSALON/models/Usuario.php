@@ -22,10 +22,17 @@ class Usuario extends ActiveRecord
     public function __construct($args = [])
     {
         foreach (self::$columnasDB as $columna) {
-            if (in_array($columna, ['id', 'admin', 'confirmado'])) {
-                $this->$columna = $args[$columna] ?? null;
-            } else {
-                $this->$columna = $args[$columna] ?? "";
+            switch ($columna) {
+                case "id":
+                    $this->$columna = $args[$columna] ?? null;
+                    break;
+                case 'admin':
+                case 'confirmado':
+                    $this->$columna = $args[$columna] ?? '0';
+                    break;
+                default:
+                    $this->$columna = $args[$columna] ?? "";
+                    break;
             }
         }
     }

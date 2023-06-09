@@ -16,6 +16,8 @@ $router->post('/logout', [LoginController::class, 'logout'], false);
 $router->get('/crearCuenta', [LoginController::class, 'crearCuenta'], false);
 $router->post('/crearCuenta', [LoginController::class, 'crearCuenta'], false);
 
+$router->get('/confirmarCuenta', [LoginController::class, 'confirmarCuenta'], false);
+
 $router->get('/olvidaContraseña', [LoginController::class, 'olvidaContraseña'], false);
 $router->post('/olvidaContraseña', [LoginController::class, 'olvidaContraseña'], false);
 

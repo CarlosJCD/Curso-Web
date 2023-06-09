@@ -26,7 +26,7 @@ class LoginController
             $alertas = $usuario->validarNuevaCuenta();
             if (!isset($alertas['errores']) || empty($alertas['errores'])) {
                 $usuario->hashContraseña();
-
+                $usuario->crearToken();
                 self::emailConfirmacionCrearCuenta($usuario);
 
                 debuguear($usuario);
@@ -42,6 +42,11 @@ class LoginController
     private static function emailConfirmacionCrearCuenta(Usuario $usuario)
     {
         $email = new Email(email: $usuario->email, token: $usuario->token, nombre: $usuario->nombre);
+        $email->enviarConfirmacion();
+    }
+
+    public static function confirmarCuenta(Router $router)
+    {
     }
 
     public static function olvidaContraseña(Router $router)
