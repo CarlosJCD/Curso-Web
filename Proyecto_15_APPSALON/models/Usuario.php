@@ -111,7 +111,7 @@ class Usuario extends ActiveRecord
             return;
         }
         if (!$auth->confirmado) {
-            self::$alertas['error'][] = "Cuenta no autenticada";
+            self::$alertas['error'][] = "Cuenta no confirmada";
         }
     }
 
