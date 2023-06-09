@@ -24,7 +24,7 @@
         <label for="password">Contraseña</label>
         <input type="password" id="password" placeholder="Tu contraseña" name="password" />
     </div>
-    <input type="submit" class="boton" value="Iniciar Sesion">
+    <input type="submit" class="boton" value="Crear cuenta">
 </form>
 
 <div class="acciones">

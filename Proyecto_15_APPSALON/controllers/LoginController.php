@@ -22,6 +22,7 @@ class LoginController
 
     public static function olvidaContraseña(Router $router)
     {
+        $router->render("auth/olvidaContraseña");
     }
 
 
