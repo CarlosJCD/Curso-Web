@@ -6,20 +6,32 @@ class Router
 {
     public array $getRoutes = [];
     public array $postRoutes = [];
+    public array $rutasProtegidas = [];
 
-    public function get($url, $fn)
+    public function get($url, $fn, bool $esProtegida)
     {
         $this->getRoutes[$url] = $fn;
+        if ($esProtegida) {
+            $this->insertarRutaProtegida($url);
+        }
     }
 
-    public function post($url, $fn)
+    public function post($url, $fn, bool $esProtegida)
     {
         $this->postRoutes[$url] = $fn;
+        if ($esProtegida) {
+            $this->insertarRutaProtegida($url);
+        }
+    }
+
+    private function insertarRutaProtegida($url)
+    {
+        $this->rutasProtegidas[] = $url;
     }
 
     public function comprobarRutas()
     {
-        
+
         // Proteger Rutas...
         session_start();
 
@@ -31,6 +43,9 @@ class Router
         $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
         $method = $_SERVER['REQUEST_METHOD'];
 
+
+
+
         if ($method === 'GET') {
             $fn = $this->getRoutes[$currentUrl] ?? null;
         } else {
@@ -38,7 +53,7 @@ class Router
         }
 
 
-        if ( $fn ) {
+        if ($fn) {
             // Call user fn va a llamar una función cuando no sabemos cual sera
             call_user_func($fn, $this); // This es para pasar argumentos
         } else {
