@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Classes\Email;
 use Model\Usuario;
 use MVC\Router;
 
@@ -25,8 +26,10 @@ class LoginController
             $alertas = $usuario->validarNuevaCuenta();
             if (!isset($alertas['errores']) || empty($alertas['errores'])) {
                 $usuario->hashContraseña();
+
+                self::emailConfirmacionCrearCuenta($usuario);
+
                 debuguear($usuario);
-                $usuario->guardar();
             }
         }
 
@@ -36,11 +39,15 @@ class LoginController
         ]);
     }
 
+    private static function emailConfirmacionCrearCuenta(Usuario $usuario)
+    {
+        $email = new Email(email: $usuario->email, token: $usuario->token, nombre: $usuario->nombre);
+    }
+
     public static function olvidaContraseña(Router $router)
     {
         $router->render("auth/olvidaContraseña");
     }
-
 
     public static function cambiarContraseña(Router $router)
     {

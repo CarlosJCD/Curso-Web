@@ -7,7 +7,8 @@
             "Carloscalderondelgado\\Proyecto15Appsalon\\": "src/",
             "MVC\\": "./",
             "Controllers\\": "./controllers",
-            "Model\\": "./models"
+            "Model\\": "./models",
+            "Classes\\": "./Classes"
         }
     },
     "authors": [
@@ -16,5 +17,7 @@
             "email": "carlos.calderon.d@icloud.com"
         }
     ],
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    }
 }
