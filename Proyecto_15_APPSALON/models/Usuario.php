@@ -37,14 +37,6 @@ class Usuario extends ActiveRecord
         }
     }
 
-    public function validarNuevaCuenta()
-    {
-        if (!$this->camposVacios() && $this->contraseñaValida()) {
-            $this->existeUsuario();
-        }
-        return self::$alertas;
-    }
-
     public function hashContraseña()
     {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
@@ -55,7 +47,23 @@ class Usuario extends ActiveRecord
         $this->token = uniqid();
     }
 
-    private function camposVacios()
+    public function validarNuevaCuenta()
+    {
+        if (!$this->camposVaciosCrearCuenta() && $this->contraseñaValida()) {
+            $this->existeUsuario();
+        }
+        return self::$alertas;
+    }
+
+    public function validarLogin()
+    {
+        if (!$this->camposVaciosLogin()) {
+        }
+        return self::$alertas;
+    }
+
+
+    private function camposVaciosCrearCuenta()
     {
         $flag = false;
         if (!$this->nombre) {
@@ -68,6 +76,20 @@ class Usuario extends ActiveRecord
         }
         if (!$this->email) {
             self::$alertas['error'][] = 'El Email es Obligatorio';
+            $flag = true;
+        }
+        return $flag;
+    }
+
+    private function camposVaciosLogin()
+    {
+        $flag = false;
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El Email es Obligatorio';
+            $flag = true;
+        }
+        if (!$this->password) {
+            self::$alertas['error'][] = 'El Password es Obligatorio';
             $flag = true;
         }
         return $flag;
