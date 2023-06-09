@@ -31,24 +31,50 @@ class Usuario extends ActiveRecord
     }
     public function validarNuevaCuenta()
     {
+        if (!$this->camposVacios() && $this->contraseñaValida()) {
+            $this->existeUsuario();
+        }
+        return self::$alertas;
+    }
+
+
+    private function camposVacios()
+    {
+        $flag = false;
         if (!$this->nombre) {
             self::$alertas['error'][] = 'El Nombre es Obligatorio';
+            $flag = true;
         }
         if (!$this->apellido) {
             self::$alertas['error'][] = 'El Apellido es Obligatorio';
+            $flag = true;
         }
         if (!$this->email) {
             self::$alertas['error'][] = 'El Email es Obligatorio';
+            $flag = true;
         }
+        return $flag;
+    }
+
+    private function contraseñaValida()
+    {
+        $flag = true;
         if (!$this->password) {
             self::$alertas['error'][] = 'El Password es Obligatorio';
+            $flag = false;
+        } elseif (strlen($this->password) < 8) {
+            self::$alertas['error'][] = 'El Password debe contener al menos 8 caracteres';
+            $flag = false;
         }
-        if (strlen($this->password) < 6) {
-            self::$alertas['error'][] = 'El password debe contener al menos 6 caracteres';
+        return $flag;
+    }
+
+    private function existeUsuario()
+    {
+        $query = "SELECT * FROM " . self::$tabla . " WHERE email='$this->email' LIMIT 1";
+        $resultado = self::$db->query($query);
+        if ($resultado->num_rows) {
+            self::$alertas['error'][] = "Usuario ya registrado";
         }
-
-
-
-        return self::$alertas;
     }
 }
