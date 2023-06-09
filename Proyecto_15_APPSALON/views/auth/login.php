@@ -15,5 +15,5 @@
 
 <div class="acciones">
     <a href="/crearCuenta">Crear cuenta</a>
-    <a href="/olvidaContraseña">Olvide mi contraseña</a>
+    <a href="/olvidaContraseña">Olvidé mi contraseña</a>
 </div>
