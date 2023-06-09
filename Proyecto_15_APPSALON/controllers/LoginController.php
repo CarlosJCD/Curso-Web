@@ -126,13 +126,23 @@ class LoginController
     public static function cambiarContraseña(Router $router)
     {
         $alertas = [];
+
         $token = s($_GET['token']);
-        $usuario = Usuario::where("token", $token);
+
+        if (!$token) {
+            Usuario::setAlerta("error", "Token No Valido");
+        } else {
+            $usuario = Usuario::where("token", $token);
+            if (empty($usuario)) {
+                Usuario::setAlerta("error", "Token No Valido");
+            }
+        }
 
 
+        $alertas = Usuario::getAlertas();
         $router->render("auth/cambiarContraseña", [
             'alertas' => $alertas,
-            'usuario' => $usuario
+            'usuario' => $usuario ?? null
         ]);
     }
 }

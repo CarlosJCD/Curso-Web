@@ -5,14 +5,18 @@
 <form method="POST" class="formulario">
     <div class="campo">
         <label for="email">Email:</label>
-        <input disabled type="email" id="email" value="<?php echo $usuario->email ?>">
+        <input disabled type="email" id="email" value="<?php echo $usuario->email ?? "" ?>">
     </div>
 
     <div class="campo">
         <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" placeholder="Tu nueva contraseña">
+        <input type="password" id="password" name="password" <?php if (!$usuario) { ?> disabled <?php  } else { ?> placeholder="Tu nueva contraseña" <?php } ?>>
     </div>
-    <input type="submit" class="boton" value="Guardar contraseña nueva">
+    <?php
+    if ($usuario) { ?>
+        <input type="submit" class="boton" value="Guardar contraseña nueva">
+    <?php }
+    ?>
 </form>
 
 <div class="acciones">
