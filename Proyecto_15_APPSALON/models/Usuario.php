@@ -63,6 +63,23 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    public function validarRecuperarContraseña()
+    {
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El Email es Obligatorio';
+
+            return self::$alertas;
+        }
+        $usuario = Usuario::where('email', $this->email);
+        if (empty($usuario) || !$usuario->confirmado) {
+            self::$alertas['error'][] = 'Cuenta no registrada o no confirmada';
+            return self::$alertas;
+        }
+        self::$alertas['exito'][] = "Se ha enviado un correo para reestabler la contraseña";
+
+        return self::$alertas;
+    }
+
 
     private function camposVaciosCrearCuenta()
     {
@@ -115,7 +132,6 @@ class Usuario extends ActiveRecord
         }
     }
 
-
     private function contraseñaValida()
     {
         $flag = true;
@@ -131,10 +147,12 @@ class Usuario extends ActiveRecord
 
     private function existeUsuario()
     {
+        $flag = true;
         $query = "SELECT * FROM " . self::$tabla . " WHERE email='$this->email' LIMIT 1";
         $resultado = self::$db->query($query);
         if ($resultado->num_rows) {
             self::$alertas['error'][] = "Usuario ya registrado";
+            $flag = false;
         }
     }
 }

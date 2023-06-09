@@ -100,7 +100,14 @@ class LoginController
 
     public static function olvidaContraseña(Router $router)
     {
-        $router->render("auth/olvidaContraseña");
+        $alertas = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $auth = new Usuario($_POST);
+            $alertas = $auth->validarRecuperarContraseña();
+        }
+        $router->render("auth/olvidaContraseña", [
+            'alertas' => $alertas
+        ]);
     }
 
     public static function cambiarContraseña(Router $router)
