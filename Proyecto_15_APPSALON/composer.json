@@ -1,0 +1,20 @@
+{
+    "name": "carloscalderondelgado/proyecto_15_appsalon",
+    "description": "Proyecto AppSalon del curso web",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Carloscalderondelgado\\Proyecto15Appsalon\\": "src/",
+            "MVC\\": "./",
+            "Controllers\\": "./controllers",
+            "Model\\": "./models"
+        }
+    },
+    "authors": [
+        {
+            "name": "CarlosJCD",
+            "email": "carlos.calderon.d@icloud.com"
+        }
+    ],
+    "require": {}
+}
