@@ -6,21 +6,23 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function main() {
+    mostrarSeccion(paso)
     cambiarSeccionSegunElTab();
+    botonesDelPaginador();
 }
 
 function cambiarSeccionSegunElTab() {
     const botones = document.querySelectorAll('.tabs button');
-    mostrarSeccion(paso)
     botones.forEach(boton => {
         boton.addEventListener('click', function (e) {
-            let paso = parseInt(e.target.dataset.paso);
-            mostrarSeccion(paso);
+            paso = parseInt(e.target.dataset.paso);
+            mostrarSeccion();
+            botonesDelPaginador();
         })
     });
 }
 
-function mostrarSeccion(paso) {
+function mostrarSeccion() {
     const seccionAnterior = document.querySelector('.mostrar');
     if (seccionAnterior) {
 
@@ -38,4 +40,26 @@ function mostrarSeccion(paso) {
 
     const tab = document.querySelector(`[data-paso="${paso}"]`);
     tab.classList.add('actual')
+}
+
+function botonesDelPaginador() {
+    const paginaAnterior = document.querySelector('#anterior');
+    const paginaSiguiente = document.querySelector('#siguiente');
+
+    switch (paso) {
+        case 1:
+            paginaAnterior.classList.add('ocultar');
+            paginaSiguiente.classList.remove('ocultar');
+            break;
+        case 2:
+            paginaAnterior.classList.remove('ocultar');
+            paginaSiguiente.classList.remove('ocultar');
+            break;
+        case 3:
+            paginaAnterior.classList.remove('ocultar');
+            paginaSiguiente.classList.add('ocultar');
+            break;
+        default:
+            break;
+    }
 }
