@@ -1,3 +1,4 @@
+
 let paso = 1;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -19,5 +20,13 @@ function cambiarSeccionSegunElTab() {
 }
 
 function mostrarSeccion(paso) {
+    const seccionAnterior = document.querySelector('.mostrar');
+    if (seccionAnterior) {
 
+        seccionAnterior.classList.remove('mostrar');
+    }
+
+    const seccion = document.querySelector(`#paso-${paso}`);
+    console.log(seccion);
+    seccion.classList.add('mostrar');
 }
