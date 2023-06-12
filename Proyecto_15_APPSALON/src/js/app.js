@@ -11,6 +11,7 @@ function main() {
 
 function cambiarSeccionSegunElTab() {
     const botones = document.querySelectorAll('.tabs button');
+    mostrarSeccion(paso)
     botones.forEach(boton => {
         boton.addEventListener('click', function (e) {
             let paso = parseInt(e.target.dataset.paso);
@@ -29,4 +30,12 @@ function mostrarSeccion(paso) {
     const seccion = document.querySelector(`#paso-${paso}`);
     console.log(seccion);
     seccion.classList.add('mostrar');
+
+
+    const tabAnterior = document.querySelector('.actual');
+    tabAnterior.classList.remove('actual');
+
+
+    const tab = document.querySelector(`[data-paso="${paso}"]`);
+    tab.classList.add('actual')
 }
