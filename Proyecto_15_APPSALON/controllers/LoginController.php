@@ -28,7 +28,7 @@ class LoginController
                     $_SESSION['admin'] = $usuario->admin;
                 }
 
-                header("Location: /cita");
+                header("Location: " . BASE_DIR . "/cita");
             }
         }
         $router->render("auth/login", [
@@ -55,7 +55,7 @@ class LoginController
                 $resultado = $usuario->guardar();
 
                 if ($resultado) {
-                    header("Location: /mensaje");
+                    header("Location: " . BASE_DIR . "/mensaje");
                 }
             }
         }
@@ -128,14 +128,11 @@ class LoginController
         $alertas = [];
 
         $token = s($_GET['token']);
+        $usuario = Usuario::where("token", $token);
 
-        if (!$token) {
+        if (!$token || empty($usuario)) {
             Usuario::setAlerta("error", "Token No Valido");
-        } else {
-            $usuario = Usuario::where("token", $token);
-            if (empty($usuario)) {
-                Usuario::setAlerta("error", "Token No Valido");
-            }
+            unset($usuario);
         }
         $alertas = Usuario::getAlertas();
 
@@ -150,7 +147,7 @@ class LoginController
 
                 $resultado = $usuario->guardar();
                 if ($resultado) {
-                    header("Location: /");
+                    header("Location: " . BASE_DIR . "/");
                 }
             }
         }
