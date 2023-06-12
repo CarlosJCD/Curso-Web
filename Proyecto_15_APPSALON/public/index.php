@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\APIController;
 use Controllers\CitaController;
 use Controllers\LoginController;
 use MVC\Router;
@@ -28,6 +29,8 @@ $router->post('/cambiarContraseña', [LoginController::class, 'cambiarContraseñ
 $router->get('/mensaje', [LoginController::class, 'mensaje'], false);
 
 $router->get('/cita', [CitaController::class, 'index'], false);
+
+$router->get('/api/servicios', [APIController::class, 'index'], false);
 
 
 
