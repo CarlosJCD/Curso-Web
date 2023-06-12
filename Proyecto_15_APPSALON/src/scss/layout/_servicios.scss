@@ -17,6 +17,14 @@
         transition-duration: 300ms;
         text-align: center;
 
+        &.seleccionado {
+            background-color: v.$azul;
+
+            p {
+                color: v.$blanco;
+            }
+        }
+
         &:hover {
             transform: scale(1.1);
         }

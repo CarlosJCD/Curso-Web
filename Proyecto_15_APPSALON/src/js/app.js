@@ -137,6 +137,8 @@ function mostrarServicios(servicios) {
 }
 
 function seleccionarServicio(servicio) {
+
     cita.servicios.push(servicio);
-    console.log(cita.servicios);
+    const divServicio = document.querySelector(`[data-id-servicio="${servicio.id}"]`);
+    divServicio.classList.add('seleccionado');
 }
