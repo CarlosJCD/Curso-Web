@@ -2,6 +2,7 @@
 let paso = 1;
 const pasoInicial = 1;
 const pasoFinal = 3;
+const BASE_DIR = "/Curso-Web/Proyecto_15_APPSALON/public/index.php";
 
 document.addEventListener('DOMContentLoaded', function () {
     main();
@@ -13,6 +14,7 @@ function main() {
     botonesDelPaginador();
     paginaSiguiente();
     paginaAnterior();
+    consultarAPI();
 }
 
 function cambiarSeccionSegunElTab() {
@@ -34,7 +36,6 @@ function mostrarSeccion() {
     }
 
     const seccion = document.querySelector(`#paso-${paso}`);
-    console.log(seccion);
     seccion.classList.add('mostrar');
 
 
@@ -89,4 +90,15 @@ function paginaSiguiente() {
 
         botonesDelPaginador();
     })
+}
+
+async function consultarAPI() {
+    try {
+        const url = "http://localhost" + BASE_DIR + "/api/servicios";
+        const resultado = await fetch(url);
+        const servicios = await resultado.json();
+        console.log(servicios);
+    } catch (error) {
+        console.log(error);
+    }
 }
