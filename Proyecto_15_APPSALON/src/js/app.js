@@ -4,6 +4,13 @@ const pasoInicial = 1;
 const pasoFinal = 3;
 const BASE_DIR = "/Curso-Web/Proyecto_15_APPSALON/public/index.php";
 
+const cita = {
+    nombre: '',
+    fecha: '',
+    hora: '',
+    servicios: []
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     main();
 });
@@ -118,10 +125,18 @@ function mostrarServicios(servicios) {
         const servicioDiv = document.createElement('DIV');
         servicioDiv.classList.add('servicio');
         servicioDiv.dataset.idServicio = id;
+        servicioDiv.onclick = function () {
+            seleccionarServicio(servicio);
+        }
 
         servicioDiv.appendChild(nombreServicio);
         servicioDiv.appendChild(precioServicio);
 
         document.querySelector("#servicios").appendChild(servicioDiv);
     });
+}
+
+function seleccionarServicio(servicio) {
+    cita.servicios.push(servicio);
+    console.log(cita.servicios);
 }
