@@ -3,7 +3,7 @@
 
 <div id="app">
     <nav class="tabs">
-        <button type="button" data-paso="1">Servicios</button>
+        <button type="button" class="actual" data-paso="1">Servicios</button>
         <button type="button" data-paso="2">Informacion de la cita</button>
         <button type="button" data-paso="3">Resumen</button>
     </nav>
@@ -37,4 +37,10 @@
         <p class="text-center">Verifica que la informacion sea correcta</p>
 
     </div>
+
+    <div class="paginacion">
+        <button id="anterior" class="boton">&laquo; Anterior</button>
+        <button id="anterior" class="boton">Siguiente &raquo;</button>
+    </div>
+
 </div>
