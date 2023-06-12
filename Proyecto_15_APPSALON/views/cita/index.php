@@ -44,3 +44,8 @@
     </div>
 
 </div>
+
+
+<?php
+$script = "<script src='" . ROOT_DIR . "build/js/app.js'></script>";
+?>
