@@ -1,0 +1,1 @@
+let paso=1;function main(){cambiarSeccionSegunElTab()}function cambiarSeccionSegunElTab(){document.querySelectorAll(".tabs button").forEach(n=>{n.addEventListener("click",(function(n){mostrarSeccion(parseInt(n.target.dataset.paso))}))})}function mostrarSeccion(n){}document.addEventListener("DOMContentLoaded",(function(){main()}));
