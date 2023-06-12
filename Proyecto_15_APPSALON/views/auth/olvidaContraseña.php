@@ -6,7 +6,7 @@ include_once __DIR__ . "/../templates/alertas.php"
 
 ?>
 
-<form action="/olvidaContraseña" class="formulario" method="POST">
+<form class="formulario" method="POST">
     <div class="campo">
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="Tu Email" name="email" />
@@ -15,6 +15,6 @@ include_once __DIR__ . "/../templates/alertas.php"
 </form>
 
 <div class="acciones">
-    <a href="/">Iniciar Sesion</a>
-    <a href="/crearCuenta">Crear cuenta</a>
+    <a href="<?php echo BASE_DIR ?>/">Iniciar Sesion</a>
+    <a href="<?php echo BASE_DIR ?>/crearCuenta">Crear cuenta</a>
 </div>

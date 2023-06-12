@@ -50,7 +50,7 @@ class Email
         $mail->Body .= ". Has creado tu cuenta en appsalon, solo debes confirmar a traves del siguiente enlace:";
         $mail->Body .= "</p>";
         $mail->Body .= "<p>presiona aquí:";
-        $mail->Body .= "<a href='http://localhost:3000/confirmarCuenta?token=" . $this->token . "'> Confirmar Cuenta";
+        $mail->Body .= "<a href='http://localhost/" . BASE_DIR . "confirmarCuenta?token=" . $this->token . "'> Confirmar Cuenta";
         $mail->Body .= "</a></p>";
         $mail->Body .= "</html>";
     }
@@ -75,7 +75,7 @@ class Email
         $mail->Body .= " para ello debes de dar cick al siguiente enlace:";
         $mail->Body .= "</p>";
         $mail->Body .= "<p>presiona aquí:";
-        $mail->Body .= "<a href='http://localhost:3000/cambiarContraseña?token=" . $this->token . "'> Cambiar Contraseña";
+        $mail->Body .= "<a href='http://localhost" . BASE_DIR . "cambiarContraseña?token=" . $this->token . "'> Cambiar Contraseña";
         $mail->Body .= "</a></p>";
         $mail->Body .= "</html>";
     }

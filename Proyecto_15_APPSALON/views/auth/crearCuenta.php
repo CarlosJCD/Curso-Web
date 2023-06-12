@@ -6,7 +6,7 @@ include_once __DIR__ . "/../templates/alertas.php"
 
 ?>
 
-<form action="/crearCuenta" class="formulario" method="POST">
+<form class="formulario" method="POST">
     <div class="campo">
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre" placeholder="Tu nombre" name="nombre" value="<?php echo s($usuario->nombre) ?>" />
@@ -33,6 +33,6 @@ include_once __DIR__ . "/../templates/alertas.php"
 </form>
 
 <div class="acciones">
-    <a href="/">Iniciar Sesion</a>
-    <a href="/olvidaContraseña">Olvidé mi contraseña</a>
+    <a href=<?php echo BASE_DIR . "/" ?>>Iniciar Sesion</a>
+    <a href=<?php echo BASE_DIR . "/olvidaContraseña" ?>>Olvidé mi contraseña</a>
 </div>
