@@ -238,9 +238,10 @@ function mostrarResumenCita() {
     const nombreCliente = document.createElement('P');
     nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
 
+    const fechaFormateada = construirFecha(fecha);
 
     const fechaCita = document.createElement('P');
-    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}`;
 
     const horaCita = document.createElement('P');
     horaCita.innerHTML = `<span>Hora:</span> ${hora} Horas`;
@@ -250,6 +251,18 @@ function mostrarResumenCita() {
     resumen.appendChild(fechaCita);
     resumen.appendChild(horaCita);
 
+}
+
+function construirFecha(fecha) {
+    const fechaObj = new Date(fecha);
+    const mes = fechaObj.getMonth();
+    const dia = fechaObj.getDate() + 2;
+    const year = fechaObj.getFullYear();
+
+    const fechaUTC = new Date(Date.UTC(year, mes, dia));
+
+    const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+    return fechaUTC.toLocaleDateString('es-MX', opciones);
 }
 
 function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
