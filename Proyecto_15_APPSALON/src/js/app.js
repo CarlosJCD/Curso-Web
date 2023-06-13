@@ -136,9 +136,16 @@ function mostrarServicios(servicios) {
     });
 }
 
-function seleccionarServicio(servicio) {
+function seleccionarServicio(servicioSeleccionado) {
+    const { id } = servicioSeleccionado
+    const { servicios } = cita
+    const divServicioSeleccionado = document.querySelector(`[data-id-servicio="${servicioSeleccionado.id}"]`);
 
-    cita.servicios.push(servicio);
-    const divServicio = document.querySelector(`[data-id-servicio="${servicio.id}"]`);
-    divServicio.classList.add('seleccionado');
+    if (servicios.some(servicioAñadido => servicioAñadido.id === servicioSeleccionado.id)) {
+        cita.servicios = servicios.filter(serviciosGuardados => serviciosGuardados.id !== id);
+        divServicioSeleccionado.classList.remove('seleccionado');
+    } else {
+        cita.servicios.push(servicioSeleccionado);
+        divServicioSeleccionado.classList.add('seleccionado');
+    }
 }
