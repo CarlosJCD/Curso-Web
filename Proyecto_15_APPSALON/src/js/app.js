@@ -16,13 +16,18 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function main() {
-    obtenerNombreCliente();
+
     mostrarSeccion();
     cambiarSeccionSegunElTab();
     botonesDelPaginador();
     paginaSiguiente();
     paginaAnterior();
+
     consultarAPI();
+
+    obtenerNombreCliente();
+    obtenerFechaCita();
+
 }
 
 function cambiarSeccionSegunElTab() {
@@ -160,7 +165,6 @@ function obtenerFechaCita() {
     inputFecha.addEventListener('input', function (e) {
 
         const dia = new Date(e.target.value).getUTCDay();
-
         if ([6, 0].includes(dia)) {
             e.target.value = '';
             mostrarAlerta('Fines de semana no permitidos', 'error', '.formulario');
@@ -169,4 +173,27 @@ function obtenerFechaCita() {
         }
 
     });
+}
+
+function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
+
+    const alertaPrevia = document.querySelector('.alerta');
+    if (alertaPrevia) {
+        alertaPrevia.remove();
+    }
+
+    const alerta = document.createElement('DIV');
+    alerta.textContent = mensaje;
+    alerta.classList.add('alerta');
+    alerta.classList.add(tipo);
+
+    const referencia = document.querySelector(elemento);
+    referencia.appendChild(alerta);
+
+    if (desaparece) {
+        setTimeout(() => {
+            alerta.remove();
+        }, 3000);
+    }
+
 }
