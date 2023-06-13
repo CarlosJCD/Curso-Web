@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function main() {
-    mostrarSeccion(paso)
+    obtenerNombreCliente();
+    mostrarSeccion();
     cambiarSeccionSegunElTab();
     botonesDelPaginador();
     paginaSiguiente();
@@ -148,4 +149,9 @@ function seleccionarServicio(servicioSeleccionado) {
         cita.servicios.push(servicioSeleccionado);
         divServicioSeleccionado.classList.add('seleccionado');
     }
+}
+
+function obtenerNombreCliente() {
+    cita.nombre = document.querySelector('#nombre').value;
+
 }
