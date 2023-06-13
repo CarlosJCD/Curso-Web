@@ -15,6 +15,6 @@ include_once __DIR__ . "/../templates/alertas.php"
 </form>
 
 <div class="acciones">
-    <a href="<?php echo BASE_DIR ?>/">Iniciar Sesion</a>
-    <a href="<?php echo BASE_DIR ?>/crearCuenta">Crear cuenta</a>
+    <a href="/">Iniciar Sesion</a>
+    <a href="/crearCuenta">Crear cuenta</a>
 </div>

@@ -33,6 +33,6 @@ include_once __DIR__ . "/../templates/alertas.php"
 </form>
 
 <div class="acciones">
-    <a href=<?php echo BASE_DIR . "/" ?>>Iniciar Sesion</a>
-    <a href=<?php echo BASE_DIR . "/olvidaContraseña" ?>>Olvidé mi contraseña</a>
+    <a href="/">Iniciar Sesion</a>
+    <a href="/olvidaContraseña">Olvidé mi contraseña</a>
 </div>

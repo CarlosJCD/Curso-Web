@@ -21,6 +21,6 @@ if ($usuario) { ?>
 
 
 <div class="acciones">
-    <a href="<?php echo BASE_DIR ?>">Iniciar sesion</a>
+    <a href="/">Iniciar sesion</a>
     <a href="/olvidaContraseña">Olvidé mi contraseña</a>
 </div>

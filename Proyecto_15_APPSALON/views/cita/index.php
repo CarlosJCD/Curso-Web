@@ -46,5 +46,5 @@
 
 
 <?php
-$script = "<script src='" . ROOT_DIR . "build/js/app.js'></script>";
+$script = "<script src='build/js/app.js'></script>";
 ?>

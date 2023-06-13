@@ -28,7 +28,7 @@ class LoginController
                     $_SESSION['admin'] = $usuario->admin;
                 }
 
-                header("Location: " . BASE_DIR . "/cita");
+                header("Location: /cita");
             }
         }
         $router->render("auth/login", [
@@ -55,7 +55,7 @@ class LoginController
                 $resultado = $usuario->guardar();
 
                 if ($resultado) {
-                    header("Location: " . BASE_DIR . "/mensaje");
+                    header("Location: /mensaje");
                 }
             }
         }
@@ -147,7 +147,7 @@ class LoginController
 
                 $resultado = $usuario->guardar();
                 if ($resultado) {
-                    header("Location: " . BASE_DIR . "/");
+                    header("Location: /");
                 }
             }
         }
