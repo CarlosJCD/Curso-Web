@@ -27,6 +27,7 @@ function main() {
 
     obtenerNombreCliente();
     obtenerFechaCita();
+    obtenerHoraCita();
 
 }
 
@@ -173,6 +174,22 @@ function obtenerFechaCita() {
         }
 
     });
+}
+
+function obtenerHoraCita() {
+    const inputHora = document.querySelector('#hora');
+    inputHora.addEventListener('input', function (e) {
+
+
+        const horaCita = e.target.value;
+        const hora = horaCita.split(":")[0];
+        if (hora < 10 || hora > 18) {
+            e.target.value = '';
+            mostrarAlerta('Horario de trabajo: 10:00 a 18:00 horas', 'error', '.formulario');
+        } else {
+            cita.hora = e.target.value;
+        }
+    })
 }
 
 function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
