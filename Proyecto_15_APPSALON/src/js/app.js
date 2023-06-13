@@ -28,6 +28,7 @@ function main() {
     obtenerNombreCliente();
     obtenerFechaCita();
     obtenerHoraCita();
+    mostrarResumenCita();
 
 }
 
@@ -77,6 +78,7 @@ function botonesDelPaginador() {
         case 3:
             paginaAnterior.classList.remove('ocultar');
             paginaSiguiente.classList.add('ocultar');
+            mostrarResumenCita();
             break;
         default:
             break;
@@ -190,6 +192,64 @@ function obtenerHoraCita() {
             cita.hora = e.target.value;
         }
     })
+}
+
+function mostrarResumenCita() {
+    const resumen = document.querySelector('.contenido-resumen');
+    while (resumen.firstChild) {
+        resumen.removeChild(resumen.firstChild);
+    }
+
+    if (Object.values(cita).includes('') || cita.servicios.length === 0) {
+        mostrarAlerta('Faltan datos de Servicios, Fecha u Hora', 'error', '.contenido-resumen', false);
+
+        return;
+    }
+
+    const { nombre, fecha, hora, servicios } = cita;
+
+
+
+    const headingServicios = document.createElement('H3');
+    headingServicios.textContent = 'Resumen de Servicios';
+    resumen.appendChild(headingServicios);
+
+    servicios.forEach(servicio => {
+        const { id, precio, nombre } = servicio;
+        const contenedorServicio = document.createElement('DIV');
+        contenedorServicio.classList.add('contenedor-servicio');
+
+        const textoServicio = document.createElement('P');
+        textoServicio.textContent = nombre;
+
+        const precioServicio = document.createElement('P');
+        precioServicio.innerHTML = `<span>Precio:</span> $${precio}`;
+
+        contenedorServicio.appendChild(textoServicio);
+        contenedorServicio.appendChild(precioServicio);
+
+        resumen.appendChild(contenedorServicio);
+    });
+
+    const headingCita = document.createElement('H3');
+    headingCita.textContent = 'Resumen de Cita';
+    resumen.appendChild(headingCita);
+
+    const nombreCliente = document.createElement('P');
+    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
+
+
+    const fechaCita = document.createElement('P');
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+
+    const horaCita = document.createElement('P');
+    horaCita.innerHTML = `<span>Hora:</span> ${hora} Horas`;
+
+
+    resumen.appendChild(nombreCliente);
+    resumen.appendChild(fechaCita);
+    resumen.appendChild(horaCita);
+
 }
 
 function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
