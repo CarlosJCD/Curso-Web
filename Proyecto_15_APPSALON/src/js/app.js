@@ -195,9 +195,9 @@ function obtenerHoraCita() {
 }
 
 function mostrarResumenCita() {
-    const resumen = document.querySelector('.contenido-resumen');
-    while (resumen.firstChild) {
-        resumen.removeChild(resumen.firstChild);
+    const seccionResumen = document.querySelector('.contenido-resumen');
+    while (seccionResumen.firstChild) {
+        seccionResumen.removeChild(seccionResumen.firstChild);
     }
 
     if (Object.values(cita).includes('') || cita.servicios.length === 0) {
@@ -208,12 +208,40 @@ function mostrarResumenCita() {
 
     const { nombre, fecha, hora, servicios } = cita;
 
-
-
     const headingServicios = document.createElement('H3');
     headingServicios.textContent = 'Resumen de Servicios';
-    resumen.appendChild(headingServicios);
+    seccionResumen.appendChild(headingServicios);
 
+    desplegarServiciosEnElResumen(servicios, seccionResumen);
+
+    const headingCita = document.createElement('H3');
+    headingCita.textContent = 'Resumen de Cita';
+    seccionResumen.appendChild(headingCita);
+
+    const nombreCliente = document.createElement('P');
+    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
+
+    const fechaFormateada = formatearFecha(fecha);
+
+    const fechaCita = document.createElement('P');
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}`;
+
+    const horaCita = document.createElement('P');
+    horaCita.innerHTML = `<span>Hora:</span> ${hora} Horas`;
+
+    const botonReservar = document.createElement('BUTTON');
+    botonReservar.classList.add('boton');
+    botonReservar.textContent = 'Reservar Cita';
+
+    seccionResumen.appendChild(nombreCliente);
+    seccionResumen.appendChild(fechaCita);
+    seccionResumen.appendChild(horaCita);
+
+    seccionResumen.appendChild(botonReservar);
+
+}
+
+function desplegarServiciosEnElResumen(servicios, seccionResumen) {
     servicios.forEach(servicio => {
         const { id, precio, nombre } = servicio;
         const contenedorServicio = document.createElement('DIV');
@@ -228,32 +256,12 @@ function mostrarResumenCita() {
         contenedorServicio.appendChild(textoServicio);
         contenedorServicio.appendChild(precioServicio);
 
-        resumen.appendChild(contenedorServicio);
+        seccionResumen.appendChild(contenedorServicio);
     });
-
-    const headingCita = document.createElement('H3');
-    headingCita.textContent = 'Resumen de Cita';
-    resumen.appendChild(headingCita);
-
-    const nombreCliente = document.createElement('P');
-    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
-
-    const fechaFormateada = construirFecha(fecha);
-
-    const fechaCita = document.createElement('P');
-    fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}`;
-
-    const horaCita = document.createElement('P');
-    horaCita.innerHTML = `<span>Hora:</span> ${hora} Horas`;
-
-
-    resumen.appendChild(nombreCliente);
-    resumen.appendChild(fechaCita);
-    resumen.appendChild(horaCita);
-
 }
 
-function construirFecha(fecha) {
+
+function formatearFecha(fecha) {
     const fechaObj = new Date(fecha);
     const mes = fechaObj.getMonth();
     const dia = fechaObj.getDate() + 2;
