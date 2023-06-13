@@ -153,5 +153,20 @@ function seleccionarServicio(servicioSeleccionado) {
 
 function obtenerNombreCliente() {
     cita.nombre = document.querySelector('#nombre').value;
+}
 
+function obtenerFechaCita() {
+    const inputFecha = document.querySelector('#fecha');
+    inputFecha.addEventListener('input', function (e) {
+
+        const dia = new Date(e.target.value).getUTCDay();
+
+        if ([6, 0].includes(dia)) {
+            e.target.value = '';
+            mostrarAlerta('Fines de semana no permitidos', 'error', '.formulario');
+        } else {
+            cita.fecha = e.target.value;
+        }
+
+    });
 }
