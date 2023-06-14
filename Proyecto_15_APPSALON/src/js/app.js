@@ -274,8 +274,15 @@ function formatearFecha(fecha) {
 }
 
 async function reservarCita() {
+    const { nombre, fecha, hora, servicios } = cita;
+
+    const idServicios = servicios.map(servicio => servicio.id);
+
     const datos = new FormData();
-    datos.append('nombre', 'Carlos')
+    datos.append('nombre', nombre)
+    datos.append('fecha', fecha)
+    datos.append('hora', hora)
+    datos.append('servicios', idServicios)
 
     const url = "http://localhost/api/citas";
 
