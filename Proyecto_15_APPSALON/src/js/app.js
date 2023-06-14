@@ -275,11 +275,13 @@ function formatearFecha(fecha) {
 
 async function reservarCita() {
     const datos = new FormData();
+    datos.append('nombre', 'Carlos')
 
     const url = "http://localhost/api/citas";
 
     const response = await fetch(url, {
-        method: "POST"
+        method: "POST",
+        body: datos
     });
 
     const resultado = await response.json();
