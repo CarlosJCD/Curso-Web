@@ -12,4 +12,8 @@ class APIController
 
         echo json_encode($servicios);
     }
+
+    public static function guardar()
+    {
+    }
 }

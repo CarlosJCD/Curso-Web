@@ -273,9 +273,17 @@ function formatearFecha(fecha) {
     return fechaUTC.toLocaleDateString('es-MX', opciones);
 }
 
-function reservarCita() {
+async function reservarCita() {
     const datos = new FormData();
-    datos.append();
+
+    const url = "http://localhost/api/citas";
+
+    const response = await fetch(url, {
+        method: "POST"
+    });
+
+    const resultado = await response.json();
+
 
 }
 
