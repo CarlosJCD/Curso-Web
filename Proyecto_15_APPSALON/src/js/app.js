@@ -202,7 +202,6 @@ function obtenerHoraCita() {
 }
 
 function mostrarResumenCita() {
-    console.log(cita);
     const seccionResumen = document.querySelector('.contenido-resumen');
     while (seccionResumen.firstChild) {
         seccionResumen.removeChild(seccionResumen.firstChild);
@@ -291,15 +290,38 @@ async function reservarCita() {
     datos.append('fecha', fecha)
     datos.append('hora', hora)
     datos.append('servicios', idServicios)
+    const url = "http://appsalon.localhost/api/citas";
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            body: datos
+        });
 
-    const url = "http://localhost/api/citas";
+        const resultado = await response.json();
 
-    const response = await fetch(url, {
-        method: "POST",
-        body: datos
-    });
+        if (resultado.resultado) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Cita Creada',
+                text: 'Tu cita fue creada correctamente',
+                showConfirmButton: true
+            }).then(() => {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+            })
+        }
 
-    const resultado = await response.json();
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error al crear la cita',
+            text: 'Porfavor, intentelo de nuevo mas tarde',
+            showConfirmButton: true
+        })
+    }
+
+
 
 
 }

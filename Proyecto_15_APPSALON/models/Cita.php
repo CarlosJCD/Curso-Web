@@ -15,11 +15,11 @@ class Cita extends ActiveRecord
 
     public function __construct($args = [])
     {
-        foreach (self::$columnasDB as $columna => $valor) {
+        foreach (self::$columnasDB as $columna) {
             if ($columna === 'id') {
-                $this->id = $valor ?? null;
+                $this->id = $args[$columna] ?? null;
             } else {
-                $this->$columna = $valor ?? "";
+                $this->$columna = $args[$columna] ?? "";
             }
         }
     }
