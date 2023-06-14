@@ -2,7 +2,6 @@
 let paso = 1;
 const pasoInicial = 1;
 const pasoFinal = 3;
-const BASE_DIR = "/Curso-Web/Proyecto_15_APPSALON/public/index.php";
 
 const cita = {
     id: '',
@@ -112,7 +111,7 @@ function paginaSiguiente() {
 
 async function consultarAPI() {
     try {
-        const url = "http://appsalon.localhost/api/servicios";
+        const url = "/api/servicios";
         const resultado = await fetch(url);
         const servicios = await resultado.json();
         mostrarServicios(servicios);
@@ -290,7 +289,7 @@ async function reservarCita() {
     datos.append('fecha', fecha)
     datos.append('hora', hora)
     datos.append('servicios', idServicios)
-    const url = "http://appsalon.localhost/api/citas";
+    const url = "/api/citas";
     try {
         const response = await fetch(url, {
             method: "POST",
