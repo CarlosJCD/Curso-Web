@@ -6,7 +6,7 @@ include_once __DIR__ . "/../templates/alertas.php"
 
 ?>
 
-<form action="/crearCuenta" class="formulario" method="POST">
+<form class="formulario" method="POST">
     <div class="campo">
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre" placeholder="Tu nombre" name="nombre" value="<?php echo s($usuario->nombre) ?>" />

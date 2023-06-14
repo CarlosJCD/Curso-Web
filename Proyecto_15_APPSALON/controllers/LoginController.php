@@ -128,14 +128,11 @@ class LoginController
         $alertas = [];
 
         $token = s($_GET['token']);
+        $usuario = Usuario::where("token", $token);
 
-        if (!$token) {
+        if (!$token || empty($usuario)) {
             Usuario::setAlerta("error", "Token No Valido");
-        } else {
-            $usuario = Usuario::where("token", $token);
-            if (empty($usuario)) {
-                Usuario::setAlerta("error", "Token No Valido");
-            }
+            unset($usuario);
         }
         $alertas = Usuario::getAlertas();
 
