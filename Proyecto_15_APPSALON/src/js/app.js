@@ -110,7 +110,7 @@ function paginaSiguiente() {
 
 async function consultarAPI() {
     try {
-        const url = "http://localhost" + BASE_DIR + "/api/servicios";
+        const url = "https://localhost/api/servicios";
         const resultado = await fetch(url);
         const servicios = await resultado.json();
         mostrarServicios(servicios);
@@ -232,6 +232,7 @@ function mostrarResumenCita() {
     const botonReservar = document.createElement('BUTTON');
     botonReservar.classList.add('boton');
     botonReservar.textContent = 'Reservar Cita';
+    botonReservar.onclick = reservarCita;
 
     seccionResumen.appendChild(nombreCliente);
     seccionResumen.appendChild(fechaCita);
@@ -260,7 +261,6 @@ function desplegarServiciosEnElResumen(servicios, seccionResumen) {
     });
 }
 
-
 function formatearFecha(fecha) {
     const fechaObj = new Date(fecha);
     const mes = fechaObj.getMonth();
@@ -271,6 +271,12 @@ function formatearFecha(fecha) {
 
     const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
     return fechaUTC.toLocaleDateString('es-MX', opciones);
+}
+
+function reservarCita() {
+    const datos = new FormData();
+    datos.append();
+
 }
 
 function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
