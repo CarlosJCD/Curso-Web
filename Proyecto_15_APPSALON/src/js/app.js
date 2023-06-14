@@ -5,6 +5,7 @@ const pasoFinal = 3;
 const BASE_DIR = "/Curso-Web/Proyecto_15_APPSALON/public/index.php";
 
 const cita = {
+    id: '',
     nombre: '',
     fecha: '',
     hora: '',
@@ -25,6 +26,7 @@ function main() {
 
     consultarAPI();
 
+    obtenerIdCliente();
     obtenerNombreCliente();
     obtenerFechaCita();
     obtenerHoraCita();
@@ -110,7 +112,7 @@ function paginaSiguiente() {
 
 async function consultarAPI() {
     try {
-        const url = "https://localhost/api/servicios";
+        const url = "http://appsalon.localhost/api/servicios";
         const resultado = await fetch(url);
         const servicios = await resultado.json();
         mostrarServicios(servicios);
@@ -159,6 +161,11 @@ function seleccionarServicio(servicioSeleccionado) {
     }
 }
 
+function obtenerIdCliente() {
+    cita.id = document.querySelector('#id').value;
+
+}
+
 function obtenerNombreCliente() {
     cita.nombre = document.querySelector('#nombre').value;
 }
@@ -195,6 +202,7 @@ function obtenerHoraCita() {
 }
 
 function mostrarResumenCita() {
+    console.log(cita);
     const seccionResumen = document.querySelector('.contenido-resumen');
     while (seccionResumen.firstChild) {
         seccionResumen.removeChild(seccionResumen.firstChild);
@@ -274,12 +282,12 @@ function formatearFecha(fecha) {
 }
 
 async function reservarCita() {
-    const { nombre, fecha, hora, servicios } = cita;
+    const { id, fecha, hora, servicios } = cita;
 
     const idServicios = servicios.map(servicio => servicio.id);
 
     const datos = new FormData();
-    datos.append('nombre', nombre)
+    datos.append('usuarioId', id)
     datos.append('fecha', fecha)
     datos.append('hora', hora)
     datos.append('servicios', idServicios)
