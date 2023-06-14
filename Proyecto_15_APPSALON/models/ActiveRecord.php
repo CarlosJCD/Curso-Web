@@ -156,8 +156,12 @@ class ActiveRecord
         $query .= join("', '", array_values($atributos));
         $query .= " ') ";
 
+        // return [
+        //     "query" => $query
+        // ];
         // Resultado de la consulta
         $resultado = self::$db->query($query);
+
         return [
             'resultado' =>  $resultado,
             'id' => self::$db->insert_id
