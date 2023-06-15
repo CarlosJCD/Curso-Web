@@ -13,6 +13,7 @@ class APIController
         $servicios = Servicio::all();
         header('Content-Type: application/json');
         echo json_encode($servicios, JSON_UNESCAPED_UNICODE);
+
     }
 
     public static function guardar()
@@ -34,5 +35,6 @@ class APIController
 
         header('Content-Type: application/json');
         echo json_encode(['resultado' => $resultado], JSON_UNESCAPED_UNICODE);
+
     }
 }
