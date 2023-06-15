@@ -1,7 +1,26 @@
 <h1 class="nombre-pagina">Panel administracion</h1>
 
 <?php include_once __DIR__ . "/../templates/barra.php" ?>
+<?php
+function impimirDatosCita($cita)
+{
+    echo "
+    <li>
+    <p>ID: <span>$cita->id</span></p>
+    <p>Hora: <span> $cita->hora</span></p>
+    <p>Cliente: <span> $cita->cliente</span></p>
+    <p>Email: <span> $cita->email</span></p>
+    <p>Telefono: <span> $cita->telefono</span></p>
+    <h2>Servicios</h2>
+    ";
+}
 
+function mostrarPrecioTotal($totalCita)
+{
+    echo "<p class='total'>Total: <span>$totalCita</span></p>";
+}
+
+?>
 <h2>Buscar Citas</h2>
 <div class="busqueda">
     <form>
@@ -16,22 +35,19 @@
     <ul class="citas">
         <?php
         $idCita = "";
-        foreach ($citas as $cita) { ?>
-            <li>
-                <?php
-                if ($idCita != $cita->id) {
-                    $idCita = $cita->id; ?>
-                    <hr>
-                    <p>ID: <span><?php echo $cita->id ?></span></p>
-                    <p>Hora: <span><?php echo $cita->hora ?></span></p>
-                    <p>Cliente: <span><?php echo $cita->cliente ?></span></p>
-                    <p>Email: <span><?php echo $cita->email ?></span></p>
-                    <p>Telefono: <span><?php echo $cita->telefono ?></span></p>
-
-                    <h2>Servicios</h2>
-                <?php } ?>
-                <p class="servicio"><?php echo $cita->servicio . " " . $cita->precio; ?></p>
-            </li>
-        <?php } ?>
+        $totalCita = 0;
+        foreach ($citas as $key => $cita) { ?>
+            <?php
+            if ($idCita != $cita->id) {
+                if ($totalCita != 0) mostrarPrecioTotal($totalCita);
+                $idCita = $cita->id;
+                $totalCita = 0;
+                impimirDatosCita($cita);
+            }
+            ?>
+            <p class="servicio"><?php echo $cita->servicio . " " . $cita->precio; ?></p>
+            <?php $totalCita += $cita->precio ?>
+        <?php }
+        mostrarPrecioTotal($totalCita) ?>
     </ul>
 </div>
