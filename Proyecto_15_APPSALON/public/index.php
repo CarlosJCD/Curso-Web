@@ -6,6 +6,7 @@ use Controllers\AdminController;
 use Controllers\APIController;
 use Controllers\CitaController;
 use Controllers\LoginController;
+use Controllers\ServiciosController;
 use MVC\Router;
 
 $router = new Router();
@@ -38,7 +39,12 @@ $router->post('/api/citas', [APIController::class, 'guardar']);
 $router->post('/api/eliminar', [APIController::class, 'eliminar']);
 
 
-
+$router->get('/servicios', [ServiciosController::class, 'index']);
+$router->get('/servicios/crear', [ServiciosController::class, 'crear']);
+$router->post('/servicios/crear', [ServiciosController::class, 'crear']);
+$router->get('/servicios/actualizar', [ServiciosController::class, 'actualizar']);
+$router->post('/servicios/actualizar', [ServiciosController::class, 'actualizar']);
+$router->post('/servicios/eliminar', [ServiciosController::class, 'eliminar']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
