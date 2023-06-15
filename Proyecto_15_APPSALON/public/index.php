@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\AdminController;
 use Controllers\APIController;
 use Controllers\CitaController;
 use Controllers\LoginController;
@@ -9,30 +10,31 @@ use MVC\Router;
 
 $router = new Router();
 
-$router->get('/', [LoginController::class, 'login'], false);
-$router->post('/', [LoginController::class, 'login'], false);
+$router->get('/', [LoginController::class, 'login']);
+$router->post('/', [LoginController::class, 'login']);
 
-$router->get('/logout', [LoginController::class, 'logout'], false);
-$router->post('/logout', [LoginController::class, 'logout'], false);
+$router->get('/logout', [LoginController::class, 'logout']);
+$router->post('/logout', [LoginController::class, 'logout']);
 
-$router->get('/crearCuenta', [LoginController::class, 'crearCuenta'], false);
-$router->post('/crearCuenta', [LoginController::class, 'crearCuenta'], false);
+$router->get('/crearCuenta', [LoginController::class, 'crearCuenta']);
+$router->post('/crearCuenta', [LoginController::class, 'crearCuenta']);
 
-$router->get('/confirmarCuenta', [LoginController::class, 'confirmarCuenta'], false);
+$router->get('/confirmarCuenta', [LoginController::class, 'confirmarCuenta']);
 
-$router->get('/olvidaContraseña', [LoginController::class, 'olvidaContraseña'], false);
-$router->post('/olvidaContraseña', [LoginController::class, 'olvidaContraseña'], false);
+$router->get('/olvidaContraseña', [LoginController::class, 'olvidaContraseña']);
+$router->post('/olvidaContraseña', [LoginController::class, 'olvidaContraseña']);
 
-$router->get('/cambiarContraseña', [LoginController::class, 'cambiarContraseña'], false);
-$router->post('/cambiarContraseña', [LoginController::class, 'cambiarContraseña'], false);
+$router->get('/cambiarContraseña', [LoginController::class, 'cambiarContraseña']);
+$router->post('/cambiarContraseña', [LoginController::class, 'cambiarContraseña']);
 
-$router->get('/mensaje', [LoginController::class, 'mensaje'], false);
+$router->get('/mensaje', [LoginController::class, 'mensaje']);
 
-$router->get('/cita', [CitaController::class, 'index'], false);
+$router->get('/cita', [CitaController::class, 'index']);
+$router->get('/admin', [AdminController::class, 'index']);
 
-$router->get('/api/servicios', [APIController::class, 'index'], false);
+$router->get('/api/servicios', [APIController::class, 'index']);
 
-$router->post('/api/citas', [APIController::class, 'guardar'], false);
+$router->post('/api/citas', [APIController::class, 'guardar']);
 
 
 
