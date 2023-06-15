@@ -15,9 +15,15 @@ function impimirDatosCita($cita)
     ";
 }
 
-function mostrarPrecioTotal($totalCita)
+function finDeCita($totalCita, $citaId)
 {
-    echo "<p class='total'>Total: <span>$totalCita</span></p>";
+    echo "
+    <p class='total'>Total: <span>$totalCita</span></p>
+    <form action='/api/eliminar' method='POST'>
+        <input type='hidden' name='id' value='$citaId'>
+        <input type='submit' class='boton-eliminar' value='Eliminar Cita'>
+    </form>
+    ";
 }
 
 ?>
@@ -40,7 +46,7 @@ function mostrarPrecioTotal($totalCita)
             foreach ($citas as $key => $cita) { ?>
                 <?php
                 if ($idCita != $cita->id) {
-                    if ($totalCita != 0) mostrarPrecioTotal($totalCita);
+                    if ($totalCita != 0) finDeCita($totalCita, $idCita);
                     $idCita = $cita->id;
                     $totalCita = 0;
                     impimirDatosCita($cita);
@@ -49,12 +55,14 @@ function mostrarPrecioTotal($totalCita)
                 <p class="servicio"><?php echo $cita->servicio . " " . $cita->precio; ?></p>
                 <?php $totalCita += $cita->precio ?>
         <?php }
-            mostrarPrecioTotal($totalCita);
+            finDeCita($totalCita, $idCita);
         } else {
             echo "<h2>No hay citas registradas en esta fecha</h2>";
         }
         ?>
     </ul>
+
+
 </div>
 <?php
 
