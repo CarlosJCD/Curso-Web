@@ -15,17 +15,17 @@ class LoginController
             $auth = new Usuario($_POST);
             $alertas = $auth->validarLogin();
             if (empty($alertas)) {
+                session_start();
                 $usuario = Usuario::where('email', $auth->email);
-                if (!isset($_SESSION)) {
-                    session_start();
-                }
                 $_SESSION['id'] = $usuario->id;
                 $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
                 $_SESSION['email'] = $usuario->email;
                 $_SESSION['login'] = true;
 
-                if ($usuario->admin === "1") {
+                if ($usuario->admin == "1") {
                     $_SESSION['admin'] = $usuario->admin;
+                    header("Location: /admin");
+                    return;
                 }
 
                 header("Location: /cita");
@@ -38,6 +38,9 @@ class LoginController
 
     public static function logout()
     {
+        session_start();
+        $_SESSION = [];
+        header("Location: /");
     }
 
     public static function crearCuenta(Router $router)

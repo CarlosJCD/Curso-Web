@@ -37,4 +37,13 @@ class APIController
         echo json_encode(['resultado' => $resultado], JSON_UNESCAPED_UNICODE);
 
     }
+
+    public static function eliminar()
+    {
+        $id = $_POST['id'];
+
+        $cita = Cita::find($id);
+        $cita->eliminar();
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+    }
 }

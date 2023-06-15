@@ -6,39 +6,20 @@ class Router
 {
     public array $getRoutes = [];
     public array $postRoutes = [];
-    public array $rutasProtegidas = [];
 
-    public function get($url, $fn, bool $esProtegida)
+    public function get($url, $fn)
     {
         $this->getRoutes[$url] = $fn;
-        if ($esProtegida) {
-            $this->insertarRutaProtegida($url);
-        }
     }
 
-    public function post($url, $fn, bool $esProtegida)
+    public function post($url, $fn)
     {
         $this->postRoutes[$url] = $fn;
-        if ($esProtegida) {
-            $this->insertarRutaProtegida($url);
-        }
     }
 
-    private function insertarRutaProtegida($url)
-    {
-        $this->rutasProtegidas[] = $url;
-    }
 
     public function comprobarRutas()
     {
-
-        // Proteger Rutas...
-        //session_start();
-
-        // Arreglo de rutas protegidas...
-        // $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
-
-        // $auth = $_SESSION['login'] ?? null;
 
         $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
 
