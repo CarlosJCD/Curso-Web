@@ -9,6 +9,9 @@ class AdminController
 {
     public static function index(Router $router)
     {
+        session_start();
+        isAdmin();
+
         $fecha = $_GET['fecha'] ?? date('Y-m-d');
         $arrayFecha = explode('-', $fecha);
 
@@ -30,7 +33,6 @@ class AdminController
         $citas = AdminCita::query($consulta);
 
 
-        session_start();
         $router->render("admin/index", [
             "nombre" => $_SESSION['nombre'],
             "citas" => $citas,
