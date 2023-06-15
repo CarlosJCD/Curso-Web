@@ -135,6 +135,10 @@ class ActiveRecord
         $resultado = self::consultarSQL($query);
         return array_shift($resultado);
     }
+    public static function query($query)
+    {
+        return self::consultarSQL($query);
+    }
 
     public static function get($limite)
     {
