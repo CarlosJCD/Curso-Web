@@ -32,6 +32,8 @@ $router->get('/cita', [CitaController::class, 'index'], false);
 
 $router->get('/api/servicios', [APIController::class, 'index'], false);
 
+$router->post('/api/citas', [APIController::class, 'guardar'], false);
+
 
 
 
