@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\Servicio;
 use MVC\Router;
 
 class ServiciosController
@@ -32,11 +33,20 @@ class ServiciosController
         session_start();
         isAdmin();
 
+        $servicio = new Servicio;
+        $alertas = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $servicio->sincronizar($_POST);
+            $alertas = $servicio->validar();
+            if (empty($alertas)) {
+                $servicio->guardar();
+                header("Location: /");
+            }
         }
 
         $router->render("servicios/actualizar", [
-            "nombre" => $_SESSION['nombre']
+            "nombre" => $_SESSION['nombre'],
+            "servicio" => $servicio
         ]);
     }
     public static function eliminar(Router $router)

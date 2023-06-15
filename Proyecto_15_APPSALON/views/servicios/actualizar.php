@@ -3,3 +3,7 @@
 include_once __DIR__ . "/../templates/barra.php";
 ?>
 <p class="descripcion-pagina">Modifica los valores que desees cambiar del servicio.</p>
+<form action="/servicios/actualizar" method="POST" class="formulario">
+    <?php include_once __DIR__ . "/formulario.php"; ?>
+    <input type="submit" class="boton" value="Registrar Servicio">
+</form>
