@@ -9,7 +9,14 @@ class AdminController
 {
     public static function index(Router $router)
     {
-        $fecha = date("Y-m-d");
+        $fecha = $_GET['fecha'] ?? date('Y-m-d');
+        $arrayFecha = explode('-', $fecha);
+
+        if (!checkdate($arrayFecha[1], $arrayFecha[2], $arrayFecha[0])) {
+            header("Location: /admin");
+        }
+
+
         $consulta = "SELECT citas.id, citas.hora, CONCAT( usuarios.nombre, ' ', usuarios.apellido) as cliente, ";
         $consulta .= " usuarios.email, usuarios.telefono, servicios.nombre as servicio, servicios.precio  ";
         $consulta .= " FROM citas  ";

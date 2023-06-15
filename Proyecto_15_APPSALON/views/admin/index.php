@@ -34,21 +34,26 @@ function mostrarPrecioTotal($totalCita)
 <div class="citas-admin">
     <ul class="citas">
         <?php
-        $idCita = "";
-        $totalCita = 0;
-        foreach ($citas as $key => $cita) { ?>
-            <?php
-            if ($idCita != $cita->id) {
-                if ($totalCita != 0) mostrarPrecioTotal($totalCita);
-                $idCita = $cita->id;
-                $totalCita = 0;
-                impimirDatosCita($cita);
-            }
-            ?>
-            <p class="servicio"><?php echo $cita->servicio . " " . $cita->precio; ?></p>
-            <?php $totalCita += $cita->precio ?>
+        if ($citas) {
+            $idCita = "";
+            $totalCita = 0;
+            foreach ($citas as $key => $cita) { ?>
+                <?php
+                if ($idCita != $cita->id) {
+                    if ($totalCita != 0) mostrarPrecioTotal($totalCita);
+                    $idCita = $cita->id;
+                    $totalCita = 0;
+                    impimirDatosCita($cita);
+                }
+                ?>
+                <p class="servicio"><?php echo $cita->servicio . " " . $cita->precio; ?></p>
+                <?php $totalCita += $cita->precio ?>
         <?php }
-        mostrarPrecioTotal($totalCita) ?>
+            mostrarPrecioTotal($totalCita);
+        } else {
+            echo "<h2>No hay citas registradas en esta fecha</h2>";
+        }
+        ?>
     </ul>
 </div>
 <?php
