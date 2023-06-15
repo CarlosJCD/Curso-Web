@@ -20,10 +20,11 @@ class AdminController
         $consulta .= " ON servicios.id=citasServicios.servicioId ";
         $citas = AdminCita::query($consulta);
 
-        debuguear($citas);
+
         session_start();
         $router->render("admin/index", [
-            "nombre" => $_SESSION['nombre']
+            "nombre" => $_SESSION['nombre'],
+            'citas' => $citas
         ]);
     }
 }
