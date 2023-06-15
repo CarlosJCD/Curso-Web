@@ -34,6 +34,16 @@ CREATE TABLE `citas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `citas`
+--
+
+LOCK TABLES `citas` WRITE;
+/*!40000 ALTER TABLE `citas` DISABLE KEYS */;
+INSERT INTO `citas` VALUES (14,'2023-06-14','16:13:00',8),(15,'2023-06-15','17:21:00',9),(17,'2023-02-15','10:30:00',8),(19,'2023-02-15','10:30:00',8),(20,'2023-06-14','17:10:00',9),(21,'2023-06-14','17:12:00',9);
+/*!40000 ALTER TABLE `citas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `citasServicios`
 --
 
@@ -53,6 +63,16 @@ CREATE TABLE `citasServicios` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `citasServicios`
+--
+
+LOCK TABLES `citasServicios` WRITE;
+/*!40000 ALTER TABLE `citasServicios` DISABLE KEYS */;
+INSERT INTO `citasServicios` VALUES (1,14,1),(2,14,2),(3,15,1),(4,19,2),(5,20,2),(6,21,1),(7,21,7),(8,21,8);
+/*!40000 ALTER TABLE `citasServicios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `servicios`
 --
 
@@ -66,6 +86,16 @@ CREATE TABLE `servicios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `servicios`
+--
+
+LOCK TABLES `servicios` WRITE;
+/*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
+INSERT INTO `servicios` VALUES (1,'Corte de Cabello Mujer',90.00),(2,'Corte de Cabello Hombre',80.00),(3,'Corte de Cabello Niño',60.00),(4,'Peinado Mujer',80.00),(5,'Peinado Hombre',60.00),(6,'Peinado Niño',60.00),(7,'Tinte Mujer',300.00),(8,'Uñas',400.00),(9,'Lavado de Cabello',50.00),(10,'Tratamiento Capilar',150.00),(11,'Corte de Barba',60.00);
+/*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `usuarios`
@@ -87,6 +117,16 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (8,' Carlos ','Calderon','correo@correo.com','9999038088',1,1,'','$2y$10$ESU5t6456ib/4ecKl1puNuUHU7CWJJSw0mbTC4ro5AuHdsvBfS4em'),(9,' Elizabeth','Delgado','correo@ejemplo.com','9999102104',0,1,'6487739e6933d','$2y$10$eWQ83nxPuba54MQGVmu.1eoj8w3Ahf3/TGIDXaTrOtRHHqvQI18WW');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'appsalon'
