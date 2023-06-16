@@ -35,8 +35,11 @@ class LoginController
     {
     }
 
-    public static function olvidaPassword()
+    public static function olvidaPassword(Router $router)
     {
+        $router->render('auth/olvidaPassword', [
+            'titulo' => "Reestablece Contraseña"
+        ]);
     }
 
     public static function restablecePassword()
