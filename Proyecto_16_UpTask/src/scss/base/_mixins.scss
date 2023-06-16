@@ -6,11 +6,13 @@
         @content;
     }
 }
+
 @mixin tablet {
     @media (min-width: v.$tablet) {
         @content;
     }
 }
+
 @mixin desktop {
     @media (min-width: v.$desktop) {
         @content;
@@ -31,11 +33,13 @@
     text-align: center;
     display: block;
     width: 100%;
+
     @include tablet {
         width: auto;
     }
+
     &:hover {
-        background-color: darken( $bgColor, 10% );
+        background-color: darken($bgColor, 10%);
         cursor: pointer;
     }
 }
@@ -44,4 +48,16 @@
     display: grid;
     gap: $espaciado;
     grid-template-columns: repeat($columnas, 1fr);
+}
+
+@mixin textoDegradado($color) {
+    background: linear-gradient(to right, $color 0%, lighten($color, 30%) 100%);
+    color: transparent;
+    text-align: center;
+    background-clip: text;
+    font-size: 7rem;
+
+    @include tablet {
+        font-size: 10rem;
+    }
 }

@@ -1,4 +1,4 @@
-<div class="contenedor">
+<div class="contenedor crear">
     <?php include_once __DIR__ . "/../templates/nombre-sitio.php" ?>
 
     <div class="contenedor-sm">
@@ -23,7 +23,7 @@
             <input type="submit" class="boton" value="Crear cuenta">
         </form>
         <div class="acciones">
-            <a href="/crearCuenta">Ya tengo una cuenta (Iniciar Sesion)</a>
+            <a href="/">Ya tengo una cuenta</a>
             <a href="/olvidaPassword">Olvidé mi contraseña</a>
         </div>
     </div>

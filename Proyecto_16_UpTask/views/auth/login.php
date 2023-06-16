@@ -1,4 +1,4 @@
-<div class="contenedor crear">
+<div class="contenedor login">
 
     <?php include_once __DIR__ . "/../templates/nombre-sitio.php" ?>
 
