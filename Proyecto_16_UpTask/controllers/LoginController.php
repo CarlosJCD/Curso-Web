@@ -42,7 +42,10 @@ class LoginController
         ]);
     }
 
-    public static function restablecePassword()
+    public static function restablecePassword(Router $router)
     {
+        $router->render('auth/reestablecePassword', [
+            'titulo' => "Reestablece Contraseña"
+        ]);
     }
 }
