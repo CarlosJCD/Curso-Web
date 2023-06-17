@@ -1,7 +1,12 @@
 <div class="contenedor crear">
+
     <?php include_once __DIR__ . "/../templates/nombre-sitio.php" ?>
+
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Crea tu cuenta</p>
+
+        <?php include_once __DIR__ . '/../templates/alertas.php' ?>
+
         <form class="formulario" method="post">
             <div class="campo">
                 <label for="nombre">Nombre</label>

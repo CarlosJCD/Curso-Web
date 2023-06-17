@@ -33,7 +33,8 @@ class LoginController
         $router->render('auth/crearCuenta', [
             'titulo' => "Crear cuenta",
             'usuario' => $usuario,
-            'alertas' => $alertas ?? []
+            'errores' => $alertas['error'] ?? [],
+            'exitos' => $alertas['exito'] ?? []
         ]);
     }
 
