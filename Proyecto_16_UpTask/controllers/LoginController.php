@@ -76,9 +76,14 @@ class LoginController
             $usuario = new Usuario($_POST);
             $alertas = $usuario->validarCambiarContraseña();
             if (empty($alertas)) {
+
                 $usuario = Usuario::where('email', $usuario->email);
                 $usuario->token = uniqid();
                 $usuario->guardar();
+
+                $email = new Email(nombre: $usuario->nombre, email: $usuario->email, token: $usuario->token);
+                $email->emailReestablecerContraseña();
+
                 $alertas['exito'][] = "Se ha enviado un email para reestablecer tu contraseña";
             }
         }
