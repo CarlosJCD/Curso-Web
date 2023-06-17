@@ -46,11 +46,12 @@ class Usuario extends ActiveRecord
             return self::$alertas;
         }
         $usuarioExistente = Usuario::where('email', $this->email);
-        if (!$usuarioExistente) {
+        if (!$usuarioExistente || $usuarioExistente->confirmado != '1') {
             self::$alertas['error'][] = 'Email no registrado!';
         }
         return self::$alertas;
     }
+
 
     private function camposValidosCuentaNueva($validacionPassword): bool
     {
