@@ -71,8 +71,19 @@ class LoginController
 
     public static function olvidaPassword(Router $router)
     {
+        $alertas = [];
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $usuario = new Usuario($_POST);
+            $alertas = $usuario->validarCambiarContraseña();
+            if (empty($alertas)) {
+                $alertas['exito'][] = "Se ha enviado un email para reestablecer tu contraseña";
+            }
+        }
+
         $router->render('auth/olvidaPassword', [
-            'titulo' => "Reestablece Contraseña"
+            'titulo' => "Reestablece Contraseña",
+            'errores' => $alertas['error'] ?? [],
+            'exitos' => $alertas['exito'] ?? []
         ]);
     }
 

@@ -26,6 +26,32 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    public function crearCuenta()
+    {
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+
+        $this->token = uniqid();
+
+        return $this->guardar();
+    }
+
+    public function validarCambiarContraseña()
+    {
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El Email del Usuario es Obligatorio';
+            return self::$alertas;
+        }
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            self::$alertas['error'][] = 'Email no valido';
+            return self::$alertas;
+        }
+        $usuarioExistente = Usuario::where('email', $this->email);
+        if (!$usuarioExistente) {
+            self::$alertas['error'][] = 'Email no registrado!';
+        }
+        return self::$alertas;
+    }
+
     private function camposValidosCuentaNueva($validacionPassword): bool
     {
         if (!$this->nombre) {
@@ -53,14 +79,5 @@ class Usuario extends ActiveRecord
         if ($usuarioExistente) {
             self::$alertas['error'][] = 'El correo electronico ya ha sido registrado en otra cuenta';
         }
-    }
-
-    public function crearCuenta()
-    {
-        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
-
-        $this->token = uniqid();
-
-        return $this->guardar();
     }
 }
