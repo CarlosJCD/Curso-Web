@@ -1,0 +1,35 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.formulario {
+    margin-top: 5rem;
+
+    .campo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+
+        label {
+            flex: 0 0 10rem;
+        }
+
+        input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            background-color: lighten($color: v.$gris, $amount: 40%);
+        }
+    }
+}
+
+.tagline {
+    font-family: v.$fuente_headings;
+    font-weight: 900;
+    color: v.$negro;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.descripcion-pagina {
+    text-align: center;
+}
