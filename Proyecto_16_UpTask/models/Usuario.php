@@ -21,7 +21,7 @@ class Usuario extends ActiveRecord
     public function validarNuevaCuenta($validacionPassword)
     {
         if (!$this->camposValidosCuentaNueva($validacionPassword)) {
-            $this->validarSiYaExiste();
+            $this->validarSiYaExisteElUsuario();
         }
         return self::$alertas;
     }
@@ -35,7 +35,7 @@ class Usuario extends ActiveRecord
         return $this->guardar();
     }
 
-    public function validarCambiarContraseña()
+    public function validarEmailExistente()
     {
         if (!$this->email) {
             self::$alertas['error'][] = 'El Email del Usuario es Obligatorio';
@@ -52,6 +52,17 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    public function validarContraseñaNueva()
+    {
+        if (!$this->password) {
+            self::$alertas['error'][] = 'El Password no puede ir vacio';
+            return self::$alertas;
+        }
+        if (strlen($this->password) < 6) {
+            self::$alertas['error'][] = 'El password debe contener al menos 6 caracteres';
+        }
+        return self::$alertas;
+    }
 
     private function camposValidosCuentaNueva($validacionPassword): bool
     {
@@ -74,7 +85,7 @@ class Usuario extends ActiveRecord
         return !empty(self::$alertas);
     }
 
-    private function validarSiYaExiste()
+    private function validarSiYaExisteElUsuario()
     {
         $usuarioExistente = self::where('email', $this->email);
         if ($usuarioExistente) {

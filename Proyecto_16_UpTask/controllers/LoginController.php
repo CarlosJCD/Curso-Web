@@ -74,7 +74,7 @@ class LoginController
         $alertas = [];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $usuario = new Usuario($_POST);
-            $alertas = $usuario->validarCambiarContraseña();
+            $alertas = $usuario->validarEmailExistente();
             if (empty($alertas)) {
 
                 $usuario = Usuario::where('email', $usuario->email);
@@ -102,7 +102,21 @@ class LoginController
         if (!$token || empty($usuario)) {
             header('Location: /');
         }
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $usuario->sincronizar($_POST);
+            $alertas = $usuario->validarContraseñaNueva();
+            if (empty($alertas)) {
+                $usuario->password = password_hash($usuario->password, PASSWORD_BCRYPT);
+
+                $usuario->token = '';
+
+                $resultado = $usuario->guardar();
+
+                if ($resultado) {
+                    header('Location: /');
+                }
+            }
         }
         $router->render('auth/reestablecePassword', [
             'titulo' => "Reestablece Contraseña",
