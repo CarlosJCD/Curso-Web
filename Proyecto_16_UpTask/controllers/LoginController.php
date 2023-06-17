@@ -34,8 +34,11 @@ class LoginController
         ]);
     }
 
-    public static function confirmarCuenta()
+    public static function confirmarCuenta(Router $router)
     {
+        $router->render('auth/confirmarCuenta', [
+            'titulo' => "Cuenta confirmada"
+        ]);
     }
 
     public static function olvidaPassword(Router $router)

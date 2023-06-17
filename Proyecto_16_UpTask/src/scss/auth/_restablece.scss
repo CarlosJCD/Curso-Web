@@ -2,6 +2,8 @@
 @use 'base/mixins' as m;
 
 .restablece {
+    margin-top: 5rem;
+
     .uptask {
         @include m.textoDegradado(v.$azul);
 

@@ -2,6 +2,8 @@
 @use 'base/mixins' as m;
 
 .login {
+    margin-top: 5rem;
+
     .uptask {
         @include m.textoDegradado(v.$cyan);
 
