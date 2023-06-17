@@ -54,4 +54,13 @@ class Usuario extends ActiveRecord
             self::$alertas['error'][] = 'El correo electronico ya ha sido registrado en otra cuenta';
         }
     }
+
+    public function crearCuenta()
+    {
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+
+        $this->token = uniqid();
+
+        return $this->guardar();
+    }
 }

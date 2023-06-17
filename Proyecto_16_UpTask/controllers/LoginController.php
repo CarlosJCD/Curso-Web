@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use AllowDynamicProperties;
+use Classes\Email;
 use Model\Usuario;
 use MVC\Router;
 
@@ -28,6 +28,11 @@ class LoginController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $usuario->sincronizar($_POST['cuenta']);
             $alertas = $usuario->validarNuevaCuenta($_POST['confirmarPassword']);
+            if (empty($alertas) && $usuario->crearCuenta()) {
+                $email = new Email(nombre: $usuario->nombre, email: $usuario->email, token: $usuario->token);
+                $email->enviarConfirmacion();
+                header('Location: /mensajeConfirmarCuenta');
+            }
         }
 
         $router->render('auth/crearCuenta', [
