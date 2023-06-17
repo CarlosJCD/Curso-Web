@@ -20,6 +20,14 @@ class Usuario extends ActiveRecord
 
     public function validarNuevaCuenta($validacionPassword)
     {
+        if (!$this->camposValidosCuentaNueva($validacionPassword)) {
+            $this->validarSiYaExiste();
+        }
+        return self::$alertas;
+    }
+
+    private function camposValidosCuentaNueva($validacionPassword): bool
+    {
         if (!$this->nombre) {
             self::$alertas['error'][] = 'El Nombre del Usuario es Obligatorio';
         }
@@ -35,6 +43,15 @@ class Usuario extends ActiveRecord
         if ($this->password !== $validacionPassword) {
             self::$alertas['error'][] = 'Los password son diferentes';
         }
-        return self::$alertas;
+
+        return !empty(self::$alertas);
+    }
+
+    private function validarSiYaExiste()
+    {
+        $usuarioExistente = self::where('email', $this->email);
+        if ($usuarioExistente) {
+            self::$alertas['error'][] = 'El correo electronico ya ha sido registrado en otra cuenta';
+        }
     }
 }
