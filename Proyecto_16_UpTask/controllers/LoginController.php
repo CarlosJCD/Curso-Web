@@ -51,8 +51,21 @@ class LoginController
 
     public static function confirmarCuenta(Router $router)
     {
+        $token = s($_GET['token'] ?? '');
+        $usuario = Usuario::where('token', $token);
+        if (!$token || empty($usuario)) {
+            Usuario::setAlerta('error', 'Token invalido');
+        } else {
+            $usuario->confirmado = 1;
+            $usuario->token = "";
+            $usuario->guardar();
+            Usuario::setAlerta('exito', "¡Felicidades, has creado exitosamente tu cuenta de uptask!");
+        }
+        $alertas = Usuario::getAlertas();
         $router->render('auth/confirmarCuenta', [
-            'titulo' => "Cuenta confirmada"
+            'titulo' => "Cuenta confirmada",
+            'errores' => $alertas['error'] ?? [],
+            'exitos' => $alertas['exito'] ?? []
         ]);
     }
 
