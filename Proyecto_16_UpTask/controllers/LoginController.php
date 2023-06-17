@@ -34,7 +34,6 @@ class LoginController
             'titulo' => "Crear cuenta",
             'usuario' => $usuario,
             'errores' => $alertas['error'] ?? [],
-            'exitos' => $alertas['exito'] ?? []
         ]);
     }
 

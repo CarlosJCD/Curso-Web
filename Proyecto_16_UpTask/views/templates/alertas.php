@@ -11,11 +11,11 @@ function desplegarExito($exito)
     echo "<div class='alerta exito'>$exito</div>";
 }
 
-if ($errores) {
+if (isset($errores) && !empty($errores)) {
     foreach ($errores as $error) {
         desplegarError($error);
     }
-} elseif ($exitos) {
+} elseif (isset($exitos) && !empty($exitos)) {
     foreach ($exitos as $exito) {
         desplegarExito($exito);
     }
