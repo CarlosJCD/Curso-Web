@@ -27,8 +27,11 @@ class LoginController
         ]);
     }
 
-    public static function mensajeConfirmarCuenta()
+    public static function mensajeConfirmarCuenta(Router $router)
     {
+        $router->render('auth/mensajeConfirmarCuenta', [
+            'titulo' => "Confirma tu cuenta"
+        ]);
     }
 
     public static function confirmarCuenta()
