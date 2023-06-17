@@ -64,6 +64,25 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    public function validacionLogin()
+    {
+        if ($this->camposValidosLogin()) return self::$alertas;
+
+        $usuarioExistente = self::where('email', $this->email);
+        if (!$usuarioExistente) {
+            self::$alertas['error'][] = 'Correo o Contraseña incorrecto';
+            return self::$alertas;
+        }
+        if ($usuarioExistente->confirmado != '1') {
+            self::$alertas['error'][] = 'Cuenta no confirmada';
+            return self::$alertas;
+        }
+        if (!password_verify($this->password, $usuarioExistente->password)) {
+            self::$alertas['error'][] = 'Correo o Contraseña incorrecto';
+        }
+        return self::$alertas;
+    }
+
     private function camposValidosCuentaNueva($validacionPassword): bool
     {
         if (!$this->nombre) {
@@ -82,6 +101,17 @@ class Usuario extends ActiveRecord
             self::$alertas['error'][] = 'Los password son diferentes';
         }
 
+        return !empty(self::$alertas);
+    }
+
+    private function camposValidosLogin(): bool
+    {
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El Email del Usuario es Obligatorio';
+        }
+        if (!$this->password) {
+            self::$alertas['error'][] = 'El Password no puede ir vacio';
+        }
         return !empty(self::$alertas);
     }
 

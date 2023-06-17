@@ -4,6 +4,7 @@
 
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Iniciar Sesion</p>
+        <?php include_once __DIR__ . "/../templates/alertas.php" ?>
         <form class="formulario" method="post">
             <div class="campo">
                 <label for="email">Email</label>
