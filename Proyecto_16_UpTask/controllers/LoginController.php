@@ -97,8 +97,17 @@ class LoginController
 
     public static function restablecePassword(Router $router)
     {
+        $token = s($_GET['token'] ?? '');
+        $usuario = Usuario::where('token', $token);
+        if (!$token || empty($usuario)) {
+            header('Location: /');
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        }
         $router->render('auth/reestablecePassword', [
-            'titulo' => "Reestablece Contraseña"
+            'titulo' => "Reestablece Contraseña",
+            'errores' => $alertas['error'] ?? [],
+            'exitos' => $alertas['exito'] ?? []
         ]);
     }
 }
