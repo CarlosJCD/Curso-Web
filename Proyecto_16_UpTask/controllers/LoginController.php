@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+use AllowDynamicProperties;
+use Model\Usuario;
 use MVC\Router;
 
 class LoginController
@@ -22,8 +24,16 @@ class LoginController
 
     public static function crearCuenta(Router $router)
     {
+        $usuario =  new Usuario();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $usuario->sincronizar($_POST['cuenta']);
+            $alertas = $usuario->validarNuevaCuenta($_POST['confirmarPassword']);
+        }
+
         $router->render('auth/crearCuenta', [
-            'titulo' => "Crear cuenta"
+            'titulo' => "Crear cuenta",
+            'usuario' => $usuario,
+            'alertas' => $alertas ?? []
         ]);
     }
 
