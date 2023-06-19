@@ -28,6 +28,10 @@ $router->post("/restablecePassword", [LoginController::class, "restablecePasswor
 
 $router->get("/dashboard", [DashboardController::class, "index"]);
 
+$router->get("/crearProyecto", [DashboardController::class, "crearProyecto"]);
+
+$router->get("/perfil", [DashboardController::class, "perfil"]);
+
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
