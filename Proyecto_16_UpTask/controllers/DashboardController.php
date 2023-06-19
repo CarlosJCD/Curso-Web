@@ -23,9 +23,13 @@ class DashboardController
         session_start();
 
         isAuth();
+        $alertas = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        }
 
-        $router->render('dashboard/index', [
-            'titulo' => "Crear proyecto"
+        $router->render('dashboard/crearProyecto', [
+            'titulo' => "Crear proyecto",
+            'alertas' => $alertas
         ]);
     }
     public static function perfil(Router $router)
@@ -34,7 +38,7 @@ class DashboardController
 
         isAuth();
 
-        $router->render('dashboard/index', [
+        $router->render('dashboard/perfil', [
             'titulo' => "Perfil"
         ]);
     }
