@@ -1,8 +1,8 @@
 <aside class="sidebar">
     <h2>UpTask</h2>
     <nav class="sidebar-nav">
-        <a href="/dashboard">Proyectos</a>
-        <a href="/crear-proyecto">Crear proyecto</a>
-        <a href="/perfil">Perfil</a>
+        <a <?php echo ($titulo == 'Proyectos') ? 'class = "activo"' : ''; ?> href="/dashboard">Proyectos</a>
+        <a <?php echo ($titulo == 'Crear proyecto') ? 'class = "activo"' : ''; ?> href="/crear-proyecto">Crear proyecto</a>
+        <a <?php echo ($titulo == 'Perfil') ? 'class = "activo"' : ''; ?> href="/perfil">Perfil</a>
     </nav>
 </aside>

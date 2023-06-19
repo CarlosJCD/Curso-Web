@@ -13,6 +13,8 @@ class DashboardController
 
         isAuth();
 
-        $router->render('dashboard/index', []);
+        $router->render('dashboard/index', [
+            'titulo' => "Proyectos"
+        ]);
     }
 }
