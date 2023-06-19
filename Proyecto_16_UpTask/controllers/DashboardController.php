@@ -27,10 +27,17 @@ class DashboardController
         $alertas = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //debuguear($_POST);
             $proyecto = new Proyecto($_POST);
             $alertas = $proyecto->validarProyecto();
+
             if (empty($alertas)) {
+                $proyecto->url = md5(uniqid());
+
+                $proyecto->propietarioId = $_SESSION['id'];
+
+                $proyecto->guardar();
+
+                header("Location: /proyecto?url=" . $proyecto->url);
             }
         }
 
