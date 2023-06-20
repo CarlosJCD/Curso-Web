@@ -19,6 +19,29 @@
         transition-duration: 1200ms;
         transition-timing-function: ease-in-out;
         opacity: 0;
+        border-radius: 1rem;
+
+        legend {
+            font-size: 2rem;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .opciones {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .submit-nueva-tarea {
+            @include m.boton(v.$indigo, v.$blanco);
+        }
+
+        .cerrar-modal {
+            @include m.boton(v.$naranja, v.$blanco);
+
+        }
 
         &.animar {
             position: relative;
