@@ -13,10 +13,15 @@
                 <input type="text" name="tarea" placeholder="Añadir tarea al proyecto actual" id="tarea" />
             </div>
             <div class="opciones">
-                <input type="sumbit" class="submit-nueva-tarea" value="Añadir Tarea" />
+                <input type="submit" class="submit-nueva-tarea" value="Añadir Tarea">
                 <button type="button" class="cerrar-modal">Cancelar</button>
             </div>
         </form>`;
+        setTimeout(() => {
+            const formularioNuevaTarea = document.querySelector('.formulario');
+            formularioNuevaTarea.classList.add('animar');
+        }, 3000);
+
         document.querySelector('body').appendChild(modal);
     }
 })();
