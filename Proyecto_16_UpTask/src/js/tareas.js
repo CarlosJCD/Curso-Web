@@ -32,8 +32,22 @@
                     modal.remove();
                 }, 500);
             }
+            if (e.target.classList.contains('submit-nueva-tarea')) {
+                submitFormularioNuevaTarea();
+            }
         });
 
         document.querySelector('body').appendChild(modal);
     }
+
+    function submitFormularioNuevaTarea() {
+        const nombreTarea = document.querySelector('#tarea').value.trim();
+        console.log(nombreTarea);
+        if (nombreTarea === '') {
+            // Mostrar una alerta de error
+            console.log('El Nombre de la tarea es Obligatorio ');
+            return;
+        }
+    }
+
 })();
