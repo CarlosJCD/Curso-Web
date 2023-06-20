@@ -15,12 +15,16 @@
         padding: 2rem;
         margin: 0 auto;
         transform: translateY(-30rem);
-
+        transition-property: all;
+        transition-duration: 1200ms;
+        transition-timing-function: ease-in-out;
+        opacity: 0;
 
         &.animar {
             position: relative;
             top: 50%;
             transform: translateY(-50%);
+            opacity: 1;
         }
 
     }
