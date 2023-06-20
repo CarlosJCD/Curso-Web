@@ -11,19 +11,21 @@ class DashboardController
     public static function index(Router $router)
     {
         session_start();
-
         isAuth();
 
+        $proyectos = Proyecto::belongsTo("propietarioId", $_SESSION['id']);
+
         $router->render('dashboard/index', [
-            'titulo' => "Proyectos"
+            'titulo' => "Proyectos",
+            'proyectos' => $proyectos
         ]);
     }
 
     public static function crearProyecto(Router $router)
     {
         session_start();
-
         isAuth();
+
         $alertas = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -46,6 +48,7 @@ class DashboardController
             'errores' => $alertas['error'] ?? ''
         ]);
     }
+
     public static function proyecto(Router $router)
     {
         $proyecto = self::validarPropietarioProyecto();
@@ -59,8 +62,8 @@ class DashboardController
     private static function validarPropietarioProyecto()
     {
         session_start();
-
         isAuth();
+
         $url = s($_GET['url']);
         if (!$url) {
             header("Location: /dashboard");
@@ -76,7 +79,6 @@ class DashboardController
     public static function perfil(Router $router)
     {
         session_start();
-
         isAuth();
 
         $router->render('dashboard/perfil', [
