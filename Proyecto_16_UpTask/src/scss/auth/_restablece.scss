@@ -1,21 +1,21 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.login {
+.restablece {
     margin-top: 5rem;
 
     .uptask {
-        @include m.textoDegradado(v.$cyan);
+        @include m.textoDegradado(v.$azul);
 
     }
 
     input[type='submit'] {
-        @include m.boton(v.$cyan, v.$blanco);
+        @include m.boton(v.$azul, v.$blanco);
     }
 
     .acciones {
         a {
-            color: v.$cyan;
+            color: v.$azul;
         }
     }
 }

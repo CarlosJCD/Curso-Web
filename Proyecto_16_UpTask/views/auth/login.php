@@ -1,8 +1,10 @@
-<div class="contenedor crear">
-    <h1 class="uptask">UpTask</h1>
-    <p class="tagline">Crea y administra tus proyectos</p>
+<div class="contenedor login">
+
+    <?php include_once __DIR__ . "/../templates/nombre-sitio.php" ?>
+
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Iniciar Sesion</p>
+        <?php include_once __DIR__ . "/../templates/alertas.php" ?>
         <form class="formulario" method="post">
             <div class="campo">
                 <label for="email">Email</label>
