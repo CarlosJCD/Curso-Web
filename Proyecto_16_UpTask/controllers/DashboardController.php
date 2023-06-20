@@ -46,6 +46,33 @@ class DashboardController
             'errores' => $alertas['error'] ?? ''
         ]);
     }
+    public static function proyecto(Router $router)
+    {
+        $proyecto = self::validarPropietarioProyecto();
+
+
+        $router->render('dashboard/proyecto', [
+            'titulo' => $proyecto->proyecto
+        ]);
+    }
+
+    private static function validarPropietarioProyecto()
+    {
+        session_start();
+
+        isAuth();
+        $url = s($_GET['url']);
+        if (!$url) {
+            header("Location: /dashboard");
+        }
+
+        $proyecto = Proyecto::where('url', $url);
+        if (!$proyecto || ($proyecto->propietarioId != $_SESSION['id'])) {
+            header("Location: /dashboard");
+        }
+        return $proyecto;
+    }
+
     public static function perfil(Router $router)
     {
         session_start();
