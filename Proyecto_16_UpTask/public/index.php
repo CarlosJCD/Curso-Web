@@ -47,5 +47,5 @@ $router->post('/api/tarea/actualizar', [TareaController::class, 'actualizar']);
 $router->post('/api/tarea/eliminar', [TareaController::class, 'eliminar']);
 
 
-// Comprueba, valida y asigna las rutas a los respectivos metodos de los controladores
+// Valida y ejecuta las metodos de los controladores asociados a la ruta solicitada.
 $router->comprobarRutas();
