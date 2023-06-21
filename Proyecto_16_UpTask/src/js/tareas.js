@@ -1,4 +1,9 @@
 (function () {
+
+    obtenerTareasDelProyecto();
+
+
+
     const nuevaTareaBtn = document.querySelector('#agregar-tarea');
     nuevaTareaBtn.addEventListener('click', mostrarFormulario);
 
@@ -99,6 +104,26 @@
 
         const proyecto = Object.fromEntries(proyectoParams.entries());
         return proyecto.url;
+    }
+
+    async function obtenerTareasDelProyecto() {
+        try {
+            const url = `/api/tareas?url=${obtenerUrlDelProyecto()}`;
+            const respuesta = await fetch(url);
+
+            const resultado = await respuesta.json();
+
+            const { tareas } = resultado;
+
+            mostrarTareas(tareas);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function mostrarTareas(tareas) {
+        console.log(tareas);
     }
 
 })();

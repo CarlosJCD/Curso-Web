@@ -20,7 +20,7 @@ class TareaController
         $tareas = Tarea::belongsTo('proyectoId', $proyecto->id);
 
         header('Content-Type: application/json');
-        echo json_encode($tareas);
+        echo json_encode(['tareas' => $tareas]);
     }
     public static function crear()
     {
