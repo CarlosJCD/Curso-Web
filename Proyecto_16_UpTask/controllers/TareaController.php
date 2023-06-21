@@ -10,13 +10,14 @@ class TareaController
     public static function crear()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $array = [
-                'respuesta' => true,
-                'nombre' => $_POST['nombre']
+
+
+            $respuesta = [
+                'proyectoUrl' => $_POST['proyectoUrl']
             ];
 
             header('Content-Type: application/json');
-            echo json_encode($array, JSON_UNESCAPED_UNICODE);
+            echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
         }
     }
     public static function actualizar()
