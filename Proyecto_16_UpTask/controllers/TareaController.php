@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+use Model\Proyecto;
+
 class TareaController
 {
     public static function index()
@@ -10,12 +12,21 @@ class TareaController
     public static function crear()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            session_start();
+            $proyecto = Proyecto::where('url', $_POST['proyectoUrl']);
+            if (!$proyecto || ($proyecto->propietarioId) !== $_SESSION['id']) {
+                $respuesta = [
+                    'tipo' => 'error',
+                    'mensaje' => "Hubo un error al agregar la tarea"
+                ];
+            } else {
 
 
-            $respuesta = [
-                'proyectoUrl' => $_POST['proyectoUrl']
-            ];
-
+                $respuesta = [
+                    'tipo' => 'exito',
+                    'mensaje' => 'Tarea agregada correctamente'
+                ];
+            }
             header('Content-Type: application/json');
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
         }

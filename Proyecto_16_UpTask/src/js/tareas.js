@@ -75,12 +75,14 @@
 
         try {
             const url = '/api/tarea';
-            const respuesta = fetch(url, {
+            const respuesta = await fetch(url, {
                 method: "POST",
                 body: datos
             });
             const resultado = await respuesta.json();
-            console.log(resultado);
+
+            mostrarAlerta(resultado.mensaje, resultado.tipo, document.querySelector('.formulario legend'));
+
         } catch (error) {
             console.log(error);
         }
@@ -90,8 +92,7 @@
         const proyectoParams = new URLSearchParams(window.location.search);
 
         const proyecto = Object.fromEntries(proyectoParams.entries());
-
-        return proyecto.id;
+        return proyecto.url;
     }
 
 })();
