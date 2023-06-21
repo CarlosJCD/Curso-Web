@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\DashboardController;
 use Controllers\LoginController;
 use MVC\Router;
 
@@ -25,6 +26,14 @@ $router->post("/olvidaPassword", [LoginController::class, "olvidaPassword"]);
 $router->get("/restablecePassword", [LoginController::class, "restablecePassword"]);
 $router->post("/restablecePassword", [LoginController::class, "restablecePassword"]);
 
+$router->get("/dashboard", [DashboardController::class, "index"]);
+
+$router->get("/crearProyecto", [DashboardController::class, "crearProyecto"]);
+$router->post("/crearProyecto", [DashboardController::class, "crearProyecto"]);
+
+$router->get("/proyecto", [DashboardController::class, "proyecto"]);
+
+$router->get("/perfil", [DashboardController::class, "perfil"]);
 
 
 
