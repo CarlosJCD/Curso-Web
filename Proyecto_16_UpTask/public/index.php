@@ -4,9 +4,12 @@ require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\DashboardController;
 use Controllers\LoginController;
+use Controllers\TareaController;
 use MVC\Router;
 
 $router = new Router();
+
+# -- RUTAS LOGIN CONTROLLER --
 
 $router->get("/", [LoginController::class, "login"]);
 $router->post("/", [LoginController::class, "login"]);
@@ -26,6 +29,7 @@ $router->post("/olvidaPassword", [LoginController::class, "olvidaPassword"]);
 $router->get("/restablecePassword", [LoginController::class, "restablecePassword"]);
 $router->post("/restablecePassword", [LoginController::class, "restablecePassword"]);
 
+// -- RUTAS DASHBOARD CONTROLLER --
 $router->get("/dashboard", [DashboardController::class, "index"]);
 
 $router->get("/crearProyecto", [DashboardController::class, "crearProyecto"]);
@@ -35,7 +39,13 @@ $router->get("/proyecto", [DashboardController::class, "proyecto"]);
 
 $router->get("/perfil", [DashboardController::class, "perfil"]);
 
+// -- RUTAS TAREA CONTROLLER --
+
+$router->get('/api/tareas', [TareaController::class, 'index']);
+$router->post('/api/tarea', [TareaController::class, 'crear']);
+$router->post('/api/tarea/actualizar', [TareaController::class, 'actualizar']);
+$router->post('/api/tarea/eliminar', [TareaController::class, 'eliminar']);
 
 
-// Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
+// Valida y ejecuta las metodos de los controladores asociados a la ruta solicitada.
 $router->comprobarRutas();
