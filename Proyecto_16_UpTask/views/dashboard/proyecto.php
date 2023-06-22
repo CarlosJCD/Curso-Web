@@ -14,11 +14,11 @@
             </div>
             <div class="campo">
                 <label for="pendientes" class="pendientes">Pendientes</label>
-                <input type="radio" id="pendientes" name="filtro" value="">
+                <input type="radio" id="pendientes" name="filtro" value="0">
             </div>
             <div class="campo">
                 <label for="completas" class="completas">Completas</label>
-                <input type="radio" id="completas" name="filtro" value="">
+                <input type="radio" id="completas" name="filtro" value="1">
             </div>
         </div>
     </div>
