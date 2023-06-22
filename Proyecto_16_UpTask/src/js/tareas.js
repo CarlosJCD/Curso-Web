@@ -179,7 +179,7 @@
         opcionesDiv.classList.add('opciones');
 
         opcionesDiv.appendChild(crearBotonEstadoTarea(tarea));
-        opcionesDiv.appendChild(crearBotonEliminarTarea(tarea.id));
+        opcionesDiv.appendChild(crearBotonEliminarTarea(tarea));
 
         return opcionesDiv;
 
@@ -200,11 +200,16 @@
         return botonEstadoTarea;
     }
 
-    function crearBotonEliminarTarea(idTarea) {
+    function crearBotonEliminarTarea(tarea) {
         const botonEliminarTarea = document.createElement('BUTTON');
+
         botonEliminarTarea.classList.add('eliminar-tarea');
-        botonEliminarTarea.dataset.idTarea = idTarea;
+        botonEliminarTarea.dataset.idTarea = tarea.id;
         botonEliminarTarea.textContent = 'Eliminar';
+
+        botonEliminarTarea.ondblclick = function () {
+            confirmarEliminarTarea({ ...tarea });
+        }
 
         return botonEliminarTarea;
     }
@@ -254,6 +259,33 @@
             }
         } catch (error) {
 
+        }
+    }
+
+    function confirmarEliminarTarea(tarea) {
+        Swal.fire({
+            title: `¿Eliminar Tarea?`,
+            icon: 'question',
+            showCancelButton: true,
+            cancelButtonText: 'No',
+            confirmButtonText: 'Si',
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                eliminarTarea(tarea);
+                // Swal.fire('Tarea eliminada con exito!', `La tarea '${tarea.nombre}' ha sido eliminada correctamente.`, 'success')
+            }
+        })
+    }
+
+    async function eliminarTarea(tarea) {
+        const datos = new FormData();
+
+        try {
+            url = '/api/tareas/eliminar';
+
+        } catch (error) {
+            console.log(error);
         }
     }
 
