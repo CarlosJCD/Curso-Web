@@ -1,4 +1,8 @@
 (function () {
+    const estadosTarea = {
+        0: 'Pendiente',
+        1: 'Completa'
+    }
 
     obtenerTareasDelProyecto();
 
@@ -139,9 +143,18 @@
 
             const nombreTarea = document.createElement("P");
             nombreTarea.textContent = tarea.nombre;
-            contenedorTarea.appendChild(nombreTarea);
 
-            console.log(contenedorTarea);
+            const opcionesDiv = document.createElement('DIV');
+            opcionesDiv.classList.add('opciones');
+
+
+            const botonEstadoTarea = document.createElement('BUTTON');
+            botonEstadoTarea.classList.add('estado-tarea');
+            botonEstadoTarea.classList.add(`${estadosTarea[tarea.estado].toLowerCase()}`);
+            botonEstadoTarea.textContent = estadosTarea[tarea.estado];
+            botonEstadoTarea.dataset.estadoTarea = tarea.estado;
+
+            console.log(botonEstadoTarea);
         })
     }
 
