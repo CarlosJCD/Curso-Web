@@ -10,24 +10,32 @@
         obtenerTareasDelProyecto();
 
         const nuevaTareaBtn = document.querySelector('#agregar-tarea');
-        nuevaTareaBtn.addEventListener('click', mostrarFormulario);
+        nuevaTareaBtn.addEventListener('click', function () {
+            mostrarFormulario();
+        });
     }
 
-    function mostrarFormulario() {
+    function mostrarFormulario(cambiandoNombre = false, tarea = {}) {
         const modal = document.createElement('DIV');
         modal.classList.add('modal');
         modal.innerHTML = `
         <form class="formulario nueva-tarea">
-            <legend>Añade una nueva tarea</legend>
+            <legend>${cambiandoNombre ? 'Editar nombre de la tarea' : 'Añade una nueva tarea'}</legend>
             <div class="campo">
                 <label for="tarea">Tarea</label>
-                <input type="text" name="tarea" placeholder="Añadir tarea al proyecto actual" id="tarea" />
+                <input 
+                type="text" 
+                name="tarea" 
+                placeholder=${tarea.nombre ? 'Edita la Tarea' : 'Añadir Tarea al Proyecto Actual'} 
+                value = "${tarea.nombre ? tarea.nombre : ''}"
+                id="tarea" />
             </div>
             <div class="opciones">
                 <input type="submit" class="submit-nueva-tarea" value="Añadir Tarea">
                 <button type="button" class="cerrar-modal">Cancelar</button>
             </div>
-        </form>`;
+        </form>
+        `;
         setTimeout(() => {
             const formularioNuevaTarea = document.querySelector('.formulario');
             formularioNuevaTarea.classList.add('animar');
@@ -162,15 +170,20 @@
         contenedorTarea.dataset.tareaId = tarea.id;
         contenedorTarea.classList.add('tarea');
 
-        contenedorTarea.appendChild(crearParrafoNombreTarea(tarea.nombre));
+        contenedorTarea.appendChild(crearParrafoNombreTarea(tarea));
         contenedorTarea.appendChild(crearDivOpcionesTarea(tarea));
 
         return contenedorTarea;
     }
 
-    function crearParrafoNombreTarea(nombreTarea) {
+    function crearParrafoNombreTarea(tarea) {
         const parrafoNombreTarea = document.createElement("P");
-        parrafoNombreTarea.textContent = nombreTarea;
+        parrafoNombreTarea.textContent = tarea.nombre;
+
+        parrafoNombreTarea.ondblclick = function () {
+            mostrarFormulario(true, { ...tarea });
+        }
+
         return parrafoNombreTarea;
     }
 
