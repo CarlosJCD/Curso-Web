@@ -178,19 +178,25 @@
         const opcionesDiv = document.createElement('DIV');
         opcionesDiv.classList.add('opciones');
 
-        opcionesDiv.appendChild(crearBotonEstadoTarea(tarea.estado));
+        opcionesDiv.appendChild(crearBotonEstadoTarea(tarea));
         opcionesDiv.appendChild(crearBotonEliminarTarea(tarea.id));
 
         return opcionesDiv;
 
     }
 
-    function crearBotonEstadoTarea(estadoTarea) {
+    function crearBotonEstadoTarea(tarea) {
         const botonEstadoTarea = document.createElement('BUTTON');
         botonEstadoTarea.classList.add('estado-tarea');
-        botonEstadoTarea.classList.add(`${estadosTarea[estadoTarea].toLowerCase()}`);
-        botonEstadoTarea.textContent = estadosTarea[estadoTarea];
-        botonEstadoTarea.dataset.estadoTarea = estadoTarea;
+        botonEstadoTarea.classList.add(`${estadosTarea[tarea.estado].toLowerCase()}`);
+        botonEstadoTarea.textContent = estadosTarea[tarea.estado];
+        botonEstadoTarea.dataset.estadoTarea = tarea.estado;
+
+        botonEstadoTarea.ondblclick = function () {
+            cambiarEstadoTarea({ ...tarea });
+        }
+
+
         return botonEstadoTarea;
     }
 
@@ -207,6 +213,16 @@
         while (listadoTareas.firstChild) {
             listadoTareas.removeChild(listadoTareas.firstChild);
         }
+    }
+
+    function cambiarEstadoTarea(tarea) {
+        tarea.estado = tarea.estado === "0" ? '1' : '0';
+        actualizarTarea(tarea);
+        mostrarTareas();
+    }
+
+    function actualizarTarea(tarea) {
+
     }
 
     main();
