@@ -9,15 +9,15 @@
         <div class="filtros-inputs">
             <h2>Filtros:</h2>
             <div class="campo">
-                <label for="todas">Todas</label>
+                <label for="todas" class="todas">Todas</label>
                 <input type="radio" id="todas" name="filtro" value="" checked>
             </div>
             <div class="campo">
-                <label for="pendientes">Pendientes</label>
+                <label for="pendientes" class="pendientes">Pendientes</label>
                 <input type="radio" id="pendientes" name="filtro" value="">
             </div>
             <div class="campo">
-                <label for="completas">Completas</label>
+                <label for="completas" class="completas">Completas</label>
                 <input type="radio" id="completas" name="filtro" value="">
             </div>
         </div>
