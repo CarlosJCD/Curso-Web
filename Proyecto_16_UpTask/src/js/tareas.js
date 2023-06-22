@@ -31,7 +31,7 @@
                 id="tarea" />
             </div>
             <div class="opciones">
-                <input type="submit" class="submit-nueva-tarea" value="Añadir Tarea">
+                <input type="submit" class="submit-nueva-tarea" value="${tarea.nombre ? 'Guardar Cambios' : 'Añadir Tarea'}">
                 <button type="button" class="cerrar-modal">Cancelar</button>
             </div>
         </form>
@@ -51,22 +51,24 @@
                     modal.remove();
                 }, 500);
             }
+
             if (e.target.classList.contains('submit-nueva-tarea')) {
-                submitFormularioNuevaTarea();
+                const nombreTarea = document.querySelector('#tarea').value.trim();
+                if (nombreTarea === '') {
+                    mostrarAlerta('El Nombre de la tarea es Obligatorio', 'error', document.querySelector('.formulario legend'));
+                    return;
+                }
+
+                if (cambiandoNombre) {
+                    tarea.nombre = nombreTarea;
+                    actualizarTarea(tarea);
+                } else {
+                    agregarTarea(nombreTarea);
+                }
             }
         });
 
         document.querySelector('.dashboard').appendChild(modal);
-    }
-
-    function submitFormularioNuevaTarea() {
-        const nombreTarea = document.querySelector('#tarea').value.trim();
-        if (nombreTarea === '') {
-            mostrarAlerta('El Nombre de la tarea es Obligatorio', 'error', document.querySelector('.formulario legend'));
-            return;
-        }
-
-        agregarTarea(nombreTarea);
     }
 
     function mostrarAlerta(mensaje, tipo, referencia) {
@@ -256,13 +258,25 @@
             });
 
             const resultado = await respuesta.json();
-
             if (resultado.tipo === 'exito') {
-                mostrarAlerta(resultado.mensaje, resultado.tipo, document.querySelector('.contenedor-nueva-tarea'));
 
-                tareas.map(tareaCargada => {
+                Swal.fire(
+                    resultado.mensaje,
+                    resultado.mensaje,
+                    'success'
+                );
+
+                const modal = document.querySelector('.modal');
+                console.log(modal);
+                if (modal) {
+                    modal.remove();
+                }
+
+
+                tareas = tareas.map(tareaCargada => {
                     if (tareaCargada.id === id) {
                         tareaCargada.estado = estado;
+                        tareaCargada.nombre = nombre;
                     }
 
                     return tareaCargada;
