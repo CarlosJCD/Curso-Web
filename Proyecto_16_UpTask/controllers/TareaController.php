@@ -46,6 +46,7 @@ class TareaController
                     'tipo' => 'exito',
                     'mensaje' => 'Tarea agregada correctamente',
                     'id' => $resultado['id'],
+                    'proyectoId' => $proyecto->id
                 ];
             }
             header('Content-Type: application/json');

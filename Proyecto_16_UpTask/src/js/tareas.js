@@ -4,6 +4,8 @@
         1: 'Completa'
     }
 
+    let tareas = []
+
     function main() {
         obtenerTareasDelProyecto();
 
@@ -97,6 +99,15 @@
                 setTimeout(() => {
                     modal.remove();
                 }, 3000);
+
+                const tareaNueva = {
+                    id: String(resultado.id),
+                    nombre: nombreTarea,
+                    estado: 0,
+                    proyectoId: resultado.proyectoId
+                };
+                tareas = [...tareas, tareaNueva];
+                mostrarTareas();
             }
         } catch (error) {
             console.log(error);
@@ -117,17 +128,18 @@
 
             const resultado = await respuesta.json();
 
-            const { tareas } = resultado;
+            tareas = resultado.tareas;
 
-            mostrarTareas(tareas);
+            mostrarTareas();
 
         } catch (error) {
             console.log(error);
         }
     }
 
-    function mostrarTareas(tareas) {
+    function mostrarTareas() {
         const listadoTareas = document.querySelector('#listado-tareas');
+        limpiarTareas(listadoTareas);
         if (tareas.length === 0) {
             listadoTareas.appendChild(crearContenedorDeNoTareas());
             return;
@@ -189,6 +201,12 @@
         botonEliminarTarea.textContent = 'Eliminar';
 
         return botonEliminarTarea;
+    }
+
+    function limpiarTareas(listadoTareas) {
+        while (listadoTareas.firstChild) {
+            listadoTareas.removeChild(listadoTareas.firstChild);
+        }
     }
 
     main();
