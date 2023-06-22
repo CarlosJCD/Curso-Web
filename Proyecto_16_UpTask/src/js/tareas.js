@@ -218,11 +218,27 @@
     function cambiarEstadoTarea(tarea) {
         tarea.estado = tarea.estado === "0" ? '1' : '0';
         actualizarTarea(tarea);
-        mostrarTareas();
     }
 
-    function actualizarTarea(tarea) {
+    async function actualizarTarea(tarea) {
+        const { estado, id, nombre } = tarea;
+        const datos = new FormData();
 
+        datos.append('id', id);
+        datos.append('nombre', nombre);
+        datos.append('estado', estado);
+        datos.append('proyectoUrl', obtenerUrlDelProyecto());
+
+        try {
+            const url = '/api/tarea/actualizar';
+            const respuesta = await fetch(url, {
+                method: 'POST',
+                body: datos
+            });
+            const resultado = await respuesta.json();
+        } catch (error) {
+
+        }
     }
 
     main();
