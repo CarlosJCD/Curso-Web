@@ -241,6 +241,16 @@
 
             if (resultado.tipo === 'exito') {
                 mostrarAlerta(resultado.mensaje, resultado.tipo, document.querySelector('.contenedor-nueva-tarea'));
+
+                tareas.map(tareaCargada => {
+                    if (tareaCargada.id === id) {
+                        tareaCargada.estado = estado;
+                    }
+
+                    return tareaCargada;
+                });
+
+                mostrarTareas();
             }
         } catch (error) {
 
