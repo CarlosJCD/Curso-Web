@@ -270,19 +270,36 @@
             cancelButtonText: 'No',
             confirmButtonText: 'Si',
         }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 eliminarTarea(tarea);
-                // Swal.fire('Tarea eliminada con exito!', `La tarea '${tarea.nombre}' ha sido eliminada correctamente.`, 'success')
             }
         })
     }
 
     async function eliminarTarea(tarea) {
+        const { estado, id, nombre } = tarea;
         const datos = new FormData();
 
+        datos.append('id', id);
+        datos.append('nombre', nombre);
+        datos.append('estado', estado);
+        datos.append('proyectoUrl', obtenerUrlDelProyecto());
+
+
         try {
-            url = '/api/tareas/eliminar';
+            const url = '/api/tarea/eliminar';
+            const respuesta = await fetch(url, {
+                method: "POST",
+                body: datos
+            });
+
+            const resultado = await respuesta.json();
+            if (resultado.tipo === 'exito') {
+                Swal.fire('Tarea eliminada correctamente', `La tarea '${nombre}' ha sido eliminada.`, 'success');
+                tareas = tareas.filter(tareaCargada => tareaCargada.id !== id);
+                mostrarTareas();
+
+            }
 
         } catch (error) {
             console.log(error);

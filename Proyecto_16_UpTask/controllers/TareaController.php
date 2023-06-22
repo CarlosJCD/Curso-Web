@@ -28,16 +28,15 @@ class TareaController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             session_start();
 
+            $respuesta = [
+                'tipo' => 'error',
+                'mensaje' => "Hubo un error al agregar la tarea"
+            ];
             $proyecto = Proyecto::where('url', $_POST['proyectoUrl']);
 
-            $noSePuedeGuardar = !$proyecto || ($proyecto->propietarioId) !== $_SESSION['id'];
+            $noSePuedeGuardar = !$proyecto || ($proyecto->propietarioId !== $_SESSION['id']);
 
             if (!$noSePuedeGuardar) {
-                $respuesta = [
-                    'tipo' => 'error',
-                    'mensaje' => "Hubo un error al agregar la tarea"
-                ];
-            } else {
                 $args = [
                     'nombre' => $_POST['nombre'],
                     'proyectoId' => $proyecto->id
@@ -47,7 +46,7 @@ class TareaController
 
                 $resultado = $tarea->guardar();
 
-                if (!$resultado) {
+                if ($resultado) {
                     $respuesta = [
                         'tipo' => 'exito',
                         'mensaje' => 'Tarea agregada correctamente',
@@ -70,7 +69,7 @@ class TareaController
 
             $respuesta = [
                 'tipo' => 'error',
-                'mensaje' => "Hubo un error al agregar la tarea"
+                'mensaje' => "Hubo un error al actualizar la tarea"
             ];
 
             $noSePuedeActualizar = !$proyecto || ($proyecto->propietarioId) !== $_SESSION['id'];
@@ -104,6 +103,37 @@ class TareaController
     public static function eliminar()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            session_start();
+            $proyecto = Proyecto::where('url', $_POST['proyectoUrl']);
+
+            $respuesta = [
+                'tipo' => 'error',
+                'mensaje' => "Hubo un error al eliminar la tarea"
+            ];
+
+            $noSePuedeEliminar = !$proyecto || ($proyecto->propietarioId) !== $_SESSION['id'];
+
+            if (!$noSePuedeEliminar) {
+                $args = [
+                    'nombre' => $_POST['nombre'],
+                    'id' => $_POST['id'],
+                    'estado' => $_POST['estado'],
+                    'proyectoId' => $proyecto->id
+                ];
+
+                $tarea = new Tarea($args);
+
+                $resultado = $tarea->eliminar();
+                if ($resultado) {
+                    $respuesta = [
+                        'tipo' => 'exito',
+                        'mensaje' => 'Tarea eliminada correctamente',
+                    ];
+                }
+            }
+
+            header('Content-Type: application/json');
+            echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
         }
     }
 }
