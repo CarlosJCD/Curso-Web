@@ -216,7 +216,8 @@
     }
 
     function cambiarEstadoTarea(tarea) {
-        tarea.estado = tarea.estado === "0" ? '1' : '0';
+        nuevoEstado = tarea.estado === "0" ? '1' : '0';
+        tarea.estado = nuevoEstado;
         actualizarTarea(tarea);
     }
 
@@ -235,7 +236,12 @@
                 method: 'POST',
                 body: datos
             });
+
             const resultado = await respuesta.json();
+
+            if (resultado.tipo === 'exito') {
+                mostrarAlerta(resultado.mensaje, resultado.tipo, document.querySelector('.contenedor-nueva-tarea'));
+            }
         } catch (error) {
 
         }
