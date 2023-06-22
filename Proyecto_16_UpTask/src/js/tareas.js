@@ -4,12 +4,12 @@
         1: 'Completa'
     }
 
-    obtenerTareasDelProyecto();
+    function main() {
+        obtenerTareasDelProyecto();
 
-
-
-    const nuevaTareaBtn = document.querySelector('#agregar-tarea');
-    nuevaTareaBtn.addEventListener('click', mostrarFormulario);
+        const nuevaTareaBtn = document.querySelector('#agregar-tarea');
+        nuevaTareaBtn.addEventListener('click', mostrarFormulario);
+    }
 
     function mostrarFormulario() {
         const modal = document.createElement('DIV');
@@ -127,35 +127,69 @@
     }
 
     function mostrarTareas(tareas) {
+        const listadoTareas = document.querySelector('#listado-tareas');
         if (tareas.length === 0) {
-            const contenedorTareas = document.querySelector('#listado-tareas');
-            const textoNoTareas = document.createElement('LI');
-            textoNoTareas.textContent = 'No hay tareas por realizar';
-            textoNoTareas.classList.add('no-tareas');
-            contenedorTareas.appendChild(textoNoTareas);
+            listadoTareas.appendChild(crearContenedorDeNoTareas());
             return;
         }
 
         tareas.forEach(tarea => {
-            const contenedorTarea = document.createElement('LI');
-            contenedorTarea.dataset.tareaId = tarea.id;
-            contenedorTarea.classList.add('tarea');
-
-            const nombreTarea = document.createElement("P");
-            nombreTarea.textContent = tarea.nombre;
-
-            const opcionesDiv = document.createElement('DIV');
-            opcionesDiv.classList.add('opciones');
-
-
-            const botonEstadoTarea = document.createElement('BUTTON');
-            botonEstadoTarea.classList.add('estado-tarea');
-            botonEstadoTarea.classList.add(`${estadosTarea[tarea.estado].toLowerCase()}`);
-            botonEstadoTarea.textContent = estadosTarea[tarea.estado];
-            botonEstadoTarea.dataset.estadoTarea = tarea.estado;
-
-            console.log(botonEstadoTarea);
+            listadoTareas.appendChild(crearContenedorTarea(tarea));
         })
     }
 
+    function crearContenedorDeNoTareas() {
+        const contenedorDeNoTareas = document.createElement('LI');
+        contenedorDeNoTareas.textContent = 'No hay tareas por realizar';
+        contenedorDeNoTareas.classList.add('no-tareas');
+        return contenedorDeNoTareas;
+    }
+
+    function crearContenedorTarea(tarea) {
+        const contenedorTarea = document.createElement('LI');
+        contenedorTarea.dataset.tareaId = tarea.id;
+        contenedorTarea.classList.add('tarea');
+
+        contenedorTarea.appendChild(crearParrafoNombreTarea(tarea.nombre));
+        contenedorTarea.appendChild(crearDivOpcionesTarea(tarea));
+
+        return contenedorTarea;
+    }
+
+    function crearParrafoNombreTarea(nombreTarea) {
+        const parrafoNombreTarea = document.createElement("P");
+        parrafoNombreTarea.textContent = nombreTarea;
+        return parrafoNombreTarea;
+    }
+
+    function crearDivOpcionesTarea(tarea) {
+        const opcionesDiv = document.createElement('DIV');
+        opcionesDiv.classList.add('opciones');
+
+        opcionesDiv.appendChild(crearBotonEstadoTarea(tarea.estado));
+        opcionesDiv.appendChild(crearBotonEliminarTarea(tarea.id));
+
+        return opcionesDiv;
+
+    }
+
+    function crearBotonEstadoTarea(estadoTarea) {
+        const botonEstadoTarea = document.createElement('BUTTON');
+        botonEstadoTarea.classList.add('estado-tarea');
+        botonEstadoTarea.classList.add(`${estadosTarea[estadoTarea].toLowerCase()}`);
+        botonEstadoTarea.textContent = estadosTarea[estadoTarea];
+        botonEstadoTarea.dataset.estadoTarea = estadoTarea;
+        return botonEstadoTarea;
+    }
+
+    function crearBotonEliminarTarea(idTarea) {
+        const botonEliminarTarea = document.createElement('BUTTON');
+        botonEliminarTarea.classList.add('eliminar-tarea');
+        botonEliminarTarea.dataset.idTarea = idTarea;
+        botonEliminarTarea.textContent = 'Eliminar';
+
+        return botonEliminarTarea;
+    }
+
+    main();
 })();
