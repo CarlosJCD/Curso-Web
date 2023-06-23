@@ -18,3 +18,12 @@ if (cerrarMenuBoton) {
 
     });
 }
+
+const anchoPantalla = document.body.clientWidth;
+
+window.addEventListener('resize', function () {
+    const anchoPantalla = document.body.clientWidth;
+    if (anchoPantalla >= 768) {
+        sidebar.classList.remove('mostrar');
+    }
+})
