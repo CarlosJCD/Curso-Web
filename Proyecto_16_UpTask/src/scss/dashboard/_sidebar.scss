@@ -5,8 +5,8 @@
     opacity: 0;
     height: 0;
     background-color: v.$indigo;
-    transition-property: height, opacity, padding;
-    transition-duration: 300ms;
+    transition-property: opacity;
+    transition-duration: 500ms;
     transition-timing-function: linear;
 
     @include m.tablet {
@@ -28,11 +28,36 @@
         background-color: rgba($color: v.$indigo, $alpha: 0.95);
     }
 
-    h2 {
-        color: v.$blanco;
-        margin: 0;
-        text-align: center;
+    &.ocultar {
+        opacity: 0;
+        height: 0;
     }
+
+    .contenedor-sidebar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            color: v.$blanco;
+            margin: 0;
+            text-align: center;
+        }
+
+        .cerrar-menu {
+            display: flex;
+            justify-content: center;
+            height: 2rem;
+            width: 2rem;
+
+            img {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
 
     .sidebar-nav {
         margin-top: 5rem;
