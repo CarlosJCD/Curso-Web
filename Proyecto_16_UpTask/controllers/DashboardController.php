@@ -94,10 +94,21 @@ class DashboardController
     {
         session_start();
         isAuth();
+        $alertas = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario = Usuario::find($_SESSION['id']);
+
+            $alertas = $usuario->validarCambiarContraseña($_POST);
+            if (empty($alertas)) {
+            }
+        }
         $router->render('dashboard/cambiar_password', [
-            'titulo' => 'Cambiar Password'
+            'titulo' => 'Cambiar Password',
+            'errores' => $alertas['error'] ?? ''
         ]);
     }
+
 
     private static function validarPropietarioProyecto()
     {

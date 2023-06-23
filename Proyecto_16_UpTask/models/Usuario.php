@@ -93,6 +93,19 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    public function validarCambiarContraseña($args)
+    {
+        if (!password_verify($args['password_actual'], $this->password)) {
+            self::$alertas['error'][] = 'Contraseña actual incorrecta';
+            return self::$alertas;
+        }
+
+        if (!$args['password_nuevo'] || (strlen($args['password_nuevo']) < 6)) {
+            self::$alertas['error'][] = 'El nuevo password debe contener al menos 6 caracteres';
+        }
+        return self::$alertas;
+    }
+
     private function camposValidosCuentaNueva($validacionPassword): bool
     {
         if (!$this->nombre) {
