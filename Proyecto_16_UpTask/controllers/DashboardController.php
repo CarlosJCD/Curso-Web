@@ -101,11 +101,23 @@ class DashboardController
 
             $alertas = $usuario->validarCambiarContraseña($_POST);
             if (empty($alertas)) {
+                $usuario->password = password_hash($_POST['password_actual'], PASSWORD_BCRYPT);
+                $resultado = $usuario->guardar();
+
+                if ($resultado) {
+                    Usuario::setAlerta('exito', 'Password Guardado Correctamente');
+                    $alertas = Usuario::getAlertas();
+                } else {
+                    Usuario::setAlerta('error', 'Password Incorrecto');
+                    $alertas = Usuario::getAlertas();
+                }
             }
         }
+
         $router->render('dashboard/cambiar_password', [
             'titulo' => 'Cambiar Password',
-            'errores' => $alertas['error'] ?? ''
+            'errores' => $alertas['error'] ?? '',
+            'exitos' => $alertas['exito'] ?? ''
         ]);
     }
 
