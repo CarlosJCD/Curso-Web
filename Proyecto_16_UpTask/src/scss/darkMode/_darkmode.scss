@@ -18,7 +18,8 @@
 
     .descripcion-pagina,
     .formulario .campo input,
-    .nombre-pagina {
+    .nombre-pagina,
+    .no-tareas {
         color: darken(v.$grisClaro, 15%);
     }
 
@@ -69,6 +70,19 @@
         }
     }
 
+    .filtros {
+        background-color: lighten($grisOscuro, 10%);
+
+        h2,
+        label {
+            color: v.$blanco;
+        }
+
+        input[type="radio"] {
+            accent-color: v.$naranja;
+        }
+    }
+
     .dashboard {
         background-color: $grisOscuro;
 
@@ -94,6 +108,15 @@
 
             &:hover {
                 background-color: lighten($grisOscuro, 15%);
+            }
+        }
+
+        .listado-tareas .tarea {
+            background-color: lighten($grisOscuro, 10%);
+            border: none;
+
+            p {
+                color: v.$grisClaro;
             }
         }
     }
