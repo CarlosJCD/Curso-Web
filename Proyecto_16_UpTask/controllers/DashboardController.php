@@ -82,13 +82,28 @@ class DashboardController
         session_start();
         isAuth();
 
+        $alertas = [];
         $usuario = Usuario::find($_SESSION['id']);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario->sincronizar($_POST);
+
+            $alertas = $usuario->validarPerfil($_SESSION['email']);
+            if (empty($alertas)) {
+                $usuario->guardar();
+
+                Usuario::setAlerta('exito', "Perfil actualizado correctamente");
+
+                $_SESSION['nombre'] = $usuario->nombre;
+                $_SESSION['email'] = $usuario->email;
+                $alertas = Usuario::getAlertas();
+            }
         }
 
         $router->render('dashboard/perfil', [
-            'titulo' => "Perfil"
+            'titulo' => "Perfil",
+            'errores' => $alertas['error'] ?? [],
+            'exitos' => $alertas['exito'] ?? []
         ]);
     }
 }
