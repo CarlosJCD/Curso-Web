@@ -3,6 +3,9 @@
 
     <?php include_once __DIR__ . "/../templates/alertas.php"; ?>
 
+    <a href="/cambiarPassword" class="enlace">Cambiar Password</a>
+
+
     <form class="formulario" method="post">
         <div class="campo">
             <label for="nombre">Nombre</label>

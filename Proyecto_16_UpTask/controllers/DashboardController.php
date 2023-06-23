@@ -60,23 +60,6 @@ class DashboardController
         ]);
     }
 
-    private static function validarPropietarioProyecto()
-    {
-        session_start();
-        isAuth();
-
-        $url = s($_GET['url']);
-        if (!$url) {
-            header("Location: /dashboard");
-        }
-
-        $proyecto = Proyecto::where('url', $url);
-        if (!$proyecto || ($proyecto->propietarioId != $_SESSION['id'])) {
-            header("Location: /dashboard");
-        }
-        return $proyecto;
-    }
-
     public static function perfil(Router $router)
     {
         session_start();
@@ -105,5 +88,31 @@ class DashboardController
             'errores' => $alertas['error'] ?? [],
             'exitos' => $alertas['exito'] ?? []
         ]);
+    }
+
+    public static function cambiar_password(Router $router)
+    {
+        session_start();
+        isAuth();
+        $router->render('dashboard/cambiar_password', [
+            'titulo' => 'Cambiar Password'
+        ]);
+    }
+
+    private static function validarPropietarioProyecto()
+    {
+        session_start();
+        isAuth();
+
+        $url = s($_GET['url']);
+        if (!$url) {
+            header("Location: /dashboard");
+        }
+
+        $proyecto = Proyecto::where('url', $url);
+        if (!$proyecto || ($proyecto->propietarioId != $_SESSION['id'])) {
+            header("Location: /dashboard");
+        }
+        return $proyecto;
     }
 }
