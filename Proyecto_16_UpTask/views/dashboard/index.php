@@ -6,7 +6,7 @@ if (count($proyectos) === 0) { ?>
 <?php } else { ?>
     <ul class="listado-proyectos">
         <?php foreach ($proyectos as $proyecto) { ?>
-            <li class="proyecto">
+            <li class="proyecto" onclick="window.location.href = '/proyecto?url=<?php echo $proyecto->url ?>'">
                 <a href="/proyecto?url=<?php echo $proyecto->url ?>"><?php echo $proyecto->proyecto ?></a>
             </li>
         <?php } ?>

@@ -43,6 +43,7 @@
 
         &:hover {
             background-color: darken($color: v.$indigo, $amount: 5%);
+            cursor: pointer;
         }
     }
 }
