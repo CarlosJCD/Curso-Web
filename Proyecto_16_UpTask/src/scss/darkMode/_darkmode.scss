@@ -8,7 +8,28 @@
         background-color: $grisOscuro;
     }
 
-    .tagline {
+    .tagline,
+    .formulario label,
+    .login .acciones a,
+    .crear .acciones a,
+    .olvidaPassword .acciones a {
         color: v.$blanco;
+    }
+
+    .descripcion-pagina,
+    .formulario .campo input {
+        color: darken(v.$grisClaro, 15%);
+    }
+
+    .formulario .campo input {
+        background-color: lighten($grisOscuro, 25%);
+
+        &::placeholder {
+            color: darken(v.$grisClaro, 30%);
+        }
+    }
+
+    .alerta.error {
+        background-color: v.$blanco;
     }
 }
