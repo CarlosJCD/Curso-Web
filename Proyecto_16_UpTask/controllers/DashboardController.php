@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Model\Proyecto;
+use Model\Usuario;
 use MVC\Router;
 
 
@@ -80,6 +81,11 @@ class DashboardController
     {
         session_start();
         isAuth();
+
+        $usuario = Usuario::find($_SESSION['id']);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        }
 
         $router->render('dashboard/perfil', [
             'titulo' => "Perfil"
