@@ -2,14 +2,31 @@
 @use 'base/mixins' as m;
 
 .sidebar {
-    display: none;
+    opacity: 0;
+    height: 0;
+    background-color: v.$indigo;
+    transition-property: height, opacity, padding;
+    transition-duration: 300ms;
+    transition-timing-function: linear;
 
     @include m.tablet {
-        display: block;
+        opacity: 1;
+        height: 100%;
+        padding: 2rem;
     }
 
-    background-color: v.$indigo;
-    padding: 2rem;
+
+    &.mostrar {
+        padding: 2rem;
+        opacity: 1;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba($color: v.$indigo, $alpha: 0.95);
+    }
 
     h2 {
         color: v.$blanco;
