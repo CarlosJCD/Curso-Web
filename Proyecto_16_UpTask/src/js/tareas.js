@@ -195,7 +195,7 @@
         const parrafoNombreTarea = document.createElement("P");
         parrafoNombreTarea.textContent = tarea.nombre;
 
-        parrafoNombreTarea.ondblclick = function () {
+        parrafoNombreTarea.onclick = function () {
             mostrarFormulario(true, { ...tarea });
         }
 
@@ -220,7 +220,7 @@
         botonEstadoTarea.textContent = estadosTarea[tarea.estado];
         botonEstadoTarea.dataset.estadoTarea = tarea.estado;
 
-        botonEstadoTarea.ondblclick = function () {
+        botonEstadoTarea.onclick = function () {
             cambiarEstadoTarea({ ...tarea });
         }
 
@@ -235,7 +235,7 @@
         botonEliminarTarea.dataset.idTarea = tarea.id;
         botonEliminarTarea.textContent = 'Eliminar';
 
-        botonEliminarTarea.ondblclick = function () {
+        botonEliminarTarea.onclick = function () {
             confirmarEliminarTarea({ ...tarea });
         }
 
