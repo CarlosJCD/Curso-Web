@@ -17,7 +17,8 @@
     }
 
     .descripcion-pagina,
-    .formulario .campo input {
+    .formulario .campo input,
+    .nombre-pagina {
         color: darken(v.$grisClaro, 15%);
     }
 
@@ -31,5 +32,69 @@
 
     .alerta.error {
         background-color: v.$blanco;
+    }
+
+    .sidebar {
+        @include m.tablet {
+            background-color: darken($grisOscuro, 5%);
+        }
+
+        .sidebar-nav a {
+
+            &.activo,
+            &:hover {
+                background-color: v.$naranja;
+            }
+        }
+    }
+
+    .barra-mobile,
+    .barra {
+        background-color: darken($grisOscuro, 7%);
+    }
+
+    .barra {
+        p {
+            color: v.$naranja;
+
+            span {
+                color: v.$grisClaro;
+            }
+        }
+
+        .cerrar-sesion {
+            @include m.boton(v.$naranja, v.$blanco);
+            padding: 1rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    .dashboard {
+        background-color: $grisOscuro;
+
+        .enlace {
+            color: v.$grisClaro;
+
+            &:hover {
+                color: darken(v.$grisClaro, 20%);
+            }
+        }
+
+        .formulario input:not([type=submit]) {
+            background-color: lighten($grisOscuro, 20%);
+            color: v.$blanco;
+
+            &::placeholder {
+                color: darken(v.$grisClaro, 30%);
+            }
+        }
+
+        .listado-proyectos .proyecto {
+            background-color: lighten($grisOscuro, 20%);
+
+            &:hover {
+                background-color: lighten($grisOscuro, 15%);
+            }
+        }
     }
 }
