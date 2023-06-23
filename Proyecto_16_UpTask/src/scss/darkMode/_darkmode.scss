@@ -120,4 +120,22 @@
             }
         }
     }
+
+    .modal .formulario {
+        background-color: $grisOscuro;
+
+        input[type="text"] {
+            background-color: lighten($grisOscuro, 20%);
+            border: none;
+            color: v.$blanco;
+
+            &::placeholder {
+                color: darken(v.$grisClaro, 20%);
+            }
+        }
+
+        legend {
+            color: v.$grisClaro;
+        }
+    }
 }
