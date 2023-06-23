@@ -1,9 +1,4 @@
 (function () {
-    const estadosTarea = {
-        0: 'Pendiente',
-        1: 'Completa'
-    }
-
     let tareas = []
     let tareasFiltradas = []
 
@@ -119,7 +114,7 @@
                 const tareaNueva = {
                     id: String(resultado.id),
                     nombre: nombreTarea,
-                    estado: 0,
+                    estado: '0',
                     proyectoId: resultado.proyectoId
                 };
                 tareas = [...tareas, tareaNueva];
@@ -155,7 +150,7 @@
 
     function mostrarTareas() {
         const listadoTareas = document.querySelector('#listado-tareas');
-        limpiarTareas(listadoTareas);
+        limpiarListadoTareas(listadoTareas);
 
         validarPendientes();
         validarCompletas();
@@ -214,6 +209,10 @@
     }
 
     function crearBotonEstadoTarea(tarea) {
+        const estadosTarea = {
+            0: 'Pendiente',
+            1: 'Completa'
+        }
         const botonEstadoTarea = document.createElement('BUTTON');
         botonEstadoTarea.classList.add('estado-tarea');
         botonEstadoTarea.classList.add(`${estadosTarea[tarea.estado].toLowerCase()}`);
@@ -242,14 +241,14 @@
         return botonEliminarTarea;
     }
 
-    function limpiarTareas(listadoTareas) {
+    function limpiarListadoTareas(listadoTareas) {
         while (listadoTareas.firstChild) {
             listadoTareas.removeChild(listadoTareas.firstChild);
         }
     }
 
     function cambiarEstadoTarea(tarea) {
-        nuevoEstado = tarea.estado === "0" ? '1' : '0';
+        let nuevoEstado = tarea.estado === '0' ? '1' : '0';
         tarea.estado = nuevoEstado;
         actualizarTarea(tarea);
     }
@@ -280,7 +279,6 @@
                 );
 
                 const modal = document.querySelector('.modal');
-                console.log(modal);
                 if (modal) {
                     modal.remove();
                 }
@@ -298,7 +296,7 @@
                 mostrarTareas();
             }
         } catch (error) {
-
+            console.log(error);
         }
     }
 
