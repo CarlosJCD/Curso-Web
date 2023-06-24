@@ -324,6 +324,14 @@ img {
   height: auto;
 }
 
+h1,
+h2,
+h3 {
+  font-family: "Outfit", sans-serif;
+  font-weight: 900;
+  margin: 2rem 0;
+}
+
 h1 {
   font-size: 4rem;
 }
@@ -338,5 +346,18 @@ h3 {
 
 .text-center {
   text-align: center;
+}
+
+[class$=__heading] {
+  font-family: "Outfit", sans-serif;
+  font-weight: 900;
+  margin: 2rem 0;
+  margin: 6rem 0 3rem 0;
+  text-align: center;
+}
+
+.auth {
+  margin: 0 auto;
+  width: min(95%, 60rem);
 }
 /*# sourceMappingURL=app.css.map */

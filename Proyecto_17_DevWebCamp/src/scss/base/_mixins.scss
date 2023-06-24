@@ -6,16 +6,19 @@
         @content;
     }
 }
+
 @mixin tablet {
     @media (min-width: v.$tablet) {
         @content;
     }
 }
+
 @mixin desktop {
     @media (min-width: v.$desktop) {
         @content;
     }
 }
+
 @mixin xl_desktop {
     @media (min-width: v.$xl_desktop) {
         @content;
@@ -36,7 +39,7 @@
     display: inline-block;
 
     &:hover {
-        background-color: darken( $bgColor, 10% );
+        background-color: darken($bgColor, 10%);
         cursor: pointer;
     }
 }
@@ -45,4 +48,26 @@
     display: grid;
     gap: $espaciado;
     grid-template-columns: repeat($columnas, 1fr);
+}
+
+@mixin contenedor {
+    margin: 0 auto;
+    width: min(95%, 120rem);
+}
+
+@mixin contenedor-sm {
+    margin: 0 auto;
+    width: min(95%, 60rem);
+}
+
+@mixin headings {
+    font-family: v.$fuente_principal;
+    font-weight: v.$black;
+    margin: 2rem 0;
+}
+
+@mixin nombre-pagina {
+    @include headings;
+    margin: 6rem 0 3rem 0;
+    text-align: center;
 }
