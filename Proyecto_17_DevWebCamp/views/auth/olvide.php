@@ -11,7 +11,7 @@
         <input type="submit" class="formulario__submit" value="Enviar Email">
     </form>
     <div class="acciones">
-        <a href="/login " class="acciones__enlace">¿Ya tienes cuenta? Inicia Sesió</a>
+        <a href="/login " class="acciones__enlace">¿Ya tienes cuenta? Inicia Sesión</a>
         <a href="/registro" class="acciones__enlace">¿Aún no tienes una cuenta? Obtener una</a>
     </div>
 </main>
