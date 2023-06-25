@@ -416,7 +416,7 @@ h3 {
 }
 .header__contenedor {
   margin: 0 auto;
-  width: min(95%, 120rem);
+  width: min(95%, 140rem);
 }
 .header__navegacion {
   padding: 5rem 0;
@@ -449,5 +449,55 @@ h3 {
 }
 .header__logo {
   font-size: clamp(1rem, -0.8rem + 10vw, 8rem);
+  background: linear-gradient(to right, #007df4, #00c8c2);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-align: center;
+  display: inline-block;
+}
+@media (min-width: 768px) {
+  .header__logo {
+    text-align: left;
+  }
+}
+.header__texto {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 2rem 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+@media (min-width: 768px) {
+  .header__texto {
+    text-align: left;
+  }
+}
+.header__texto--modalidad {
+  font-size: 2rem;
+}
+.header__boton {
+  background-color: #00c8c2;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  text-transform: uppercase;
+  margin: 2rem 0;
+}
+.header__boton:hover {
+  background-color: #009591;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .header__boton {
+    width: auto;
+  }
 }
 /*# sourceMappingURL=app.css.map */

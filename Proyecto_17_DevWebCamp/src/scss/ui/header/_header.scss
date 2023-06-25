@@ -37,19 +37,46 @@
 
         @include m.tablet {
             padding-top: 5rem;
-
         }
-
-
     }
 
     &__logo {
         @include m.texto-fluido(1rem, 8rem);
+        @include m.texto-degradado(v.$azul, v.$secundario);
+
+        text-align: center;
+
+        @include m.tablet {
+            text-align: left;
+        }
+
+        display: inline-block;
     }
 
     &__texto {
-        &--modalidad {}
+        font-size: 3rem;
+        font-weight: v.$bold;
+        color: v.$blanco;
+        margin: 2rem 0;
+        text-align: center;
+        text-transform: uppercase;
+
+        @include m.tablet {
+            text-align: left;
+        }
+
+        &--modalidad {
+            font-size: 2rem;
+        }
     }
 
-    &__boton {}
+    &__boton {
+        @include m.boton(v.$secundario, v.$blanco);
+        text-transform: uppercase;
+        margin: 2rem 0;
+
+        @include m.tablet {
+            width: auto;
+        }
+    }
 }
