@@ -1,0 +1,24 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.header {
+    min-height: 60rem;
+    background-image: url(../img/grafico.svg), url(../img/grafico.svg), linear-gradient(to right, v.$negro, rgba(v.$negro, 0.8)), image-set(url(../img/header.avif) 1x, url(../img/header.webp) 1x, url(../img/header.jpg) 1x);
+
+    &__contenedor {}
+
+    &__navegacion {}
+
+    &__enlace {}
+
+    &__contenido {
+
+        &__logo {}
+
+        &__texto {
+            &--modalidad {}
+        }
+
+        &__boton {}
+    }
+}
