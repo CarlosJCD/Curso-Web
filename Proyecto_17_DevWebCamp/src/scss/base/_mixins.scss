@@ -60,6 +60,11 @@
     width: min(95%, 60rem);
 }
 
+@mixin contenedor-md {
+    width: min(95%, 80rem);
+    margin: 0 auto;
+}
+
 @mixin headings {
     font-family: v.$fuente_principal;
     font-weight: v.$black;
@@ -146,4 +151,8 @@
         color: v.$azul;
         cursor: pointer;
     }
+}
+
+@mixin shadow {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
