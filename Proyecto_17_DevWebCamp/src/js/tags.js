@@ -1,6 +1,10 @@
 (function () {
     const tagsInput = document.querySelector('#tags_input');
     if (tagsInput) {
+
+        const tagsDiv = document.querySelector('#tags');
+        const tagsInputHidden = document.querySelector('[name="tags"]');
+
         let tags = [];
         tagsInput.addEventListener('keypress', guardarTag);
 
@@ -17,8 +21,31 @@
 
                 tagsInput.value = '';
 
-                console.log(tags);
+                mostrarTags();
             }
+        }
+
+        function mostrarTags() {
+            tagsDiv.textContent = '';
+            tags.forEach(tag => {
+                const liTag = document.createElement('LI');
+                liTag.classList.add('formulario__tag');
+                liTag.textContent = tag;
+                liTag.ondblclick = eliminarTag;
+                tagsDiv.appendChild(liTag);
+            });
+            actualizarInputHidden();
+        }
+
+        function eliminarTag(e) {
+            e.target.remove();
+
+            tags = tags.filter(tag => tag !== e.target.textContent)
+            actualizarInputHidden();
+        }
+
+        function actualizarInputHidden() {
+            tagsInputHidden.value = tags.toString();
         }
     }
 
