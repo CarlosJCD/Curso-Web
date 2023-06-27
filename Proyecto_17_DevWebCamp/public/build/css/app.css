@@ -391,6 +391,9 @@ h3 {
   padding: 1rem;
   border: 1px solid #b1c7dd;
 }
+.formulario__input--file {
+  border: none;
+}
 .formulario__submit {
   background-color: #007df4;
   padding: 1.5rem 4rem;

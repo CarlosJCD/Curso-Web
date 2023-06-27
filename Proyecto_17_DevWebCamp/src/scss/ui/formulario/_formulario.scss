@@ -32,6 +32,10 @@
     &__input {
         padding: 1rem;
         border: 1px solid darken($color: v.$gris-claro, $amount: 20);
+
+        &--file {
+            border: none;
+        }
     }
 
     &__submit {
