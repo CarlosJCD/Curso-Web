@@ -64,6 +64,21 @@
         overflow: hidden;
     }
 
+    &__listado {
+        @include m.tags;
+    }
+
+    &__tag {
+        border-radius: 1rem;
+        color: v.$blanco;
+        background-color: v.$azul;
+        padding: 1rem 0.5rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     &__submit {
         @include m.boton(v.$azul, v.$blanco);
         width: auto;

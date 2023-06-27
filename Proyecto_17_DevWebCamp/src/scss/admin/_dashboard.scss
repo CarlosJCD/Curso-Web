@@ -39,16 +39,16 @@
 
     }
 
-    &__nav {}
-
     &__grid {
         display: flex;
         flex: 1;
+        overflow-y: auto;
     }
 
     &__contenido {
         width: 100%;
         padding: 1rem 1rem 3rem 1rem;
+        overflow-y: scroll;
 
         @include m.tablet {
             padding: 1rem 5rem 3rem 5rem;

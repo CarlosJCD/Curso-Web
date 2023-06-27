@@ -11,7 +11,7 @@
         function guardarTag(e) {
             if (e.keyCode === 44) {
                 const tagNuevo = e.target.value.trim();
-                if (tagNuevo === '' || tagNuevo.length < 2) {
+                if (tagNuevo === '' || tagNuevo.length < 1) {
                     return;
                 }
 
