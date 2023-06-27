@@ -387,12 +387,33 @@ h3 {
   font-size: 1.8rem;
   color: rgba(26, 27, 21, 0.8);
 }
-.formulario__input {
+.formulario__input, .formulario__input--sociales {
   padding: 1rem;
   border: 1px solid #b1c7dd;
 }
 .formulario__input--file {
   border: none;
+}
+.formulario__input--sociales {
+  flex: 1;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.formulario__icono {
+  background-color: #1E293B;
+  width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.formulario__icono i {
+  color: #FFFFFF;
+  font-size: 2rem;
+}
+.formulario__contenedor-icono {
+  display: flex;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 .formulario__submit {
   background-color: #007df4;
