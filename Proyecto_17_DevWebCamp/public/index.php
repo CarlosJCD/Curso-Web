@@ -37,7 +37,7 @@ $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
 
 $router->get('/admin/dashboard', [DashboardController::class, 'index']);
 
-//RUTEO PONENTES
+//CRUD PONENTES
 
 $router->get('/admin/ponentes', [PonentesController::class, 'index']);
 
@@ -46,6 +46,8 @@ $router->post('/admin/ponentes/crear', [PonentesController::class, 'crear']);
 
 $router->get('/admin/ponentes/editar', [PonentesController::class, 'editar']);
 $router->post('/admin/ponentes/editar', [PonentesController::class, 'editar']);
+
+$router->post('/admin/ponentes/eliminar', [PonentesController::class, 'eliminar']);
 
 
 //RUTEO EVENTOS
