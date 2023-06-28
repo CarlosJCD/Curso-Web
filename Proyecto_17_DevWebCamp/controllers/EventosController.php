@@ -13,4 +13,11 @@ class EventosController
             'titulo' => 'Conferencias y workshops'
         ]);
     }
+    public static function crear(Router $router)
+    {
+        $router->render('admin/eventos/crear', [
+            'titulo' => 'Registrar Evento',
+            'alertas' => $alertas ?? []
+        ]);
+    }
 }
