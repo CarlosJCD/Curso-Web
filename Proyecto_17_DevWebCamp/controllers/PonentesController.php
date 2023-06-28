@@ -16,7 +16,13 @@ class PonentesController
             header('Location: /login');
         }
 
-        $paginacion = new Paginacion(1, 20, 10)
+        $pagina_actual = filter_var($_GET['page'], FILTER_VALIDATE_INT);
+
+        if (!$pagina_actual || $pagina_actual < 1) {
+            header('Location: /admin/ponentes?page=1');
+        }
+
+        $paginacion = new Paginacion(1, 20, 10);
 
         $ponentes = Ponente::all();
 
