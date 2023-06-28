@@ -38,6 +38,10 @@ $router->post("/crearProyecto", [DashboardController::class, "crearProyecto"]);
 $router->get("/proyecto", [DashboardController::class, "proyecto"]);
 
 $router->get("/perfil", [DashboardController::class, "perfil"]);
+$router->post("/perfil", [DashboardController::class, "perfil"]);
+
+$router->get("/cambiarPassword", [DashboardController::class, "cambiar_password"]);
+$router->post("/cambiarPassword", [DashboardController::class, "cambiar_password"]);
 
 // -- RUTAS TAREA CONTROLLER --
 

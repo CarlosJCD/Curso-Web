@@ -36,4 +36,13 @@
             font-size: 1.4rem;
         }
     }
+
+    .enlace {
+        color: v.$indigo;
+
+        &:hover {
+            color: darken($color: v.$indigo, $amount: 20%);
+            cursor: pointer;
+        }
+    }
 }

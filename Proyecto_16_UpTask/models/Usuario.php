@@ -83,6 +83,29 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    public function validarPerfil($emailNuevo)
+    {
+        if ($this->camposValidosPerfil()) return self::$alertas;
+
+        if ($this->email != $emailNuevo) {
+            $this->validarSiYaExisteElUsuario();
+        }
+        return self::$alertas;
+    }
+
+    public function validarCambiarContraseña($args)
+    {
+        if (!password_verify($args['password_actual'], $this->password)) {
+            self::$alertas['error'][] = 'Contraseña actual incorrecta';
+            return self::$alertas;
+        }
+
+        if (!$args['password_nuevo'] || (strlen($args['password_nuevo']) < 6)) {
+            self::$alertas['error'][] = 'El nuevo password debe contener al menos 6 caracteres';
+        }
+        return self::$alertas;
+    }
+
     private function camposValidosCuentaNueva($validacionPassword): bool
     {
         if (!$this->nombre) {
@@ -111,6 +134,18 @@ class Usuario extends ActiveRecord
         }
         if (!$this->password) {
             self::$alertas['error'][] = 'El Password no puede ir vacio';
+        }
+        return !empty(self::$alertas);
+    }
+
+    private function camposValidosPerfil(): bool
+    {
+        if (!$this->nombre) {
+            self::$alertas['error'][] = 'El Nombre del Usuario es Obligatorio';
+        }
+
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El Email del Usuario es Obligatorio';
         }
         return !empty(self::$alertas);
     }

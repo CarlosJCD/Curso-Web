@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Model\Proyecto;
+use Model\Usuario;
 use MVC\Router;
 
 
@@ -59,6 +60,68 @@ class DashboardController
         ]);
     }
 
+    public static function perfil(Router $router)
+    {
+        session_start();
+        isAuth();
+
+        $alertas = [];
+        $usuario = Usuario::find($_SESSION['id']);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario->sincronizar($_POST);
+
+            $alertas = $usuario->validarPerfil($_SESSION['email']);
+            if (empty($alertas)) {
+                $usuario->guardar();
+
+                Usuario::setAlerta('exito', "Perfil actualizado correctamente");
+
+                $_SESSION['nombre'] = $usuario->nombre;
+                $_SESSION['email'] = $usuario->email;
+                $alertas = Usuario::getAlertas();
+            }
+        }
+
+        $router->render('dashboard/perfil', [
+            'titulo' => "Perfil",
+            'errores' => $alertas['error'] ?? [],
+            'exitos' => $alertas['exito'] ?? []
+        ]);
+    }
+
+    public static function cambiar_password(Router $router)
+    {
+        session_start();
+        isAuth();
+        $alertas = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario = Usuario::find($_SESSION['id']);
+
+            $alertas = $usuario->validarCambiarContraseña($_POST);
+            if (empty($alertas)) {
+                $usuario->password = password_hash($_POST['password_actual'], PASSWORD_BCRYPT);
+                $resultado = $usuario->guardar();
+
+                if ($resultado) {
+                    Usuario::setAlerta('exito', 'Password Guardado Correctamente');
+                    $alertas = Usuario::getAlertas();
+                } else {
+                    Usuario::setAlerta('error', 'Password Incorrecto');
+                    $alertas = Usuario::getAlertas();
+                }
+            }
+        }
+
+        $router->render('dashboard/cambiar_password', [
+            'titulo' => 'Cambiar Password',
+            'errores' => $alertas['error'] ?? '',
+            'exitos' => $alertas['exito'] ?? ''
+        ]);
+    }
+
+
     private static function validarPropietarioProyecto()
     {
         session_start();
@@ -74,15 +137,5 @@ class DashboardController
             header("Location: /dashboard");
         }
         return $proyecto;
-    }
-
-    public static function perfil(Router $router)
-    {
-        session_start();
-        isAuth();
-
-        $router->render('dashboard/perfil', [
-            'titulo' => "Perfil"
-        ]);
     }
 }
