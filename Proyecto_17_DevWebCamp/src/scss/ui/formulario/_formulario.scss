@@ -29,6 +29,11 @@
         color: rgba(v.$negro, 0.8);
     }
 
+    &__radio {
+        display: flex;
+        gap: 2rem;
+    }
+
     &__input,
     &__select {
         padding: 1rem;
