@@ -23,14 +23,19 @@ class PonentesController
 
         $total_registros = Ponente::total();
 
-        $paginacion = new Paginacion($pagina_actual, 20, $total_registros);
-        debuguear($paginacion);
+        $paginacion = new Paginacion($pagina_actual, 10, $total_registros);
+
+
+        if ($pagina_actual > $paginacion->total_paginas()) {
+            header('Location: /admin/ponentes?page=1');
+        }
 
         $ponentes = Ponente::all();
 
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes / Conferencistas',
-            'ponentes' => $ponentes
+            'ponentes' => $ponentes,
+            'paginacion' => $paginacion
         ]);
     }
 

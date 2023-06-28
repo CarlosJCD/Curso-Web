@@ -21,7 +21,7 @@ class Paginacion
 
     public function total_paginas()
     {
-        return ceil($this->total_registros / $this->registros_por_pagina);
+        return (int) ceil($this->total_registros / $this->registros_por_pagina);
     }
 
     public function pagina_anterior()
@@ -31,6 +31,37 @@ class Paginacion
 
     public function pagina_siguiente()
     {
-        return ($this->pagina_actual + 1) > $this->total_paginas() ? $this->pagina_actual + 1 : false;
+        return ($this->pagina_actual + 1) <= $this->total_paginas() ? $this->pagina_actual + 1 : false;
+    }
+
+    public function enlace_anterior()
+    {
+        $html = '';
+        if ($this->pagina_anterior()) {
+            $html .= "<a class='paginacion__enlace paginacion__enlace--texto' href='?page={$this->pagina_anterior()}'>&laquo; Anterior</a>";
+        }
+        return $html;
+    }
+
+    public function enlace_siguiente()
+    {
+        $html = '';
+        if ($this->pagina_siguiente()) {
+            $html .= "<a class='paginacion__enlace paginacion__enlace--texto' href='?page={$this->pagina_siguiente()}'>Siguiente &raquo;</a>";
+        }
+        return $html;
+    }
+
+    public function paginacion()
+    {
+        $html = '';
+
+        if ($this->total_registros > 1) {
+            $html .= "<div class='paginacion'>";
+            $html .= $this->enlace_anterior();
+            $html .= $this->enlace_siguiente();
+            $html .= "</div>";
+        }
+        return $html;
     }
 }

@@ -53,3 +53,7 @@
 
     <?php } ?>
 </div>
+
+<?php
+echo $paginacion->paginacion();
+?>
