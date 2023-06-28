@@ -16,27 +16,34 @@ class PonentesController
             header('Location: /login');
         }
 
-        $pagina_actual = filter_var($_GET['page'], FILTER_VALIDATE_INT);
-        if (!$pagina_actual || $pagina_actual < 1) {
-            header('Location: /admin/ponentes?page=1');
-        }
+        $paginacion = self::generarPaginacion($_GET['page'], 5);
 
-        $total_registros = Ponente::total();
-
-        $paginacion = new Paginacion($pagina_actual, 10, $total_registros);
-
-
-        if ($pagina_actual > $paginacion->total_paginas()) {
-            header('Location: /admin/ponentes?page=1');
-        }
-
-        $ponentes = Ponente::all();
+        $ponentes = Ponente::paginar($paginacion->registros_por_pagina, $paginacion->offset());
 
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes / Conferencistas',
             'ponentes' => $ponentes,
             'paginacion' => $paginacion
         ]);
+    }
+
+    private static function generarPaginacion($numeroPagina, $registrosPorPagina)
+    {
+        $pagina_actual = filter_var($numeroPagina, FILTER_VALIDATE_INT);
+        if (!$pagina_actual || $pagina_actual < 1) {
+            header('Location: /admin/ponentes?page=1');
+            return;
+        }
+
+        $total_registros = Ponente::total();
+        $paginacion = new Paginacion($pagina_actual, $registrosPorPagina, $total_registros);
+
+        if ($pagina_actual > $paginacion->total_paginas()) {
+            header('Location: /admin/ponentes?page=1');
+            return;
+        }
+
+        return $paginacion;
     }
 
     public static function crear(Router $router)

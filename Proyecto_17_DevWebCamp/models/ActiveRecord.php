@@ -119,7 +119,7 @@ class ActiveRecord
     // Obtener todos los Registros
     public static function all()
     {
-        $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC";
+        $query = "SELECT * FROM " . static::$tabla;
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
@@ -139,6 +139,14 @@ class ActiveRecord
         $resultado = self::consultarSQL($query);
         return array_shift($resultado);
     }
+
+    public static function paginar($registrosPorPagina, $offset)
+    {
+        $query = "SELECT * FROM " . static::$tabla . " LIMIT $registrosPorPagina OFFSET $offset";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
 
     // Busqueda Where con Columna 
     public static function where($columna, $valor)
