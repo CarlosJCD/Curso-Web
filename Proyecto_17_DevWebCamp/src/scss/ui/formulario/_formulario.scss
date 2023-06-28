@@ -29,7 +29,8 @@
         color: rgba(v.$negro, 0.8);
     }
 
-    &__input {
+    &__input,
+    &__select {
         padding: 1rem;
         border: 1px solid darken($color: v.$gris-claro, $amount: 20);
 
