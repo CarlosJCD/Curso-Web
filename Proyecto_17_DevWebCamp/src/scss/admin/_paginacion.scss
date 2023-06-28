@@ -8,6 +8,7 @@
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 
     @include m.tablet {
         justify-content: flex-end;
@@ -23,12 +24,32 @@
             padding: 1rem;
             border-radius: .5rem;
             border: 1px solid v.$azul;
+
+            &:hover {
+                background-color: v.$azul;
+                color: v.$blanco;
+            }
         }
 
-        &:hover {
-            background-color: v.$azul;
-            color: v.$blanco;
+        &--numero,
+        &--actual {
+            display: none;
+
+            @include m.tablet {
+                display: flex;
+            }
         }
+
+        &--numero {
+            font-weight: v.$bold;
+        }
+
+        &--actual {
+            color: v.$gris;
+            font-weight: v.$bold;
+        }
+
+
     }
 
 

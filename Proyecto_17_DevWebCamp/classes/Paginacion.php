@@ -52,6 +52,20 @@ class Paginacion
         return $html;
     }
 
+    public function numeros_paginas()
+    {
+        $html = '';
+
+        for ($i = 1; $i <= $this->total_paginas(); $i++) {
+            if ($i === $this->pagina_actual) {
+                $html .= "<span class='paginacion__enlace paginacion__enlace--actual' >$i</span>";
+            } else {
+                $html .= "<a class='paginacion__enlace paginacion__enlace--numero ' href='?page=$i'>$i</a>";
+            }
+        }
+        return $html;
+    }
+
     public function paginacion()
     {
         $html = '';
@@ -59,6 +73,7 @@ class Paginacion
         if ($this->total_registros > 1) {
             $html .= "<div class='paginacion'>";
             $html .= $this->enlace_anterior();
+            $html .= $this->numeros_paginas();
             $html .= $this->enlace_siguiente();
             $html .= "</div>";
         }

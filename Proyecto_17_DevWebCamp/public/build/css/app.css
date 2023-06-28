@@ -920,6 +920,7 @@ h3 {
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 @media (min-width: 768px) {
   .paginacion {
@@ -937,8 +938,23 @@ h3 {
   border-radius: 0.5rem;
   border: 1px solid #007df4;
 }
-.paginacion__enlace:hover {
+.paginacion__enlace--texto:hover {
   background-color: #007df4;
   color: #FFFFFF;
+}
+.paginacion__enlace--numero, .paginacion__enlace--actual {
+  display: none;
+}
+@media (min-width: 768px) {
+  .paginacion__enlace--numero, .paginacion__enlace--actual {
+    display: flex;
+  }
+}
+.paginacion__enlace--numero {
+  font-weight: 700;
+}
+.paginacion__enlace--actual {
+  color: #64748B;
+  font-weight: 700;
 }
 /*# sourceMappingURL=app.css.map */

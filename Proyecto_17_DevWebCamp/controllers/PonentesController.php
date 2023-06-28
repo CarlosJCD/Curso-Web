@@ -16,7 +16,7 @@ class PonentesController
             header('Location: /login');
         }
 
-        $paginacion = self::generarPaginacion($_GET['page'], 5);
+        $paginacion = self::generarPaginacion($_GET['page'], 10);
 
         $ponentes = Ponente::paginar($paginacion->registros_por_pagina, $paginacion->offset());
 
