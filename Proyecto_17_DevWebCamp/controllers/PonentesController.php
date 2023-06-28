@@ -17,12 +17,14 @@ class PonentesController
         }
 
         $pagina_actual = filter_var($_GET['page'], FILTER_VALIDATE_INT);
-
         if (!$pagina_actual || $pagina_actual < 1) {
             header('Location: /admin/ponentes?page=1');
         }
 
-        $paginacion = new Paginacion(1, 20, 10);
+        $total_registros = Ponente::total();
+
+        $paginacion = new Paginacion($pagina_actual, 20, $total_registros);
+        debuguear($paginacion);
 
         $ponentes = Ponente::all();
 
