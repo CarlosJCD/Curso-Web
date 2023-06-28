@@ -50,4 +50,32 @@ class PonentesController
             'ponente' => $ponente ?? new Ponente
         ]);
     }
+
+    public static function editar(Router $router)
+    {
+        $id = validar_id($_GET['id']);
+
+
+        if (!$id) {
+            header('Location: /admin/ponentes');
+        }
+
+        $ponente = Ponente::find($_GET['id']);
+
+        if (!$ponente) {
+            header('Location: /admin/ponentes');
+        }
+
+        $redes = json_decode($ponente->redes);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        }
+
+
+        $router->render('admin/ponentes/editar', [
+            'titulo' => 'Editar Ponente',
+            'alertas' => $alertas ?? [],
+            'ponente' => $ponente,
+            'redes' => $redes
+        ]);
+    }
 }

@@ -22,3 +22,8 @@ function enlace_actual($path): string
 {
     return pagina_actual($path) ? 'dashboard__enlace--actual' : '';
 }
+
+function validar_id($id)
+{
+    return filter_var($id, FILTER_VALIDATE_INT);
+}
