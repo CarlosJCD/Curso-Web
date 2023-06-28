@@ -10,7 +10,7 @@
 <div class="dashboard__contenedor">
     <?php if (!empty($ponentes)) { ?>
         <table class="table">
-            <thead>
+            <thead class="table__thead">
                 <tr>
                     <th scope="col" class="table__th">Nombre</th>
                     <th scope="col" class="table__th">Ubicación</th>
@@ -29,13 +29,13 @@
                         </td>
 
                         <td class="table__td--acciones">
-                            <a href="/admin/ponentes/editar?id=<?php echo $ponente->id ?>">
+                            <a class="table__accion table__accion--editar" href="/admin/ponentes/editar?id=<?php echo $ponente->id ?>">
                                 <i class="fa-solid fa-user-pen"></i>
                                 Editar
                             </a>
 
                             <form class="table__formulario">
-                                <button type="submit">
+                                <button class="table__accion table__accion--eliminar" type="submit">
                                     <i class="fa-solid fa-circle-xmark"></i>
                                     Eliminar
                                 </button>
