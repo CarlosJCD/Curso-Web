@@ -16,6 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `ponentes`
+--
+
+DROP TABLE IF EXISTS `ponentes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ponentes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(40) DEFAULT NULL,
+  `apellido` varchar(40) DEFAULT NULL,
+  `ciudad` varchar(20) DEFAULT NULL,
+  `pais` varchar(20) DEFAULT NULL,
+  `imagen` varchar(32) DEFAULT NULL,
+  `tags` varchar(120) DEFAULT NULL,
+  `redes` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ponentes`
+--
+
+LOCK TABLES `ponentes` WRITE;
+/*!40000 ALTER TABLE `ponentes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ponentes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -32,7 +61,7 @@ CREATE TABLE `usuarios` (
   `token` varchar(13) DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +70,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (10,' Carlos Javier','Calderon Delgado','correo@correo.com','$2y$10$.LmCsBSo8ixROk1cXcZ1rONyA9jnDChC4sh45wzQripbcPcXlS59G',1,'',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
