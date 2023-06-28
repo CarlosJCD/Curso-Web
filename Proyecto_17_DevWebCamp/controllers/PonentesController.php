@@ -66,7 +66,10 @@ class PonentesController
             header('Location: /admin/ponentes');
         }
 
+        $ponente->imagen_actual = $ponente->imagen;
+
         $redes = json_decode($ponente->redes);
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 

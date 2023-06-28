@@ -434,6 +434,12 @@ h3 {
 .formulario__listado > li:hover {
   cursor: pointer;
 }
+.formulario__texto {
+  margin-top: 3rem;
+}
+.formulario__imagen {
+  max-width: 20rem;
+}
 .formulario__submit {
   background-color: #007df4;
   padding: 1.5rem 4rem;

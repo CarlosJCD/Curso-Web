@@ -68,6 +68,13 @@
         @include m.tags;
     }
 
+    &__texto {
+        margin-top: 3rem;
+    }
+
+    &__imagen {
+        max-width: 20rem
+    }
 
     &__submit {
         @include m.boton(v.$azul, v.$blanco);
