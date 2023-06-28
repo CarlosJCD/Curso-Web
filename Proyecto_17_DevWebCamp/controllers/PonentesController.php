@@ -21,6 +21,7 @@ class PonentesController
 
     public static function crear(Router $router)
     {
+        $ponente = new Ponente;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -47,7 +48,8 @@ class PonentesController
         $router->render('admin/ponentes/crear', [
             'titulo' => 'Registrar Ponente',
             'alertas' => $alertas ?? [],
-            'ponente' => $ponente ?? new Ponente
+            'ponente' => $ponente,
+            'redes' => json_decode($ponente->redes)
         ]);
     }
 
