@@ -1,0 +1,35 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.paginacion {
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @include m.tablet {
+        justify-content: flex-end;
+    }
+
+    &__enlace {
+        color: v.$azul;
+        font-size: 2rem;
+        transition-property: background-color, color;
+        transition-duration: 300ms;
+
+        &--texto {
+            padding: 1rem;
+            border-radius: .5rem;
+            border: 1px solid v.$azul;
+        }
+
+        &:hover {
+            background-color: v.$azul;
+            color: v.$blanco;
+        }
+    }
+
+
+}
