@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\Ponente;
 use Model\EventoHorario;
 
 
@@ -26,5 +27,20 @@ class APIEventos
         $eventos = EventoHorario::whereArray(['dia_id' => $dia_id, 'categoria_id' => $categoria_id]) ?? [];
         header('Content-Type: application/json');
         echo json_encode($eventos);
+    }
+
+    public static function ponente()
+    {
+        $id = $_GET['id'];
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        if (!$id || $id < 1) {
+            echo json_encode([]);
+            return;
+        }
+
+        $ponente = Ponente::find($id);
+        header('Content-Type: application/json');
+        echo json_encode($ponente, JSON_UNESCAPED_SLASHES);
     }
 }

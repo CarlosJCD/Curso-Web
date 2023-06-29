@@ -70,6 +70,7 @@ $router->get('/api/eventos-horario', [APIEventos::class, 'index']);
 
 // API PONENTES
 $router->get('/api/ponentes', [APIPonentes::class, 'index']);
+$router->get('/api/ponente', [APIPonentes::class, 'ponente']);
 
 
 //RUTEO REGISTRADOS

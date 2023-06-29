@@ -9,9 +9,20 @@
             const listadoPonentes = document.querySelector('#listado-ponentes');
             const inputHiddenPonenteId = document.querySelector('[name="ponente_id"]');
 
+            obtenerPonentes();
             ponentesInput.addEventListener('input', buscarPonentes);
 
-            obtenerPonentes();
+            if (inputHiddenPonenteId.value) {
+                (async () => {
+                    const ponente = await obtenerPonente(inputHiddenPonenteId.value);
+
+                    const ponenteDOM = document.createElement('LI');
+                    ponenteDOM.classList.add('listado-ponentes__ponente', 'listado-ponentes__ponente--seleccionado');
+                    ponenteDOM.textContent = `${ponente.nombre} ${ponente.apellido}`;
+
+                    listadoPonentes.appendChild(ponenteDOM);
+                })();
+            }
 
             async function obtenerPonentes() {
                 const url = `/api/ponentes`;
@@ -20,6 +31,13 @@
                 const resultado = await respuesta.json();
 
                 formatearPonentes(resultado);
+            }
+
+            async function obtenerPonente(id) {
+                const url = `/api/ponente?id=${id}`;
+                const respuesta = await fetch(url);
+                const resultado = await respuesta.json();
+                return resultado;
             }
 
             function formatearPonentes(arrayPonentes = []) {
