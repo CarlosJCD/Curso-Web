@@ -13,13 +13,13 @@
                     <div class="evento__informacion">
                         <h4 class="evento__nombre"><?php echo $evento->nombre ?></h4>
                         <div>
-                            <p class="evento__informacion"><?php echo $evento->descripcion; ?></p>
+                            <p class="evento__introduccion"><?php echo $evento->descripcion; ?></p>
                         </div>
                         <div class="evento__autor-info">
                             <picture>
                                 <source srcset="/public/img/speakers/<?php echo $evento->ponente->imagen; ?>.webp" type="image/webp">
                                 <source srcset="/public/img/speakers/<?php echo $evento->ponente->imagen; ?>.png" type="image/png">
-                                <img src="/public/img/speakers/<?php echo $evento->ponente->imagen; ?>.png" alt="Imagen Ponente">
+                                <img class="evento__imagen-autor" loading="lazy" width="200" height="300" src="/public/img/speakers/<?php echo $evento->ponente->imagen; ?>.png" alt="Imagen Ponente">
                             </picture>
                             <p class="evento__autor-nombre"><?php echo $evento->ponente->nombre . " " . $evento->ponente->apellido ?></p>
                         </div>
