@@ -29,16 +29,18 @@
             <?php foreach ($dias as $dia) { ?>
                 <div>
                     <label for="<?php strtolower($dia->nombre) ?>"><?php echo $dia->nombre ?></label>
-                    <input type="radio" id="<?php strtolower($dia->nombre) ?>" name="dia" value="<?php $dia->id ?>" <?php echo ($evento->dia_id === $dia->id) ? 'checked' : ''; ?>>
+                    <input type="radio" id="<?php echo strtolower($dia->nombre) ?>" name="dia" value="<?php $dia->id ?>" <?php echo ($evento->dia_id === $dia->id) ? 'checked' : ''; ?>>
                 </div>
             <?php } ?>
         </div>
+
+        <input type="hidden" name="dia_id" value="">
     </div>
 
     <div id="horas" class="formulario__campo">
         <label class="formulario__label">Seleccionar Hora</label>
 
-        <ul class="horas">
+        <ul id="horas" class="horas">
             <?php foreach ($horas as $hora) { ?>
                 <li class="horas__hora"><?php echo $hora->hora ?></li>
             <?php } ?>
