@@ -12,6 +12,7 @@
         const dias = document.querySelectorAll('[name="dia"]');
         const inputHiddenDia = document.querySelector('[name="dia_id"]');
 
+        categoria.addEventListener('change', terminoBusqueda);
         dias.forEach(dia => dia.addEventListener('change', terminoBusqueda));
 
         function terminoBusqueda(e) {
