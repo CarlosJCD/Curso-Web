@@ -496,15 +496,19 @@ h3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.horas__hora {
+.horas__hora, .horas__hora--seleccionada {
   color: #007df4;
   border: 1px solid #007df4;
   border-radius: 1rem;
   padding: 1rem;
   text-align: center;
 }
-.horas__hora:hover {
+.horas__hora:hover, .horas__hora--seleccionada:hover {
   cursor: pointer;
+}
+.horas__hora--seleccionada {
+  background-color: #007df4;
+  color: #FFFFFF;
 }
 
 .header {

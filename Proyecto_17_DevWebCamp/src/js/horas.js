@@ -42,8 +42,16 @@
         }
 
         function seleccionarHora(e) {
+
+            const horaPrevia = document.querySelector('.horas__hora--seleccionada');
+            console.log(horaPrevia);
+            if (horaPrevia) {
+                horaPrevia.classList.remove('horas__hora--seleccionada');
+            }
+
+            e.target.classList.add('horas__hora--seleccionada')
+
             inputHiddenHora.value = e.target.dataset.horaId;
-            console.log(e.target.dataset);
         }
     }
 })(); 
