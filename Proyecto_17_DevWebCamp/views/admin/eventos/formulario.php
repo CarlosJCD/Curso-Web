@@ -5,12 +5,12 @@
 
     <div class="formulario__campo">
         <label for="nombre" class="formulario__label">Nombre Evento</label>
-        <input type="text" class="formulario__input" placeholder="Nombre Evento" id="nombre" name="nombre">
+        <input type="text" class="formulario__input" placeholder="Nombre Evento" id="nombre" name="nombre" value="<?php echo $evento->nombre ?>">
     </div>
 
     <div class="formulario__campo">
         <label for="descripcion" class="formulario__label">Descripción Evento</label>
-        <textarea class="formulario__input" id="descripcion" name="descripcion" placeholder="Descripción Evento" rows="8"></textarea>
+        <textarea class="formulario__input" id="descripcion" name="descripcion" placeholder="Descripción Evento" rows="8"><?php echo $evento->descripcion ?></textarea>
     </div>
 
     <div class="formulario__campo">
@@ -18,7 +18,7 @@
         <select id="categoria" class='formulario__select' name="categoria_id">
             <option selected disabled> - Seleccione una categoria -</option>
             <?php foreach ($categorias as $categoria) : ?>
-                <option value="<?php echo $categoria->id ?>"><?php echo $categoria->nombre ?></option>
+                <option <?php echo ($evento->categoria_id === $categoria->id) ? 'selected' : '' ?> value="<?php echo $categoria->id ?>"><?php echo $categoria->nombre ?></option>
             <?php endforeach; ?>
         </select>
     </div>
@@ -29,9 +29,8 @@
             <?php foreach ($dias as $dia) { ?>
                 <div>
                     <label for="<?php strtolower($dia->nombre) ?>"><?php echo $dia->nombre ?></label>
-                    <input type="radio" id="<?php strtolower($dia->nombre) ?>" name="dia" value="<?php $dia->id ?>">
+                    <input type="radio" id="<?php strtolower($dia->nombre) ?>" name="dia" value="<?php $dia->id ?>" <?php echo ($evento->dia_id === $dia->id) ? 'checked' : ''; ?>>
                 </div>
-
             <?php } ?>
         </div>
     </div>
@@ -44,6 +43,7 @@
                 <li class="horas__hora"><?php echo $hora->hora ?></li>
             <?php } ?>
         </ul>
+        <input type="hidden" name="hora_id" value="<?php echo $evento->hora_id; ?>">
     </div>
 
 </fieldset>
@@ -58,6 +58,6 @@
 
     <div class="formulario__campo">
         <label for="disponibles" class="formulario__label">Lugar Disponibles</label>
-        <input type="number" min='1' class="formulario__input" id="disponibles" name="disponibles" placeholder="Ej. 20">
+        <input type="number" min='1' class="formulario__input" id="disponibles" name="disponibles" placeholder="Ej. 20" value="<?php echo $evento->disponibles; ?>">
     </div>
 </fieldset>
