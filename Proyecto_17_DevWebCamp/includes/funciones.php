@@ -34,6 +34,22 @@ function validar_id($id, $url_redireccionamiento)
     return $id_filtrado;
 }
 
+function isAuth()
+{
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    return isset($_SESSION['nombre']) && !empty($_SESSION);
+}
+
+function isAdmin()
+{
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    return isset($_SESSION['admin']) && !empty($_SESSION['admin']);
+}
+
 function validarAuth($url_redireccionamiento)
 {
     if (!isset($_SESSION)) {

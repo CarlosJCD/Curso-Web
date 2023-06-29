@@ -18,6 +18,7 @@
         text-transform: uppercase;
         text-align: center;
 
+        &--actual,
         &:hover {
             cursor: pointer;
             background-color: v.$blanco;
