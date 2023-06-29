@@ -23,8 +23,8 @@ class APIEventos
             return;
         }
 
-        header('Content-Type: application/json');
         $eventos = EventoHorario::whereArray(['dia_id' => $dia_id, 'categoria_id' => $categoria_id]) ?? [];
+        header('Content-Type: application/json');
         echo json_encode($eventos);
     }
 }

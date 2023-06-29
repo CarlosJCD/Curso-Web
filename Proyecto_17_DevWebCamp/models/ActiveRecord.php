@@ -167,7 +167,7 @@ class ActiveRecord
             }
         }
         $resultado = self::consultarSQL($query);
-        return array_shift($resultado);
+        return $resultado;
     }
 
     public static function total(): int
