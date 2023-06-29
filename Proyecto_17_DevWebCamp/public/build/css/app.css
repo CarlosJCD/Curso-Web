@@ -390,6 +390,53 @@ h3 {
   line-height: 2;
 }
 
+.paquetes__grid {
+  margin: 0 auto;
+  width: min(95%, 140rem);
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 768px) {
+  .paquetes__grid {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: flex-start;
+  }
+}
+
+.paquete {
+  border: 1px solid #7f8ea3;
+  padding: 3rem;
+}
+.paquete__nombre {
+  font-weight: 900;
+  font-size: 2.6rem;
+  margin: 2rem 0;
+}
+.paquete:nth-child(2) {
+  order: -1;
+}
+@media (min-width: 768px) {
+  .paquete:nth-child(2) {
+    order: unset;
+  }
+}
+.paquete__lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 2;
+}
+.paquete__precio {
+  font-size: 6rem;
+  margin: 3rem 0 0 0;
+  color: #007df4;
+  font-weight: 900;
+  text-align: center;
+}
+
 .formulario {
   display: flex;
   flex-direction: column;

@@ -191,3 +191,14 @@
         }
     }
 }
+
+@mixin card {
+    border: 1px solid lighten($color: v.$gris, $amount: 10);
+    padding: 3rem;
+
+    &__nombre {
+        font-weight: v.$black;
+        font-size: 2.6rem;
+        margin: 2rem 0;
+    }
+}
