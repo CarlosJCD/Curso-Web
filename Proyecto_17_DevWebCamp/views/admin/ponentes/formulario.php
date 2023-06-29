@@ -29,9 +29,9 @@
 
         <div class="formulario__imagen">
             <picture>
-                <source srcset="<?php echo $_ENV['HOST'] .  '/../../../public/img/speakers/' . $ponente->imagen; ?>.webp" type="image/webp">
-                <source srcset="<?php echo $_ENV['HOST'] . '/../../../public/img/speakers/' . $ponente->imagen; ?>.png" type="image/png">
-                <img src="<?php echo $_ENV['HOST'] . '/../../../public/img/speakers/' . $ponente->imagen; ?>.png" alt="Imagen Ponente">
+                <source srcset="/public/img/speakers/<?php echo $ponente->imagen; ?>.webp" type="image/webp">
+                <source srcset="/public/img/speakers/<?php echo $ponente->imagen; ?>.png" type="image/png">
+                <img src="/public/img/speakers/<?php echo $ponente->imagen; ?>.png" alt="Imagen Ponente">
             </picture>
         </div>
 

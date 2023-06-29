@@ -2,8 +2,12 @@
 
 namespace Controllers;
 
-use Model\Evento;
+use Model\Dia;
+use Model\Hora;
 use MVC\Router;
+use Model\Evento;
+use Model\Ponente;
+use Model\Categoria;
 
 class PaginasController
 {
@@ -39,6 +43,12 @@ class PaginasController
             'workshops_sabado' => []
         ];
         foreach ($eventos as $evento) {
+
+            $evento->categoria = Categoria::find($evento->categoria_id);
+            $evento->ponente = Ponente::find($evento->ponente_id);
+            $evento->dia = Dia::find($evento->dia_id);
+            $evento->hora = Hora::find($evento->hora_id);
+
             switch (true) {
                 case $evento->dia_id === '1' && $evento->categoria_id === '1':
                     $eventosOrdenados['conferencias_viernes'][] = $evento;
@@ -57,10 +67,10 @@ class PaginasController
                     break;
             }
         }
-        debuguear($eventosOrdenados);
 
         $router->render('/paginas/conferencias', [
-            'titulo' => 'Conferencias & Workshops'
+            'titulo' => 'Conferencias & Workshops',
+            'eventos' => $eventosOrdenados
         ]);
     }
 }

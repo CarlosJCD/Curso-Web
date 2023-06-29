@@ -87,6 +87,7 @@ class EventosController
             'evento' => $evento
         ]);
     }
+
     public static function editar(Router $router)
     {
         $idEvento = validar_id($_GET['id'], '/admin/eventos');
