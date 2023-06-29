@@ -46,5 +46,18 @@
         </ul>
     </div>
 
+</fieldset>
 
+<fieldset class="formulario__fieldset">
+    <legend class="formulario__legend"> Información Extra </legend>
+
+    <div class="formulario__campo">
+        <label for="ponentes" class="formulario__label">Ponente</label>
+        <input type="text" class="formulario__input" id="ponentes" placeholder="Buscar Ponente">
+    </div>
+
+    <div class="formulario__campo">
+        <label for="disponibles" class="formulario__label">Lugar Disponibles</label>
+        <input type="number" min='1' class="formulario__input" id="disponibles" name="disponibles" placeholder="Ej. 20">
+    </div>
 </fieldset>
