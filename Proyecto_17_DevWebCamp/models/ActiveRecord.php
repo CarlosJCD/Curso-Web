@@ -70,6 +70,14 @@ class ActiveRecord
         return $objeto;
     }
 
+    public static function ordenar($columna, $orden = 'ASC')
+    {
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY $columna $orden";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
+
     // Identificar y unir los atributos de la BD
     public function atributos()
     {
