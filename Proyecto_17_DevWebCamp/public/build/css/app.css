@@ -456,6 +456,10 @@ h3 {
 .eventos--workshops .eventos__heading {
   color: #00c8c2;
 }
+.eventos .swiper-button-prev,
+.eventos .swiper-button-next {
+  color: rgba(255, 255, 255, 0.5);
+}
 
 .evento__hora {
   font-weight: 700;
@@ -469,6 +473,14 @@ h3 {
 }
 .evento__informacion:hover {
   background-color: #0063c1;
+}
+.evento__nombre {
+  font-size: 2rem;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .evento__introduccion {
   font-size: 1.6rem;

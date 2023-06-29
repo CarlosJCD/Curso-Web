@@ -27,6 +27,13 @@
             color: v.$secundario;
         }
     }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        color: rgba($color: v.$blanco, $alpha: .5);
+    }
+
+
 }
 
 .evento {
@@ -45,6 +52,15 @@
         &:hover {
             background-color: darken($color: v.$azul, $amount: 10);
         }
+    }
+
+    &__nombre {
+        font-size: 2rem;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     &__introduccion {
