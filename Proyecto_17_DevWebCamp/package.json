@@ -27,5 +27,9 @@
     "gulp-webp": "^4.0.1",
     "sass": "^1.41.1",
     "terser": "^5.14.2"
+  },
+  "dependencies": {
+    "swiper": "^9.4.1",
+    "webpack-stream": "^7.0.0"
   }
 }
