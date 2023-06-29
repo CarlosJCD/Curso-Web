@@ -29,7 +29,7 @@
             <?php foreach ($dias as $dia) { ?>
                 <div>
                     <label for="<?php strtolower($dia->nombre) ?>"><?php echo $dia->nombre ?></label>
-                    <input type="radio" id="<?php echo strtolower($dia->nombre) ?>" name="dia" value="<?php $dia->id ?>" <?php echo ($evento->dia_id === $dia->id) ? 'checked' : ''; ?>>
+                    <input type="radio" id="<?php echo strtolower($dia->nombre) ?>" name="dia" value="<?php echo $dia->id ?>" <?php echo ($evento->dia_id === $dia->id) ? 'checked' : ''; ?>>
                 </div>
             <?php } ?>
         </div>
