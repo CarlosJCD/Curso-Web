@@ -133,8 +133,16 @@ class EventosController
 
     public static function eliminar()
     {
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            validarAdmin('/admin/eventos');
+
+            $id = $_POST['id'];
+            $evento = self::validarExistenciaEvento($id);
+
+            $resultado = $evento->eliminar();
+            if ($resultado) {
+                header('Location: /admin/eventos');
+            }
         }
     }
 }
