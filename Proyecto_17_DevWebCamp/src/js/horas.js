@@ -33,10 +33,14 @@
             const resultado = await fetch(url);
             const eventos = await resultado.json();
 
-            obtenerHorasDisponibles();
+            obtenerHorasDisponibles(eventos);
         }
 
-        function obtenerHorasDisponibles() {
+        function obtenerHorasDisponibles(eventos) {
+
+            const horasTomadas = eventos.map(evento => evento.horaId);
+            const listadoHoras = document.querySelectorAll('#horas li');
+
             const horasDisponibles = document.querySelectorAll('#horas li');
             horasDisponibles.forEach(horaDisponible => horaDisponible.addEventListener('click', seleccionarHora));
         }
