@@ -999,4 +999,27 @@ h3 {
   color: #64748B;
   font-weight: 700;
 }
+
+.listado-ponentes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+.listado-ponentes__ponente, .listado-ponentes__ponente--seleccionado {
+  color: #007df4;
+  border: 1px solid #007df4;
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+.listado-ponentes__ponente:hover, .listado-ponentes__ponente--seleccionado:hover {
+  cursor: pointer;
+}
+.listado-ponentes__ponente--seleccionado {
+  background-color: #007df4;
+  color: #FFFFFF;
+}
 /*# sourceMappingURL=app.css.map */

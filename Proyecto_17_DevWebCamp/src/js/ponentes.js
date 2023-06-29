@@ -7,6 +7,7 @@
             let ponentesFiltrados = [];
 
             const listadoPonentes = document.querySelector('#listado-ponentes');
+            const inputHiddenPonenteId = document.querySelector('[name="ponente_id"]');
 
             ponentesInput.addEventListener('input', buscarPonentes);
 
@@ -53,9 +54,10 @@
                 if (ponentesFiltrados.length > 0) {
                     ponentesFiltrados.forEach(ponente => {
                         const ponenteHTML = document.createElement('LI');
-                        ponenteHTML.classList.add('listado-ponente__ponente');
+                        ponenteHTML.classList.add('listado-ponentes__ponente');
                         ponenteHTML.textContent = ponente.nombre;
                         ponenteHTML.dataset.ponenteId = ponente.id;
+                        ponenteHTML.onclick = seleccionarPonente;
 
                         listadoPonentes.appendChild(ponenteHTML);
                     });
@@ -67,6 +69,17 @@
                     listadoPonentes.appendChild(noResultados);
                 }
 
+            }
+            function seleccionarPonente(e) {
+                const ponenteSeleccionadoAnterior = document.querySelector('.listado-ponentes__ponente--seleccionado');
+                if (ponenteSeleccionadoAnterior) {
+                    ponenteSeleccionadoAnterior.classList.remove('listado-ponentes__ponente--seleccionado');
+                }
+
+                const ponente = e.target;
+                ponente.classList.add('listado-ponentes__ponente--seleccionado');
+
+                inputHiddenPonenteId.value = ponente.dataset.ponenteId;
             }
         }
 
