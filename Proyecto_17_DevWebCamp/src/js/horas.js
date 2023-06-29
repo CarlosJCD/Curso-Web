@@ -40,8 +40,12 @@
 
             const horasTomadas = eventos.map(evento => evento.horaId);
             const listadoHoras = document.querySelectorAll('#horas li');
+            const listadoHorasArray = Array.from(listadoHoras);
+            const resultado = listadoHorasArray.filter(li => !horasTomadas.includes(li.dataset.horaId));
 
-            const horasDisponibles = document.querySelectorAll('#horas li');
+            resultado.forEach(li => li.classList.remove('horas__hora--deshabilitada'));
+
+            const horasDisponibles = document.querySelectorAll('#horas li:not(.horas__hora--deshabilitada)');
             horasDisponibles.forEach(horaDisponible => horaDisponible.addEventListener('click', seleccionarHora));
         }
 
