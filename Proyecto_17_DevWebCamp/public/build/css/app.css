@@ -437,6 +437,26 @@ h3 {
   text-align: center;
 }
 
+.agenda {
+  padding: 5rem 0;
+  margin: 0 auto;
+  width: min(95%, 140rem);
+}
+
+.eventos__heading {
+  color: #007df4;
+  margin: 5rem 0;
+  text-align: left;
+  font-size: clamp(2rem, -0.8rem + 10vw, 6rem);
+}
+.eventos__fecha {
+  color: #64748B;
+  margin: 3rem 0 1rem 0;
+}
+.eventos--workshops .eventos__heading {
+  color: #00c8c2;
+}
+
 .formulario {
   display: flex;
   flex-direction: column;
