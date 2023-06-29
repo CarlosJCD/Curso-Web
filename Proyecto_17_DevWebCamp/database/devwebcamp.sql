@@ -40,6 +40,54 @@ INSERT INTO `categorias` VALUES (1,'Conferencias'),(2,'Workshops');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `dias`
+--
+
+DROP TABLE IF EXISTS `dias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `dias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dias`
+--
+
+LOCK TABLES `dias` WRITE;
+/*!40000 ALTER TABLE `dias` DISABLE KEYS */;
+INSERT INTO `dias` VALUES (1,'Viernes'),(2,'Sabado');
+/*!40000 ALTER TABLE `dias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `horas`
+--
+
+DROP TABLE IF EXISTS `horas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `horas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hora` varchar(13) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `horas`
+--
+
+LOCK TABLES `horas` WRITE;
+/*!40000 ALTER TABLE `horas` DISABLE KEYS */;
+INSERT INTO `horas` VALUES (1,'10:00 - 10:55'),(2,'11:00 - 11:55'),(3,'12:00 - 12:55'),(4,'13:00 - 13:55'),(5,'16:00 - 16:55'),(6,'17:00 - 17:55'),(7,'18:00 - 18:55'),(8,'19:00 - 19:55');
+/*!40000 ALTER TABLE `horas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ponentes`
 --
 

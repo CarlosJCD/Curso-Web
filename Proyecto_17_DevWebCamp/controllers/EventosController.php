@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Model\Dia;
+use Model\Hora;
 use MVC\Router;
 use Model\Categoria;
 
@@ -15,17 +16,20 @@ class EventosController
             'titulo' => 'Conferencias y workshops'
         ]);
     }
+
     public static function crear(Router $router)
     {
 
         $categorias = Categoria::all();
         $dias = Dia::all();
+        $horas = Hora::all();
 
         $router->render('admin/eventos/crear', [
             'titulo' => 'Registrar Evento',
             'alertas' => $alertas ?? [],
             'categorias' => $categorias,
-            'dias' => $dias
+            'dias' => $dias,
+            'horas' => $horas
         ]);
     }
 }
