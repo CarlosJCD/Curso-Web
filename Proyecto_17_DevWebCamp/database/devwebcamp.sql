@@ -64,6 +64,43 @@ INSERT INTO `dias` VALUES (1,'Viernes'),(2,'Sabado');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `eventos`
+--
+
+DROP TABLE IF EXISTS `eventos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `eventos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(120) DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
+  `disponibles` int(11) DEFAULT NULL,
+  `categoria_id` int(11) NOT NULL,
+  `dia_id` int(11) NOT NULL,
+  `hora_id` int(11) NOT NULL,
+  `ponente_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_eventos_categorias_idx` (`categoria_id`),
+  KEY `fk_eventos_dias1_idx` (`dia_id`),
+  KEY `fk_eventos_horas1_idx` (`hora_id`),
+  KEY `fk_eventos_ponentes1_idx` (`ponente_id`),
+  CONSTRAINT `fk_eventos_categorias` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
+  CONSTRAINT `fk_eventos_dias1` FOREIGN KEY (`dia_id`) REFERENCES `dias` (`id`),
+  CONSTRAINT `fk_eventos_horas1` FOREIGN KEY (`hora_id`) REFERENCES `horas` (`id`),
+  CONSTRAINT `fk_eventos_ponentes1` FOREIGN KEY (`ponente_id`) REFERENCES `ponentes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `eventos`
+--
+
+LOCK TABLES `eventos` WRITE;
+/*!40000 ALTER TABLE `eventos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `eventos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `horas`
 --
 
