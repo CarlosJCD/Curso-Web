@@ -14,6 +14,8 @@ class EventosController
 {
     public static function index(Router $router)
     {
+        validarAdmin('/login');
+
         $paginacion = self::generarPaginacion($_GET['page'], 10);
 
         $eventos = Evento::paginar($paginacion->registros_por_pagina, $paginacion->offset());
@@ -53,6 +55,7 @@ class EventosController
 
     public static function crear(Router $router)
     {
+        validarAdmin('/login');
 
         $categorias = Categoria::all();
         $dias = Dia::all();
@@ -60,6 +63,8 @@ class EventosController
         $evento = new Evento();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            validarAdmin("/login");
+
             $evento->sincronizar($_POST);
 
             $alertas = $evento->validar();
@@ -81,5 +86,55 @@ class EventosController
             'horas' => $horas,
             'evento' => $evento
         ]);
+    }
+    public static function editar(Router $router)
+    {
+        $idEvento = validar_id($_GET['id'], '/admin/eventos');
+        $evento = self::validarExistenciaEvento($idEvento);
+
+        $categorias = Categoria::all();
+        $dias = Dia::all();
+        $horas = Hora::all();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $evento->sincronizar($_POST);
+
+            $alertas = $evento->validar();
+
+            if (empty($alertas)) {
+                $resultado = $evento->guardar();
+
+                if ($resultado) {
+                    header('Location: /admin/eventos');
+                }
+            }
+        }
+
+        $router->render('admin/eventos/editar', [
+            'titulo' => 'Editar Evento',
+            'alertas' => $alertas ?? [],
+            'categorias' => $categorias,
+            'dias' => $dias,
+            'horas' => $horas,
+            'evento' => $evento
+        ]);
+    }
+
+    private static function validarExistenciaEvento($idEvento)
+    {
+        $evento = Evento::find($idEvento);
+
+        if (!$evento) {
+            header("Location: /admin/eventos");
+        }
+
+        return $evento;
+    }
+
+    public static function eliminar()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        }
     }
 }

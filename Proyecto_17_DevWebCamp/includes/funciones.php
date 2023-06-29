@@ -23,23 +23,33 @@ function enlace_actual($path): string
     return pagina_actual($path) ? 'dashboard__enlace--actual' : '';
 }
 
-function validar_id($id)
+function validar_id($id, $url_redireccionamiento)
 {
-    return filter_var($id, FILTER_VALIDATE_INT);
+    $id_filtrado = filter_var($id, FILTER_VALIDATE_INT);
+    if (!$id_filtrado) {
+        header("Location: $url_redireccionamiento");
+        return;
+    }
+
+    return $id_filtrado;
 }
 
-function is_auth(): bool
+function validarAuth($url_redireccionamiento)
 {
     if (!isset($_SESSION)) {
         session_start();
     }
-    return isset($_SESSION['nombre']) && !empty($_SESSION);
+    if (!(isset($_SESSION['nombre']) && !empty($_SESSION))) {
+        header("Location: $url_redireccionamiento");
+    }
 }
 
-function is_admin(): bool
+function validarAdmin($url_redireccionamiento)
 {
     if (!isset($_SESSION)) {
         session_start();
     }
-    return isset($_SESSION['admin']) && !empty($_SESSION['admin']);
+    if (!(isset($_SESSION['admin']) && !empty($_SESSION['admin']))) {
+        header("Location: $url_redireccionamiento");
+    }
 }
