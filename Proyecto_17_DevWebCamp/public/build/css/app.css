@@ -456,6 +456,12 @@ h3 {
 .eventos--workshops .eventos__heading {
   color: #00c8c2;
 }
+.eventos--workshops .evento__informacion {
+  background-color: #00c8c2;
+}
+.eventos--workshops .evento__informacion:hover {
+  background-color: #009591;
+}
 .eventos .swiper-button-prev,
 .eventos .swiper-button-next {
   color: rgba(255, 255, 255, 0.5);
