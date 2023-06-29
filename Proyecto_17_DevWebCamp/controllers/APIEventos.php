@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+use Model\EventoHorario;
+
 
 class APIEventos
 {
@@ -20,5 +22,9 @@ class APIEventos
             echo json_encode([]);
             return;
         }
+
+        header('Content-Type: application/json');
+        $eventos = EventoHorario::whereArray(['dia_id' => $dia_id, 'categoria_id' => $categoria_id]) ?? [];
+        echo json_encode($eventos);
     }
 }
