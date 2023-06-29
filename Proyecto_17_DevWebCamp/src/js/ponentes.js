@@ -6,6 +6,8 @@
             let ponentes = [];
             let ponentesFiltrados = [];
 
+            const listadoPonentes = document.querySelector('#listado-ponentes');
+
             ponentesInput.addEventListener('input', buscarPonentes);
 
             obtenerPonentes();
@@ -30,15 +32,41 @@
 
             function buscarPonentes(e) {
                 const busqueda = e.target.value;
-                if (busqueda.length >= 1) {
+                if (busqueda.length > 1) {
                     const expresion = new RegExp(busqueda, 'i');
                     ponentesFiltrados = ponentes.filter(ponente => {
                         if (ponente.nombre.toLowerCase().search(expresion) != -1) {
                             return ponente;
                         }
                     });
-                    console.log(ponentesFiltrados);
+                } else {
+                    ponentesFiltrados = [];
                 }
+                mostrarPonentes();
+            }
+
+            function mostrarPonentes() {
+                while (listadoPonentes.firstChild) {
+                    listadoPonentes.removeChild(listadoPonentes.firstChild);
+                }
+
+                if (ponentesFiltrados.length > 0) {
+                    ponentesFiltrados.forEach(ponente => {
+                        const ponenteHTML = document.createElement('LI');
+                        ponenteHTML.classList.add('listado-ponente__ponente');
+                        ponenteHTML.textContent = ponente.nombre;
+                        ponenteHTML.dataset.ponenteId = ponente.id;
+
+                        listadoPonentes.appendChild(ponenteHTML);
+                    });
+                } else {
+                    const noResultados = document.createElement('P');
+                    noResultados.classList.add('listado-ponentes__no-resultado');
+                    noResultados.textContent = 'No hay resultados para tu búsqueda';
+
+                    listadoPonentes.appendChild(noResultados);
+                }
+
             }
         }
 
