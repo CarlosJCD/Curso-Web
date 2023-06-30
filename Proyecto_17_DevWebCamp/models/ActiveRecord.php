@@ -182,7 +182,7 @@ class ActiveRecord
     {
         $query = 'SELECT COUNT(*) FROM ' . static::$tabla;
         if ($columna) {
-            $query .= "WHERE $columna = '$valor'";
+            $query .= " WHERE $columna = '$valor'";
         }
         $resultado = self::$db->query($query);
         $total = $resultado->fetch_array();

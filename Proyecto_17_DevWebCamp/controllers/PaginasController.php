@@ -17,12 +17,19 @@ class PaginasController
         $eventosOrdenados = self::obtenerEventosOrdenados();
 
         $totalPonentes = Ponente::total();
-        $totalConferencias = Evento::total();
-        $total
+        $totalConferencias = Evento::total('categoria_id', '1');
+        $totalWorkshops = Evento::total('categoria_id', '2');
+
+        $ponentes = Ponente::all();
 
         $router->render('/paginas/index', [
             'titulo' => 'Inicio',
-            'eventos' => $eventosOrdenados
+            'eventos' => $eventosOrdenados,
+            'totalPonentes' => $totalPonentes ?? '18',
+            'totalConferencias' => $totalConferencias ?? '16',
+            'totalWorkshops' => $totalWorkshops ?? '16',
+            'totalRegistrados' => $totalRegistrados ?? '500',
+            'ponentes' => $ponentes
         ]);
     }
 
