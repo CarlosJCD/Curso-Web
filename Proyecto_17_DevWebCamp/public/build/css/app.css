@@ -667,6 +667,10 @@ h3 {
   display: none;
 }
 
+.mapa {
+  height: 45rem;
+}
+
 .formulario {
   display: flex;
   flex-direction: column;
