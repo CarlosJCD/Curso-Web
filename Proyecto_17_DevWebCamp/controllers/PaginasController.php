@@ -13,35 +13,29 @@ class PaginasController
 {
     public static function index(Router $router)
     {
+
+        $eventosOrdenados = self::obtenerEventosOrdenados();
+
+        $totalPonentes = Ponente::total();
+        $totalConferencias = Evento::total();
+        $total
+
         $router->render('/paginas/index', [
-            'titulo' => 'Inicio'
+            'titulo' => 'Inicio',
+            'eventos' => $eventosOrdenados
         ]);
     }
 
-    public static function evento(Router $router)
-    {
-        $router->render('/paginas/devwebcamp', [
-            'titulo' => 'Sobre DevWebCamp'
-        ]);
-    }
-
-    public static function paquetes(Router $router)
-    {
-        $router->render('/paginas/paquetes', [
-            'titulo' => 'Paquetes DevWebCamp'
-        ]);
-    }
-
-    public static function conferencias(Router $router)
+    private static function obtenerEventosOrdenados()
     {
         $eventos = Evento::ordenar('hora_id');
-
         $eventosOrdenados = [
             'conferencias_viernes' => [],
             'conferencias_sabado' => [],
             'workshops_viernes' => [],
             'workshops_sabado' => []
         ];
+
         foreach ($eventos as $evento) {
 
             $evento->categoria = Categoria::find($evento->categoria_id);
@@ -67,6 +61,26 @@ class PaginasController
                     break;
             }
         }
+        return $eventosOrdenados;
+    }
+
+    public static function evento(Router $router)
+    {
+        $router->render('/paginas/devwebcamp', [
+            'titulo' => 'Sobre DevWebCamp'
+        ]);
+    }
+
+    public static function paquetes(Router $router)
+    {
+        $router->render('/paginas/paquetes', [
+            'titulo' => 'Paquetes DevWebCamp'
+        ]);
+    }
+
+    public static function conferencias(Router $router)
+    {
+        $eventosOrdenados = self::obtenerEventosOrdenados();
 
         $router->render('/paginas/conferencias', [
             'titulo' => 'Conferencias & Workshops',
