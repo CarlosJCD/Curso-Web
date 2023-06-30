@@ -72,4 +72,16 @@
         font-weight: v.$black;
         font-size: 4rem;
     }
+
+    &__enlace-contenedor {
+        margin-top: 5rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__enlace {
+        @include m.boton(v.$azul, v.$blanco);
+        width: auto;
+    }
+
 }
