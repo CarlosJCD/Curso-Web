@@ -12,6 +12,7 @@ use Controllers\PaginasController;
 use Controllers\PonentesController;
 use Controllers\RegalosController;
 use Controllers\RegistradosController;
+use Controllers\RegistroController;
 
 $router = new Router();
 
@@ -90,6 +91,11 @@ $router->get('/devwebcamp', [PaginasController::class, 'evento']);
 $router->get('/paquetes', [PaginasController::class, 'paquetes']);
 $router->get('/workshops-conferencias', [PaginasController::class, 'conferencias']);
 $router->get('/404', [PaginasController::class, 'error']);
+
+
+// RUTEO FINALIZAR_REGISTRO
+
+$router->get('/finalizar-registro', [RegistroController::class, 'crear']);
 
 
 $router->comprobarRutas();
