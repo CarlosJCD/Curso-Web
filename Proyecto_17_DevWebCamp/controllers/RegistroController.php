@@ -59,6 +59,37 @@ class RegistroController
         ]);
     }
 
+    public static function pagar()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            validarAuth('/login');
+
+            if (empty($_POST)) {
+                echo json_encode([]);
+                return;
+            }
+
+            $datos = $_POST;
+            $datos['token'] = substr(md5(uniqid(rand(), true)), 0, 8);
+            $datos['usuario_id'] = $_SESSION['id'];
+
+            try {
+                $registro = new Registro($datos);
+
+                $resultado = $registro->guardar();
+
+                header('Content-Type: application/json');
+                echo json_encode($resultado);
+            } catch (\Throwable $th) {
+                echo json_encode([
+                    'resultado' => 'error'
+                ]);
+            }
+        }
+    }
+
+
     private static function validarTokenBoleto()
     {
         $token = $_GET['token'];
@@ -84,7 +115,7 @@ class RegistroController
     {
         $registro = Registro::where('usuario_id', $_SESSION['id']);
 
-        if (isset($registro) && $registro->paquete_id === '3') {
+        if (isset($registro) && $registro->paquete_id !== '') {
             header("Location: /boleto?token=" . urlencode($registro->token));
         }
     }
