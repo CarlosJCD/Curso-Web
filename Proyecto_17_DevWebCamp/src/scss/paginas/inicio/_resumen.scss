@@ -18,6 +18,7 @@
     }
 
     &__bloque {
+        overflow: hidden;
         text-align: center;
         color: v.$blanco;
     }

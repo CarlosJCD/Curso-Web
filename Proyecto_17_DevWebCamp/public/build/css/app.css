@@ -555,6 +555,7 @@ h3 {
   }
 }
 .resumen__bloque {
+  overflow: hidden;
   text-align: center;
   color: #FFFFFF;
 }
