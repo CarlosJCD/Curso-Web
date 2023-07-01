@@ -13,6 +13,11 @@
 
         }
     }
+
+    &__submit {
+        margin-top: 3rem;
+        @include m.boton(v.$azul, v.$blanco);
+    }
 }
 
 .paquete {

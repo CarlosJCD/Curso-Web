@@ -126,6 +126,30 @@ INSERT INTO `horas` VALUES (1,'10:00 - 10:55'),(2,'11:00 - 11:55'),(3,'12:00 - 1
 UNLOCK TABLES;
 
 --
+-- Table structure for table `paquetes`
+--
+
+DROP TABLE IF EXISTS `paquetes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `paquetes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `paquetes`
+--
+
+LOCK TABLES `paquetes` WRITE;
+/*!40000 ALTER TABLE `paquetes` DISABLE KEYS */;
+INSERT INTO `paquetes` VALUES (1,'Presencial'),(2,'Virtual'),(3,'Gratis');
+/*!40000 ALTER TABLE `paquetes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ponentes`
 --
 
@@ -156,6 +180,36 @@ INSERT INTO `ponentes` VALUES (1,' Julian','Muñoz','Madrid','España','6764a74c
 UNLOCK TABLES;
 
 --
+-- Table structure for table `registros`
+--
+
+DROP TABLE IF EXISTS `registros`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `registros` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `paquete_id` int(11) DEFAULT NULL,
+  `pago_id` varchar(30) DEFAULT NULL,
+  `token` varchar(8) DEFAULT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuarioId` (`usuario_id`),
+  KEY `paquete_id` (`paquete_id`),
+  CONSTRAINT `registros_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `registros_ibfk_2` FOREIGN KEY (`paquete_id`) REFERENCES `paquetes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registros`
+--
+
+LOCK TABLES `registros` WRITE;
+/*!40000 ALTER TABLE `registros` DISABLE KEYS */;
+/*!40000 ALTER TABLE `registros` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -172,7 +226,7 @@ CREATE TABLE `usuarios` (
   `token` varchar(13) DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,7 +235,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (10,' Carlos Javier','Calderon Delgado','correo@correo.com','$2y$10$.LmCsBSo8ixROk1cXcZ1rONyA9jnDChC4sh45wzQripbcPcXlS59G',1,'',1);
+INSERT INTO `usuarios` VALUES (10,' Carlos Javier','Calderon Delgado','correo@correo.com','$2y$10$.LmCsBSo8ixROk1cXcZ1rONyA9jnDChC4sh45wzQripbcPcXlS59G',1,'',1),(11,' Elizabeth','Delgado','correo@ejemplo.com','$2y$10$TZJH6MRffnaAtJ03KZPun.WHs0Xl5lO2zGflp1K88ENTADiaV1acy',1,'',0),(12,' Elizafan Yasmani','Delgado Be','correo@1.com','$2y$10$TR.nSRCiqvFsIOxsg4t0w.3Ul/bdajpkQlU3TlGXHs02wwe2tncM2',1,'',0);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -96,6 +96,7 @@ $router->get('/404', [PaginasController::class, 'error']);
 // RUTEO FINALIZAR_REGISTRO
 
 $router->get('/finalizar-registro', [RegistroController::class, 'crear']);
+$router->post('/finalizar-registro/gratis', [RegistroController::class, 'gratis']);
 
 
 $router->comprobarRutas();
