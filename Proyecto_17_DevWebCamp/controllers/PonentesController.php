@@ -30,7 +30,6 @@ class PonentesController
         $pagina_actual = filter_var($numeroPagina, FILTER_VALIDATE_INT);
         if (!$pagina_actual || $pagina_actual < 1) {
             header('Location: /admin/ponentes?page=1');
-            return;
         }
 
         $total_registros = Ponente::total();
@@ -38,7 +37,6 @@ class PonentesController
 
         if ($pagina_actual > $paginacion->total_paginas()) {
             header('Location: /admin/ponentes?page=1');
-            return;
         }
 
         return $paginacion;

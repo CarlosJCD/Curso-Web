@@ -7,14 +7,14 @@
             </span>
         </a>
 
-        <a href="/admin/ponentes" class="dashboard__enlace <?php echo enlace_actual('/ponentes') ?>">
+        <a href="/admin/ponentes?page=1" class="dashboard__enlace <?php echo enlace_actual('/ponentes?page=1') ?>">
             <i class="fa-solid fa-user-tie dashboard__icono"></i>
             <span class="dashboard__menu-texto">
                 Ponentes
             </span>
         </a>
 
-        <a href="/admin/eventos" class="dashboard__enlace <?php echo enlace_actual('/eventos') ?>">
+        <a href="/admin/eventos?page=1" class="dashboard__enlace <?php echo enlace_actual('/eventos?page=1') ?>">
             <i class="fa-regular fa-calendar-days dashboard__icono"></i>
             <span class="dashboard__menu-texto">
                 Eventos

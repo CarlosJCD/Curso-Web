@@ -39,7 +39,6 @@ class EventosController
         $pagina_actual = filter_var($numeroPagina, FILTER_VALIDATE_INT);
         if (!$pagina_actual || $pagina_actual < 1) {
             header('Location: /admin/eventos?page=1');
-            return;
         }
 
         $total_registros = Evento::total();
@@ -47,7 +46,6 @@ class EventosController
 
         if ($pagina_actual > $paginacion->total_paginas()) {
             header('Location: /admin/eventos?page=1');
-            return;
         }
 
         return $paginacion;
