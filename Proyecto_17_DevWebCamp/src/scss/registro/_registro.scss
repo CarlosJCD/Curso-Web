@@ -1,0 +1,39 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.eventos-registro {
+    @include m.contenedor;
+
+    @include m.tablet {
+        display: flex;
+        gap: 2rem;
+    }
+
+    &__listado {
+        @include m.tablet {
+            flex: 0 0 60%;
+        }
+    }
+
+    &__grid {
+        @include m.grid(1, 5rem);
+
+        @include m.tablet {
+            @include m.grid(2, 3rem);
+        }
+    }
+
+    &__heading {
+        &--conferencias {
+            color: v.$azul;
+            white-space: nowrap;
+            @include m.texto-fluido(2rem, 5rem);
+        }
+    }
+}
+
+.registro {
+    @include m.tablet {
+        flex: 0 0 40%;
+    }
+}

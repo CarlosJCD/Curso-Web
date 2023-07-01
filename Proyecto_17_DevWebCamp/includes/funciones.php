@@ -55,7 +55,7 @@ function validarAuth($url_redireccionamiento)
     if (!isset($_SESSION)) {
         session_start();
     }
-    if (!(isset($_SESSION['nombre']) && !empty($_SESSION))) {
+    if (!isAuth()) {
         header("Location: $url_redireccionamiento");
     }
 }
@@ -65,7 +65,7 @@ function validarAdmin($url_redireccionamiento)
     if (!isset($_SESSION)) {
         session_start();
     }
-    if (!(isset($_SESSION['admin']) && !empty($_SESSION['admin']))) {
+    if (!isAdmin()) {
         header("Location: $url_redireccionamiento");
     }
 }
