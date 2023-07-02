@@ -190,7 +190,7 @@ class RegistroController
     {
         $registro = Registro::where('usuario_id', $_SESSION['id']);
 
-        if (isset($registro) && $registro->paquete_id !== '') {
+        if (isset($registro) && $registro->paquete_id !== '1') {
             header("Location: /boleto?token=" . urlencode($registro->token));
         }
     }
