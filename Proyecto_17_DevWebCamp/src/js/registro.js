@@ -3,10 +3,13 @@ import Swal from "sweetalert2";
     const registroResumenDiv = document.querySelector('#registro-resumen');
     if (registroResumenDiv) {
         let eventos = [];
+        mostrarEventos();
         const eventosBoton = document.querySelectorAll(".evento__agregar");
         const formularioRegistro = document.querySelector('#registro');
-        formularioRegistro.addEventListener('submit', submitFormulario);
+
         eventosBoton.forEach(boton => boton.onclick = seleccionarEvento);
+
+        formularioRegistro.addEventListener('submit', submitFormulario);
 
         function seleccionarEvento(e) {
             if (eventos.length < 5) {
@@ -35,7 +38,12 @@ import Swal from "sweetalert2";
                     const eventoDOM = crearDIVEvento(evento);
                     registroResumenDiv.appendChild(eventoDOM);
 
-                })
+                });
+            } else {
+                const noRegistro = document.createElement('P');
+                noRegistro.textContent = "Porfavor, selecciona los eventos a los que deseas asistir.";
+                noRegistro.classList.add('registro__texto');
+                registroResumenDiv.appendChild(noRegistro);
             }
         }
 
@@ -87,7 +95,7 @@ import Swal from "sweetalert2";
 
         }
 
-        function submitFormulario(e) {
+        async function submitFormulario(e) {
             e.preventDefault();
 
             const regaloId = document.querySelector('#regalo').value;
@@ -117,6 +125,31 @@ import Swal from "sweetalert2";
                         break;
                 }
                 return;
+            }
+
+            const datos = new FormData();
+
+            datos.append('eventos', eventosId);
+            datos.append('regalo_id', regaloId);
+
+            const url = '/finalizar-registro/conferencias';
+            const respuesta = await fetch(url, {
+                method: "POST",
+                body: datos
+            });
+
+
+            const resultado = await respuesta.json();
+
+            if (resultado.resultado) {
+
+            } else {
+                Swal.fire({
+                    title: resultado.titulo,
+                    text: resultado.mensaje,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             }
 
 

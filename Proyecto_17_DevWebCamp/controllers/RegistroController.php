@@ -75,6 +75,28 @@ class RegistroController
 
         $regalos = Regalo::all();
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            validarAuth("/login");
+
+            $eventos_id = explode(",", $_POST["eventos"]);
+
+            if (empty($eventos_id)) {
+                header('Content-type: application/json');
+                echo json_encode(['resultado' => false]);
+                return;
+            }
+
+            $registro = Registro::where('usuario_id', $_SESSION['id']);
+
+            if (!$registro || $registro->paquete_id !== '1') {
+                header('Content-type: application/json');
+                echo json_encode(['resultado' => false]);
+                return;
+            }
+
+            self::validarDisponibilidadEventos($eventos_id);
+        }
+
         $router->render('registro/conferencias', [
             'titulo' => 'Elige Workshops y Conferencias',
             'registro' => $registro,
@@ -191,5 +213,19 @@ class RegistroController
             }
         }
         return $eventosOrdenados;
+    }
+
+    private static function validarDisponibilidadEventos($eventos_id)
+    {
+        foreach ($eventos_id as $evento_id) {
+            $evento = Evento::find($evento_id);
+            if (!$evento || $evento->disponibles === "0") {
+                $mensaje = "El evento $evento->nombre se encuentra actualmente agotado, porfavor seleccione otro evento.";
+
+                header('Content-Type: application/json');
+                echo json_encode(['respuesta' => false, 'titulo' => "Evento Agotado", "mensaje" => $mensaje]);
+                exit;
+            }
+        }
     }
 }
