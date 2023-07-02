@@ -85,11 +85,32 @@
     &__eliminar {
         all: unset;
         color: v.$rojo;
-        font-size: 4rem;
+        font-size: 2.5rem;
+        font-weight: v.$delgada;
 
         &:hover {
             cursor: pointer;
         }
 
     }
+
+    &__regalo {
+        margin-top: 3rem;
+    }
+
+    &__label {
+        display: block;
+        font-size: 2.2rem;
+        font-weight: v.$bold;
+        margin-bottom: 1rem;
+    }
+
+    &__select {
+        width: 100%;
+        background-color: v.$blanco;
+        border: 1px solid v.$gris;
+        padding: 1rem;
+        border-radius: .5rem;
+    }
+
 }

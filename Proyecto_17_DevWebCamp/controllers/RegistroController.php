@@ -11,6 +11,7 @@ use Model\Ponente;
 use Model\Usuario;
 use Model\Registro;
 use Model\Categoria;
+use Model\Regalo;
 
 class RegistroController
 {
@@ -72,10 +73,13 @@ class RegistroController
 
         $eventos = self::obtenerEventosOrdenados();
 
+        $regalos = Regalo::all();
+
         $router->render('registro/conferencias', [
             'titulo' => 'Elige Workshops y Conferencias',
             'registro' => $registro,
-            'eventos' => $eventos
+            'eventos' => $eventos,
+            'regalos' => $regalos
         ]);
     }
 

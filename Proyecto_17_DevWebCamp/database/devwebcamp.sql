@@ -180,6 +180,30 @@ INSERT INTO `ponentes` VALUES (1,' Julian','Muñoz','Madrid','España','6764a74c
 UNLOCK TABLES;
 
 --
+-- Table structure for table `regalos`
+--
+
+DROP TABLE IF EXISTS `regalos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `regalos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `regalos`
+--
+
+LOCK TABLES `regalos` WRITE;
+/*!40000 ALTER TABLE `regalos` DISABLE KEYS */;
+INSERT INTO `regalos` VALUES (1,'Paquete Stickers'),(2,'Camisa Mujer - Chica'),(3,'Camisa Mujer - Mediana'),(4,'Camisa Mujer - Grande'),(5,'Camisa Mujer - XL'),(6,'Camisa Hombre - Chica'),(7,'Camisa Hombre - Mediana'),(8,'Camisa Hombre - Grande'),(9,'Camisa Hombre - XL');
+/*!40000 ALTER TABLE `regalos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `registros`
 --
 
@@ -197,7 +221,7 @@ CREATE TABLE `registros` (
   KEY `paquete_id` (`paquete_id`),
   CONSTRAINT `registros_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
   CONSTRAINT `registros_ibfk_2` FOREIGN KEY (`paquete_id`) REFERENCES `paquetes` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,6 +230,7 @@ CREATE TABLE `registros` (
 
 LOCK TABLES `registros` WRITE;
 /*!40000 ALTER TABLE `registros` DISABLE KEYS */;
+INSERT INTO `registros` VALUES (40,1,'5XJ572873R357243R','51ad0309',12),(41,1,'2V462028LM678552J','27d570fb',11);
 /*!40000 ALTER TABLE `registros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +251,7 @@ CREATE TABLE `usuarios` (
   `token` varchar(13) DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +260,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (10,' Carlos Javier','Calderon Delgado','correo@correo.com','$2y$10$.LmCsBSo8ixROk1cXcZ1rONyA9jnDChC4sh45wzQripbcPcXlS59G',1,'',1),(11,' Elizabeth','Delgado','correo@ejemplo.com','$2y$10$TZJH6MRffnaAtJ03KZPun.WHs0Xl5lO2zGflp1K88ENTADiaV1acy',1,'',0),(12,' Elizafan Yasmani','Delgado Be','correo@1.com','$2y$10$TR.nSRCiqvFsIOxsg4t0w.3Ul/bdajpkQlU3TlGXHs02wwe2tncM2',1,'',0);
+INSERT INTO `usuarios` VALUES (10,' Carlos Javier','Calderon Delgado','correo@correo.com','$2y$10$.LmCsBSo8ixROk1cXcZ1rONyA9jnDChC4sh45wzQripbcPcXlS59G',1,'',1),(11,' Elizabeth','Delgado','correo@ejemplo.com','$2y$10$TZJH6MRffnaAtJ03KZPun.WHs0Xl5lO2zGflp1K88ENTADiaV1acy',1,'',0),(12,' Elizafan Yasmani','Delgado Be','correo@1.com','$2y$10$TR.nSRCiqvFsIOxsg4t0w.3Ul/bdajpkQlU3TlGXHs02wwe2tncM2',1,'',0),(13,' Test','Test','correo@ejemplo2.com','$2y$10$RQTRorX9v38Gz.5tm/otG.sSzj62lEzx23VnwZ1zq1yGrmadJhFRW',1,'',0),(14,' test','test3','correo@test.com','$2y$10$sfXFozcmXxC7s2sAdF.arOu0AkXtg6j4Ge8fCNO.Y5eSyUAt5pDE6',1,'',0),(15,' test','test4','correo@test5.com','$2y$10$TU7YciqFCl6tjjUbrBefvOWkvs1Q7N3ZpyGnnZd3SGU1TlGItll46',1,'',0);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 

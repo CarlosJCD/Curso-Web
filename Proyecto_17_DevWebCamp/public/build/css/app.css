@@ -982,6 +982,9 @@ h3 {
 .formulario__submit--registrar {
   width: 100%;
 }
+.formulario__submit--full {
+  width: 100%;
+}
 
 .acciones, .acciones--centrar {
   margin-top: 3rem;
@@ -1619,9 +1622,26 @@ h3 {
 .registro__eliminar {
   all: unset;
   color: rgb(169, 0, 0);
-  font-size: 4rem;
+  font-size: 2.5rem;
+  font-weight: 300;
 }
 .registro__eliminar:hover {
   cursor: pointer;
+}
+.registro__regalo {
+  margin-top: 3rem;
+}
+.registro__label {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.registro__select {
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid #64748B;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 /*# sourceMappingURL=app.css.map */
