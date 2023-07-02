@@ -142,14 +142,19 @@ import Swal from "sweetalert2";
             const resultado = await respuesta.json();
 
             if (resultado.resultado) {
-
+                Swal.fire({
+                    title: resultado.titulo,
+                    text: resultado.mensaje,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => { window.location.href = `/boleto?token=${resultado.token}` });
             } else {
                 Swal.fire({
                     title: resultado.titulo,
                     text: resultado.mensaje,
                     icon: 'error',
                     confirmButtonText: 'OK'
-                });
+                }).then(() => window.location.reload());
             }
 
 

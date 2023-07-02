@@ -6,12 +6,13 @@ use Model\Dia;
 use Model\Hora;
 use MVC\Router;
 use Model\Evento;
+use Model\Regalo;
 use Model\Paquete;
 use Model\Ponente;
 use Model\Usuario;
 use Model\Registro;
 use Model\Categoria;
-use Model\Regalo;
+use Model\EventosRegistros;
 
 class RegistroController
 {
@@ -94,7 +95,36 @@ class RegistroController
                 return;
             }
 
-            self::validarDisponibilidadEventos($eventos_id);
+            $eventos = self::validarDisponibilidadEventos($eventos_id);
+
+            foreach ($eventos as $evento) {
+                $evento->disponibles -= 1;
+                $evento->guardar();
+                $datos = [
+                    'evento_id' => (int) $evento->id,
+                    'registro_id' => (int) $registro->id
+                ];
+                $registro_usuario = new EventosRegistros($datos);
+                $registro_usuario->guardar();
+            }
+
+            $registro->sincronizar(['regalo_id' => $_POST['regalo_id']]);
+            $resultado = $registro->guardar();
+
+            if ($resultado) {
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'resultado' => $resultado,
+                    'token' => $registro->token,
+                    'titulo' => "¡Exito!",
+                    'mensaje' => 'Tus conferencias se han almacenado y tu registro es exitoso. Te esperamos en DevWebCamp'
+                ]);
+            } else {
+                header('Content-Type: application/json');
+                echo json_encode(['resultado' => false, 'titulo' => 'Error', 'mensaje' => 'Error al procesar su registro, porfavor intentelo de nuevo']);
+            }
+
+            return;
         }
 
         $router->render('registro/conferencias', [
@@ -107,10 +137,8 @@ class RegistroController
 
     public static function pagar()
     {
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             validarAuth('/login');
-
             if (empty($_POST)) {
                 echo json_encode([]);
                 return;
@@ -128,6 +156,7 @@ class RegistroController
                 header('Content-Type: application/json');
                 echo json_encode($resultado);
             } catch (\Throwable $th) {
+                debuguear($th);
                 echo json_encode([
                     'resultado' => 'error'
                 ]);
@@ -169,9 +198,16 @@ class RegistroController
     private static function validarRegistroPresencial($usuario_id)
     {
         $registro = Registro::where('usuario_id', $usuario_id);
+        if ($registro->paquete_id === '2') {
+            header("Location: /boleto?token=$registro->token");
+        }
 
-        if ($registro->paquete_id != 1) {
+        if ($registro->paquete_id !== '1') {
             header('Location: /');
+        }
+
+        if (isset($registro->regalo_id)) {
+            header("Location: /boleto?token=$registro->token");
         }
 
         return $registro;
@@ -217,6 +253,7 @@ class RegistroController
 
     private static function validarDisponibilidadEventos($eventos_id)
     {
+        $eventos = [];
         foreach ($eventos_id as $evento_id) {
             $evento = Evento::find($evento_id);
             if (!$evento || $evento->disponibles === "0") {
@@ -226,6 +263,9 @@ class RegistroController
                 echo json_encode(['respuesta' => false, 'titulo' => "Evento Agotado", "mensaje" => $mensaje]);
                 exit;
             }
+            $eventos[] = $evento;
         }
+
+        return $eventos;
     }
 }
