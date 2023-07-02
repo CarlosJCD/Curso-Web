@@ -7,28 +7,28 @@
             </span>
         </a>
 
-        <a href="/admin/ponentes?page=1" class="dashboard__enlace <?php echo enlace_actual('/ponentes?page=1') ?>">
+        <a href="/admin/ponentes?page=1" class="dashboard__enlace <?php echo enlace_actual('/ponentes') ?>">
             <i class="fa-solid fa-user-tie dashboard__icono"></i>
             <span class="dashboard__menu-texto">
                 Ponentes
             </span>
         </a>
 
-        <a href="/admin/eventos?page=1" class="dashboard__enlace <?php echo enlace_actual('/eventos?page=1') ?>">
+        <a href="/admin/eventos?page=1" class="dashboard__enlace <?php echo enlace_actual('/eventos') ?>">
             <i class="fa-regular fa-calendar-days dashboard__icono"></i>
             <span class="dashboard__menu-texto">
                 Eventos
             </span>
         </a>
 
-        <a href="/admin/registrados" class="dashboard__enlace <?php echo enlace_actual('/registrados') ?>">
+        <a href="/admin/registrados?page=1" class="dashboard__enlace <?php echo enlace_actual('/registrados') ?>">
             <i class="fa-solid fa-users dashboard__icono"></i>
             <span class="dashboard__menu-texto">
                 Registrados
             </span>
         </a>
 
-        <a href="/admin/regalos" class="dashboard__enlace <?php echo enlace_actual('/regalos') ?>">
+        <a href="/admin/regalos?page=1" class="dashboard__enlace <?php echo enlace_actual('/regalos') ?>">
             <i class="fa-solid fa-gifts dashboard__icono"></i>
             <span class="dashboard__menu-texto">
                 Regalos
