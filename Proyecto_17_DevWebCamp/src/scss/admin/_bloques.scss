@@ -26,12 +26,12 @@
         @include m.bg-gradient(#A855F7);
     }
 
-    &:nth-child(1) {
-        @include m.bg-gradient(#F97316);
+    &:nth-child(3) {
+        @include m.bg-gradient(#65A30B);
     }
 
-    &:nth-child(1) {
-        @include m.bg-gradient(#F97316);
+    &:nth-child(4) {
+        @include m.bg-gradient(#17769E);
     }
 
     &__heading {

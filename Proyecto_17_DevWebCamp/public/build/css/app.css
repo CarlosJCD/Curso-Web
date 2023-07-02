@@ -1573,11 +1573,11 @@ h3 {
 .bloque:nth-child(2) {
   background-image: linear-gradient(to left top, #A855F7, #cd9efa);
 }
-.bloque:nth-child(1) {
-  background-image: linear-gradient(to left top, #F97316, #fba061);
+.bloque:nth-child(3) {
+  background-image: linear-gradient(to left top, #65A30B, #91eb10);
 }
-.bloque:nth-child(1) {
-  background-image: linear-gradient(to left top, #F97316, #fba061);
+.bloque:nth-child(4) {
+  background-image: linear-gradient(to left top, #17769E, #23a7df);
 }
 .bloque__heading {
   margin: 1rem 0 2rem 0;
