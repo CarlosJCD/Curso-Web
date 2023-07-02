@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
     if (registroResumenDiv) {
         let eventos = [];
         const eventosBoton = document.querySelectorAll(".evento__agregar");
+        const formularioRegistro = document.querySelector('#registro');
+        formularioRegistro.addEventListener('submit', submitFormulario);
         eventosBoton.forEach(boton => boton.onclick = seleccionarEvento);
 
         function seleccionarEvento(e) {
@@ -81,6 +83,41 @@ import Swal from "sweetalert2";
             eventoEliminado.disabled = false;
 
             mostrarEventos();
+
+
+        }
+
+        function submitFormulario(e) {
+            e.preventDefault();
+
+            const regaloId = document.querySelector('#regalo').value;
+            const eventosId = eventos.map(evento => { return evento.id; });
+
+            if (eventosId.length === 0 || regaloId === '') {
+                switch (true) {
+                    case (eventosId.length === 0):
+                        Swal.fire({
+                            title: 'Advertencias',
+                            text: "Porfavor, selecciona al menos un evento al cual asistir",
+                            icon: 'warning',
+                            confirmButtonText: 'OK'
+                        });
+                        break;
+                    case (regaloId === ''):
+                        Swal.fire({
+                            title: 'Advertencias',
+                            text: "Porfavor, selecciona un regalo",
+                            icon: 'warning',
+                            confirmButtonText: 'OK'
+                        });
+                        break;
+                    default:
+                        console.log(eventosId);
+                        console.log(regaloId);
+                        break;
+                }
+                return;
+            }
 
 
         }

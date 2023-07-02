@@ -44,7 +44,7 @@
         <div class="registro__regalo">
             <label for="regalo" class="registro__label">Selecciona un regalo:</label>
             <select id="regalo" class="registro__select">
-                <option selected disabled>-- Selecciona tu regalo --</option>
+                <option value="" selected disabled>-- Selecciona tu regalo --</option>
                 <?php foreach ($regalos as $regalo) : ?>
                     <option value="<?php echo $regalo->id ?>"><?php echo $regalo->nombre ?></option>
                 <?php endforeach; ?>
