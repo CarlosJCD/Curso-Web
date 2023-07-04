@@ -70,6 +70,14 @@ class ActiveRecord
         return $objeto;
     }
 
+    public static function ordenar($columna, $orden = 'ASC')
+    {
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY $columna $orden";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
+
     // Identificar y unir los atributos de la BD
     public function atributos()
     {
@@ -117,9 +125,9 @@ class ActiveRecord
     }
 
     // Obtener todos los Registros
-    public static function all()
+    public static function all($order = 'ASC')
     {
-        $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC";
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY id $order";
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
@@ -135,10 +143,25 @@ class ActiveRecord
     // Obtener Registros con cierta cantidad
     public static function get($limite)
     {
-        $query = "SELECT * FROM " . static::$tabla . " LIMIT $limite ORDER BY id DESC";
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC LIMIT $limite";
         $resultado = self::consultarSQL($query);
-        return array_shift($resultado);
+        return $resultado;
     }
+
+    public static function ordenarLimite($columna, $orden, $limite)
+    {
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY $columna $orden LIMIT $limite ";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
+    public static function paginar($registrosPorPagina, $offset)
+    {
+        $query = "SELECT * FROM " . static::$tabla . " LIMIT $registrosPorPagina OFFSET $offset";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
 
     // Busqueda Where con Columna 
     public static function where($columna, $valor)
@@ -146,6 +169,31 @@ class ActiveRecord
         $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor'";
         $resultado = self::consultarSQL($query);
         return array_shift($resultado);
+    }
+
+    public static function whereArray($array = [])
+    {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ";
+        foreach ($array as $key => $value) {
+            if ($key === array_key_last($array)) {
+                $query .= "$key = '$value' ";
+            } else {
+                $query .= "$key = '$value' AND ";
+            }
+        }
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
+    public static function total($columna = "", $valor = ''): int
+    {
+        $query = 'SELECT COUNT(*) FROM ' . static::$tabla;
+        if ($columna) {
+            $query .= " WHERE $columna = '$valor'";
+        }
+        $resultado = self::$db->query($query);
+        $total = $resultado->fetch_array();
+        return array_shift($total);
     }
 
     // crea un nuevo registro

@@ -29,7 +29,13 @@
         color: rgba(v.$negro, 0.8);
     }
 
-    &__input {
+    &__radio {
+        display: flex;
+        gap: 2rem;
+    }
+
+    &__input,
+    &__select {
         padding: 1rem;
         border: 1px solid darken($color: v.$gris-claro, $amount: 20);
 
@@ -64,12 +70,28 @@
         overflow: hidden;
     }
 
+    &__listado {
+        @include m.tags;
+    }
+
+    &__texto {
+        margin-top: 3rem;
+    }
+
+    &__imagen {
+        max-width: 20rem
+    }
+
     &__submit {
         @include m.boton(v.$azul, v.$blanco);
         width: auto;
         align-self: flex-start;
 
         &--registrar {
+            width: 100%;
+        }
+
+        &--full {
             width: 100%;
         }
 
